@@ -4,6 +4,7 @@ import type { Mode } from "../lib/types";
 import { confidenceLabel, describeTheta } from "../lib/cefr";
 import { SKILL_LABEL, accuracyBySkill, costThisMonth, recentWords, streakDays, totalMinutes } from "../lib/stats";
 import { LevelChart } from "./LevelChart";
+import { loadLookups } from "../lib/glosses";
 import { LevelLine } from "./Home";
 
 export function Stats() {
@@ -14,6 +15,7 @@ export function Stats() {
   const acc = accuracyBySkill(sessions, modeFilter === "all" ? undefined : modeFilter);
   const recent = sessions.slice(-15).reverse();
   const words = recentWords(sessions);
+  const looked = loadLookups().slice().reverse();
 
   return (
     <>
@@ -153,6 +155,28 @@ export function Stats() {
           </ul>
         )}
       </section>
+
+      {looked.length > 0 && (
+        <details className="card" open>
+          <summary>Words you looked up ({looked.length})</summary>
+          <dl className="gloss" style={{ marginTop: 8 }}>
+            {looked.slice(0, 200).map((g, i) => (
+              <div key={i} style={{ display: "contents" }}>
+                <dt lang="el">{g.lemma || g.form}</dt>
+                <dd>
+                  {g.en}
+                  {g.lemma && g.lemma !== g.form && (
+                    <span className="tiny" lang="el">
+                      {" "}
+                      · {g.form}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+      )}
 
       {words.length > 0 && (
         <details className="card">

@@ -138,7 +138,9 @@ export function Home() {
 
       {ready && (refill.running || refill.error) && (
         <p className="tiny" role="status" style={{ marginTop: 8 }}>
-          {refill.running
+          {refill.running && refill.glossing
+            ? `Preparing word translations for your next ${refill.mode} lessons in the background…`
+            : refill.running
             ? `Preparing a new ${refill.level} ${refill.mode} lesson in the background… Keep the app open; it usually takes a few minutes.`
             : `Couldn't prepare a new lesson: ${refill.error} It will try again later.`}
         </p>

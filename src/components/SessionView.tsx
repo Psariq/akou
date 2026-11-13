@@ -10,6 +10,9 @@ import { SKILL_LABEL } from "../lib/stats";
 import { TaskCard } from "./Tasks";
 import { Player } from "./Player";
 import { Icon } from "./Icon";
+import { WordText } from "./WordText";
+import { ensureGlosses } from "../lib/glossService";
+import { getGlosses } from "../lib/glosses";
 
 type Phase = "preparing" | "exposure" | "tasks" | "grading" | "results" | "error";
 
@@ -58,6 +61,18 @@ export function SessionView() {
   const t = useRef({ exposureStart: 0, tasksStart: 0, exposureSec: 0, tasksSec: 0 });
   const abort = useRef<AbortController | null>(null);
   const now = useTicker(phase === "exposure" || phase === "tasks");
+  const addLookupCost = (usd: number) => {
+    cost.current = { ...cost.current, usd: cost.current.usd + usd };
+  };
+
+  // Prepare word glosses for this lesson in the background, if they aren't ready yet.
+  useEffect(() => {
+    if (!lesson || !apiKey) return;
+    ensureGlosses(apiKey, settings, lesson).catch(() => {
+      /* tapping a word still works: it is then looked up on its own */
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson?.id]);
 
   /* ---------- 1. prepare: take a ready lesson, or generate one now ---------- */
   useEffect(() => {
@@ -186,6 +201,8 @@ export function SessionView() {
 
     const before = progress[mode];
     const after = updateProgress(before, lesson.level, score);
+    // Word glosses are made once per lesson; count their cost with the session that uses it.
+    cost.current = { ...cost.current, usd: cost.current.usd + (getGlosses(lesson.id)?.costUsd ?? 0) };
     const rec: SessionRecord = {
       id: `${Date.now()}`,
       lessonId: lesson.id,
@@ -318,7 +335,7 @@ export function SessionView() {
             <h1 lang="el" style={{ fontFamily: "var(--font-read)" }}>
               {lesson.title}
             </h1>
-            <LessonText lesson={lesson} />
+            <WordText lesson={lesson} onCost={addLookupCost} />
           </article>
         ) : (
           <section className="card">
@@ -381,7 +398,7 @@ export function SessionView() {
                 <button className="btn ghost" onClick={() => setShowText(false)}>
                   Hide text
                 </button>
-                <LessonText lesson={lesson} />
+                <WordText lesson={lesson} onCost={addLookupCost} />
               </>
             ) : (
               <button className="btn ghost" onClick={() => setShowText(true)}>
@@ -502,7 +519,7 @@ export function SessionView() {
           {lesson.title}
         </h2>
         <p className="tiny">{lesson.title_en}</p>
-        <LessonText lesson={lesson} />
+        <WordText lesson={lesson} onCost={addLookupCost} />
         <h3>Words</h3>
         <Glossary lesson={lesson} />
       </details>
@@ -524,20 +541,6 @@ export function SessionView() {
         </button>
       </div>
     </>
-  );
-}
-
-function LessonText({ lesson }: { lesson: Lesson }) {
-  const multi = new Set(lesson.segments.map((s) => s.speaker).filter(Boolean)).size > 0;
-  return (
-    <div className="reading" lang="el">
-      {lesson.segments.map((s, i) => (
-        <p key={i}>
-          {multi && s.speaker && <span className="speaker">{s.speaker}</span>}
-          {s.text}
-        </p>
-      ))}
-    </div>
   );
 }
 

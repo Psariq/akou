@@ -10,6 +10,7 @@ const PATHS: Record<string, string> = {
   ear: "M6 8.5a6 6 0 0 1 12 0c0 3.5-3 4.5-3 7.5a3.5 3.5 0 0 1-6.5 1.8M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-1.5 3.5",
   lock: "M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4",
   close: "M6 6l12 12M18 6L6 18",
+  speaker: "M4 9v6h4l5 4V5L8 9H4zM16.5 9.5a3.5 3.5 0 0 1 0 5M19 7a7 7 0 0 1 0 10",
 };
 
 const FILLED = new Set(["play", "pause", "back", "stop"]);

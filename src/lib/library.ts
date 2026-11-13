@@ -207,8 +207,13 @@ function rank(c: Candidate): number {
 }
 
 export function pickLesson(cands: Candidate[], target: Target, source: SourceKind | "mixed" = "mixed"): Candidate | null {
+  return rankLessons(cands, target, source)[0] ?? null;
+}
+
+/** All usable lessons in the order they would be picked (at most one level from the target). */
+export function rankLessons(cands: Candidate[], target: Target, source: SourceKind | "mixed" = "mixed"): Candidate[] {
   const pool = source === "mixed" ? cands : cands.filter((c) => c.lesson.source.kind === source);
-  if (!pool.length) return null;
+  if (!pool.length) return [];
   const t = levelToNum(target.level);
   const sorted = pool
     .map((c, i) => ({ c, i, dist: Math.abs(levelToNum(c.lesson.level) - t) }))
@@ -225,7 +230,7 @@ export function pickLesson(cands: Candidate[], target: Target, source: SourceKin
       return a.i - b.i; // stock: oldest first; starters: file order
     });
   // A lesson more than one level away from the target is too far off; generate instead.
-  return sorted[0].dist <= 1 ? sorted[0].c : null;
+  return sorted.filter((x) => x.dist <= 1).map((x) => x.c);
 }
 
 /**

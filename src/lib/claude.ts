@@ -1,10 +1,21 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { betaJSONSchemaOutputFormat } from "@anthropic-ai/sdk/helpers/beta/json-schema";
-import type { Cefr, Lesson, Mode, ModelId, Settings, Task, UsageCost } from "./types";
+import type { Cefr, GlossEntry, Lesson, Mode, ModelId, Settings, Task, UsageCost } from "./types";
 import type { Material } from "./sources";
 import type { Target } from "./cefr";
 import { MODEL_INFO, addCost, costOf, ZERO_COST } from "./pricing";
-import { GRADING_SYSTEM, LESSON_SYSTEM, NEWS_SYSTEM, gradingPrompt, lessonPrompt, newsPrompt, type GradingItem } from "./prompts";
+import {
+  GLOSS_SYSTEM,
+  GRADING_SYSTEM,
+  LESSON_SYSTEM,
+  NEWS_SYSTEM,
+  glossPrompt,
+  gradingPrompt,
+  lessonPrompt,
+  lookupPrompt,
+  newsPrompt,
+  type GradingItem,
+} from "./prompts";
 import { isUsableTask } from "./grading";
 
 /**
@@ -377,6 +388,62 @@ export async function gradeWritten(
     effort: "low",
     signal,
   });
+}
+
+/* ---------------- Word glosses ---------------- */
+
+const GLOSS_ITEM = {
+  type: "object",
+  additionalProperties: false,
+  required: ["form", "lemma", "en", "note"],
+  properties: { form: str, lemma: str, en: str, note: str },
+} as const;
+
+export const GLOSSES_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["glosses"],
+  properties: { glosses: { type: "array", items: GLOSS_ITEM } },
+} as const;
+
+/** Glosses for every word of a lesson (one request). */
+export async function generateGlosses(
+  apiKey: string,
+  s: Settings,
+  lesson: Lesson,
+  signal?: AbortSignal,
+): Promise<{ entries: GlossEntry[]; cost: UsageCost }> {
+  const client = makeClient(apiKey);
+  const text = lesson.segments.map((x) => x.text).join("\n");
+  const { data, cost } = await callStructured<{ glosses: GlossEntry[] }>(client, s.model, {
+    system: GLOSS_SYSTEM,
+    user: glossPrompt(lesson.level, text),
+    schema: GLOSSES_SCHEMA,
+    effort: "low",
+    signal,
+  });
+  const entries = (data.glosses ?? []).filter((g) => g.form?.trim() && g.en?.trim());
+  if (!entries.length) throw new LessonError("No glosses were returned.");
+  return { entries, cost };
+}
+
+/** On-demand gloss for one tapped word, in its sentence. */
+export async function lookupWord(
+  apiKey: string,
+  s: Settings,
+  word: string,
+  sentence: string,
+  signal?: AbortSignal,
+): Promise<{ entry: GlossEntry; cost: UsageCost }> {
+  const client = makeClient(apiKey);
+  const { data, cost } = await callStructured<GlossEntry>(client, s.model, {
+    system: GLOSS_SYSTEM,
+    user: lookupPrompt(word, sentence),
+    schema: GLOSS_ITEM,
+    effort: "low",
+    signal,
+  });
+  return { entry: { ...data, form: word }, cost };
 }
 
 /** User-facing message for API errors. */

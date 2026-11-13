@@ -62,7 +62,7 @@ DATE: 2026-11-12
 FACTS:
 ${"Οι ναυτεργάτες κήρυξαν απεργία 24 ωρών την Πέμπτη. Τα πλοία θα μείνουν δεμένα στα λιμάνια. ".repeat(5)}`;
 
-const calls = { news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0 };
+const calls = { news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
 
 function msg(text, extra = {}) {
   return {
@@ -117,6 +117,16 @@ async function mockApis(page) {
       calls.lesson++;
       const listening = body.messages[0].content.includes("listening");
       out = msg(JSON.stringify(lesson(listening ? segmentsListening : segmentsReading, listening ? "Ταξίδι στο νησί" : "Το αρτοποιείο της Μαρίας")));
+    } else if (body.output_config?.format?.schema?.properties?.glosses) {
+      // Glosses for every word of the text, except "λιμάνι" (to exercise the on-demand lookup).
+      calls.gloss++;
+      const text = body.messages[0].content.match(/<text>([\s\S]*?)<\/text>/)[1];
+      const words = [...new Set(text.match(/[\p{L}\p{M}]+/gu))].filter((w) => w !== "λιμάνι");
+      out = msg(JSON.stringify({ glosses: words.map((w) => ({ form: w, lemma: `LEMMA:${w}`, en: `EN:${w}`, note: "test note" })) }));
+    } else if (body.output_config?.format?.schema?.properties?.lemma) {
+      calls.lookup++;
+      const word = body.messages[0].content.match(/«([^»]+)»/)[1];
+      out = msg(JSON.stringify({ form: word, lemma: `το ${word}`, en: `LOOKUP:${word}`, note: "acc. sg." }));
     } else {
       calls.grading++;
       out = msg(JSON.stringify(grading));
@@ -232,6 +242,24 @@ try {
   assert(calls.textbank === 1 && calls.lesson === 1 && calls.news === 0, "text-bank lesson made in one fetch+write request");
   await page.getByRole("button", { name: "Show word help" }).click();
   await page.screenshot({ path: SHOTS + "02-reading.png", fullPage: true });
+
+  console.log("Tap-to-translate");
+  await page.waitForFunction(() => {
+    const s = JSON.parse(localStorage.getItem("akou.glosses.v1") || "{}");
+    return Object.values(s).some((r) => r.complete && r.entries.some((e) => e.form === "αρτοποιείο"));
+  });
+  await page.getByRole("button", { name: "αρτοποιείο", exact: true }).first().click();
+  await page.getByRole("dialog").getByText("EN:αρτοποιείο").waitFor();
+  assert(calls.lookup === 0, "prepared gloss shown without a lookup");
+  await page.getByRole("button", { name: "λιμάνι", exact: true }).first().click();
+  await page.getByRole("dialog").getByText("LOOKUP:λιμάνι").waitFor();
+  assert(calls.lookup === 1, "missing word looked up on demand");
+  await page.screenshot({ path: SHOTS + "02b-word.png" });
+  await page.getByRole("button", { name: "λιμάνι", exact: true }).first().click(); // tap again: closes, then reopen from cache
+  await page.getByRole("button", { name: "λιμάνι", exact: true }).first().click();
+  await page.getByRole("dialog").getByText("LOOKUP:λιμάνι").waitFor();
+  assert(calls.lookup === 1, "looked-up word remembered");
+  await page.getByRole("button", { name: "Close" }).click();
   await page.getByRole("button", { name: /Go to the questions/ }).click();
   await page.screenshot({ path: SHOTS + "03-task.png", fullPage: true });
   await answerTasks(page, { wrongGap: true });
@@ -277,6 +305,7 @@ try {
   await page.goto(BASE + "#/stats");
   await page.getByRole("heading", { name: "Estimated CEFR level" }).waitFor();
   assert((await page.locator(".chart circle").count()) === 2, "chart shows one point per session");
+  await page.getByText("Words you looked up (2)").waitFor();
   await page.screenshot({ path: SHOTS + "06-stats.png", fullPage: true });
   const sessions = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
   assert(sessions === 2, "two sessions recorded (abandoned one not saved)");

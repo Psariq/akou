@@ -42,6 +42,15 @@ npm run build && npx vite preview --port 4173 &
 node e2e/smoke.mjs   # requires the `playwright` package with Chromium
 ```
 
+## Tap a word to translate it
+
+In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.
+
+- For every lesson (built-in and generated), Claude writes a gloss for each distinct word form once, in the background, a couple of lessons ahead of time. Stored on the device (`src/lib/glosses.ts`); the cost is added to the session that uses the lesson.
+- A word without a gloss yet is looked up on its own (one small request) and remembered.
+- Tapped words appear under *Progress → Words you looked up*.
+- Safety cap: at most 20 gloss generations per 24 hours.
+
 ## Sources and licences
 
 | Source | Licence / terms | How Άκου uses it |

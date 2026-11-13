@@ -241,3 +241,24 @@ details > summary { cursor: pointer; color: var(--accent); font-weight: 500; pad
 .guide li { margin-bottom: 8px; }
 code { background: var(--surface-2); padding: 1px 5px; border-radius: 6px; font-size: 0.9em; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+/* Tappable words */
+.w {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0 1px; margin: 0 -1px;
+  border-radius: 4px; cursor: pointer; -webkit-tap-highlight-color: transparent; line-height: inherit;
+}
+.w:hover { background: var(--surface-2); }
+.w.sel { background: var(--accent-soft); color: var(--accent); }
+.w:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.tap-hint { font-size: 0.78rem; color: var(--text-3); margin: -4px 0 10px; }
+.sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; justify-content: center;
+  padding: 0 12px calc(env(safe-area-inset-bottom) + 12px);
+}
+.sheet-inner {
+  width: 100%; max-width: 656px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 14px 16px; box-shadow: 0 -4px 24px rgb(0 0 0 / 0.12);
+}
+.sheet .form { font-family: var(--font-read); font-size: 1.35rem; font-weight: 700; }
+.sheet .lemma { font-family: var(--font-read); color: var(--text-2); }
+.sheet .en { font-size: 1.05rem; margin-top: 4px; }

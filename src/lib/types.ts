@@ -41,6 +41,18 @@ export interface GlossaryItem {
   note: string;
 }
 
+/** One word form from a lesson text, translated in context. */
+export interface GlossEntry {
+  /** The form as it appears in the text. */
+  form: string;
+  /** Dictionary form (with article for nouns). */
+  lemma: string;
+  /** English meaning in this context. */
+  en: string;
+  /** Short grammar note, e.g. "aorist, 3rd sg." */
+  note: string;
+}
+
 export interface SourceInfo {
   kind: SourceKind;
   /** Part of the built-in starter library. */
