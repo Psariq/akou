@@ -1,0 +1,1687 @@
+{
+ "source": "https://www.greek-language.gr/certification/dbs/teachers/index.html",
+ "retrieved": "2026-11-13",
+ "total_listed": 337,
+ "items": [
+  {
+   "id": 5,
+   "title": "Γεια σου, Νίκη. Ο Πέτρος είμαι.",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 31,
+   "title": "Σε παρακαλώ, να αγοράσεις μερικά πράγματα.",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 49,
+   "title": "Καλοκαιρινή εργασία",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 65,
+   "title": "Η συμπεριφορά των παιδιών στο δρόμο και στο αυτοκίνητο",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 81,
+   "title": "Το δωμάτιο",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 95,
+   "title": "Καλοκαιρινό σχολείο για παιδιά",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 97,
+   "title": "Κατασκήνωση",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 111,
+   "title": "Η ζωή στην κοινωνία",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 129,
+   "title": "Το τρίτο γράμμα του Γιάννη.",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 145,
+   "title": "Πώς θα πάω στην παραλία;",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 177,
+   "title": "Δυσάρεστες μυρωδιές",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 193,
+   "title": "Oργάνωση πάρτι",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 209,
+   "title": "Κράτηση θέσεων",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 225,
+   "title": "Βιογραφικό",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 239,
+   "title": "Ο καιρός",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 241,
+   "title": "Μυστικά πλυσίματος",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 261,
+   "title": "Εκδρομή για φοιτητές και φοιτήτριες του Πολυτεχνείου στο Τεχνολογικό Πάρκο",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 263,
+   "title": "Από ραδιοφωνική εκπομπή",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 295,
+   "title": "Οικογένεια",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 297,
+   "title": "Περιγραφή",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 328,
+   "title": "Έναν Αύγουστο στις Σπέτσες",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 330,
+   "title": "Τα γενέθλια του Μάρκου",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 362,
+   "title": "Μια γιορτή στη γειτονιά του ήλιου",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 364,
+   "title": "Η καλή μάγισσα",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 406,
+   "title": "Μάντεψε τη διαφήμιση",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 408,
+   "title": "Τι γνώμη έχεις για τον Αντώνη;",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 442,
+   "title": "Πώς θα έρθεις στο γραφείο μου;",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 466,
+   "title": "Συμβουλές για μικρούς μαθητές",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 468,
+   "title": "Επικοινωνία με σημειώματα!",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 484,
+   "title": "Τα σπίτια μου",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 532,
+   "title": "Περιήγηση στη Σκιάθο",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 534,
+   "title": "Πώς θα πάτε στο Μουσείο Ελληνικού Αυτοκινήτου",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 569,
+   "title": "Παλιοί συμμαθητές",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 588,
+   "title": "Προτάσεις για το  Σαββατοκύριακο 6 και 7 Οκτωβρίου 2013",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 600,
+   "title": "Ταξίδι με το τρένο",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 602,
+   "title": "Εισιτήρια θεάτρου",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 632,
+   "title": "Επίσκεψη στην πινακοθήκη",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 634,
+   "title": "Φωτογραφία, ζωγραφική",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 1069,
+   "title": "Μικρές αγγελίες",
+   "level": "A1",
+   "skill": "reading"
+  },
+  {
+   "id": 1071,
+   "title": "Το καθημερινό πρόγραμμά μου",
+   "level": "A1",
+   "skill": "listening"
+  },
+  {
+   "id": 9,
+   "title": "Καλημέρα σας. Πώς μπορώ να σας βοηθήσω;",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 11,
+   "title": "Συγγνώμη, κύριε!",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 35,
+   "title": "Μικρές Αγγελίες",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 37,
+   "title": "Κρέπες",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 51,
+   "title": "Εργασία από το σπίτι",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 53,
+   "title": "Τουρισμός",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 67,
+   "title": "Το δελφίνι",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 69,
+   "title": "Οδηγίες για τέλειο καφέ",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 83,
+   "title": "Οι παραγγελίες",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 85,
+   "title": "Ο γάτος",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 99,
+   "title": "Πώς να γίνεις καλός στη δουλειά σου",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 101,
+   "title": "Τσιντσιλά",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 115,
+   "title": "Πως θα βρείτε τις καλύτερες θέσεις εργασίας στην περιοχή σας",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 117,
+   "title": "Το πάθημα του λύκου (Μύθοι Αισώπου)",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 131,
+   "title": "Γυμναστική με προσοχή.",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 133,
+   "title": "Επισκευή υπολογιστών",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 147,
+   "title": "Το μάζεμα των σταφυλιών στο Άγιον Όρος",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 149,
+   "title": "Διάφορα επαγγέλματα",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 179,
+   "title": "Συνέντευξη",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 181,
+   "title": "Θέατρο",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 195,
+   "title": "Τηλεφώνημα σε ιατρείο για κλείσιμο ραντεβού",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 197,
+   "title": "Κράτηση δωματίου σε ξενοδοχείο",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 211,
+   "title": "Έρευνα για τη σωματική άσκηση",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 213,
+   "title": "Έρευνα για το ραδιόφωνο",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 229,
+   "title": "Η θάλασσα το καλοκαίρι",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 231,
+   "title": "Οδηγίες για ένα σωστό βιογραφικό σημείωμα",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 247,
+   "title": "Παιδικός σταθμός",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 249,
+   "title": "Δωμάτιο σε ξενοδοχείο",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 251,
+   "title": "Το σχολείο μας",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 269,
+   "title": "Συμβουλές για πρώτες βοήθειες",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 271,
+   "title": "Επαγγέλματα",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 274,
+   "title": "Πράσινες  συμβουλές για τις ηλεκτρικές συσκευές!",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 276,
+   "title": "Μόδα",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 303,
+   "title": "Γράμμα σε μια φίλη",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 305,
+   "title": "Διάλογος μεταξύ φίλων",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 307,
+   "title": "Χρήσιμες οδηγίες τοκετού",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 309,
+   "title": "Συμβουλές για τη βεράντα",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 336,
+   "title": "Η συναυλία",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 338,
+   "title": "Μαγειρική",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 340,
+   "title": "Καλοκαίρι στην Κεφαλονιά",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 342,
+   "title": "Αγαπητό μου ημερολόγιο Τάκη",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 372,
+   "title": "Η Αρχαία Αίγυπτος Αποκαλύπτεται",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 374,
+   "title": "Η Μιλένα και το φρικτό ψάρι",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 376,
+   "title": "Τρία δέντρα συζητούν",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 394,
+   "title": "Τα ψηλά βουνά (απόσπασμα)",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 414,
+   "title": "Προγράμματα για παιδιά σε μουσεία της Θεσσαλονίκης",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 416,
+   "title": "Τηλεφωνική συνομιλία",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 418,
+   "title": "Εργασιακό άγχος",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 420,
+   "title": "Δημόσιες Ανακοινώσεις",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 436,
+   "title": "Προτάσεις για κινηματογράφο",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 444,
+   "title": "Δικαιολογητικά για την έκδοση δελτίου ταυτότητας",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 446,
+   "title": "Συμβουλές για σωστή διατροφή των παιδιών",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 448,
+   "title": "Ο τεμπέλης γάιδαρος",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 472,
+   "title": "Κρύωσες; Σε μια μέρα μπορείς να γίνεις καλά!",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 474,
+   "title": "Μικρές αγγελίες",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 488,
+   "title": "Πρόβλημα με τον φορητό υπολογιστή",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 490,
+   "title": "Ξενάγηση στη Θεσσαλονίκη",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 542,
+   "title": "Γενικές πληροφορίες για τη Λέσβο",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 544,
+   "title": "Δελτίο καιρού",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 546,
+   "title": "Ασφαλής χρήση του διαδικτύου",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 548,
+   "title": "Ο Δωδεκάλογος της Οδικής Ασφάλειας",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 571,
+   "title": "Τα σαλιγκάρια",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 573,
+   "title": "Πώς να μάθετε  ξένες  γλώσσες για τη δουλειά σας",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 585,
+   "title": "Ελληνικό παιδικό χωριό, επειδή ένα παιδικό χαμόγελο αξίζει!",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 590,
+   "title": "Ποιο επάγγελμα σας ταιριάζει;",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 608,
+   "title": "Πώς θα βρείτε δουλειά",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 610,
+   "title": "Μετακόμιση",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 612,
+   "title": "Ηλεκτρονικό μήνυμα (Email) από τις διακοπές!",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 614,
+   "title": "Δώρο για ανιψιά",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 640,
+   "title": "Το τρενάκι του Πηλίου",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 642,
+   "title": "Δώρα από την Αφρική",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 644,
+   "title": "Τηλεφωνητής σε εταιρεία ταξί",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 646,
+   "title": "Φθηνά προϊόντα; Τώρα ακόμη πιο εύκολα.",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 1077,
+   "title": "Επαγγελματική ζωή",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 1079,
+   "title": "Στο κατάστημα ρούχων",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 1081,
+   "title": "Συμβουλές για τα κατοικίδιά σας",
+   "level": "A2",
+   "skill": "reading"
+  },
+  {
+   "id": 1083,
+   "title": "Σινεμά ή θέατρο;",
+   "level": "A2",
+   "skill": "listening"
+  },
+  {
+   "id": 13,
+   "title": "Καθημερινά αντικείμενα σε νέο ρόλο",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 39,
+   "title": "Καφές με …παντοτινή γεύση",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 55,
+   "title": "Νίκος Παπάζογλου",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 71,
+   "title": "Αίγινα",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 87,
+   "title": "Η ιστορία των παπουτσιών",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 103,
+   "title": "Πώς να φέρετε την τάξη στο σπίτι σας",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 119,
+   "title": "Καφές",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 135,
+   "title": "Φωτογραφίες",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 151,
+   "title": "Η «τριλογία» της οδού Πανεπιστημίου",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 159,
+   "title": "Νέα Διαγώνιος στην Κρήνη",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 165,
+   "title": "Ζώα και παιδιά",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 183,
+   "title": "Κοντολέων",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 199,
+   "title": "Ενημερωτική ραδιοφωνική εκπομπή για «ΤΟ ΧΑΜΟΓΕΛΟ ΤΟΥ ΠΑΙΔΙΟΥ»",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 215,
+   "title": "Πήλιο: Όχι μόνο για το χειμώνα",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 227,
+   "title": "Η ηλεκτρονική Φάρμα των Ζώων",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 253,
+   "title": "Φιλικό γράμμα",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 255,
+   "title": "Ηλιοθεραπεία",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 279,
+   "title": "ΖΩΡΖ ΣΑΡΗ ΝΙΝΕΤ",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 281,
+   "title": "Συνέντευξη με τον Βασίλη Παππά",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 311,
+   "title": "Τι μαθαίνουμε από τα νήπια",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 313,
+   "title": "Η ακαμάτρα η Βγενιώ",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 344,
+   "title": "Τα πρώτα μου γιατί;",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 346,
+   "title": "Το καπλάνι της βιτρίνας",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 378,
+   "title": "Συνταγή: Τυροπιτάκια με σουσάμι",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 380,
+   "title": "Φράγματα και Γέφυρες",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 422,
+   "title": "Στη γειτονιά των Πετραλώνων",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 424,
+   "title": "Ελεύθερη πτώση",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 450,
+   "title": "Ζητείται εργασία",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 452,
+   "title": "Χριστουγεννιάτικα βιβλία",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 476,
+   "title": "Κάτι νέο στην πόλη: ανταλλακτική βιβλιοθήκη.",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 492,
+   "title": "Μια χρονιά όλο ατυχία!",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 500,
+   "title": "Ο δεκάλογος των ζωόφιλων",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 502,
+   "title": "Πώς κάνουμε το παιδί μας να διαβάζει;",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 504,
+   "title": "1 ΜΑΪΟΥ – ΠΑΓΚΟΣΜΙΑ ΗΜΕΡΑ ΚΑΤΑ ΤΟΥ ΚΑΠΝΙΣΜΑΤΟΣ",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 506,
+   "title": "Παιδί και κυκλοφοριακή αγωγή - συμβουλές προς τους γονείς",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 550,
+   "title": "Επίσκεψη στο Μουσείο Φυσικής Ιστορίας Γουλανδρή",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 552,
+   "title": "Συνέντευξη από έναν προπονητή Tae-kwon-Do",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 575,
+   "title": "Προτάσεις για το σαββατοκύριακο",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 592,
+   "title": "Μίλα μου",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 616,
+   "title": "Δουλειά από το σπίτι με παιδιά!",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 618,
+   "title": "Συμβουλές διακόσμησης για το σαλόνι σας",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 648,
+   "title": "Ξενώνες",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 650,
+   "title": "Φροντίδα για άτομα με ειδικές ανάγκες",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 1085,
+   "title": "Το ντύσιμο των παιδιών",
+   "level": "B1",
+   "skill": "reading"
+  },
+  {
+   "id": 1087,
+   "title": "Κείμενο:",
+   "level": "B1",
+   "skill": "listening"
+  },
+  {
+   "id": 15,
+   "title": "Οι Ολυμπιακοί Αγώνες",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 41,
+   "title": "Η κληρονόμος",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 57,
+   "title": "Κρασί",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 73,
+   "title": "Μεσογειακή φώκια (Monachus monachus)",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 105,
+   "title": "Διακοπές σε νησί",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 121,
+   "title": "Άνθρωπος και περιβάλλον, αμοιβαία τα αισθήματα;",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 137,
+   "title": "Σωστό πρόγραμμα",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 153,
+   "title": "Δημοτικοί λαχανόκηποι ως «απάντηση» στην κρίση",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 167,
+   "title": "Ταξιδεύοντας με το παιδί",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 201,
+   "title": "Τα Σπάνε!",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 217,
+   "title": "Κίνημα “Freecycle”… γιατί τίποτα δεν θεωρείται σκουπίδι!",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 233,
+   "title": "Μικρός Απόπλους",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 257,
+   "title": "Συνέντευξη με ηθοποιό",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 283,
+   "title": "Γιώργος Σεφέρης, ο φωτογράφος",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 285,
+   "title": "Πνευματική ζωή, Γράμματα και Τέχνες στην Ελλάδα τον 19ο αιώνα",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 315,
+   "title": "Αγόρι - Κορίτσι: Βρείτε τις διαφορές",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 317,
+   "title": "Μύθοι και αλήθειες για την διατροφή και το αδυνάτισμα",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 350,
+   "title": "Έρωτας στην ομίχλη",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 370,
+   "title": "Το γαϊτανάκι",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 382,
+   "title": "Δαρβίνος",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 384,
+   "title": "Οι δώδεκα Θεοί του Ολύμπου",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 404,
+   "title": "Σκύλοι και υγεία",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 426,
+   "title": "Η ζωή στη Σάμο",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 454,
+   "title": "Μπορεί ο καφές να γίνει φονικό όπλο;",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 456,
+   "title": "Για ακόμη λιγότερους καβγάδες",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 478,
+   "title": "Μια γειτονιά, δύο εποχές.",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 494,
+   "title": "Ιαπωνία: το κυνήγι ενός ονείρου!",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 508,
+   "title": "Κίνδυνος από τα SMS και τη μουσική για τους πεζούς",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 510,
+   "title": "Επτά Τρόποι…",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 554,
+   "title": "Παιδικά Παιχνίδια – 12 Συμβουλές για «ασφαλή» Χριστούγεννα",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 556,
+   "title": "Συνέντευξη από μια γιαγιά των Προμάχων",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 577,
+   "title": "Συμμαζέψτε το σπίτι σας σε 20 λεπτά",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 594,
+   "title": "Oδηγίες επιβίωσης για την πρώτη χρονιά στο σχολείο",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 620,
+   "title": "Φτιάξτε την τύχη σας",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 622,
+   "title": "Οι κίνδυνοι του ενυδρείου",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 652,
+   "title": "Αναμνήσεις από την παιδική ηλικία",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 1089,
+   "title": "Παιδικά παιχνίδια",
+   "level": "B2",
+   "skill": "reading"
+  },
+  {
+   "id": 1091,
+   "title": "Θαλάσσια χελώνα καρέτα-καρέτα",
+   "level": "B2",
+   "skill": "listening"
+  },
+  {
+   "id": 17,
+   "title": "Το σπίτι του νεοελληνικού πνεύματος",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 43,
+   "title": "Απόσπασμα από το δοκίμιο του Άγγελου Τερζάκη (1907-1979) «Τα παιδιά με τα κλωνάρια»",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 59,
+   "title": "Ο μικρός πρίγκιπας",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 75,
+   "title": "Το σοφό παιδί",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 91,
+   "title": "Υγιεινή διατροφή για παιδιά",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 107,
+   "title": "Στο μικροσκόπιο τα κινητά!",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 123,
+   "title": "Εκπαιδευτικά Παιχνίδια",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 125,
+   "title": "Μεσόγειος, καταφύγιο ζωής",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 139,
+   "title": "Επιστροφή στην επαρχία: μια νέα τάση ως αντίδοτο στην κρίση.",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 155,
+   "title": "Greece εναντίον Hellas (ιστορίες με ονόματα)",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 163,
+   "title": "Ισότητα των δύο φύλων: μύθοι και πραγματικότητα",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 171,
+   "title": "Οι δέκα εξυπνότεροι άνθρωποι στον κόσμο. Η λίστα που κατήρτισε η ιστοσελίδα superscholar.org",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 173,
+   "title": "Ο Οσκαρ Πιστόριους θα γράψει ιστορία",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 203,
+   "title": "Το επάγγελμα του δικηγόρου",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 219,
+   "title": "Αιωρούμενα σωματίδια: Οι αόρατοι εχθροί της υγείας μας",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 235,
+   "title": "Το σκαμνάκι",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 287,
+   "title": "Γιατί δεν πρέπει να απλώνουμε την μπουγάδα στο σαλόνι",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 289,
+   "title": "Παράδοση και ελληνική ταυτότητα",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 319,
+   "title": "Πώς εδραιώνονται οι αναμνήσεις;",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 321,
+   "title": "Καλλιέργειες 3 σε 1!",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 352,
+   "title": "Σερφάροντας στο ίντερνετ",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 354,
+   "title": "Συνέντευξη με τους Π. Παπακωνσταντίνου και Α. Θεοφίλου",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 386,
+   "title": "Η πείνα φέρνει εξεγέρσεις",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 396,
+   "title": "Σχολική βία",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 398,
+   "title": "Ρόδι: για υγεία, γονιμότητα, καλοτυχία",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 430,
+   "title": "Διατροφικές συνήθειες",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 438,
+   "title": "Έλληνες και κράτος",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 480,
+   "title": "Ο Σαίξπηρ ακονίζει το μυαλό.",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 496,
+   "title": "Στοχασμοί ενός λογοτέχνη",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 514,
+   "title": "Δυνατοί και αδύνατοι",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 516,
+   "title": "Η μυθολογία μιας πολύ παλιάς πόλης",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 518,
+   "title": "ΑΛΗΘΕΙΑ ΚΑΙ ΜΥΘΟΙ ΓΙΑ ΕΛΛΗΝΕΣ ΚΑΙ ΤΟΥΡΚΟΥΣ",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 520,
+   "title": "Η φωνή που κουβαλάει τις πληγές μας",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 565,
+   "title": "«Μαθητές με αναπηρίες και μαθητές με ειδικές εκπαιδευτικές ανάγκες στο σύγχρονο σχολείο»",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 579,
+   "title": "Πόσες ώρες τηλεόραση να βλέπει το παιδί μου;",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 596,
+   "title": "Στίβεν Σπίλμπεργκ",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 624,
+   "title": "Η δύναμη της συγγνώμης",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 626,
+   "title": "Ο φωτογράφος Σεφέρης",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 656,
+   "title": "Μεταμοσχεύσεις κατά του καρκίνου",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 662,
+   "title": "Μια άλλη οπτική για τον Άμλετ",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 1093,
+   "title": "Τύχη και ατυχία",
+   "level": "C1",
+   "skill": "reading"
+  },
+  {
+   "id": 1095,
+   "title": "Συμβουλές για τη διαχείριση του θυμού",
+   "level": "C1",
+   "skill": "listening"
+  },
+  {
+   "id": 19,
+   "title": "Βιβλιοπαρουσιάσεις",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 45,
+   "title": "Λαϊκότητα και λαϊκισμός",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 61,
+   "title": "Σεισμολογία",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 77,
+   "title": "Η ισότητα ανδρών - γυναικών σήμερα",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 109,
+   "title": "Τι είναι το άγχος και πώς αντιμετωπίζεται",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 141,
+   "title": "Εσωτερικός πόλεμος κατά των ασθενειών.",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 157,
+   "title": "Τα τραγούδια τα συναντάς στους άλλους",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 205,
+   "title": "Ακριβό ή φθηνό το βιβλίο;",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 221,
+   "title": "Η αναγκαιότητα της οικολογικής δόμησης",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 237,
+   "title": "Εφηβεία και κατάθλιψη",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 291,
+   "title": "Ο ιός του AIDS νίκησε τη λευχαιμία",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 293,
+   "title": "Συνέντευξη: Δημήτριος Νανόπουλος «Είμαστε μια ασημαντότητα μέσα σε ένα τεράστιο σύμπαν»",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 324,
+   "title": "Πώς εδραιώνονται οι αναμνήσεις;",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 326,
+   "title": "Πώς εδραιώνονται οι αναμνήσεις;",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 356,
+   "title": "WWF",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 358,
+   "title": "Η γραμματέας",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 360,
+   "title": "WWF Ελλάς: Περιβαλλοντική Εκπαίδευση",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 388,
+   "title": "Γονίδια, φάρμακα και βιοηθική",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 390,
+   "title": "Παλαιογενετική",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 392,
+   "title": "Εναλλακτική θεωρία για τη δικαιοσύνη",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 400,
+   "title": "Δικαιώματα των ζώων",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 402,
+   "title": "Το βιβλίο και η κρίση",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 434,
+   "title": "Συγκατοίκηση",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 460,
+   "title": "Υπερρεαλιστές, μαρξισμός και ψυχανάλυση",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 482,
+   "title": "Η θεωρία της σχετικότητας: γέννηση, αποδοχή, αντίκτυπος.",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 498,
+   "title": "Το αέναο γίγνεσθαι των ηφαιστείων",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 522,
+   "title": "Ένας επίγειος παράδεισος στην Αθήνα",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 524,
+   "title": "Από την Μποφίλιου στο Fame",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 526,
+   "title": "Οικονομική κρίση: αλλαγές στις συνειδήσεις",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 566,
+   "title": "Παραδοσιακή αρχιτεκτονική Θάσου",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 567,
+   "title": "Έλενα Μαρούτσου: «Η λογοτεχνία μας υπενθυμίζει ότι υπάρχει ένα κομμάτι κήπου μέσα σε κάθε άνθρωπο»",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 581,
+   "title": "10 συμβουλές για καλύτερη διατροφή στο γραφείο",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 598,
+   "title": "Ο φόβος των εξετάσεων",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 628,
+   "title": "Τα Ελευσίνια Μυστήρια",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 630,
+   "title": "Δομήνικος Θεοτοκόπουλος",
+   "level": "C2",
+   "skill": "listening"
+  },
+  {
+   "id": 660,
+   "title": "Ελληνικά κεντήματα",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 1097,
+   "title": "Παιδική εργασία",
+   "level": "C2",
+   "skill": "reading"
+  },
+  {
+   "id": 1099,
+   "title": "Οι πέντε αισθήσεις των φυτών",
+   "level": "C2",
+   "skill": "listening"
+  }
+ ]
+}

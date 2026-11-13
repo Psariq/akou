@@ -50,9 +50,10 @@ export function SettingsView() {
         <h2>Texts</h2>
         {(
           [
-            ["news", "Current news articles (searched and fetched by AI, then adapted)"],
-            ["wikipedia", "Greek Wikipedia articles (simplified)"],
+            ["textbank", "Graded texts from the Centre for the Greek Language's text bank (A1–C2, written or adapted for learners; fetched on demand for personal study)"],
+            ["wikipedia", "Greek Wikipedia articles (CC BY-SA 4.0), simplified to your level"],
             ["ai", "Everyday texts and dialogues written by AI"],
+            ["news", "Current news articles, only when you pick “News” (not used for background lessons)"],
           ] as [SourceKind, string][]
         ).map(([k, label]) => (
           <label className="check" key={k}>

@@ -11,11 +11,24 @@ const done = (lessonId: string) => ({ lessonId }) as SessionRecord;
 describe("starter library", () => {
   const all = [...STARTER.reading, ...STARTER.listening];
 
-  it("has 4 reading + 4 listening lessons at each of A2, B1, B2", () => {
+  it("has 4 AI-written reading + 4 listening lessons at each of A2, B1, B2", () => {
     for (const mode of ["reading", "listening"] as Mode[]) {
       for (const level of ["A2", "B1", "B2"] as const) {
-        expect(STARTER[mode].filter((l) => l.level === level)).toHaveLength(4);
+        expect(STARTER[mode].filter((l) => l.level === level && l.source.kind === "ai")).toHaveLength(4);
       }
+    }
+  });
+
+  it("has 8 Wikipedia-based lessons with attribution, before the AI-written ones", () => {
+    const open = all.filter((l) => l.source.kind === "wikipedia");
+    expect(open).toHaveLength(8);
+    for (const l of open) {
+      expect(l.source.url).toMatch(/^https:\/\/el\.wikipedia\.org\/wiki\//);
+      expect(l.source.license).toBe("CC BY-SA 4.0");
+    }
+    for (const mode of ["reading", "listening"] as Mode[]) {
+      const kinds = STARTER[mode].map((l) => l.source.kind);
+      expect(kinds.lastIndexOf("wikipedia")).toBeLessThan(kinds.indexOf("ai"));
     }
   });
 
@@ -38,20 +51,23 @@ describe("starter library", () => {
 });
 
 describe("choosing a lesson", () => {
-  it("takes a starter lesson at the target level, in order", () => {
+  it("takes a built-in lesson at the target level, open-source-based first", () => {
     const c = pickLesson(availableLessons("reading", [], emptyStock), { level: "B1", band: "lower" });
-    expect(c?.lesson.id).toBe("starter-reading-B1-1");
+    expect(c?.lesson.id).toBe("wiki-reading-B1-karagiozis");
     expect(c?.origin).toBe("starter");
   });
 
   it("skips lessons already done", () => {
-    const c = pickLesson(availableLessons("reading", [done("starter-reading-B1-1")], emptyStock), { level: "B1", band: "lower" });
-    expect(c?.lesson.id).toBe("starter-reading-B1-2");
+    const c = pickLesson(
+      availableLessons("reading", [done("wiki-reading-B1-karagiozis"), done("wiki-reading-B1-olympos")], emptyStock),
+      { level: "B1", band: "lower" },
+    );
+    expect(c?.lesson.id).toBe("starter-reading-B1-1");
   });
 
   it("prefers generated lessons (news first) over starters at the same level", () => {
     const mk = (id: string, kind: "news" | "ai", createdAt: string): StockItem => ({
-      lesson: { ...STARTER.reading[4], id, source: { kind } },
+      lesson: { ...STARTER.reading.find((l) => l.level === "B1")!, id, source: { kind } },
       createdAt,
       costUsd: 0.1,
     });
@@ -63,7 +79,7 @@ describe("choosing a lesson", () => {
   });
 
   it("drops news older than a few days", () => {
-    const item: StockItem = { lesson: { ...STARTER.reading[4], id: "old-news", source: { kind: "news" } }, createdAt: "2026-11-01T00:00:00Z", costUsd: 0 };
+    const item: StockItem = { lesson: { ...STARTER.reading.find((l) => l.level === "B1")!, id: "old-news", source: { kind: "news" } }, createdAt: "2026-11-01T00:00:00Z", costUsd: 0 };
     const now = new Date("2026-11-13T12:00:00Z").getTime();
     expect(availableLessons("reading", [], { reading: [item], listening: [] }, now).some((c) => c.lesson.id === "old-news")).toBe(false);
     expect(pruneStock({ reading: [item], listening: [] }, [], now).reading).toHaveLength(0);
@@ -75,8 +91,11 @@ describe("choosing a lesson", () => {
     expect(pickLesson(onlyA2, { level: "B2", band: "middle" })).toBeNull();
   });
 
-  it("with a specific source, ignores starters", () => {
-    expect(pickLesson(availableLessons("reading", [], emptyStock), { level: "B1", band: "lower" }, "ai")).toBeNull();
+  it("with a specific source, only takes lessons from that source", () => {
+    const cands = availableLessons("reading", [], emptyStock);
+    expect(pickLesson(cands, { level: "B1", band: "lower" }, "wikipedia")?.lesson.source.kind).toBe("wikipedia");
+    expect(pickLesson(cands, { level: "B1", band: "lower" }, "ai")?.lesson.source.kind).toBe("ai");
+    expect(pickLesson(cands, { level: "B1", band: "lower" }, "textbank")).toBeNull();
   });
 });
 
@@ -93,7 +112,7 @@ describe("refill rule (keep 3, refill below 2)", () => {
   });
   it("counts only lessons at the target level", () => {
     const c = availableLessons("listening", [], emptyStock);
-    expect(countAtLevel(c, "B1")).toBe(4);
+    expect(countAtLevel(c, "B1")).toBe(5); // 1 Wikipedia-based + 4 AI-written
     expect(countAtLevel(c, "C1")).toBe(0);
   });
 });

@@ -62,7 +62,7 @@ DATE: 2026-11-12
 FACTS:
 ${"Οι ναυτεργάτες κήρυξαν απεργία 24 ωρών την Πέμπτη. Τα πλοία θα μείνουν δεμένα στα λιμάνια. ".repeat(5)}`;
 
-const calls = { news: 0, lesson: 0, grading: 0, models: 0, wiki: 0 };
+const calls = { news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0 };
 
 function msg(text, extra = {}) {
   return {
@@ -98,7 +98,19 @@ async function mockApis(page) {
     if (h.authorization !== "Bearer sk-ant-test-key" && h["x-api-key"] !== "sk-ant-test-key") throw new Error("API key missing from request");
     if (h["anthropic-dangerous-direct-browser-access"] !== "true") throw new Error("browser-access header missing");
     let out;
-    if (body.tools) {
+    const fetchesPage = body.tools?.some((t) => t.name === "web_fetch") && body.output_config?.format;
+    if (fetchesPage) {
+      // Text-bank lesson: Claude fetches the page and writes the lesson in one request.
+      if (!body.tools[0].allowed_domains?.includes("www.greek-language.gr")) throw new Error("fetch not restricted to the text bank");
+      calls.textbank++;
+      calls.lesson++;
+      const listening = body.messages[0].content.includes("listening");
+      out = msg(JSON.stringify(lesson(listening ? segmentsListening : segmentsReading, listening ? "Ταξίδι στο νησί" : "Το αρτοποιείο της Μαρίας")));
+      out.content.unshift(
+        { type: "server_tool_use", id: "srvtoolu_1", name: "web_fetch", input: { url: "https://www.greek-language.gr/x" } },
+        { type: "web_fetch_tool_result", tool_use_id: "srvtoolu_1", content: { type: "web_fetch_result", url: "https://www.greek-language.gr/x", content: { type: "document", source: { type: "text", media_type: "text/plain", data: "Κείμενο" } } } },
+      );
+    } else if (body.tools) {
       calls.news++;
       out = msg(newsReply, { server_tool_use: { web_search_requests: 1, web_fetch_requests: 1 } });
     } else if (body.output_config?.format?.schema?.properties?.tasks) {
@@ -212,12 +224,12 @@ try {
   const stored = await page.evaluate(() => localStorage.getItem("akou.apikey.v1"));
   assert(stored.includes("sk-ant-test-key"), "key stored (plain, as chosen)");
 
-  console.log("Reading session (Everyday source)");
+  console.log("Reading session (graded text bank, generated live)");
   await page.goto(BASE + "#/");
-  await page.getByRole("button", { name: "Everyday" }).click();
+  await page.getByRole("button", { name: "Graded", exact: true }).click();
   await page.getByRole("button", { name: /^Reading/ }).click();
   await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
-  assert(calls.lesson === 1 && calls.news === 0 && calls.wiki === 0, "AI source used only the lesson call");
+  assert(calls.textbank === 1 && calls.lesson === 1 && calls.news === 0, "text-bank lesson made in one fetch+write request");
   await page.getByRole("button", { name: "Show word help" }).click();
   await page.screenshot({ path: SHOTS + "02-reading.png", fullPage: true });
   await page.getByRole("button", { name: /Go to the questions/ }).click();
@@ -232,12 +244,12 @@ try {
   await page.getByText("Practise the aorist").waitFor();
   await page.screenshot({ path: SHOTS + "04-results.png", fullPage: true });
 
-  console.log("Listening session (Wikipedia source)");
+  console.log("Listening session (news source, generated live)");
   await page.getByRole("button", { name: "Done" }).click();
-  await page.getByRole("button", { name: "Wikipedia" }).click();
+  await page.getByRole("button", { name: "News", exact: true }).click();
   await page.getByRole("button", { name: /^Listening/ }).click();
   await page.getByRole("heading", { name: "Ταξίδι στο νησί" }).waitFor();
-  assert(calls.wiki >= 2, "Wikipedia was queried");
+  assert(calls.news === 1, "news searched and fetched");
   const goBtn = page.getByRole("button", { name: /Go to the questions/ });
   assert(await goBtn.isDisabled(), "questions locked until the audio was played");
   await page.getByRole("button", { name: "Play" }).click();
@@ -249,7 +261,7 @@ try {
   await goBtn.click();
   await answerTasks(page);
   await page.getByText("Score").waitFor();
-  await page.getByText("Adapted and simplified by AI from Greek Wikipedia").waitFor();
+  await page.getByText("Adapted and simplified by AI from ΕΡΤ").waitFor();
 
   console.log("News via pasted URL");
   await page.getByRole("button", { name: "Done" }).click();
@@ -257,7 +269,7 @@ try {
   await page.getByLabel("Article URL").fill("https://www.ertnews.gr/eidiseis/test");
   await page.getByRole("button", { name: "Read it" }).click();
   await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
-  assert(calls.news === 1, "news fetch call made");
+  assert(calls.news === 2, "news fetch call made for the pasted link");
   page.once("dialog", (d) => d.accept());
   await page.getByRole("button", { name: "Leave session" }).click();
 
@@ -302,14 +314,15 @@ try {
   console.log("Library: starter lesson is instant (no API call)");
   const lessonCallsBefore = calls.lesson;
   await page.goto(BASE + "#/");
-  await page.getByText("4 lessons ready at your level").first().waitFor();
+  await page.getByText("5 lessons ready at your level").first().waitFor();
   const t0 = Date.now();
   await page.getByRole("button", { name: /^Reading/ }).click();
-  await page.getByRole("heading", { name: "Το καφενείο του χωριού" }).waitFor();
+  await page.getByRole("heading", { name: "Ο Καραγκιόζης" }).waitFor();
   const instantMs = Date.now() - t0;
   assert(calls.lesson === lessonCallsBefore, "starter lesson used without generating");
   assert(instantMs < 3000, `starter lesson opened in ${instantMs} ms`);
-  await page.getByText("starter", { exact: true }).waitFor();
+  assert(calls.lesson === lessonCallsBefore, "Wikipedia-based built-in lesson comes first");
+  await page.getByText("Wikipedia", { exact: true }).waitFor();
   await page.screenshot({ path: SHOTS + "08-starter.png", fullPage: true });
   page.once("dialog", (d) => d.accept());
   await page.getByRole("button", { name: "Leave session" }).click();
@@ -329,6 +342,11 @@ try {
   await page.getByText("3 lessons ready at your level").nth(1).waitFor();
   await page.screenshot({ path: SHOTS + "09-refilled.png", fullPage: true });
   assert(calls.lesson === lessonCallsBefore + 6, `refill generated 3 + 3 lessons (${calls.lesson - lessonCallsBefore})`);
+  const kinds = await page.evaluate(() => {
+    const s = JSON.parse(localStorage.getItem("akou.stock.v1"));
+    return [...s.reading, ...s.listening].map((i) => i.lesson.source.kind);
+  });
+  assert(!kinds.includes("news"), `background lessons use open/graded sources only (${kinds.join(", ")})`);
   const levels = await page.evaluate(() => {
     const s = JSON.parse(localStorage.getItem("akou.stock.v1"));
     return [...s.reading, ...s.listening].map((i) => i.lesson.level);

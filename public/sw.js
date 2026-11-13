@@ -1,8 +1,8 @@
 /* Άκου service worker: caches the app shell so it opens offline.
  * It only handles same-origin GET requests; calls to api.anthropic.com and
  * Wikipedia are never cached or touched. */
-const CACHE = "akou-v1";
-const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./icon-192.png", "./icon-512.png"];
+const CACHE = "akou-v2";
+const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

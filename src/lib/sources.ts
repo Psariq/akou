@@ -1,4 +1,5 @@
-import type { SourceKind, Settings } from "./types";
+import type { Cefr, Mode, SourceKind, Settings } from "./types";
+import textbankIndex from "../data/textbank-index.json";
 
 /** Raw material a lesson is adapted from. */
 export interface Material {
@@ -11,17 +12,60 @@ export interface Material {
   license?: string;
   /** Topic hint for AI-written texts. */
   topicHint?: string;
+  /** Text bank: the CEFR level the Centre assigned to the text. */
+  gradedLevel?: Cefr;
 }
 
 export function enabledSources(s: Settings): SourceKind[] {
-  const all: SourceKind[] = ["news", "wikipedia", "ai"];
+  const all: SourceKind[] = ["textbank", "wikipedia", "news", "ai"];
   const on = all.filter((k) => s.sources[k]);
   return on.length ? on : ["ai"];
 }
 
-export function pickSource(s: Settings, rnd: () => number = Math.random): SourceKind {
-  const on = enabledSources(s);
-  return on[Math.floor(rnd() * on.length)];
+
+/**
+ * Source for "Mixed" sessions and for the background stock. Open or
+ * learner-graded material comes first; commercial news sites are only used
+ * when the learner picks "News" explicitly. AI-written texts are used for
+ * listening dialogues now and then, or when nothing else is enabled.
+ */
+export function pickMixedSource(s: Settings, mode: Mode, rnd: () => number = Math.random): SourceKind {
+  const weights: [SourceKind, number][] =
+    mode === "reading"
+      ? [["textbank", 0.6], ["wikipedia", 0.4]]
+      : [["textbank", 0.6], ["wikipedia", 0.2], ["ai", 0.2]];
+  const on = weights.filter(([k]) => s.sources[k]);
+  if (!on.length) return s.sources.ai || !s.sources.news ? "ai" : "news";
+  const total = on.reduce((a, [, w]) => a + w, 0);
+  let r = rnd() * total;
+  for (const [k, w] of on) {
+    if ((r -= w) < 0) return k;
+  }
+  return on[on.length - 1][0];
+}
+
+/* ---------------- Centre for the Greek Language: text bank ---------------- */
+
+export interface TextbankItem {
+  id: number;
+  title: string;
+  level: Cefr;
+  skill: Mode;
+}
+
+export const TEXTBANK: TextbankItem[] = (textbankIndex as { items: TextbankItem[] }).items;
+
+export const textbankUrl = (id: number) => `https://www.greek-language.gr/certification/dbs/teachers/show.html?id=${id}`;
+
+/** A text-bank text for this skill at exactly this level that hasn't been used yet. */
+export function pickTextbank(
+  mode: Mode,
+  level: Cefr,
+  usedUrls: Set<string>,
+  rnd: () => number = Math.random,
+): TextbankItem | null {
+  const pool = TEXTBANK.filter((t) => t.skill === mode && t.level === level && !usedUrls.has(textbankUrl(t.id)));
+  return pool.length ? pool[Math.floor(rnd() * pool.length)] : null;
 }
 
 export function interestList(s: Settings): string[] {

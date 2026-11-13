@@ -6,6 +6,7 @@ import readingB2 from "../data/starter/reading-B2.json";
 import listeningA2 from "../data/starter/listening-A2.json";
 import listeningB1 from "../data/starter/listening-B1.json";
 import listeningB2 from "../data/starter/listening-B2.json";
+import openWikipedia from "../data/open/wikipedia.json";
 
 /**
  * The lesson library: a built-in starter set plus lessons generated in the
@@ -37,6 +38,9 @@ interface RawTask {
 
 interface RawLesson {
   id: string;
+  mode?: Mode;
+  level?: Cefr;
+  source?: { title: string; url: string; revid: number };
   title: string;
   title_en: string;
   topic: string;
@@ -46,6 +50,16 @@ interface RawLesson {
 }
 
 function normalize(raw: RawLesson, level: Cefr): Lesson {
+  const source: Lesson["source"] = raw.source
+    ? {
+        kind: "wikipedia",
+        starter: true,
+        title: raw.source.title,
+        url: raw.source.url,
+        publisher: "Βικιπαίδεια",
+        license: "CC BY-SA 4.0",
+      }
+    : { kind: "ai", starter: true, publisher: "Άκου starter library" };
   return {
     id: raw.id,
     title: raw.title,
@@ -70,15 +84,20 @@ function normalize(raw: RawLesson, level: Cefr): Lesson {
         explanation: t.explain ?? "",
       }),
     ),
-    source: { kind: "ai", starter: true, publisher: "Άκου starter library" },
+    source,
   };
 }
 
 const load = (raws: unknown, level: Cefr) => (raws as RawLesson[]).map((r) => normalize(r, level));
 
+/** Lessons adapted from open-licensed Greek Wikipedia articles (CC BY-SA 4.0). */
+const OPEN: RawLesson[] = (openWikipedia as { lessons: RawLesson[] }).lessons;
+const openFor = (mode: Mode) => OPEN.filter((l) => l.mode === mode).map((l) => normalize(l, l.level!));
+
+/** Built-in lessons. Open-source-based ones come first, so they are used before the AI-written ones. */
 export const STARTER: Record<Mode, Lesson[]> = {
-  reading: [...load(readingA2, "A2"), ...load(readingB1, "B1"), ...load(readingB2, "B2")],
-  listening: [...load(listeningA2, "A2"), ...load(listeningB1, "B1"), ...load(listeningB2, "B2")],
+  reading: [...openFor("reading"), ...load(readingA2, "A2"), ...load(readingB1, "B1"), ...load(readingB2, "B2")],
+  listening: [...openFor("listening"), ...load(listeningA2, "A2"), ...load(listeningB1, "B1"), ...load(listeningB2, "B2")],
 };
 
 /* ---------------- Stock (generated, on this device) ---------------- */
@@ -188,7 +207,7 @@ function rank(c: Candidate): number {
 }
 
 export function pickLesson(cands: Candidate[], target: Target, source: SourceKind | "mixed" = "mixed"): Candidate | null {
-  const pool = source === "mixed" ? cands : cands.filter((c) => c.lesson.source.kind === source && !c.lesson.source.starter);
+  const pool = source === "mixed" ? cands : cands.filter((c) => c.lesson.source.kind === source);
   if (!pool.length) return null;
   const t = levelToNum(target.level);
   const sorted = pool

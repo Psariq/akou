@@ -53,7 +53,7 @@ export const DEFAULT_NEWS_DOMAINS = [
 export const DEFAULT_SETTINGS: Settings = {
   model: "claude-opus-5-5",
   explanationLang: "en",
-  sources: { news: true, wikipedia: true, ai: true },
+  sources: { textbank: true, wikipedia: true, news: true, ai: true },
   newsDomains: DEFAULT_NEWS_DOMAINS,
   interests: "",
   startLevel: START_LEVELS[1].theta, // A2/B1

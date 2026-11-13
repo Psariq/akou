@@ -1,6 +1,6 @@
 export type Mode = "reading" | "listening";
 export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1";
-export type SourceKind = "news" | "wikipedia" | "ai";
+export type SourceKind = "textbank" | "wikipedia" | "news" | "ai";
 export type TaskType = "multiple_choice" | "true_false" | "gap_fill" | "vocab_match" | "short_answer";
 export type TaskSkill = "gist" | "detail" | "inference" | "vocabulary" | "grammar" | "writing";
 export type ModelId = "claude-opus-5-5" | "claude-sonnet-5-5" | "claude-haiku-5-5";

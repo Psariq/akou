@@ -13,7 +13,7 @@ import { Icon } from "./Icon";
 
 type Phase = "preparing" | "exposure" | "tasks" | "grading" | "results" | "error";
 
-const SOURCE_NAME: Record<SourceKind, string> = { news: "news", wikipedia: "Wikipedia", ai: "everyday" };
+const SOURCE_NAME: Record<SourceKind, string> = { textbank: "graded text", news: "news", wikipedia: "Wikipedia", ai: "everyday" };
 const SOFT_LIMIT_SEC = 5 * 60;
 
 function fmt(sec: number): string {
@@ -91,6 +91,9 @@ export function SessionView() {
             .slice(-40)
             .map((s) => s.source.title)
             .filter((x): x is string => !!x),
+          usedUrls: [...sessions.map((s) => s.source.url), ...loadStock()[mode].map((i) => i.lesson.source.url)].filter(
+            (x): x is string => !!x,
+          ),
           signal: ctrl.signal,
           onStep: setStep,
           onNote: setNote,
@@ -224,7 +227,7 @@ export function SessionView() {
         <Icon name={mode === "reading" ? "read" : "ear"} />
         <strong>{mode === "reading" ? "Reading" : "Listening"}</strong>
         {lesson && <span className="pill">{lesson.level}</span>}
-        {lesson && <span className="pill neutral">{lesson.source.starter ? "starter" : SOURCE_NAME[lesson.source.kind]}</span>}
+        {lesson && <span className="pill neutral">{lesson.source.starter && lesson.source.kind === "ai" ? "starter" : SOURCE_NAME[lesson.source.kind]}</span>}
       </div>
       <button className="btn ghost" onClick={quit} aria-label="Leave session">
         <Icon name="close" />
@@ -562,8 +565,34 @@ function Glossary({ lesson }: { lesson: Lesson }) {
 
 export function SourceLine({ lesson }: { lesson: Pick<Lesson, "source"> }) {
   const s = lesson.source;
-  if (s.starter) return <div>From Άκου's built-in starter library (texts written by AI, fictional; not reviewed by a native speaker).</div>;
+  if (s.starter && s.kind === "ai")
+    return <div>From Άκου's built-in starter library (texts written by AI, fictional; not reviewed by a native speaker).</div>;
+  if (s.starter && s.kind === "wikipedia")
+    return (
+      <div>
+        Adapted for learners from the Greek Wikipedia article “
+        <a href={s.url} target="_blank" rel="noopener noreferrer" lang="el">
+          {s.title}
+        </a>
+        ” (CC BY-SA 4.0). This adaptation is also{" "}
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+          CC BY-SA 4.0
+        </a>
+        . Facts come from the article; dialogues and speakers are invented.
+      </div>
+    );
   if (s.kind === "ai") return <div>Original text written by AI for practice (fictional).</div>;
+  if (s.kind === "textbank")
+    return (
+      <div>
+        From the{" "}
+        <a href={s.url} target="_blank" rel="noopener noreferrer">
+          text bank
+        </a>{" "}
+        of the Centre for the Greek Language (Κέντρο Ελληνικής Γλώσσας): “<span lang="el">{s.title}</span>”, graded for learners
+        and shortened by AI where needed. © ΚΕΓ; fetched for your personal study, not stored in the app.
+      </div>
+    );
   const name = s.kind === "wikipedia" ? "Greek Wikipedia" : s.publisher ?? "a news site";
   return (
     <div>

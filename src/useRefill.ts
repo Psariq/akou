@@ -83,7 +83,11 @@ export function useRefill(
             ...loadStock()[mode].map((x) => x.lesson.source.title),
           ].filter((x): x is string => !!x);
           recordGeneration();
-          const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles });
+          const usedUrls = [
+            ...ss.map((x) => x.source.url),
+            ...loadStock()[mode].map((x) => x.lesson.source.url),
+          ].filter((x): x is string => !!x);
+          const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles, usedUrls });
           addToStock(mode, { lesson, createdAt: new Date().toISOString(), costUsd: cost.usd });
           setVersion((v) => v + 1);
         }

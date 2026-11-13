@@ -59,7 +59,13 @@ export function lessonPrompt(mode: Mode, target: Target, material: Material, s: 
   const sourceBlock =
     material.kind === "ai"
       ? `SOURCE: none. Write an original, realistic but fictional text. Topic: ${material.topicHint}.`
-      : `SOURCE (${material.kind === "news" ? "news article" : "Greek Wikipedia article"}${material.title ? `: "${material.title}"` : ""}):
+      : material.kind === "textbank"
+        ? `SOURCE: a text from the Centre for the Greek Language's text bank for learners of Greek ("${material.title}"), graded ${material.gradedLevel} for ${mode === "reading" ? "reading" : "listening"} comprehension.
+First fetch it with web_fetch: ${material.url}
+The text is in the section headed «Κείμενο»; ignore the menus and the metadata around it.
+It was written or adapted for learners by experts, so stay as close to the original as possible: keep its wording and structure, shorten it only if needed to fit the length below (drop whole sentences or paragraphs), and fix only obvious glitches such as stray hyphens. Do not add facts.
+If the page cannot be fetched or contains no text, return empty "segments" and "tasks" arrays instead of inventing a text.`
+        : `SOURCE (${material.kind === "news" ? "news article" : "Greek Wikipedia article"}${material.title ? `: "${material.title}"` : ""}):
 <source>
 ${material.text}
 </source>

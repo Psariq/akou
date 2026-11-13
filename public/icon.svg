@@ -1,5 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#1f4e8c"/>
-  <text x="256" y="330" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="230" font-weight="700" fill="#ffffff">Άκ</text>
-  <path d="M136 392 h240" stroke="#8fb8ec" stroke-width="18" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c6fc4"/>
+      <stop offset="1" stop-color="#173f78"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <g transform="translate(-14 0)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- α: bowl + right stem with a small tail -->
+    <ellipse cx="206" cy="292" rx="78" ry="84" stroke-width="40"/>
+    <path d="M286 206 V 336 Q 286 378 326 378" stroke-width="40"/>
+    <!-- tonos -->
+    <path d="M232 168 L 262 118" stroke-width="30"/>
+    <!-- sound waves -->
+    <path d="M362 236 A 76 76 0 0 1 362 348" stroke-width="26" stroke-opacity="0.9"/>
+    <path d="M404 196 A 128 128 0 0 1 404 388" stroke-width="26" stroke-opacity="0.55"/>
+  </g>
 </svg>

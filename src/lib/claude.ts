@@ -209,6 +209,27 @@ export const LESSON_SCHEMA = {
 
 type GeneratedLesson = Omit<Lesson, "source" | "tasks" | "id"> & { tasks: Omit<Task, "id">[] };
 
+function finishLesson(data: GeneratedLesson, target: Target, material: Material): Lesson {
+  const tasks: Task[] = (data.tasks ?? []).map((t, i) => ({ ...t, id: `t${i + 1}` })).filter(isUsableTask);
+  const segments = (data.segments ?? []).filter((x) => x.text.trim().length > 0);
+  if (segments.length === 0 || tasks.length < 4) throw new LessonError("The generated lesson was incomplete. Please try again.");
+  return {
+    ...data,
+    // The lesson was written for the target level; use it even if the model labelled it differently.
+    level: target.level,
+    id: `gen-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    segments,
+    tasks,
+    source: {
+      kind: material.kind,
+      title: material.title,
+      url: material.url,
+      publisher: material.publisher,
+      license: material.license,
+    },
+  };
+}
+
 export async function generateLesson(
   apiKey: string,
   s: Settings,
@@ -225,27 +246,93 @@ export async function generateLesson(
     effort: "medium",
     signal,
   });
-  const tasks: Task[] = data.tasks.map((t, i) => ({ ...t, id: `t${i + 1}` })).filter(isUsableTask);
-  const segments = data.segments.filter((x) => x.text.trim().length > 0);
-  if (segments.length === 0 || tasks.length < 4) throw new LessonError("The generated lesson was incomplete. Please try again.");
-  return {
-    lesson: {
-      ...data,
-      // The lesson was written for the target level; use it even if the model labelled it differently.
-      level: target.level,
-      id: `gen-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
-      segments,
-      tasks,
-      source: {
-        kind: material.kind,
-        title: material.title,
-        url: material.url,
-        publisher: material.publisher,
-        license: material.license,
-      },
-    },
-    cost,
-  };
+  return { lesson: finishLesson(data, target, material), cost };
+}
+
+/**
+ * Text-bank lessons: one request in which Claude fetches the page (on
+ * Anthropic's side; the site doesn't allow browser requests) and writes the
+ * lesson from it. If the page can't be loaded we fail instead of letting the
+ * model invent a text.
+ */
+export async function generateLessonFromPage(
+  apiKey: string,
+  s: Settings,
+  mode: Mode,
+  target: Target,
+  material: Material,
+  signal?: AbortSignal,
+): Promise<{ lesson: Lesson; cost: UsageCost }> {
+  const client = makeClient(apiKey);
+  const host = new URL(material.url!).hostname;
+  const schema = betaJSONSchemaOutputFormat(LESSON_SCHEMA as any).schema;
+  const messages: any[] = [{ role: "user", content: lessonPrompt(mode, target, material, s) }];
+  let structured = true;
+  let cost = ZERO_COST;
+  let fetched = false;
+  let fetchError: string | null = null;
+  let text = "";
+
+  for (let i = 0; i < 4; i++) {
+    let msg: any;
+    try {
+      msg = await client.beta.messages.create(
+        {
+          model: s.model,
+          max_tokens: 16000,
+          system: LESSON_SYSTEM,
+          messages,
+          tools: [
+            {
+              type: "web_fetch_20260209",
+              name: "web_fetch",
+              max_uses: 2,
+              allowed_domains: [host],
+              max_content_tokens: 15000,
+              citations: { enabled: false },
+            },
+          ],
+          output_config: structured
+            ? { effort: "medium", format: { type: "json_schema", schema } }
+            : { effort: "medium" },
+          ...fallbackParams(s.model),
+        } as any,
+        { signal },
+      );
+    } catch (e) {
+      // If structured output can't be combined with the fetch tool, retry once asking for plain JSON.
+      if (structured && i === 0 && e instanceof Anthropic.BadRequestError) {
+        structured = false;
+        messages[0] = { role: "user", content: `${messages[0].content}\n\nReply with only the JSON object for the lesson, no other text.` };
+        continue;
+      }
+      throw e;
+    }
+    cost = addCost(cost, costOf(s.model, msg.usage));
+    for (const b of msg.content) {
+      if (b.type === "web_fetch_tool_result") {
+        if (b.content?.type === "web_fetch_tool_result_error") fetchError = b.content.error_code;
+        else fetched = true;
+      }
+    }
+    if (msg.stop_reason === "pause_turn") {
+      messages.push({ role: "assistant", content: msg.content });
+      continue;
+    }
+    checkStop(msg.stop_reason);
+    text = msg.content.filter((b: any) => b.type === "text").map((b: any) => b.text).join("");
+    break;
+  }
+
+  if (!fetched) throw new LessonError(`Couldn't load the text from ${host}${fetchError ? ` (${fetchError})` : ""}.`);
+  const json = text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
+  let data: GeneratedLesson;
+  try {
+    data = JSON.parse(json);
+  } catch {
+    throw new LessonError("Couldn't read the generated lesson. Please try again.");
+  }
+  return { lesson: finishLesson(data, target, material), cost };
 }
 
 /* ---------------- Grading free-text answers ---------------- */

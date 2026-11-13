@@ -8,8 +8,9 @@ import { Icon } from "./Icon";
 
 const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
   mixed: "Mixed",
+  textbank: "Graded",
+  wikipedia: "Wiki",
   news: "News",
-  wikipedia: "Wikipedia",
   ai: "Everyday",
 };
 
@@ -144,7 +145,7 @@ export function Home() {
       )}
       {effectiveSource !== "mixed" && (
         <p className="tiny" style={{ marginTop: 8 }}>
-          Ready-made lessons are used with “Mixed”. With a specific source, a new lesson is written on the spot, which can take a few minutes.
+          With a specific source, a ready lesson from that source is used if there is one; otherwise one is written on the spot, which can take a few minutes.
         </p>
       )}
 
