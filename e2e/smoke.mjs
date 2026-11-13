@@ -391,6 +391,20 @@ try {
   page.once("dialog", (d) => d.accept());
   await page.getByRole("button", { name: "Leave session" }).click();
 
+  console.log("Set my level by hand (A2 beginning)");
+  await page.goto(BASE + "#/settings");
+  await page.getByLabel("Set my current level").selectOption({ label: "A2 (beginning)" });
+  await page.getByRole("button", { name: "Set my level" }).click();
+  await page.getByText("Level set to A2 (beginning).").waitFor();
+  await page.goto(BASE + "#/");
+  assert((await page.locator(".mode-btn .pill").allTextContents()).every((t) => t === "A2"), "next texts are A2");
+  const callsBeforeA2 = calls.lesson;
+  await page.getByRole("button", { name: /^Reading/ }).click();
+  await page.getByRole("heading", { name: "Η ελιά" }).waitFor();
+  assert(calls.lesson === callsBeforeA2, "A2 Wikipedia-based lesson opened instantly");
+  page.once("dialog", (d) => d.accept());
+  await page.getByRole("button", { name: "Leave session" }).click();
+
   console.log("Dark mode render");
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto(BASE + "#/stats");

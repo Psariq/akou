@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { describeTheta, expectedScore, targetFor, updateProgress } from "./cefr";
+import { describeTheta, expectedScore, setEstimate, targetFor, updateProgress } from "./cefr";
 
 describe("cefr estimate", () => {
   it("expects ~65% at the learner's own level", () => {
@@ -46,5 +46,11 @@ describe("cefr estimate", () => {
     expect(targetFor(2.85).band).toBe("lower");
     expect(targetFor(1.2).level).toBe("A2");
     expect(targetFor(2.85, "B2")).toEqual({ level: "B2", band: "middle" });
+  });
+
+  it("setting the level by hand moves the estimate and lets it adapt quickly", () => {
+    const p = setEstimate({ theta: 3.1, n: 12 }, 2.0);
+    expect(p).toEqual({ theta: 2.0, n: 2 });
+    expect(targetFor(p.theta)).toEqual({ level: "A2", band: "lower" });
   });
 });

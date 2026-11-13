@@ -90,9 +90,18 @@ export function confidenceLabel(n: number): string {
 }
 
 export const START_LEVELS: { label: string; theta: number }[] = [
+  { label: "A2 (beginning)", theta: 2.0 },
   { label: "A2", theta: 2.3 },
   { label: "A2/B1", theta: 2.85 },
   { label: "B1", theta: 3.3 },
   { label: "B1/B2", theta: 3.85 },
   { label: "B2", theta: 4.3 },
 ];
+
+/**
+ * Manually set the estimate (e.g. "the texts are far too hard"). History is
+ * kept, but the estimate is treated as fresh so it adapts quickly again.
+ */
+export function setEstimate(p: SkillProgress, theta: number): SkillProgress {
+  return { theta: clampTheta(theta), n: Math.min(p.n, 2) };
+}

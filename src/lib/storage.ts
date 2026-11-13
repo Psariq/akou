@@ -56,7 +56,7 @@ export const DEFAULT_SETTINGS: Settings = {
   sources: { textbank: true, wikipedia: true, news: true, ai: true },
   newsDomains: DEFAULT_NEWS_DOMAINS,
   interests: "",
-  startLevel: START_LEVELS[1].theta, // A2/B1
+  startLevel: START_LEVELS.find((l) => l.label === "A2/B1")!.theta,
   levelOverride: "auto",
   speechRate: 0.9,
   voiceURI: "",

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useApp } from "../App";
 import type { Cefr, ModelId, SourceKind } from "../lib/types";
 import { MODEL_INFO } from "../lib/pricing";
-import { START_LEVELS } from "../lib/cefr";
+import { START_LEVELS, describeTheta, setEstimate } from "../lib/cefr";
 import { DEFAULT_NEWS_DOMAINS, exportBackup, importBackup, initialProgress, resetProgress, saveProgress } from "../lib/storage";
 import { describeError, testKey } from "../lib/claude";
 import { loadGreekVoices, ttsSupported } from "../lib/tts";
@@ -79,7 +79,8 @@ export function SettingsView() {
 
       <section className="card">
         <h2>Level</h2>
-        <label className="field">
+        {sessions.length > 0 && <SetLevel />}
+        <label className="field" style={sessions.length > 0 ? { display: "none" } : undefined}>
           <span>Starting point (self-assessment)</span>
           <select
             value={settings.startLevel}
@@ -99,7 +100,6 @@ export function SettingsView() {
             ))}
           </select>
         </label>
-        {sessions.length > 0 && <p className="tiny">Only used before your first session (or after a reset).</p>}
         <label className="field">
           <span>Text difficulty</span>
           <select
@@ -132,6 +132,50 @@ export function SettingsView() {
         </p>
       </section>
     </>
+  );
+}
+
+/** Move the level estimate by hand (both skills), keeping the session history. */
+function SetLevel() {
+  const app = useApp();
+  const { progress } = app;
+  const [value, setValue] = useState(START_LEVELS[0].theta);
+  const [msg, setMsg] = useState<string | null>(null);
+  const current = (s: "reading" | "listening") => {
+    const d = describeTheta(progress[s].theta);
+    return `${d.level} ${Math.round(d.progress * 100)}%`;
+  };
+  const apply = () => {
+    const label = START_LEVELS.find((l) => l.theta === value)?.label ?? "";
+    saveProgress({ reading: setEstimate(progress.reading, value), listening: setEstimate(progress.listening, value) });
+    app.updateSettings({ startLevel: value });
+    app.reload();
+    setMsg(`Level set to ${label}. Your next texts will match it, and the estimate adapts again from your results.`);
+  };
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <p className="small muted" style={{ marginBottom: 8 }}>
+        Current estimate: reading {current("reading")}, listening {current("listening")}. If the texts feel much too hard
+        or too easy, set your level here. Your history is kept.
+      </p>
+      <div className="row" style={{ flexWrap: "nowrap" }}>
+        <select aria-label="Set my current level" value={value} onChange={(e) => setValue(Number(e.target.value))}>
+          {START_LEVELS.map((l) => (
+            <option key={l.label} value={l.theta}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+        <button className="btn" onClick={apply} style={{ flex: "none" }}>
+          Set my level
+        </button>
+      </div>
+      {msg && (
+        <p className="small" role="status" style={{ marginTop: 8, marginBottom: 0, color: "var(--good)" }}>
+          {msg}
+        </p>
+      )}
+    </div>
   );
 }
 
