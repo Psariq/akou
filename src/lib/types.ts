@@ -83,6 +83,8 @@ export interface TaskResult {
   /** 0..1 */
   score: number;
   userAnswer: string;
+  /** The learner chose "Don't know" (scored 0, no guessing). */
+  dontKnow?: boolean;
   feedback?: string;
   corrected?: string;
 }

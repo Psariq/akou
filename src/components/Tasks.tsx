@@ -64,9 +64,19 @@ function GapPrompt({ text }: { text: string }) {
   );
 }
 
-function Feedback({ score, text, extra }: { score: number; text: string; extra?: string }) {
-  const cls = score >= 1 ? "good" : score > 0 ? "part" : "bad";
-  const label = score >= 1 ? "Correct" : score > 0 ? "Almost" : "Not quite";
+export const DONT_KNOW = "Δεν ξέρω";
+
+function DontKnowLabel() {
+  return (
+    <>
+      <span lang="el">{DONT_KNOW}</span> <span className="tiny">· Don't know</span>
+    </>
+  );
+}
+
+function Feedback({ score, text, extra, dontKnow }: { score: number; text: string; extra?: string; dontKnow?: boolean }) {
+  const cls = dontKnow ? "part" : score >= 1 ? "good" : score > 0 ? "part" : "bad";
+  const label = dontKnow ? "Here is the answer" : score >= 1 ? "Correct" : score > 0 ? "Almost" : "Not quite";
   return (
     <div className={`feedback ${cls}`} role="status">
       <strong>{label}.</strong> {extra && <span>{extra} </span>}
@@ -78,7 +88,8 @@ function Feedback({ score, text, extra }: { score: number; text: string; extra?:
 function ChoiceTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => void }) {
   const [chosen, setChosen] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
-  const grade = chosen !== null ? gradeChoice(task, chosen) : null;
+  const dontKnow = chosen === -1;
+  const grade = chosen !== null ? (dontKnow ? { score: 0 } : gradeChoice(task, chosen)) : null;
   return (
     <>
       <div role="group" aria-label="Options">
@@ -92,6 +103,9 @@ function ChoiceTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => v
             </button>
           );
         })}
+        <button className="option dontknow" aria-pressed={dontKnow} disabled={checked} onClick={() => setChosen(-1)}>
+          <DontKnowLabel />
+        </button>
       </div>
       {!checked ? (
         <button className="btn primary block" disabled={chosen === null} onClick={() => setChecked(true)}>
@@ -99,12 +113,24 @@ function ChoiceTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => v
         </button>
       ) : (
         <>
-          <Feedback score={grade!.score} text={task.explanation} />
+          <Feedback
+            score={grade!.score}
+            dontKnow={dontKnow}
+            extra={dontKnow ? `Answer: ${task.options[task.correct_index]}.` : undefined}
+            text={task.explanation}
+          />
           <button
             className="btn primary block"
             style={{ marginTop: 10 }}
             onClick={() =>
-              onDone({ taskId: task.id, type: task.type, skill: task.skill, score: grade!.score, userAnswer: task.options[chosen!] })
+              onDone({
+                taskId: task.id,
+                type: task.type,
+                skill: task.skill,
+                score: grade!.score,
+                userAnswer: dontKnow ? DONT_KNOW : task.options[chosen!],
+                dontKnow,
+              })
             }
           >
             Next
@@ -118,7 +144,8 @@ function ChoiceTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => v
 function GapTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => void }) {
   const [answer, setAnswer] = useState("");
   const [checked, setChecked] = useState(false);
-  const grade = gradeGap(task, answer);
+  const [dontKnow, setDontKnow] = useState(false);
+  const grade = dontKnow ? { score: 0, feedback: undefined } : gradeGap(task, answer);
   return (
     <>
       <label className="field">
@@ -138,13 +165,25 @@ function GapTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => void
         />
       </label>
       {!checked ? (
-        <button className="btn primary block" disabled={!answer.trim()} onClick={() => setChecked(true)}>
-          Check
-        </button>
+        <div className="row" style={{ flexWrap: "nowrap" }}>
+          <button className="btn primary" style={{ flex: 1 }} disabled={!answer.trim()} onClick={() => setChecked(true)}>
+            Check
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              setDontKnow(true);
+              setChecked(true);
+            }}
+          >
+            <DontKnowLabel />
+          </button>
+        </div>
       ) : (
         <>
           <Feedback
             score={grade.score}
+            dontKnow={dontKnow}
             extra={grade.score < 1 ? grade.feedback ?? `Answer: ${task.accepted_answers[0]}` : undefined}
             text={task.explanation}
           />
@@ -157,7 +196,8 @@ function GapTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => void
                 type: task.type,
                 skill: task.skill,
                 score: grade.score,
-                userAnswer: answer.trim(),
+                userAnswer: dontKnow ? DONT_KNOW : answer.trim(),
+                dontKnow,
                 feedback: grade.feedback,
               })
             }
@@ -201,6 +241,7 @@ function MatchTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => vo
                   {e}
                 </option>
               ))}
+              <option value={DONT_KNOW}>{DONT_KNOW} · Don't know</option>
             </select>
             {checked && !ok && (
               <span className="tiny" style={{ gridColumn: "2" }}>
@@ -216,7 +257,12 @@ function MatchTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => vo
         </button>
       ) : (
         <>
-          <Feedback score={grade.score} extra={`${Math.round(grade.score * task.pairs.length)} of ${task.pairs.length} right.`} text={task.explanation} />
+          <Feedback
+            score={grade.score}
+            dontKnow={matches.every((m) => m === DONT_KNOW)}
+            extra={`${Math.round(grade.score * task.pairs.length)} of ${task.pairs.length} right.`}
+            text={task.explanation}
+          />
           <button
             className="btn primary block"
             style={{ marginTop: 10 }}
@@ -227,6 +273,7 @@ function MatchTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => vo
                 skill: task.skill,
                 score: grade.score,
                 userAnswer: task.pairs.map((p, i) => `${p.greek} → ${matches[i] ?? "–"}`).join("; "),
+                dontKnow: matches.every((m) => m === DONT_KNOW),
               })
             }
           >

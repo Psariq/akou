@@ -262,3 +262,6 @@ code { background: var(--surface-2); padding: 1px 5px; border-radius: 6px; font-
 .sheet .form { font-family: var(--font-read); font-size: 1.35rem; font-weight: 700; }
 .sheet .lemma { font-family: var(--font-read); color: var(--text-2); }
 .sheet .en { font-size: 1.05rem; margin-top: 4px; }
+
+.option.dontknow { border-style: dashed; color: var(--text-2); font-family: var(--font); font-size: 0.95rem; }
+.option.dontknow[aria-pressed="true"] { border-style: solid; border-color: var(--accent); background: var(--accent-soft); color: var(--text); }

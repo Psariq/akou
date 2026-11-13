@@ -174,16 +174,23 @@ function assert(cond, message) {
   console.log(`  ✓ ${message}`);
 }
 
-async function answerTasks(page, { wrongGap = false } = {}) {
+async function answerTasks(page, { wrongGap = false, dontKnow = false } = {}) {
   // 1 gist (correct = first option)
   await page.getByRole("button", { name: "Η δουλειά της Μαρίας" }).click();
   await page.getByRole("button", { name: "Check" }).click();
   await page.getByText("Correct.").waitFor();
   await page.getByRole("button", { name: "Next" }).click();
-  // 2 detail (choose wrong on purpose)
-  await page.getByRole("button", { name: "Στις έξι" }).click();
-  await page.getByRole("button", { name: "Check" }).click();
-  await page.getByText("Not quite.").waitFor();
+  // 2 detail: "Don't know" (or a wrong answer on purpose); both score 0
+  if (dontKnow) {
+    await page.getByRole("button", { name: /Δεν ξέρω/ }).click();
+    await page.getByRole("button", { name: "Check" }).click();
+    await page.getByText("Here is the answer.").waitFor();
+    await page.getByText("Answer: Στις πέντε.").waitFor();
+  } else {
+    await page.getByRole("button", { name: "Στις έξι" }).click();
+    await page.getByRole("button", { name: "Check" }).click();
+    await page.getByText("Not quite.").waitFor();
+  }
   await page.getByRole("button", { name: "Next" }).click();
   // 3 true/false
   await page.getByRole("button", { name: "Λάθος" }).click();
@@ -262,13 +269,14 @@ try {
   await page.getByRole("button", { name: "Close" }).click();
   await page.getByRole("button", { name: /Go to the questions/ }).click();
   await page.screenshot({ path: SHOTS + "03-task.png", fullPage: true });
-  await answerTasks(page, { wrongGap: true });
+  await answerTasks(page, { wrongGap: true, dontKnow: true });
   await page.getByText("Score").waitFor();
   assert(calls.grading === 1, "written answer sent for grading");
   const scoreText = await page.locator(".level-big").textContent();
   // 1 + 0 + 1 + 1 + 1 + 0.75 + 0.8 = 5.55 / 7 = 79%
   assert(scoreText === "79%", `score is 79% (got ${scoreText})`);
   await page.getByText("Corrected:").waitFor();
+  await page.getByText("You: Δεν ξέρω").waitFor();
   await page.getByText("Practise the aorist").waitFor();
   await page.screenshot({ path: SHOTS + "04-results.png", fullPage: true });
 
