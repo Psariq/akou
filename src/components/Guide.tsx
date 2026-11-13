@@ -97,9 +97,10 @@ export function Guide() {
       <section className="card">
         <h2>4. What a session costs</h2>
         <p className="small">
-          Each session makes 2–3 API calls (finding/adapting a text, grading your written answer). The results screen
-          shows an estimated cost per session and the Progress screen a monthly total. You can switch to a cheaper model in
-          Settings. Your workspace spend limit is the hard cap.
+          The 24 built-in starter lessons are free. New lessons are generated in the background (one or two API calls
+          each) when fewer than 2 are left at your level, up to 12 per day at most; grading your written answer is one more
+          call per session. The results screen shows an estimated cost per session and the Progress screen a monthly
+          total. Your workspace spend limit is the hard cap.
         </p>
       </section>
 

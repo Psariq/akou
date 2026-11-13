@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { useApp } from "../App";
 import type { Lesson, SessionRecord, SourceKind, TaskResult, UsageCost } from "../lib/types";
 import { describeTheta, targetFor, updateProgress, type Target } from "../lib/cefr";
-import { aiMaterial, fetchWikipedia, interestList, pickSource, type Material } from "../lib/sources";
-import { describeError, findNews, generateLesson, gradeWritten } from "../lib/claude";
+import { describeError, gradeWritten } from "../lib/claude";
+import { createLesson } from "../lib/lessonFactory";
+import { availableLessons, loadStock, pickLesson } from "../lib/library";
 import { addCost, ZERO_COST } from "../lib/pricing";
 import { SKILL_LABEL } from "../lib/stats";
 import { TaskCard } from "./Tasks";
@@ -43,6 +44,7 @@ export function SessionView() {
   const [error, setError] = useState<string | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [note, setNote] = useState<string | null>(null);
+  const [waitNote, setWaitNote] = useState<string | null>(null);
   const [target, setTarget] = useState<Target | null>(null);
   const [taskIdx, setTaskIdx] = useState(0);
   const [results, setResults] = useState<TaskResult[]>([]);
@@ -57,54 +59,42 @@ export function SessionView() {
   const abort = useRef<AbortController | null>(null);
   const now = useTicker(phase === "exposure" || phase === "tasks");
 
-  /* ---------- 1. prepare ---------- */
+  /* ---------- 1. prepare: take a ready lesson, or generate one now ---------- */
   useEffect(() => {
     if (!apiKey || !request) return;
     const ctrl = new AbortController();
     abort.current = ctrl;
-    const skill = progress[mode];
-    const tgt = targetFor(skill.theta, settings.levelOverride);
+    const tgt = targetFor(progress[mode].theta, settings.levelOverride);
     setTarget(tgt);
-    const avoid = sessions
-      .slice(-40)
-      .map((s) => s.source.title)
-      .filter((x): x is string => !!x);
+
+    if (!request.url) {
+      const ready = pickLesson(availableLessons(mode, sessions, loadStock()), tgt, request.source);
+      if (ready) {
+        cost.current = { ...ZERO_COST, usd: ready.costUsd };
+        setLesson(ready.lesson);
+        t.current.exposureStart = Date.now();
+        setPhase("exposure");
+        return () => ctrl.abort();
+      }
+      setWaitNote(
+        request.source === "mixed"
+          ? `No ready ${tgt.level} lesson left, so one is being written now. This can take a few minutes; the library refills itself in the background for next time.`
+          : "No ready lesson from this source, so one is being written now. This can take a few minutes. Choose “Mixed” to use ready-made lessons instantly.",
+      );
+    }
 
     (async () => {
       try {
-        const chosen: SourceKind = request.url ? "news" : request.source === "mixed" ? pickSource(settings) : request.source;
-        const mixed = request.source === "mixed" && !request.url;
-        let material: Material | null = null;
-
-        if (chosen === "news") {
-          setStep(request.url ? "Fetching your article…" : "Finding a current Greek news article…");
-          try {
-            const r = await findNews(apiKey, settings, {
-              avoidTitles: avoid,
-              interests: interestList(settings),
-              url: request.url,
-              signal: ctrl.signal,
-            });
-            cost.current = addCost(cost.current, r.cost);
-            material = r.material;
-          } catch (e) {
-            if (ctrl.signal.aborted || !mixed) throw e;
-            setNote(`No news article this time (${describeError(e)}), so here is a different text.`);
-          }
-        }
-        if (!material && (chosen === "wikipedia" || (mixed && settings.sources.wikipedia && chosen === "news"))) {
-          setStep("Picking a Greek Wikipedia article…");
-          try {
-            material = await fetchWikipedia(settings, avoid, Math.random, ctrl.signal);
-          } catch (e) {
-            if (ctrl.signal.aborted || !mixed) throw e;
-            setNote("Wikipedia wasn't reachable, so here is an everyday text instead.");
-          }
-        }
-        if (!material) material = aiMaterial(settings);
-
-        setStep(`Writing a ${tgt.level} ${mode === "reading" ? "text" : "listening script"} and tasks…`);
-        const r = await generateLesson(apiKey, settings, mode, tgt, material, ctrl.signal);
+        const r = await createLesson(apiKey, settings, mode, tgt, request.source, {
+          url: request.url,
+          avoidTitles: sessions
+            .slice(-40)
+            .map((s) => s.source.title)
+            .filter((x): x is string => !!x),
+          signal: ctrl.signal,
+          onStep: setStep,
+          onNote: setNote,
+        });
         cost.current = addCost(cost.current, r.cost);
         setLesson(r.lesson);
         t.current.exposureStart = Date.now();
@@ -195,6 +185,7 @@ export function SessionView() {
     const after = updateProgress(before, lesson.level, score);
     const rec: SessionRecord = {
       id: `${Date.now()}`,
+      lessonId: lesson.id,
       date: new Date().toISOString(),
       mode,
       level: lesson.level,
@@ -233,7 +224,7 @@ export function SessionView() {
         <Icon name={mode === "reading" ? "read" : "ear"} />
         <strong>{mode === "reading" ? "Reading" : "Listening"}</strong>
         {lesson && <span className="pill">{lesson.level}</span>}
-        {lesson && <span className="pill neutral">{SOURCE_NAME[lesson.source.kind]}</span>}
+        {lesson && <span className="pill neutral">{lesson.source.starter ? "starter" : SOURCE_NAME[lesson.source.kind]}</span>}
       </div>
       <button className="btn ghost" onClick={quit} aria-label="Leave session">
         <Icon name="close" />
@@ -260,8 +251,9 @@ export function SessionView() {
             <strong>{step}</strong>
           </div>
           <p className="small muted" style={{ marginTop: 12, marginBottom: 0 }}>
-            This usually takes 20–60 seconds. {target && `Target level: ${target.level} (${target.band} end).`}
+            {target && `Target level: ${target.level} (${target.band} end).`}
           </p>
+          {waitNote && <p className="small" style={{ marginTop: 8 }}>{waitNote}</p>}
           {note && <p className="small" style={{ marginTop: 8 }}>{note}</p>}
         </div>
         <button className="btn block" onClick={quit}>
@@ -570,6 +562,7 @@ function Glossary({ lesson }: { lesson: Lesson }) {
 
 export function SourceLine({ lesson }: { lesson: Pick<Lesson, "source"> }) {
   const s = lesson.source;
+  if (s.starter) return <div>From Άκου's built-in starter library (texts written by AI, fictional; not reviewed by a native speaker).</div>;
   if (s.kind === "ai") return <div>Original text written by AI for practice (fictional).</div>;
   const name = s.kind === "wikipedia" ? "Greek Wikipedia" : s.publisher ?? "a news site";
   return (

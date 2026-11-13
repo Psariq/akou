@@ -19,6 +19,7 @@ import { SettingsView } from "./components/SettingsView";
 import { Guide } from "./components/Guide";
 import { Unlock } from "./components/Unlock";
 import { Icon } from "./components/Icon";
+import { readyCounts, useRefill, type RefillStatus } from "./useRefill";
 
 export type KeyState = "none" | "locked" | "ready";
 
@@ -47,6 +48,9 @@ interface Ctx {
   startSession: (req: Omit<SessionRequest, "nonce">) => void;
   request: SessionRequest | null;
   navigate: (route: Route) => void;
+  /** Ready lessons at the current target level, per mode. */
+  ready: Record<Mode, number>;
+  refill: RefillStatus;
 }
 
 const AppCtx = createContext<Ctx | null>(null);
@@ -90,6 +94,13 @@ export default function App() {
   }, []);
 
   const keyState: KeyState = apiKey ? "ready" : keyEncrypted ? "locked" : "none";
+  const { status: refill, version: stockVersion } = useRefill(apiKey, settings, progress, sessions);
+  const ready = useMemo(
+    () => readyCounts(settings, progress, sessions),
+    // stockVersion changes whenever a background lesson is added.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [settings, progress, sessions, stockVersion],
+  );
 
   const ctx = useMemo<Ctx>(
     () => ({
@@ -152,8 +163,10 @@ export default function App() {
       },
       request,
       navigate,
+      ready,
+      refill,
     }),
-    [settings, progress, sessions, apiKey, keyState, keyEncrypted, request, navigate],
+    [settings, progress, sessions, apiKey, keyState, keyEncrypted, request, navigate, ready, refill],
   );
 
   const inSession = route === "session" && request;

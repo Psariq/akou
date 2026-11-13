@@ -1,0 +1,225 @@
+import type { Cefr, Lesson, Mode, SessionRecord, SourceKind, Task, TaskSkill, TaskType } from "./types";
+import { levelToNum, type Target } from "./cefr";
+import readingA2 from "../data/starter/reading-A2.json";
+import readingB1 from "../data/starter/reading-B1.json";
+import readingB2 from "../data/starter/reading-B2.json";
+import listeningA2 from "../data/starter/listening-A2.json";
+import listeningB1 from "../data/starter/listening-B1.json";
+import listeningB2 from "../data/starter/listening-B2.json";
+
+/**
+ * The lesson library: a built-in starter set plus lessons generated in the
+ * background and stored on this device ("stock"). Sessions take a ready
+ * lesson instantly; when fewer than REFILL_BELOW unused lessons are left at
+ * the learner's level for a mode, new ones are generated until STOCK_TARGET.
+ */
+
+export const STOCK_TARGET = 3;
+export const REFILL_BELOW = 2;
+/** News lessons go stale; drop them from the stock after this many days. */
+export const NEWS_MAX_AGE_DAYS = 4;
+/** Hard cap per mode, so lessons at levels you've moved past don't pile up. */
+export const STOCK_CAP = 8;
+
+/* ---------------- Starter set ---------------- */
+
+interface RawTask {
+  type: TaskType;
+  skill: TaskSkill;
+  prompt: string;
+  en: string;
+  options?: string[];
+  answer?: number;
+  accept?: string[];
+  pairs?: [string, string][];
+  explain?: string;
+}
+
+interface RawLesson {
+  id: string;
+  title: string;
+  title_en: string;
+  topic: string;
+  segments: (string | string[])[];
+  glossary: string[][];
+  tasks: RawTask[];
+}
+
+function normalize(raw: RawLesson, level: Cefr): Lesson {
+  return {
+    id: raw.id,
+    title: raw.title,
+    title_en: raw.title_en,
+    topic: raw.topic,
+    level,
+    segments: raw.segments.map((s) =>
+      typeof s === "string" ? { speaker: "", text: s } : { speaker: s[0], text: s[1] },
+    ),
+    glossary: raw.glossary.map(([greek, english, note]) => ({ greek, english, note: note ?? "" })),
+    tasks: raw.tasks.map(
+      (t, i): Task => ({
+        id: `t${i + 1}`,
+        type: t.type,
+        skill: t.skill,
+        prompt: t.prompt,
+        prompt_en: t.en,
+        options: t.type === "true_false" ? ["Σωστό", "Λάθος"] : t.options ?? [],
+        correct_index: t.answer ?? -1,
+        accepted_answers: t.accept ?? [],
+        pairs: (t.pairs ?? []).map(([greek, english]) => ({ greek, english })),
+        explanation: t.explain ?? "",
+      }),
+    ),
+    source: { kind: "ai", starter: true, publisher: "Άκου starter library" },
+  };
+}
+
+const load = (raws: unknown, level: Cefr) => (raws as RawLesson[]).map((r) => normalize(r, level));
+
+export const STARTER: Record<Mode, Lesson[]> = {
+  reading: [...load(readingA2, "A2"), ...load(readingB1, "B1"), ...load(readingB2, "B2")],
+  listening: [...load(listeningA2, "A2"), ...load(listeningB1, "B1"), ...load(listeningB2, "B2")],
+};
+
+/* ---------------- Stock (generated, on this device) ---------------- */
+
+export interface StockItem {
+  lesson: Lesson;
+  createdAt: string;
+  /** What generating it cost; added to the session that uses it. */
+  costUsd: number;
+}
+
+export type Stock = Record<Mode, StockItem[]>;
+
+const STOCK_KEY = "akou.stock.v1";
+
+export function loadStock(): Stock {
+  try {
+    const raw = localStorage.getItem(STOCK_KEY);
+    const s = raw ? (JSON.parse(raw) as Partial<Stock>) : {};
+    return { reading: s.reading ?? [], listening: s.listening ?? [] };
+  } catch {
+    return { reading: [], listening: [] };
+  }
+}
+
+export function saveStock(s: Stock): void {
+  try {
+    localStorage.setItem(STOCK_KEY, JSON.stringify(s));
+  } catch {
+    /* storage full or unavailable: the stock is a cache, so carry on */
+  }
+}
+
+export function doneIds(sessions: SessionRecord[]): Set<string> {
+  return new Set(sessions.map((s) => s.lessonId).filter((x): x is string => !!x));
+}
+
+function isExpired(item: StockItem, now: number): boolean {
+  if (item.lesson.source.kind !== "news") return false;
+  return now - new Date(item.createdAt).getTime() > NEWS_MAX_AGE_DAYS * 86_400_000;
+}
+
+/** Drop used and stale lessons; cap each mode (oldest go first). */
+export function pruneStock(stock: Stock, sessions: SessionRecord[], now: number = Date.now()): Stock {
+  const done = doneIds(sessions);
+  const clean = (items: StockItem[]) =>
+    items.filter((i) => !done.has(i.lesson.id) && !isExpired(i, now)).slice(-STOCK_CAP);
+  return { reading: clean(stock.reading), listening: clean(stock.listening) };
+}
+
+export function addToStock(mode: Mode, item: StockItem): Stock {
+  const s = loadStock();
+  s[mode] = [...s[mode], item].slice(-STOCK_CAP);
+  saveStock(s);
+  return s;
+}
+
+/** Timestamps of background generations (kept separately: used lessons leave the stock). */
+const GENLOG_KEY = "akou.genlog.v1";
+
+export function recordGeneration(now: number = Date.now()): void {
+  try {
+    const log = (JSON.parse(localStorage.getItem(GENLOG_KEY) ?? "[]") as number[]).filter((t) => now - t < 86_400_000);
+    localStorage.setItem(GENLOG_KEY, JSON.stringify([...log, now]));
+  } catch {
+    /* ignore */
+  }
+}
+
+export function generationsLast24h(now: number = Date.now()): number {
+  try {
+    return (JSON.parse(localStorage.getItem(GENLOG_KEY) ?? "[]") as number[]).filter((t) => now - t < 86_400_000).length;
+  } catch {
+    return 0;
+  }
+}
+
+/* ---------------- Choosing a lesson ---------------- */
+
+export interface Candidate {
+  lesson: Lesson;
+  origin: "stock" | "starter";
+  createdAt?: string;
+  costUsd: number;
+}
+
+export function availableLessons(mode: Mode, sessions: SessionRecord[], stock: Stock, now: number = Date.now()): Candidate[] {
+  const done = doneIds(sessions);
+  const fromStock: Candidate[] = stock[mode]
+    .filter((i) => !done.has(i.lesson.id) && !isExpired(i, now))
+    .map((i) => ({ lesson: i.lesson, origin: "stock", createdAt: i.createdAt, costUsd: i.costUsd }));
+  const fromStarter: Candidate[] = STARTER[mode]
+    .filter((l) => !done.has(l.id))
+    .map((l) => ({ lesson: l, origin: "starter", costUsd: 0 }));
+  return [...fromStock, ...fromStarter];
+}
+
+export function countAtLevel(cands: Candidate[], level: Cefr): number {
+  return cands.filter((c) => c.lesson.level === level).length;
+}
+
+/** Order within a level: fresh news first (it expires), then other generated lessons (oldest first), then starters. */
+function rank(c: Candidate): number {
+  if (c.origin === "stock" && c.lesson.source.kind === "news") return 0;
+  if (c.origin === "stock") return 1;
+  return 2;
+}
+
+export function pickLesson(cands: Candidate[], target: Target, source: SourceKind | "mixed" = "mixed"): Candidate | null {
+  const pool = source === "mixed" ? cands : cands.filter((c) => c.lesson.source.kind === source && !c.lesson.source.starter);
+  if (!pool.length) return null;
+  const t = levelToNum(target.level);
+  const sorted = pool
+    .map((c, i) => ({ c, i, dist: Math.abs(levelToNum(c.lesson.level) - t) }))
+    .sort((a, b) => {
+      if (a.dist !== b.dist) return a.dist - b.dist;
+      // Same distance from the target: prefer the easier level.
+      const la = levelToNum(a.c.lesson.level);
+      const lb = levelToNum(b.c.lesson.level);
+      if (la !== lb) return la - lb;
+      if (rank(a.c) !== rank(b.c)) return rank(a.c) - rank(b.c);
+      if (a.c.origin === "stock" && a.c.lesson.source.kind === "news") {
+        return (b.c.createdAt ?? "").localeCompare(a.c.createdAt ?? ""); // newest news first
+      }
+      return a.i - b.i; // stock: oldest first; starters: file order
+    });
+  // A lesson more than one level away from the target is too far off; generate instead.
+  return sorted[0].dist <= 1 ? sorted[0].c : null;
+}
+
+/**
+ * Which mode (if any) needs a new lesson. A mode starts refilling when it has
+ * fewer than REFILL_BELOW lessons at the target level, and keeps going until
+ * STOCK_TARGET (`filling` carries that state between calls).
+ */
+export function nextRefill(
+  counts: Record<Mode, number>,
+  filling: Mode | null,
+): Mode | null {
+  if (filling && counts[filling] < STOCK_TARGET) return filling;
+  const modes: Mode[] = ["reading", "listening"];
+  const low = modes.filter((m) => counts[m] < REFILL_BELOW).sort((a, b) => counts[a] - counts[b]);
+  return low[0] ?? null;
+}

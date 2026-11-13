@@ -43,6 +43,8 @@ export interface GlossaryItem {
 
 export interface SourceInfo {
   kind: SourceKind;
+  /** Part of the built-in starter library. */
+  starter?: boolean;
   title?: string;
   url?: string;
   publisher?: string;
@@ -50,6 +52,8 @@ export interface SourceInfo {
 }
 
 export interface Lesson {
+  /** Stable id, used to avoid repeating a lesson. */
+  id: string;
   title: string;
   title_en: string;
   topic: string;
@@ -73,6 +77,8 @@ export interface TaskResult {
 
 export interface SessionRecord {
   id: string;
+  /** Lesson.id of the lesson used (absent in sessions from older versions). */
+  lessonId?: string;
   date: string; // ISO timestamp
   mode: Mode;
   level: Cefr;

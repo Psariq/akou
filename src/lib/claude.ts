@@ -207,7 +207,7 @@ export const LESSON_SCHEMA = {
   },
 } as const;
 
-type GeneratedLesson = Omit<Lesson, "source" | "tasks"> & { tasks: Omit<Task, "id">[] };
+type GeneratedLesson = Omit<Lesson, "source" | "tasks" | "id"> & { tasks: Omit<Task, "id">[] };
 
 export async function generateLesson(
   apiKey: string,
@@ -231,6 +231,9 @@ export async function generateLesson(
   return {
     lesson: {
       ...data,
+      // The lesson was written for the target level; use it even if the model labelled it differently.
+      level: target.level,
+      id: `gen-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
       segments,
       tasks,
       source: {

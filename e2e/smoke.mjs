@@ -299,6 +299,51 @@ try {
   const backup = readFileSync(path, "utf8");
   assert(!backup.includes("sk-ant") && backup.includes('"sessions"'), "backup has sessions and no key");
 
+  console.log("Library: starter lesson is instant (no API call)");
+  const lessonCallsBefore = calls.lesson;
+  await page.goto(BASE + "#/");
+  await page.getByText("4 lessons ready at your level").first().waitFor();
+  const t0 = Date.now();
+  await page.getByRole("button", { name: /^Reading/ }).click();
+  await page.getByRole("heading", { name: "Το καφενείο του χωριού" }).waitFor();
+  const instantMs = Date.now() - t0;
+  assert(calls.lesson === lessonCallsBefore, "starter lesson used without generating");
+  assert(instantMs < 3000, `starter lesson opened in ${instantMs} ms`);
+  await page.getByText("starter", { exact: true }).waitFor();
+  await page.screenshot({ path: SHOTS + "08-starter.png", fullPage: true });
+  page.once("dialog", (d) => d.accept());
+  await page.getByRole("button", { name: "Leave session" }).click();
+
+  console.log("Library: background refill at a level with no starters (C1)");
+  await page.evaluate(() => {
+    localStorage.setItem("akou.progress.v1", JSON.stringify({ reading: { theta: 4.9, n: 5 }, listening: { theta: 4.9, n: 5 } }));
+  });
+  await page.goto(BASE + "#/");
+  await page.reload();
+  await page.getByLabel("Passphrase").fill("blue olive tree"); // the key was locked earlier in this test
+  await page.getByRole("button", { name: "Unlock" }).click();
+  await page.waitForFunction(() => {
+    const s = JSON.parse(localStorage.getItem("akou.stock.v1") || "{}");
+    return (s.reading || []).length === 3 && (s.listening || []).length === 3;
+  }, null, { timeout: 30000 });
+  await page.getByText("3 lessons ready at your level").nth(1).waitFor();
+  await page.screenshot({ path: SHOTS + "09-refilled.png", fullPage: true });
+  assert(calls.lesson === lessonCallsBefore + 6, `refill generated 3 + 3 lessons (${calls.lesson - lessonCallsBefore})`);
+  const levels = await page.evaluate(() => {
+    const s = JSON.parse(localStorage.getItem("akou.stock.v1"));
+    return [...s.reading, ...s.listening].map((i) => i.lesson.level);
+  });
+  assert(levels.every((l) => l === "C1"), "generated lessons carry the requested level (C1)");
+  await page.waitForTimeout(500);
+  assert(calls.lesson === lessonCallsBefore + 6, "refill stops at 3 per mode");
+
+  console.log("Library: refilled lesson is used instantly");
+  await page.getByRole("button", { name: /^Listening/ }).click();
+  await page.getByRole("heading", { name: "Ταξίδι στο νησί" }).waitFor();
+  assert(calls.lesson === lessonCallsBefore + 6, "no generation when a stocked lesson exists");
+  page.once("dialog", (d) => d.accept());
+  await page.getByRole("button", { name: "Leave session" }).click();
+
   console.log("Dark mode render");
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto(BASE + "#/stats");

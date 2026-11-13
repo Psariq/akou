@@ -8,6 +8,8 @@ A small installable web app (PWA) for learners of Modern Greek at about A2–B2:
 - **Texts from:** current Greek news (searched and fetched by the AI, then adapted), Greek Wikipedia (simplified), or AI-written everyday texts and dialogues. You can also paste a link to a specific article.
 - **Progress:** an estimated CEFR level for reading and listening, a chart over time, accuracy by task type, streaks, minutes, words from your texts, and estimated API cost.
 
+Sessions start instantly from a **lesson library**: 24 built-in starter lessons (4 reading + 4 listening at each of A2, B1, B2), plus lessons the app generates in the background and keeps on your device.
+
 There is no server. The app is static files; it calls the Anthropic API directly from your browser with **your own API key**, and stores everything on your device.
 
 ## Setup
@@ -39,6 +41,14 @@ End-to-end smoke test (production build, phone viewport; Anthropic API, Wikipedi
 npm run build && npx vite preview --port 4173 &
 node e2e/smoke.mjs   # requires the `playwright` package with Chromium
 ```
+
+## Lesson library
+
+- **Starter set** (`src/data/starter/*.json`): 24 complete lessons, written by AI (Claude) for this app, fictional and not reviewed by a native speaker. They cost nothing and work offline.
+- **Stock on your device:** when fewer than **2** unused lessons are left at your current level for a mode, the app generates new ones in the background (one at a time) until there are **3**. Generation uses the model from Settings; it typically takes a few minutes per lesson.
+- **Choosing a lesson** (with source “Mixed”): exact level first, then the nearest level (at most one away, easier preferred). Within a level: fresh news lessons, then other generated ones, then starters. Lessons you've done are never repeated; news lessons expire after 4 days.
+- With a specific source (News / Wikipedia / Everyday) or a pasted link, a lesson is generated on the spot.
+- **Limits:** without a server, refilling only happens while the app is open (phones pause web apps in the background). Background generation is capped at 12 lessons per 24 hours as a cost safeguard. Rules live in `src/lib/library.ts` and `src/useRefill.ts`.
 
 ## Security model
 

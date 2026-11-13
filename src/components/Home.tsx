@@ -31,8 +31,16 @@ export function LevelLine({ label, theta, n }: { label: string; theta: number; n
   );
 }
 
+function ReadyLine({ n }: { n: number }) {
+  return (
+    <span className="tiny" style={{ marginTop: 4 }}>
+      {n > 0 ? `${n} lesson${n > 1 ? "s" : ""} ready at your level` : "No lesson ready yet at your level"}
+    </span>
+  );
+}
+
 export function Home() {
-  const { settings, progress, sessions, keyState, startSession, navigate } = useApp();
+  const { settings, progress, sessions, keyState, startSession, navigate, ready: readyN, refill } = useApp();
   const [source, setSource] = useState<SourceKind | "mixed">("mixed");
   const [url, setUrl] = useState("");
   const sources = enabledSources(settings);
@@ -114,6 +122,7 @@ export function Home() {
             <span className="pill">{targetFor(progress.reading.theta, settings.levelOverride).level}</span>
           </span>
           <span className="d">≈5 min text, then ≈5 min of questions and tasks</span>
+          <ReadyLine n={readyN.reading} />
         </button>
         <button className="mode-btn" onClick={() => go("listening")} disabled={!ready}>
           <span className="row">
@@ -122,8 +131,22 @@ export function Home() {
             <span className="pill">{targetFor(progress.listening.theta, settings.levelOverride).level}</span>
           </span>
           <span className="d">2–3 min audio (replay allowed), then ≈5 min of tasks</span>
+          <ReadyLine n={readyN.listening} />
         </button>
       </div>
+
+      {ready && (refill.running || refill.error) && (
+        <p className="tiny" role="status" style={{ marginTop: 8 }}>
+          {refill.running
+            ? `Preparing a new ${refill.level} ${refill.mode} lesson in the background… Keep the app open; it usually takes a few minutes.`
+            : `Couldn't prepare a new lesson: ${refill.error} It will try again later.`}
+        </p>
+      )}
+      {effectiveSource !== "mixed" && (
+        <p className="tiny" style={{ marginTop: 8 }}>
+          Ready-made lessons are used with “Mixed”. With a specific source, a new lesson is written on the spot, which can take a few minutes.
+        </p>
+      )}
 
       <details className="card soft" style={{ marginTop: 12 }}>
         <summary>Use a specific Greek article (paste a link)</summary>
