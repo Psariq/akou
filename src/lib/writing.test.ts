@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { longTarget, longWritingDue, withLongWriting } from "./writing";
+import { countWords, lengthState, longTarget, longWritingDue, shortTarget, withLongWriting, writingTarget } from "./writing";
 import { STARTER } from "./library";
 import type { SessionRecord } from "./types";
 
@@ -37,11 +37,36 @@ describe("longer writing task", () => {
     const long = withLongWriting(lesson);
     const w = long.tasks.find((t) => t.type === "short_answer")!;
     expect(w.long).toBe(true);
-    expect(w.prompt).toContain("6–8 προτάσεις");
-    expect(w.prompt_en).toContain("6–8 sentences");
+    expect(w.prompt).toContain("70–110 λέξεις");
+    expect(w.prompt_en).toContain("70–110 words");
     expect(long.tasks.filter((t) => t.long)).toHaveLength(1);
     expect(lesson.tasks.some((t) => t.long)).toBe(false); // original untouched
     expect(longTarget("A2").sentences).toBe("4–6");
     expect(longTarget("B2").sentences).toBe("8–10");
   });
 });
+
+describe("word targets and counter", () => {
+  it("has word ranges for short and long answers by level", () => {
+    expect(shortTarget("A2").words).toEqual([15, 30]);
+    expect(shortTarget("B1").words).toEqual([20, 40]);
+    expect(longTarget("B1").words).toEqual([70, 110]);
+    expect(writingTarget("B2", true).words).toEqual([110, 160]);
+    expect(writingTarget("B2", false).words).toEqual([30, 50]);
+  });
+
+  it("counts words separated by whitespace", () => {
+    expect(countWords("")).toBe(0);
+    expect(countWords("  Ναι,  γιατί\nμου αρέσει. ")).toBe(4);
+  });
+
+  it("counts down to the minimum, then reports within / over", () => {
+    const t = shortTarget("A2"); // 15–30
+    expect(lengthState(0, t)).toEqual({ kind: "under", toGo: 15 });
+    expect(lengthState(12, t)).toEqual({ kind: "under", toGo: 3 });
+    expect(lengthState(15, t)).toEqual({ kind: "ok" });
+    expect(lengthState(30, t)).toEqual({ kind: "ok" });
+    expect(lengthState(34, t)).toEqual({ kind: "over", by: 4 });
+  });
+});
+

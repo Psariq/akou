@@ -433,10 +433,13 @@ try {
   const sessionsBeforeLong = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
   await answerTasks(page, { beforeWriting: async () => {
     await page.getByText("Longer answer", { exact: true }).waitFor();
-    await page.getByText(/4–6 προτάσεις/).waitFor();
+    await page.getByText(/40–70 λέξεις/).waitFor();
+    await page.getByText("40 words to go").waitFor();
+    await page.getByLabel(/Your answer in Greek/).fill("Ναι, γιατί μου αρέσει πολύ το ψωμί.");
+    await page.getByText("33 words to go").waitFor();
   } });
   await page.getByText("Score").waitFor();
-  assert(lastGradingPrompt.includes("<length_target>4–6 sentences"), "grader told it was a longer task");
+  assert(lastGradingPrompt.includes("<length_target>40–70 words (longer writing task"), "grader told it was a longer task (40–70 words)");
   const rec = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1));
   assert(rec.longWriting === true && sessionsBeforeLong === 2, "session recorded as longer writing task");
   // Next exercise in the same sitting: back to a short task.
@@ -450,7 +453,7 @@ try {
     assert((await page.getByText("Longer answer", { exact: true }).count()) === 0, "no second longer task in the same sitting");
   } });
   await page.getByText("Score").waitFor();
-  assert(!/<length_target>\d/.test(lastGradingPrompt), "short task graded normally");
+  assert(lastGradingPrompt.includes("<length_target>15–30 words (a guide only)"), "short task graded with its normal word guide (15–30)");
 
 
   await page.emulateMedia({ colorScheme: "dark" });

@@ -4,7 +4,7 @@ import type { Lesson, SessionRecord, SourceKind, TaskResult, UsageCost } from ".
 import { describeTheta, targetFor, updateProgress, updateWriting, type Target } from "../lib/cefr";
 import { describeError, gradeWritten } from "../lib/claude";
 import { createLesson } from "../lib/lessonFactory";
-import { DEFAULT_LONG_WRITING_EVERY, longTarget, longWritingDue, withLongWriting } from "../lib/writing";
+import { DEFAULT_LONG_WRITING_EVERY, longWritingDue, withLongWriting, wordRange, writingTarget } from "../lib/writing";
 import { availableLessons, loadStock, pickLesson } from "../lib/library";
 import { addCost, ZERO_COST } from "../lib/pricing";
 import { SKILL_LABEL } from "../lib/stats";
@@ -181,7 +181,8 @@ export function SessionView() {
               question: task.prompt,
               model_answer: task.explanation,
               learner_answer: w.userAnswer,
-              length_target: task.long ? `${longTarget(lesson.level).sentences} sentences` : undefined,
+              length_target: `${wordRange(writingTarget(lesson.level, task.long))} words`,
+              long: !!task.long,
             };
           }),
           `Auto-graded tasks: ${auto || "none"}.`,
@@ -413,7 +414,7 @@ export function SessionView() {
           <span>Questions</span>
           <span className={`timer ${elapsed > SOFT_LIMIT_SEC ? "over" : ""}`}>{fmt(elapsed)}</span>
         </div>
-        <TaskCard key={task.id} task={task} index={taskIdx} total={lesson.tasks.length} onDone={onTaskDone} />
+        <TaskCard key={task.id} task={task} level={lesson.level} index={taskIdx} total={lesson.tasks.length} onDone={onTaskDone} />
         <div className="card soft">
           {mode === "reading" ? (
             showText ? (

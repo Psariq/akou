@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import type { Task, TaskResult } from "../lib/types";
+import type { Cefr, Task, TaskResult } from "../lib/types";
+import { countWords, lengthState, wordRange, writingTarget } from "../lib/writing";
 import { gradeChoice, gradeGap, gradeMatch, shuffle, shuffleChoices } from "../lib/grading";
 
 const SKILL_TITLE: Record<Task["skill"], string> = {
@@ -13,12 +14,13 @@ const SKILL_TITLE: Record<Task["skill"], string> = {
 
 interface Props {
   task: Task;
+  level: Cefr;
   index: number;
   total: number;
   onDone: (r: TaskResult) => void;
 }
 
-export function TaskCard({ task: original, index, total, onDone }: Props) {
+export function TaskCard({ task: original, level, index, total, onDone }: Props) {
   const [showEn, setShowEn] = useState(false);
   // Shuffle once per question shown, so the right answer isn't always in the same place.
   const task = useMemo(() => shuffleChoices(original), [original]);
@@ -47,7 +49,7 @@ export function TaskCard({ task: original, index, total, onDone }: Props) {
       {(task.type === "multiple_choice" || task.type === "true_false") && <ChoiceTask task={task} onDone={onDone} />}
       {task.type === "gap_fill" && <GapTask task={task} onDone={onDone} />}
       {task.type === "vocab_match" && <MatchTask task={task} onDone={onDone} />}
-      {task.type === "short_answer" && <WritingTask task={task} onDone={onDone} />}
+      {task.type === "short_answer" && <WritingTask task={task} level={level} onDone={onDone} />}
     </section>
   );
 }
@@ -287,9 +289,32 @@ function MatchTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => vo
   );
 }
 
-function WritingTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => void }) {
+function WordCounter({ words, level, long }: { words: number; level: Cefr; long?: boolean }) {
+  const target = writingTarget(level, long);
+  const st = lengthState(words, target);
+  const range = wordRange(target);
+  if (st.kind === "under")
+    return (
+      <span className="counter">
+        <strong>{st.toGo}</strong> {st.toGo === 1 ? "word" : "words"} to go <span className="muted">· target {range}</span>
+      </span>
+    );
+  if (st.kind === "ok")
+    return (
+      <span className="counter ok">
+        ✓ {words} words, within the target <span className="muted">({range})</span>
+      </span>
+    );
+  return (
+    <span className="counter over">
+      {words} words, a bit over the target <span className="muted">({range})</span>
+    </span>
+  );
+}
+
+function WritingTask({ task, level, onDone }: { task: Task; level: Cefr; onDone: (r: TaskResult) => void }) {
   const [text, setText] = useState("");
-  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const words = countWords(text);
   return (
     <>
       {task.long && (
@@ -299,9 +324,18 @@ function WritingTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => 
         </p>
       )}
       <label className="field">
-        <span>Your answer in Greek · {words} words</span>
-        <textarea lang="el" rows={task.long ? 10 : 5} value={text} onChange={(e) => setText(e.target.value)} />
+        <span>Your answer in Greek</span>
+        <textarea
+          lang="el"
+          rows={task.long ? 10 : 5}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          aria-describedby={`count-${task.id}`}
+        />
       </label>
+      <p className="small" id={`count-${task.id}`} aria-live="polite" style={{ marginTop: -6 }}>
+        <WordCounter words={words} level={level} long={task.long} />
+      </p>
       <p className="tiny">Graded by AI at the end, with corrections.</p>
       <button
         className="btn primary block"
