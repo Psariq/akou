@@ -358,8 +358,14 @@ export const GRADING_SCHEMA = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["task_id", "score", "feedback", "corrected_answer"],
-        properties: { task_id: str, score: { type: "number" }, feedback: str, corrected_answer: str },
+        required: ["task_id", "score", "feedback", "corrected_answer", "cefr_level"],
+        properties: {
+          task_id: str,
+          score: { type: "number" },
+          feedback: str,
+          corrected_answer: str,
+          cefr_level: { type: "string", enum: ["A1", "A2", "B1", "B2", "C1"] },
+        },
       },
     },
     overall_comment: str,
@@ -367,7 +373,7 @@ export const GRADING_SCHEMA = {
 } as const;
 
 export interface GradingOutput {
-  results: { task_id: string; score: number; feedback: string; corrected_answer: string }[];
+  results: { task_id: string; score: number; feedback: string; corrected_answer: string; cefr_level?: Cefr }[];
   overall_comment: string;
 }
 

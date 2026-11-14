@@ -105,3 +105,23 @@ export const START_LEVELS: { label: string; theta: number }[] = [
 export function setEstimate(p: SkillProgress, theta: number): SkillProgress {
   return { theta: clampTheta(theta), n: Math.min(p.n, 2) };
 }
+
+/**
+ * Writing estimate: a running average of the CEFR levels the grader judged
+ * the learner's written answers to show (each judged level counts as the
+ * middle of that level, e.g. B1 = 3.5). The first answers count fully;
+ * later ones with weight 1/(n+1), but never less than 0.2, so the estimate
+ * keeps following recent progress.
+ */
+export function updateWriting(p: SkillProgress | undefined, judged: Cefr): SkillProgress {
+  const value = levelToNum(judged) + 0.5;
+  if (!p || p.n === 0) return { theta: clampTheta(value), n: 1 };
+  const w = Math.max(0.2, 1 / (p.n + 1));
+  return { theta: clampTheta(p.theta + w * (value - p.theta)), n: p.n + 1 };
+}
+
+/** Overall estimate: mean of the skills that have an estimate. */
+export function overallTheta(p: { reading: SkillProgress; listening: SkillProgress; writing?: SkillProgress }): number {
+  const parts = [p.reading.theta, p.listening.theta, ...(p.writing && p.writing.n > 0 ? [p.writing.theta] : [])];
+  return parts.reduce((a, b) => a + b, 0) / parts.length;
+}

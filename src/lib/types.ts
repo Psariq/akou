@@ -87,6 +87,8 @@ export interface TaskResult {
   dontKnow?: boolean;
   feedback?: string;
   corrected?: string;
+  /** Written answers: CEFR level shown by the writing, as judged by the grader. */
+  cefr?: Cefr;
 }
 
 export interface SessionRecord {
@@ -110,6 +112,9 @@ export interface SessionRecord {
   costUsd: number;
   glossary: GlossaryItem[];
   overallComment?: string;
+  /** CEFR level the grader judged the written answer to show, if any. */
+  writingLevel?: Cefr;
+  writingThetaAfter?: number;
 }
 
 export interface SkillProgress {
@@ -122,6 +127,8 @@ export interface SkillProgress {
 export interface Progress {
   reading: SkillProgress;
   listening: SkillProgress;
+  /** Writing: running estimate from the AI's CEFR judgement of short written answers (absent until the first one). */
+  writing?: SkillProgress;
 }
 
 export interface Settings {

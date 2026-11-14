@@ -13,6 +13,14 @@ const W = 360;
 const H = 210;
 const PAD = { l: 30, r: 66, t: 10, b: 24 };
 
+type SkillKey = "reading" | "listening" | "writing";
+
+const SKILLS: { key: SkillKey; label: string; color: string }[] = [
+  { key: "reading", label: "Reading", color: "var(--series-1)" },
+  { key: "listening", label: "Listening", color: "var(--series-2)" },
+  { key: "writing", label: "Writing", color: "var(--series-3)" },
+];
+
 /**
  * Estimated level over time, one line per skill. y is the continuous level
  * estimate; bands are labelled with CEFR levels. Hover/tap shows the values.
@@ -30,16 +38,19 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
         ...own.map(({ s, i }) => ({ t: i + 1, v: s.thetaAfter, sessionIdx: i })),
       ];
     };
-    const reading = mk("reading");
-    const listening = mk("listening");
-    const all = [...reading, ...listening];
-    const vs = all.map((p) => p.v);
+    // Writing has no starting point: it begins with the first graded written answer.
+    const writing: Point[] = sessions
+      .map((s, i) => ({ s, i }))
+      .filter(({ s }) => s.writingThetaAfter !== undefined)
+      .map(({ s, i }) => ({ t: i + 1, v: s.writingThetaAfter!, sessionIdx: i }));
+    const series: Record<SkillKey, Point[]> = { reading: mk("reading"), listening: mk("listening"), writing };
+    const vs = Object.values(series).flat().map((p) => p.v);
     let lo = Math.floor(Math.min(...vs, start.reading, start.listening));
     let hi = Math.ceil(Math.max(...vs, start.reading, start.listening) + 0.001);
     if (hi - lo < 2) hi = lo + 2;
     lo = Math.max(1, lo);
     hi = Math.min(6, hi);
-    return { series: { reading, listening }, tMin: 0, tMax: Math.max(1, sessions.length), yMin: lo, yMax: hi };
+    return { series, tMin: 0, tMax: Math.max(1, sessions.length), yMin: lo, yMax: hi };
   }, [sessions, start]);
 
   const x = (t: number) => PAD.l + ((t - tMin) / Math.max(1, tMax - tMin)) * (W - PAD.l - PAD.r);
@@ -48,9 +59,13 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
 
   const bands: number[] = [];
   for (let b = yMin; b < yMax; b++) bands.push(b);
+  const shown = SKILLS.filter((k) => series[k.key].length > 0);
 
   // Hover: nearest session (by x) among all plotted points.
-  const allPts = [...series.reading, ...series.listening].filter((p) => p.sessionIdx >= 0).sort((a, b) => a.t - b.t);
+  const allPts = shown
+    .flatMap((k) => series[k.key])
+    .filter((p) => p.sessionIdx >= 0)
+    .sort((a, b) => a.t - b.t);
   const onMove = (e: PointerEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg || !allPts.length) return;
@@ -69,35 +84,36 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
 
   const hs = hover !== null ? sessions[hover] : null;
   const ht = hover !== null ? hover + 1 : 0;
-  const lastR = series.reading.at(-1);
-  const lastL = series.listening.at(-1);
-  // Keep end labels from colliding.
-  let labR = lastR ? y(lastR.v) : 0;
-  let labL = lastL ? y(lastL.v) : 0;
-  if (lastR && lastL && Math.abs(x(lastR.t) - x(lastL.t)) < 40 && Math.abs(labR - labL) < 14) {
-    const mid = (labR + labL) / 2;
-    labR = mid + (lastR.v >= lastL.v ? -7 : 7);
-    labL = mid + (lastR.v >= lastL.v ? 7 : -7);
+
+  // End-of-line labels, pushed apart vertically so they don't overlap.
+  const labels = shown
+    .map((k) => {
+      const last = series[k.key].at(-1)!;
+      return { ...k, lx: x(last.t) + 8, ly: y(last.v) };
+    })
+    .sort((a, b) => a.ly - b.ly);
+  for (let i = 1; i < labels.length; i++) {
+    if (Math.abs(labels[i].lx - labels[i - 1].lx) < 40 && labels[i].ly - labels[i - 1].ly < 13) {
+      labels[i].ly = labels[i - 1].ly + 13;
+    }
   }
 
   return (
     <div style={{ position: "relative" }}>
       <div className="legend" aria-hidden="true">
-        <span>
-          <i style={{ background: "var(--series-1)" }} />
-          Reading
-        </span>
-        <span>
-          <i style={{ background: "var(--series-2)" }} />
-          Listening
-        </span>
+        {shown.map((k) => (
+          <span key={k.key}>
+            <i style={{ background: k.color }} />
+            {k.label}
+          </span>
+        ))}
       </div>
       <svg
         ref={svgRef}
         className="chart"
         viewBox={`0 0 ${W} ${H}`}
         role="img"
-        aria-label="Estimated CEFR level over time for reading and listening. A table version follows."
+        aria-label={`Estimated CEFR level over time for ${shown.map((k) => k.label.toLowerCase()).join(", ")}. A table version follows.`}
         onPointerMove={onMove}
         onPointerDown={onMove}
         onPointerLeave={() => setHover(null)}
@@ -115,13 +131,11 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
 
         {hs && <line x1={x(ht)} x2={x(ht)} y1={PAD.t} y2={H - PAD.b} stroke="var(--text-3)" strokeWidth={1} strokeDasharray="3 3" />}
 
-        {(["reading", "listening"] as const).map((m, si) => {
-          const pts = series[m];
-          if (!pts.length) return null;
-          const color = si === 0 ? "var(--series-1)" : "var(--series-2)";
+        {shown.map((k) => {
+          const pts = series[k.key];
           return (
-            <g key={m}>
-              <path d={path(pts)} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+            <g key={k.key}>
+              <path d={path(pts)} fill="none" stroke={k.color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
               {pts
                 .filter((p) => p.sessionIdx >= 0)
                 .map((p) => (
@@ -130,7 +144,7 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
                     cx={x(p.t)}
                     cy={y(p.v)}
                     r={hover === p.sessionIdx ? 5 : 3}
-                    fill={color}
+                    fill={k.color}
                     stroke="var(--surface)"
                     strokeWidth={2}
                   />
@@ -138,16 +152,11 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
             </g>
           );
         })}
-        {lastR && (
-          <text x={x(lastR.t) + 8} y={labR + 4} style={{ fill: "var(--text)" }}>
-            Reading
+        {labels.map((l) => (
+          <text key={l.key} x={l.lx} y={l.ly + 4} style={{ fill: "var(--text)" }}>
+            {l.label}
           </text>
-        )}
-        {lastL && (
-          <text x={x(lastL.t) + 8} y={labL + 4} style={{ fill: "var(--text)" }}>
-            Listening
-          </text>
-        )}
+        ))}
         <text x={PAD.l} y={H - 6}>
           start
         </text>
@@ -158,18 +167,18 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
       {hs && (
         <div className="card" style={{ position: "absolute", top: 24, left: 8, padding: "8px 10px", fontSize: "0.8rem", pointerEvents: "none", maxWidth: 240 }}>
           <div style={{ fontWeight: 600 }}>{new Date(hs.date).toLocaleString()}</div>
-          {(["reading", "listening"] as const).map((m) => {
-            const v = valueAt(series[m], ht);
+          {shown.map((k) => {
+            const v = valueAt(series[k.key], ht);
             if (v === null) return null;
             const d = describeTheta(v);
             return (
-              <div key={m}>
-                {m === "reading" ? "Reading" : "Listening"}: {d.level} {Math.round(d.progress * 100)}%
+              <div key={k.key}>
+                {k.label}: {d.level} {Math.round(d.progress * 100)}%
               </div>
             );
           })}
           <div className="muted">
-            This session: {hs.mode}, {hs.level}, {Math.round(hs.score * 100)}%
+            This session: {hs.mode}, {hs.level}, {Math.round(hs.score * 100)}%{hs.writingLevel ? `, writing ${hs.writingLevel}` : ""}
           </div>
         </div>
       )}

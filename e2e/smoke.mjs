@@ -51,7 +51,7 @@ function lesson(segments, title) {
 }
 
 const grading = {
-  results: [{ task_id: "t7", score: 0.8, feedback: "Good answer; watch the verb ending.", corrected_answer: "Ναι, γιατί μου αρέσει το ψωμί." }],
+  results: [{ task_id: "t7", score: 0.8, feedback: "Good answer; watch the verb ending.", corrected_answer: "Ναι, γιατί μου αρέσει το ψωμί.", cefr_level: "B1" }],
   overall_comment: "Well done. Practise the aorist of -άω verbs.",
 };
 
@@ -277,6 +277,8 @@ try {
   assert(scoreText === "79%", `score is 79% (got ${scoreText})`);
   await page.getByText("Corrected:").waitFor();
   await page.getByText("You: Δεν ξέρω").waitFor();
+  await page.getByText("Level shown by this answer: B1").waitFor();
+  await page.getByText(/Your written answer shows about B1/).waitFor();
   await page.getByText("Practise the aorist").waitFor();
   await page.screenshot({ path: SHOTS + "04-results.png", fullPage: true });
 
@@ -312,8 +314,11 @@ try {
   console.log("Progress screen");
   await page.goto(BASE + "#/stats");
   await page.getByRole("heading", { name: "Estimated CEFR level" }).waitFor();
-  assert((await page.locator(".chart circle").count()) === 2, "chart shows one point per session");
+  assert((await page.locator(".chart circle").count()) === 4, "chart shows one point per session per skill (2 sessions × reading/listening + writing)");
   await page.getByText("Words you looked up (2)").waitFor();
+  const writingLine = await page.locator(".card").filter({ hasText: "Estimated CEFR level" }).getByText(/Writing · B1/).count();
+  assert(writingLine === 1, "writing estimate shown (B1 after two answers judged B1)");
+  assert((await page.locator(".legend").textContent()).includes("Writing"), "chart has a writing series");
   await page.screenshot({ path: SHOTS + "06-stats.png", fullPage: true });
   const sessions = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
   assert(sessions === 2, "two sessions recorded (abandoned one not saved)");

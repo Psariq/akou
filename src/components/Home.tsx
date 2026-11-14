@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useApp } from "../App";
 import type { Mode, SourceKind } from "../lib/types";
-import { confidenceLabel, describeTheta, targetFor } from "../lib/cefr";
+import { confidenceLabel, describeTheta, overallTheta, targetFor } from "../lib/cefr";
 import { enabledSources } from "../lib/sources";
 import { streakDays } from "../lib/stats";
 import { Icon } from "./Icon";
@@ -13,6 +13,21 @@ const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
   news: "News",
   ai: "Everyday",
 };
+
+/** Writing estimate, or a note that it starts after the first graded written answer. */
+export function WritingLine() {
+  const { progress } = useApp();
+  if (progress.writing && progress.writing.n > 0)
+    return <LevelLine label="Writing" theta={progress.writing.theta} n={progress.writing.n} />;
+  return (
+    <div className="row spread small" style={{ marginBottom: 10 }}>
+      <span>
+        <strong>Writing</strong> · <span className="muted">no estimate yet</span>
+      </span>
+      <span className="tiny">after your first graded written answer</span>
+    </div>
+  );
+}
 
 export function LevelLine({ label, theta, n }: { label: string; theta: number; n: number }) {
   const d = describeTheta(theta);
@@ -48,7 +63,7 @@ export function Home() {
   const choices: (SourceKind | "mixed")[] = sources.length > 1 ? ["mixed", ...sources] : sources;
   const effectiveSource = choices.includes(source) ? source : choices[0];
 
-  const overall = (progress.reading.theta + progress.listening.theta) / 2;
+  const overall = overallTheta(progress);
   const od = describeTheta(overall);
   const today = new Date().toDateString();
   const todayCount = sessions.filter((s) => new Date(s.date).toDateString() === today).length;
@@ -100,8 +115,10 @@ export function Home() {
         </div>
         <LevelLine label="Reading" theta={progress.reading.theta} n={progress.reading.n} />
         <LevelLine label="Listening" theta={progress.listening.theta} n={progress.listening.n} />
+        <WritingLine />
         <p className="tiny" style={{ margin: 0 }}>
-          An estimate from your results on level-tagged texts, not a certificate. Covers reading and listening only.
+          An estimate, not a certificate. Reading and listening come from your scores on level-tagged texts; writing from the
+          AI's judgement of your short written answers (rougher, especially above B1). Speaking isn't covered.
         </p>
       </section>
 

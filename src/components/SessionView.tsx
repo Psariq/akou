@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../App";
 import type { Lesson, SessionRecord, SourceKind, TaskResult, UsageCost } from "../lib/types";
-import { describeTheta, targetFor, updateProgress, type Target } from "../lib/cefr";
+import { describeTheta, targetFor, updateProgress, updateWriting, type Target } from "../lib/cefr";
 import { describeError, gradeWritten } from "../lib/claude";
 import { createLesson } from "../lib/lessonFactory";
 import { availableLessons, loadStock, pickLesson } from "../lib/library";
@@ -182,7 +182,13 @@ export function SessionView() {
         final = res.map((r) => {
           const hit = g.data.results.find((x) => x.task_id === r.taskId);
           return hit
-            ? { ...r, score: Math.min(1, Math.max(0, hit.score)), feedback: hit.feedback, corrected: hit.corrected_answer }
+            ? {
+                ...r,
+                score: Math.min(1, Math.max(0, hit.score)),
+                feedback: hit.feedback,
+                corrected: hit.corrected_answer,
+                cefr: hit.cefr_level,
+              }
             : r;
         });
       } catch (e) {
@@ -201,6 +207,9 @@ export function SessionView() {
 
     const before = progress[mode];
     const after = updateProgress(before, lesson.level, score);
+    // Writing: only answers that were actually written and graded count.
+    const judged = final.find((r) => r.type === "short_answer" && r.userAnswer && r.cefr)?.cefr;
+    const writing = judged ? updateWriting(progress.writing, judged) : progress.writing;
     // Word glosses are made once per lesson; count their cost with the session that uses it.
     cost.current = { ...cost.current, usd: cost.current.usd + (getGlosses(lesson.id)?.costUsd ?? 0) };
     const rec: SessionRecord = {
@@ -222,8 +231,10 @@ export function SessionView() {
       costUsd: cost.current.usd,
       glossary: lesson.glossary,
       overallComment: comment,
+      writingLevel: judged,
+      writingThetaAfter: judged ? writing!.theta : undefined,
     };
-    recordSession(rec, { ...progress, [mode]: after });
+    recordSession(rec, { ...progress, [mode]: after, writing });
     setResults(final);
     setOverall(comment);
     setRecord(rec);
@@ -461,6 +472,12 @@ export function SessionView() {
           ({delta >= 0 ? "+" : ""}
           {Math.round(delta * 100)} points; 100 points = one CEFR level)
         </p>
+        {record.writingLevel && record.writingThetaAfter !== undefined && (
+          <p className="small">
+            Your written answer shows about <strong>{record.writingLevel}</strong>. Writing estimate now:{" "}
+            {describeTheta(record.writingThetaAfter).level} {Math.round(describeTheta(record.writingThetaAfter).progress * 100)}%.
+          </p>
+        )}
         {overall && <p className="small" style={{ marginBottom: 0 }}>{overall}</p>}
       </section>
 
@@ -500,6 +517,7 @@ export function SessionView() {
                     Corrected: <span lang="el">{r.corrected}</span>
                   </div>
                 )}
+                {r.cefr && <div className="tiny">Level shown by this answer: {r.cefr}</div>}
                 {r.feedback && <div className="small muted">{r.feedback}</div>}
                 {task.type === "short_answer" && task.explanation && (
                   <details className="small">

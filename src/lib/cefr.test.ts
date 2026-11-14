@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { describeTheta, expectedScore, setEstimate, targetFor, updateProgress } from "./cefr";
+import { describeTheta, expectedScore, overallTheta, setEstimate, targetFor, updateProgress, updateWriting } from "./cefr";
 
 describe("cefr estimate", () => {
   it("expects ~65% at the learner's own level", () => {
@@ -54,3 +54,27 @@ describe("cefr estimate", () => {
     expect(targetFor(p.theta)).toEqual({ level: "A2", band: "lower" });
   });
 });
+
+describe("writing estimate", () => {
+  it("starts at the middle of the first judged level", () => {
+    expect(updateWriting(undefined, "A2")).toEqual({ theta: 2.5, n: 1 });
+  });
+
+  it("averages later judgements, giving recent answers at least 20% weight", () => {
+    let p = updateWriting(undefined, "A2"); // 2.5
+    p = updateWriting(p, "B1"); // weight 1/2 -> 3.0
+    expect(p.theta).toBeCloseTo(3.0, 5);
+    for (let i = 0; i < 30; i++) p = updateWriting(p, "B1");
+    expect(p.theta).toBeGreaterThan(3.45); // converges to B1 middle (3.5)
+    const before = p.theta;
+    expect(updateWriting(p, "A2").theta).toBeCloseTo(before + 0.2 * (2.5 - before), 5);
+  });
+
+  it("overall level includes writing only once it has an estimate", () => {
+    const r = { theta: 3, n: 4 };
+    const l = { theta: 2, n: 4 };
+    expect(overallTheta({ reading: r, listening: l })).toBe(2.5);
+    expect(overallTheta({ reading: r, listening: l, writing: { theta: 4, n: 2 } })).toBe(3);
+  });
+});
+
