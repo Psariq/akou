@@ -42,6 +42,12 @@ npm run build && npx vite preview --port 4173 &
 node e2e/smoke.mjs   # requires the `playwright` package with Chromium
 ```
 
+## Writing
+
+Every exercise ends with a short written answer (2–3 sentences), graded by AI with corrections. The grader also judges which CEFR level the writing shows; these judgements are averaged into a **writing estimate** (rougher than reading/listening, especially above B1).
+
+Every 4th exercise (configurable: 3rd / 4th / 6th / never) asks for a **longer answer** instead: 4–6 sentences at A2, 6–8 at B1, 8–10 from B2. At most one per sitting (exercises less than 2 hours apart). Longer answers count double for the writing estimate. Logic: `src/lib/writing.ts`.
+
 ## Tap a word to translate it
 
 In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.

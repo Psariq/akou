@@ -113,6 +113,21 @@ export function SettingsView() {
             <option value="C1">Always C1</option>
           </select>
         </label>
+        <label className="field">
+          <span>Longer written answer (more evidence for your writing level)</span>
+          <select
+            value={settings.longWritingEvery ?? 4}
+            onChange={(e) => updateSettings({ longWritingEvery: Number(e.target.value) })}
+          >
+            <option value={3}>Every 3rd exercise</option>
+            <option value={4}>Every 4th exercise</option>
+            <option value={6}>Every 6th exercise</option>
+            <option value={0}>Never</option>
+          </select>
+        </label>
+        <p className="tiny" style={{ marginTop: -6 }}>
+          At most one per sitting: exercises less than 2 hours apart count as one sitting.
+        </p>
       </section>
 
       <VoiceSection />

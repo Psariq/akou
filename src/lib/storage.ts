@@ -1,6 +1,7 @@
 import type { Progress, SessionRecord, Settings } from "./types";
 import type { EncryptedBlob } from "./crypto";
 import { START_LEVELS } from "./cefr";
+import { DEFAULT_LONG_WRITING_EVERY } from "./writing";
 
 /**
  * Everything lives in this browser's localStorage, on this device only.
@@ -59,6 +60,7 @@ export const DEFAULT_SETTINGS: Settings = {
   startLevel: START_LEVELS.find((l) => l.label === "A2/B1")!.theta,
   levelOverride: "auto",
   speechRate: 0.9,
+  longWritingEvery: DEFAULT_LONG_WRITING_EVERY,
   voiceURI: "",
 };
 

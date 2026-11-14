@@ -62,6 +62,7 @@ DATE: 2026-11-12
 FACTS:
 ${"Οι ναυτεργάτες κήρυξαν απεργία 24 ωρών την Πέμπτη. Τα πλοία θα μείνουν δεμένα στα λιμάνια. ".repeat(5)}`;
 
+let lastGradingPrompt = "";
 const calls = { news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
 
 function msg(text, extra = {}) {
@@ -129,6 +130,7 @@ async function mockApis(page) {
       out = msg(JSON.stringify({ form: word, lemma: `το ${word}`, en: `LOOKUP:${word}`, note: "acc. sg." }));
     } else {
       calls.grading++;
+      lastGradingPrompt = body.messages[0].content;
       out = msg(JSON.stringify(grading));
     }
     return route.fulfill({ status: 200, headers: { ...CORS, "content-type": "application/json" }, body: JSON.stringify(out) });
@@ -174,7 +176,7 @@ function assert(cond, message) {
   console.log(`  ✓ ${message}`);
 }
 
-async function answerTasks(page, { wrongGap = false, dontKnow = false } = {}) {
+async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWriting = null } = {}) {
   // 1 gist (correct = first option)
   await page.getByRole("button", { name: "Η δουλειά της Μαρίας" }).click();
   await page.getByRole("button", { name: "Check" }).click();
@@ -212,6 +214,7 @@ async function answerTasks(page, { wrongGap = false, dontKnow = false } = {}) {
   await page.getByText(wrongGap ? "Almost." : "Correct.").waitFor();
   await page.getByRole("button", { name: "Next" }).click();
   // 7 writing
+  if (beforeWriting) await beforeWriting();
   await page.getByLabel(/Your answer in Greek/).fill("Ναι, γιατί μου αρέσει πολύ το ψωμί.");
   await page.getByRole("button", { name: "Save answer" }).click();
 }
@@ -418,7 +421,38 @@ try {
   page.once("dialog", (d) => d.accept());
   await page.getByRole("button", { name: "Leave session" }).click();
 
-  console.log("Dark mode render");
+  console.log("Longer written answer (every 3rd exercise, once per sitting)");
+  await page.goto(BASE + "#/settings");
+  await page.getByLabel(/Longer written answer/).selectOption({ label: "Every 3rd exercise" });
+  await page.goto(BASE + "#/");
+  await page.getByRole("button", { name: "Graded", exact: true }).click();
+  await page.getByRole("button", { name: /^Reading/ }).click();
+  await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  // Answer up to the writing task, then check it asks for a longer answer at A2 length.
+  const sessionsBeforeLong = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
+  await answerTasks(page, { beforeWriting: async () => {
+    await page.getByText("Longer answer", { exact: true }).waitFor();
+    await page.getByText(/4–6 προτάσεις/).waitFor();
+  } });
+  await page.getByText("Score").waitFor();
+  assert(lastGradingPrompt.includes("<length_target>4–6 sentences"), "grader told it was a longer task");
+  const rec = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1));
+  assert(rec.longWriting === true && sessionsBeforeLong === 2, "session recorded as longer writing task");
+  // Next exercise in the same sitting: back to a short task.
+  await page.getByRole("button", { name: "Done" }).click();
+  await page.getByRole("button", { name: "Graded", exact: true }).click();
+  await page.getByRole("button", { name: /^Listening/ }).click();
+  await page.getByRole("heading", { name: "Ταξίδι στο νησί" }).waitFor();
+  await page.getByRole("button", { name: "Play" }).click();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { beforeWriting: async () => {
+    assert((await page.getByText("Longer answer", { exact: true }).count()) === 0, "no second longer task in the same sitting");
+  } });
+  await page.getByText("Score").waitFor();
+  assert(!/<length_target>\d/.test(lastGradingPrompt), "short task graded normally");
+
+
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto(BASE + "#/stats");
   await page.getByRole("heading", { name: "Estimated CEFR level" }).waitFor();

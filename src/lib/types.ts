@@ -28,6 +28,8 @@ export interface Task {
   pairs: VocabPair[];
   /** Why the answer is right (shown after answering). For short_answer: a model answer. */
   explanation: string;
+  /** Writing task turned into a longer one for this session. */
+  long?: boolean;
 }
 
 export interface Segment {
@@ -114,6 +116,8 @@ export interface SessionRecord {
   overallComment?: string;
   /** CEFR level the grader judged the written answer to show, if any. */
   writingLevel?: Cefr;
+  /** This exercise asked for a longer written answer. */
+  longWriting?: boolean;
   writingThetaAfter?: number;
 }
 
@@ -141,6 +145,8 @@ export interface Settings {
   levelOverride: "auto" | Cefr;
   speechRate: number;
   voiceURI: string;
+  /** Ask for a longer written answer every Nth exercise (0 = never). */
+  longWritingEvery: number;
 }
 
 export interface UsageCost {

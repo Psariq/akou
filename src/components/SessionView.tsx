@@ -4,6 +4,7 @@ import type { Lesson, SessionRecord, SourceKind, TaskResult, UsageCost } from ".
 import { describeTheta, targetFor, updateProgress, updateWriting, type Target } from "../lib/cefr";
 import { describeError, gradeWritten } from "../lib/claude";
 import { createLesson } from "../lib/lessonFactory";
+import { DEFAULT_LONG_WRITING_EVERY, longTarget, longWritingDue, withLongWriting } from "../lib/writing";
 import { availableLessons, loadStock, pickLesson } from "../lib/library";
 import { addCost, ZERO_COST } from "../lib/pricing";
 import { SKILL_LABEL } from "../lib/stats";
@@ -48,6 +49,9 @@ export function SessionView() {
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [waitNote, setWaitNote] = useState<string | null>(null);
+  // Decided once per exercise: longer written answer every Nth exercise, at most once per sitting.
+  const [longWriting] = useState(() => longWritingDue(sessions, settings.longWritingEvery ?? DEFAULT_LONG_WRITING_EVERY));
+  const prepare = (l: Lesson) => (longWriting ? withLongWriting(l) : l);
   const [target, setTarget] = useState<Target | null>(null);
   const [taskIdx, setTaskIdx] = useState(0);
   const [results, setResults] = useState<TaskResult[]>([]);
@@ -86,7 +90,7 @@ export function SessionView() {
       const ready = pickLesson(availableLessons(mode, sessions, loadStock()), tgt, request.source);
       if (ready) {
         cost.current = { ...ZERO_COST, usd: ready.costUsd };
-        setLesson(ready.lesson);
+        setLesson(prepare(ready.lesson));
         t.current.exposureStart = Date.now();
         setPhase("exposure");
         return () => ctrl.abort();
@@ -114,7 +118,7 @@ export function SessionView() {
           onNote: setNote,
         });
         cost.current = addCost(cost.current, r.cost);
-        setLesson(r.lesson);
+        setLesson(prepare(r.lesson));
         t.current.exposureStart = Date.now();
         setPhase("exposure");
       } catch (e) {
@@ -172,7 +176,13 @@ export function SessionView() {
           text,
           written.map((w) => {
             const task = lesson.tasks.find((x) => x.id === w.taskId)!;
-            return { task_id: w.taskId, question: task.prompt, model_answer: task.explanation, learner_answer: w.userAnswer };
+            return {
+              task_id: w.taskId,
+              question: task.prompt,
+              model_answer: task.explanation,
+              learner_answer: w.userAnswer,
+              length_target: task.long ? `${longTarget(lesson.level).sentences} sentences` : undefined,
+            };
           }),
           `Auto-graded tasks: ${auto || "none"}.`,
           ctrl.signal,
@@ -209,12 +219,14 @@ export function SessionView() {
     const after = updateProgress(before, lesson.level, score);
     // Writing: only answers that were actually written and graded count.
     const judged = final.find((r) => r.type === "short_answer" && r.userAnswer && r.cefr)?.cefr;
-    const writing = judged ? updateWriting(progress.writing, judged) : progress.writing;
+    const longDone = lesson.tasks.some((t) => t.long);
+    const writing = judged ? updateWriting(progress.writing, judged, longDone ? 2 : 1) : progress.writing;
     // Word glosses are made once per lesson; count their cost with the session that uses it.
     cost.current = { ...cost.current, usd: cost.current.usd + (getGlosses(lesson.id)?.costUsd ?? 0) };
     const rec: SessionRecord = {
       id: `${Date.now()}`,
       lessonId: lesson.id,
+      longWriting: longDone || undefined,
       date: new Date().toISOString(),
       mode,
       level: lesson.level,

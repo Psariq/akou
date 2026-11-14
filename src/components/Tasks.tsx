@@ -292,9 +292,15 @@ function WritingTask({ task, onDone }: { task: Task; onDone: (r: TaskResult) => 
   const words = text.trim() ? text.trim().split(/\s+/).length : 0;
   return (
     <>
+      {task.long && (
+        <p className="small" style={{ marginTop: 0 }}>
+          <span className="pill">Longer answer</span>{" "}
+          <span className="muted">This one counts double for your writing estimate.</span>
+        </p>
+      )}
       <label className="field">
         <span>Your answer in Greek · {words} words</span>
-        <textarea lang="el" rows={5} value={text} onChange={(e) => setText(e.target.value)} />
+        <textarea lang="el" rows={task.long ? 10 : 5} value={text} onChange={(e) => setText(e.target.value)} />
       </label>
       <p className="tiny">Graded by AI at the end, with corrections.</p>
       <button

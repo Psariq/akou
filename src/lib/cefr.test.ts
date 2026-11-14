@@ -76,5 +76,12 @@ describe("writing estimate", () => {
     expect(overallTheta({ reading: r, listening: l })).toBe(2.5);
     expect(overallTheta({ reading: r, listening: l, writing: { theta: 4, n: 2 } })).toBe(3);
   });
+
+  it("a longer answer counts as two observations", () => {
+    const p = { theta: 2.5, n: 4 };
+    const once = updateWriting(p, "B1");
+    const twice = updateWriting(once, "B1");
+    expect(updateWriting(p, "B1", 2)).toEqual(twice);
+  });
 });
 

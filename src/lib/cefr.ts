@@ -113,11 +113,18 @@ export function setEstimate(p: SkillProgress, theta: number): SkillProgress {
  * later ones with weight 1/(n+1), but never less than 0.2, so the estimate
  * keeps following recent progress.
  */
-export function updateWriting(p: SkillProgress | undefined, judged: Cefr): SkillProgress {
+export function updateWriting(p: SkillProgress | undefined, judged: Cefr, evidence = 1): SkillProgress {
+  // A longer answer is stronger evidence: it counts as `evidence` observations.
   const value = levelToNum(judged) + 0.5;
-  if (!p || p.n === 0) return { theta: clampTheta(value), n: 1 };
-  const w = Math.max(0.2, 1 / (p.n + 1));
-  return { theta: clampTheta(p.theta + w * (value - p.theta)), n: p.n + 1 };
+  let q = p;
+  for (let i = 0; i < evidence; i++) {
+    if (!q || q.n === 0) q = { theta: clampTheta(value), n: 1 };
+    else {
+      const w = Math.max(0.2, 1 / (q.n + 1));
+      q = { theta: clampTheta(q.theta + w * (value - q.theta)), n: q.n + 1 };
+    }
+  }
+  return q!;
 }
 
 /** Overall estimate: mean of the skills that have an estimate. */

@@ -151,6 +151,8 @@ export interface GradingItem {
   question: string;
   model_answer: string;
   learner_answer: string;
+  /** Longer writing task: the requested length, e.g. "6–8 sentences". */
+  length_target?: string;
 }
 
 export function gradingPrompt(
@@ -170,7 +172,7 @@ Grade these written answers:
 ${items
   .map(
     (i) => `<item task_id="${i.task_id}">
-<question>${i.question}</question>
+<question>${i.question}</question>${i.length_target ? `\n<length_target>${i.length_target} (longer writing task; the model answer is shorter than this)</length_target>` : ""}
 <model_answer>${i.model_answer}</model_answer>
 <learner_answer>${i.learner_answer}</learner_answer>
 </item>`,
@@ -179,7 +181,8 @@ ${items
 
 For each item return:
 - "score" between 0 and 1: 0.5 for task completion and content (answers the question, relevant to the text), 0.5 for language (accuracy and range appropriate for ${level}). Do not penalise missing accents more than lightly. Empty or non-Greek answers score 0.
-- "feedback": 1-3 sentences in ${lang}: what was good, the most important errors and why.
+- For items with a <length_target> (a longer writing task): also judge organisation and whether the requested length and content (opinion with an example) were delivered; a much too short answer cannot get full marks for task completion. Use the extra text as evidence for "cefr_level".
+- "feedback": 1-3 sentences in ${lang} (up to 4 for longer tasks): what was good, the most important errors and why.
 - "corrected_answer": the learner's answer corrected into natural Greek, changing as little as possible. Empty string if the answer was empty.
 - "cefr_level": the CEFR level of written production this answer demonstrates, judged from the language itself (range, accuracy, coherence), not from how well it answers the question. Use the CEFR's general descriptions: A1 = isolated words and simple phrases; A2 = simple phrases and sentences linked with basic connectors like «και», «αλλά», «γιατί»; B1 = straightforward connected text on familiar topics, a linear sequence of ideas, reasonably accurate everyday grammar; B2 = clear, detailed text with a range of connectors and structures, few errors that cause misunderstanding; C1 = well-structured, precise, flexible language. A short answer can only show so much: rate the highest level it clearly demonstrates and do not over-rate. Use "A1" for empty, non-Greek or minimal answers.
 
