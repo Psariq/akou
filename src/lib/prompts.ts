@@ -93,7 +93,7 @@ GLOSSARY: 6-10 words or phrases from the text that are likely new at this level,
 TASKS: exactly 7 tasks, in this order. ${mode === "listening" ? "They must be answerable from LISTENING to the text once or twice: test meaning, not spelling." : "They must be answerable from the text."}
 1. skill "gist", type "multiple_choice": main idea / purpose. 4 options.
 2. skill "detail", type "multiple_choice": a specific fact. 4 options.
-3. skill "detail", type "true_false": a statement about the text. options exactly ["Σωστό", "Λάθος"].
+3. skill "detail", type "true_false": a statement about the text. options exactly ["Σωστό", "Λάθος"]. A false statement must differ from the text in one specific detail (a number, time, person, place, or a negation), not be obviously absurd.
 4. skill "inference", type "multiple_choice" (4 options) or "true_false": something implied, a speaker's attitude, or a reason.
 5. skill "vocabulary", type "vocab_match": 4 "pairs" of a Greek word/phrase from the text and its English meaning in context. Meanings must be clearly distinct.
 6. skill "grammar", type "gap_fill": one sentence based on the text with exactly one gap written as "___" and the base form in brackets after it, e.g. "Χθες ___ (πηγαίνω) στη θάλασσα." Test a form typical for ${target.level} (case, agreement, tense, aspect, person). "accepted_answers": every correct form, with accents.
@@ -101,7 +101,13 @@ TASKS: exactly 7 tasks, in this order. ${mode === "listening" ? "They must be an
 
 For every task:
 - "prompt": the question/instruction in Greek at the learner's level. "prompt_en": its English translation.
-- Distractors must be plausible but clearly wrong according to the text. Vary the position of the correct option.
+- Multiple-choice distractors (model: the Greek state certification exams of the Centre for the Greek Language):
+  * All 4 options belong to the same category as the answer (all times, all places, all people, all reasons, all topics) and have the same grammatical form.
+  * Build distractors from the text itself: another detail, person, number or place that IS mentioned but does not answer the question; details combined wrongly (e.g. right person, wrong place); a half-true statement; or a likely misunderstanding of a key word.
+  * For main-idea questions, distractors are secondary details or a too-narrow / too-broad summary of THIS text, never an unrelated theme.
+  * A learner who did not understand the relevant part of the text must not be able to rule out any option. No absurd options, no "all/none of the above".
+  * The correct option must not stand out: similar length and level of detail as the distractors, and not systematically the longest or most specific.
+  * Each distractor must still be clearly wrong for a learner who understood the text: exactly one correct answer.
 - Fields that don't apply: empty array ([]), and correct_index -1.
 - "explanation" (tasks 1-6): 1-2 sentences in ${expl} explaining the answer, quoting the relevant Greek words from the text.`;
 }

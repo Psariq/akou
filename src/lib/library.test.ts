@@ -116,3 +116,25 @@ describe("refill rule (keep 3, refill below 2)", () => {
     expect(countAtLevel(c, "C1")).toBe(0);
   });
 });
+
+describe("multiple-choice quality (built-in lessons)", () => {
+  const items = [...STARTER.reading, ...STARTER.listening].flatMap((l) =>
+    l.tasks.filter((t) => t.type === "multiple_choice").map((t) => ({ id: l.id, t })),
+  );
+  const len = (s: string) => s.length;
+
+  it("has 4 distinct options each", () => {
+    for (const { id, t } of items) expect(new Set(t.options).size, id).toBe(4);
+  });
+
+  it("does not give the answer away by length", () => {
+    const keyLongest = items.filter(({ t }) => len(t.options[t.correct_index]) === Math.max(...t.options.map(len))).length;
+    expect(keyLongest / items.length).toBeLessThan(0.35); // chance level is 25%
+    for (const { id, t } of items) {
+      const others = t.options.filter((_, i) => i !== t.correct_index);
+      const avg = others.reduce((a, o) => a + len(o), 0) / others.length;
+      expect(len(t.options[t.correct_index]) / avg, `${id}: answer much longer than the distractors`).toBeLessThan(1.6);
+    }
+  });
+});
+
