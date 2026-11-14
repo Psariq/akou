@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { Task, TaskResult } from "../lib/types";
-import { gradeChoice, gradeGap, gradeMatch, shuffle } from "../lib/grading";
+import { gradeChoice, gradeGap, gradeMatch, shuffle, shuffleChoices } from "../lib/grading";
 
 const SKILL_TITLE: Record<Task["skill"], string> = {
   gist: "Main idea",
@@ -18,8 +18,10 @@ interface Props {
   onDone: (r: TaskResult) => void;
 }
 
-export function TaskCard({ task, index, total, onDone }: Props) {
+export function TaskCard({ task: original, index, total, onDone }: Props) {
   const [showEn, setShowEn] = useState(false);
+  // Shuffle once per question shown, so the right answer isn't always in the same place.
+  const task = useMemo(() => shuffleChoices(original), [original]);
   return (
     <section className="card" aria-label={`Task ${index + 1} of ${total}`}>
       <div className="row spread" style={{ marginBottom: 8 }}>

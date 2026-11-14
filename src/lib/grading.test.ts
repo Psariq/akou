@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { gradeGap, gradeMatch, isUsableTask, normalize, normalizeLoose } from "./grading";
+import { gradeGap, gradeMatch, isUsableTask, normalize, normalizeLoose, shuffleChoices } from "./grading";
 import type { Task } from "./types";
 
 const base: Task = {
@@ -61,5 +61,28 @@ describe("task validation", () => {
     expect(
       isUsableTask({ ...base, type: "vocab_match", pairs: [{ greek: "α", english: "x" }, { greek: "β", english: "x" }] }),
     ).toBe(false);
+  });
+});
+
+describe("shuffled multiple choice", () => {
+  const mc: Task = { ...base, type: "multiple_choice", options: ["σωστή", "β", "γ", "δ"], correct_index: 0, accepted_answers: [] };
+
+  it("keeps the right answer pointing at the same text", () => {
+    for (let i = 0; i < 50; i++) {
+      const t = shuffleChoices(mc);
+      expect(t.options[t.correct_index]).toBe("σωστή");
+      expect([...t.options].sort()).toEqual([...mc.options].sort());
+    }
+  });
+
+  it("puts the right answer in every position over many shuffles (roughly evenly)", () => {
+    const counts = [0, 0, 0, 0];
+    for (let i = 0; i < 4000; i++) counts[shuffleChoices(mc).correct_index]++;
+    for (const c of counts) expect(c).toBeGreaterThan(800); // expected ~1000 each
+  });
+
+  it("leaves true/false in its usual order", () => {
+    const tf: Task = { ...base, type: "true_false", options: ["Σωστό", "Λάθος"], correct_index: 1, accepted_answers: [] };
+    expect(shuffleChoices(tf)).toBe(tf);
   });
 });

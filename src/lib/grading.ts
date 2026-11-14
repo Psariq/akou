@@ -67,7 +67,18 @@ export function isUsableTask(t: Task): boolean {
   }
 }
 
-/** Deterministic-enough shuffle for UI options. */
+/**
+ * Multiple choice: present the options in random order (the answer's
+ * position in the generated or built-in lesson is not random). True/false
+ * keeps its fixed "Σωστό / Λάθος" order.
+ */
+export function shuffleChoices(task: Task, rnd: () => number = Math.random): Task {
+  if (task.type !== "multiple_choice" || task.correct_index < 0) return task;
+  const order = shuffle(task.options.map((_, i) => i), rnd);
+  return { ...task, options: order.map((i) => task.options[i]), correct_index: order.indexOf(task.correct_index) };
+}
+
+/** Fisher–Yates shuffle for UI options. */
 export function shuffle<T>(arr: T[], rnd: () => number = Math.random): T[] {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
