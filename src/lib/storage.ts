@@ -61,6 +61,7 @@ export const DEFAULT_SETTINGS: Settings = {
   levelOverride: "auto",
   speechRate: 0.9,
   longWritingEvery: DEFAULT_LONG_WRITING_EVERY,
+  extraPractice: true,
   voiceURI: "",
 };
 

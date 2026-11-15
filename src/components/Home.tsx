@@ -3,7 +3,8 @@ import { useApp } from "../App";
 import type { Mode, SourceKind } from "../lib/types";
 import { confidenceLabel, describeTheta, overallTheta, targetFor } from "../lib/cefr";
 import { enabledSources } from "../lib/sources";
-import { streakDays } from "../lib/stats";
+import { SKILL_LABEL, streakDays } from "../lib/stats";
+import { weakSkills } from "../lib/practice";
 import { Icon } from "./Icon";
 
 const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
@@ -13,6 +14,20 @@ const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
   news: "News",
   ai: "Everyday",
 };
+
+/** Which task types currently get extra questions. */
+function PracticeLine() {
+  const { sessions, settings } = useApp();
+  if (settings.extraPractice === false) return null;
+  const weak = weakSkills(sessions);
+  if (!weak.length) return null;
+  return (
+    <p className="small" style={{ marginTop: 0 }}>
+      <span className="pill">Extra practice</span>{" "}
+      {weak.map((w) => `${SKILL_LABEL[w.skill]} (${Math.round(w.pct * 100)}% recently)`).join(", ")}
+    </p>
+  );
+}
 
 /** Writing estimate, or a note that it starts after the first graded written answer. */
 export function WritingLine() {
@@ -116,6 +131,7 @@ export function Home() {
         <LevelLine label="Reading" theta={progress.reading.theta} n={progress.reading.n} />
         <LevelLine label="Listening" theta={progress.listening.theta} n={progress.listening.n} />
         <WritingLine />
+        <PracticeLine />
         <p className="tiny" style={{ margin: 0 }}>
           An estimate, not a certificate. Reading and listening come from your scores on level-tagged texts; writing from the
           AI's judgement of your short written answers (rougher, especially above B1). Speaking isn't covered.
@@ -156,7 +172,7 @@ export function Home() {
       {ready && (refill.running || refill.error) && (
         <p className="tiny" role="status" style={{ marginTop: 8 }}>
           {refill.running && refill.glossing
-            ? `Preparing word translations for your next ${refill.mode} lessons in the background…`
+            ? `Preparing word translations and practice for your next ${refill.mode} lessons in the background…`
             : refill.running
             ? `Preparing a new ${refill.level} ${refill.mode} lesson in the background… Keep the app open; it usually takes a few minutes.`
             : `Couldn't prepare a new lesson: ${refill.error} It will try again later.`}

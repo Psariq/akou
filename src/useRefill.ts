@@ -16,6 +16,8 @@ import { createLesson } from "./lib/lessonFactory";
 import { rankLessons } from "./lib/library";
 import { hasGlosses } from "./lib/glosses";
 import { ensureGlosses, glossGenerationsLast24h, MAX_GLOSS_PER_DAY } from "./lib/glossService";
+import { getExtras, planExtras, weakSkills } from "./lib/practice";
+import { ensureExtras, extraGenerationsLast24h, MAX_EXTRA_PER_DAY } from "./lib/practiceService";
 import { describeError } from "./lib/claude";
 
 export interface RefillStatus {
@@ -29,6 +31,21 @@ export interface RefillStatus {
 
 /** How many upcoming lessons per mode get their word glosses prepared in advance. */
 const GLOSS_AHEAD = 2;
+
+/** Next upcoming lesson that lacks prepared extra practice (if any weak areas). */
+function nextToPractice(settings: Settings, progress: Progress, sessions: SessionRecord[]) {
+  if (settings.extraPractice === false) return null;
+  const plan = planExtras(weakSkills(sessions));
+  if (!plan.length) return null;
+  const stock = loadStock();
+  for (const mode of ["reading", "listening"] as Mode[]) {
+    const target = targetFor(progress[mode].theta, settings.levelOverride);
+    const next = rankLessons(availableLessons(mode, sessions, stock), target).slice(0, 1);
+    const missing = next.find((c) => !getExtras(c.lesson.id, plan));
+    if (missing) return { mode, lesson: missing.lesson, plan };
+  }
+  return null;
+}
 
 function nextToGloss(settings: Settings, progress: Progress, sessions: SessionRecord[]) {
   const stock = loadStock();
@@ -84,7 +101,8 @@ export function useRefill(
     if (!apiKey || running.current || Date.now() < retryAfter.current) return;
     const { settings: s0, progress: p0, sessions: ss0 } = latest.current;
     const needGloss = glossGenerationsLast24h() < MAX_GLOSS_PER_DAY && !!nextToGloss(s0, p0, ss0);
-    if (!nextRefill(counts(), filling.current) && !needGloss) return;
+    const needPractice = extraGenerationsLast24h() < MAX_EXTRA_PER_DAY && !!nextToPractice(s0, p0, ss0);
+    if (!nextRefill(counts(), filling.current) && !needGloss && !needPractice) return;
     running.current = true;
 
     (async () => {
@@ -122,6 +140,16 @@ export function useRefill(
           if (!next) break;
           setStatus({ running: true, mode: next.mode, level: next.lesson.level, error: null, glossing: true });
           await ensureGlosses(apiKey, s, next.lesson);
+        }
+
+        // And extra practice for weak areas, for the next lesson per mode.
+        for (let i = 0; i < 2; i++) {
+          if (extraGenerationsLast24h() >= MAX_EXTRA_PER_DAY) break;
+          const { settings: s, progress: p, sessions: ss } = latest.current;
+          const next = nextToPractice(s, p, ss);
+          if (!next) break;
+          setStatus({ running: true, mode: next.mode, level: next.lesson.level, error: null, glossing: true });
+          await ensureExtras(apiKey, s, next.lesson, next.mode, next.plan);
         }
         setStatus({ running: false, mode: null, level: null, error: null });
       } catch (e) {

@@ -4,6 +4,8 @@ import type { Lesson, SessionRecord, SourceKind, TaskResult, UsageCost } from ".
 import { describeTheta, targetFor, updateProgress, updateWriting, type Target } from "../lib/cefr";
 import { describeError, gradeWritten } from "../lib/claude";
 import { createLesson } from "../lib/lessonFactory";
+import { insertExtras, planExtras, weakSkills } from "../lib/practice";
+import { ensureExtras } from "../lib/practiceService";
 import { DEFAULT_LONG_WRITING_EVERY, longWritingDue, withLongWriting, wordRange, writingTarget } from "../lib/writing";
 import { availableLessons, loadStock, pickLesson } from "../lib/library";
 import { addCost, ZERO_COST } from "../lib/pricing";
@@ -52,6 +54,8 @@ export function SessionView() {
   // Decided once per exercise: longer written answer every Nth exercise, at most once per sitting.
   const [longWriting] = useState(() => longWritingDue(sessions, settings.longWritingEvery ?? DEFAULT_LONG_WRITING_EVERY));
   const prepare = (l: Lesson) => (longWriting ? withLongWriting(l) : l);
+  // Extra questions for weak task types (decided once per exercise).
+  const [extraPlan] = useState(() => (settings.extraPractice === false ? [] : planExtras(weakSkills(sessions))));
   const [target, setTarget] = useState<Target | null>(null);
   const [taskIdx, setTaskIdx] = useState(0);
   const [results, setResults] = useState<TaskResult[]>([]);
@@ -65,6 +69,32 @@ export function SessionView() {
   const t = useRef({ exposureStart: 0, tasksStart: 0, exposureSec: 0, tasksSec: 0 });
   const abort = useRef<AbortController | null>(null);
   const now = useTicker(phase === "exposure" || phase === "tasks");
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
+  const taskIdxRef = useRef(taskIdx);
+  taskIdxRef.current = taskIdx;
+
+  // Fetch (or reuse prepared) extra practice and insert it before the writing task,
+  // as long as the learner hasn't reached that point yet.
+  useEffect(() => {
+    if (!lesson || !apiKey || !extraPlan.length) return;
+    ensureExtras(apiKey, settings, lesson, mode, extraPlan)
+      .then(({ tasks, costUsd }) => {
+        cost.current = { ...cost.current, usd: cost.current.usd + costUsd };
+        setLesson((prev) => {
+          if (!prev) return prev;
+          const w = prev.tasks.findIndex((t) => t.type === "short_answer");
+          const ph = phaseRef.current;
+          const ok = ph === "preparing" || ph === "exposure" || (ph === "tasks" && (w < 0 || taskIdxRef.current < w));
+          return ok ? insertExtras(prev, tasks) : prev;
+        });
+      })
+      .catch(() => {
+        /* extra practice is optional */
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson?.id]);
+
   const addLookupCost = (usd: number) => {
     cost.current = { ...cost.current, usd: cost.current.usd + usd };
   };
@@ -142,7 +172,8 @@ export function SessionView() {
     window.scrollTo(0, 0);
   };
 
-  const onTaskDone = (r: TaskResult) => {
+  const onTaskDone = (res: TaskResult) => {
+    const r: TaskResult = lesson?.tasks.find((t) => t.id === res.taskId)?.extra ? { ...res, extra: true } : res;
     const next = [...results, r];
     setResults(next);
     if (lesson && taskIdx + 1 < lesson.tasks.length) {
@@ -212,7 +243,8 @@ export function SessionView() {
     }
 
     // Ungraded written answers (grading skipped) don't count toward the score.
-    const counted = final.filter((r) => !(r.type === "short_answer" && r.userAnswer && skipGrading));
+    // Extra practice and ungraded written answers don't count toward the score (or the CEFR estimate).
+    const counted = final.filter((r) => !r.extra && !(r.type === "short_answer" && r.userAnswer && skipGrading));
     const score = counted.length ? counted.reduce((a, r) => a + r.score, 0) / counted.length : 0;
     t.current.tasksSec = (Date.now() - t.current.tasksStart) / 1000;
 
@@ -503,7 +535,10 @@ export function SessionView() {
             return (
               <li key={task.id}>
                 <div className="row spread">
-                  <span className="small muted">{SKILL_LABEL[task.skill]}</span>
+                  <span className="small muted">
+                    {SKILL_LABEL[task.skill]}
+                    {task.extra ? " · extra practice" : ""}
+                  </span>
                   <span className="small" style={{ fontWeight: 600, color: r.score >= 1 ? "var(--good)" : r.score > 0 ? "var(--warn)" : "var(--bad)" }}>
                     {Math.round(r.score * 100)}%
                   </span>

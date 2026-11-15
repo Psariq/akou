@@ -1,4 +1,4 @@
-import type { Cefr, Mode, Settings } from "./types";
+import type { Cefr, Mode, Settings, Task, TaskSkill } from "./types";
 import type { Material } from "./sources";
 import type { Target } from "./cefr";
 
@@ -214,4 +214,44 @@ export function lookupPrompt(word: string, sentence: string): string {
 <sentence>${sentence}</sentence>
 
 Return "form" (the word as written), "lemma" (dictionary form: nouns with article in the nominative singular, verbs in the 1st person singular present, adjectives in the masculine nominative singular), "en" (English meaning in this sentence, 1–4 words) and "note" (very short grammar note for this form, or "").`;
+}
+
+/* ---------------- Extra practice for weak areas ---------------- */
+
+const EXTRA_KIND: Record<string, string> = {
+  grammar:
+    'type "gap_fill": a sentence based on the text with exactly one gap "___" and the base form in brackets after it. Test forms that are typical and useful at this level (verb tense/aspect and person, noun/adjective case and agreement, articles, pronouns). Each gap tests a different structure, and none repeats the lesson\'s own grammar task. "accepted_answers": every correct form, with accents.',
+  vocabulary:
+    'type "vocab_match": 4 "pairs" of a Greek word/phrase from the text (not already in the lesson\'s vocabulary task) and its English meaning in context; meanings clearly distinct.',
+  detail:
+    'type "multiple_choice" (4 options) or "true_false" (options exactly ["Σωστό", "Λάθος"]) about a specific fact in the text not yet asked about.',
+  inference:
+    'type "multiple_choice" (4 options) or "true_false" about something implied, an attitude or a reason, not yet asked about.',
+};
+
+export function extraTasksPrompt(
+  level: Cefr,
+  mode: Mode,
+  text: string,
+  existing: Pick<Task, "skill" | "prompt">[],
+  plan: { skill: TaskSkill; count: number }[],
+  s: Settings,
+): string {
+  const expl = s.explanationLang === "en" ? "English" : `simple Greek (at ${level} level)`;
+  return `A learner at level ${level} has just ${mode === "reading" ? "read" : "listened to"} this text and needs extra practice in their weak areas:
+<text>
+${text}
+</text>
+
+The lesson already contains these questions (do not repeat them):
+${existing.map((t) => `- [${t.skill}] ${t.prompt}`).join("\n")}
+
+Write exactly these extra tasks, in this order:
+${plan.map((p) => `- ${p.count} × skill "${p.skill}": ${EXTRA_KIND[p.skill]}`).join("\n")}
+
+Rules for every task:
+- Answerable from the text, at level ${level}. "prompt" in Greek, "prompt_en" its English translation.
+- Multiple-choice distractors follow the Greek certification exams: same category and form as the answer, built from details that are in the text (other people, numbers, places, swapped details, half-true statements), similar length; no unrelated or absurd options; exactly one correct answer.
+- Fields that don't apply: empty array ([]) and correct_index -1.
+- "explanation": 1-2 sentences in ${expl}, quoting the relevant Greek words from the text (for grammar: name the form and why).`;
 }

@@ -30,6 +30,8 @@ export interface Task {
   explanation: string;
   /** Writing task turned into a longer one for this session. */
   long?: boolean;
+  /** Extra practice for a weak area (not counted in the exercise score). */
+  extra?: boolean;
 }
 
 export interface Segment {
@@ -87,6 +89,8 @@ export interface TaskResult {
   userAnswer: string;
   /** The learner chose "Don't know" (scored 0, no guessing). */
   dontKnow?: boolean;
+  /** Extra practice question (excluded from the exercise score). */
+  extra?: boolean;
   feedback?: string;
   corrected?: string;
   /** Written answers: CEFR level shown by the writing, as judged by the grader. */
@@ -147,6 +151,8 @@ export interface Settings {
   voiceURI: string;
   /** Ask for a longer written answer every Nth exercise (0 = never). */
   longWritingEvery: number;
+  /** Add extra questions for weak task types. */
+  extraPractice: boolean;
 }
 
 export interface UsageCost {

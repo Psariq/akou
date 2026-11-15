@@ -128,6 +128,17 @@ export function SettingsView() {
         <p className="tiny" style={{ marginTop: -6 }}>
           At most one per sitting: exercises less than 2 hours apart count as one sitting.
         </p>
+        <label className="check">
+          <input
+            type="checkbox"
+            checked={settings.extraPractice !== false}
+            onChange={(e) => updateSettings({ extraPractice: e.target.checked })}
+          />
+          <span>
+            Extra questions for weak areas (grammar, vocabulary, details, inference below 60% in your last 10 answers; up
+            to 3 per exercise, not counted in the score)
+          </span>
+        </label>
       </section>
 
       <VoiceSection />

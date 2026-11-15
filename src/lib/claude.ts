@@ -8,6 +8,7 @@ import {
   GLOSS_SYSTEM,
   GRADING_SYSTEM,
   LESSON_SYSTEM,
+  extraTasksPrompt,
   NEWS_SYSTEM,
   glossPrompt,
   gradingPrompt,
@@ -394,6 +395,41 @@ export async function gradeWritten(
     effort: "low",
     signal,
   });
+}
+
+/* ---------------- Extra practice tasks ---------------- */
+
+export const EXTRA_TASKS_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["tasks"],
+  properties: { tasks: LESSON_SCHEMA.properties.tasks },
+} as const;
+
+/** Extra questions on the same text for weak task types (one request). */
+export async function generateExtraTasks(
+  apiKey: string,
+  s: Settings,
+  lesson: Lesson,
+  mode: Mode,
+  plan: { skill: Task["skill"]; count: number }[],
+  signal?: AbortSignal,
+): Promise<{ tasks: Task[]; cost: UsageCost }> {
+  const client = makeClient(apiKey);
+  const text = lesson.segments.map((x) => (x.speaker ? `${x.speaker}: ${x.text}` : x.text)).join("\n");
+  const { data, cost } = await callStructured<{ tasks: Omit<Task, "id">[] }>(client, s.model, {
+    system: LESSON_SYSTEM,
+    user: extraTasksPrompt(lesson.level, mode, text, lesson.tasks, plan, s),
+    schema: EXTRA_TASKS_SCHEMA,
+    effort: "low",
+    signal,
+  });
+  const wanted = new Set(plan.map((p) => p.skill));
+  const tasks = (data.tasks ?? [])
+    .map((t, i): Task => ({ ...t, id: `x${i + 1}`, extra: true }))
+    .filter((t) => isUsableTask(t) && wanted.has(t.skill) && t.type !== "short_answer");
+  if (!tasks.length) throw new LessonError("No usable extra tasks were returned.");
+  return { tasks, cost };
 }
 
 /* ---------------- Word glosses ---------------- */

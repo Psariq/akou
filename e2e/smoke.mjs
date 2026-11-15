@@ -63,7 +63,7 @@ FACTS:
 ${"Οι ναυτεργάτες κήρυξαν απεργία 24 ωρών την Πέμπτη. Τα πλοία θα μείνουν δεμένα στα λιμάνια. ".repeat(5)}`;
 
 let lastGradingPrompt = "";
-const calls = { news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
+const calls = { extras: 0, news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
 
 function msg(text, extra = {}) {
   return {
@@ -100,6 +100,14 @@ async function mockApis(page) {
     if (h["anthropic-dangerous-direct-browser-access"] !== "true") throw new Error("browser-access header missing");
     let out;
     const fetchesPage = body.tools?.some((t) => t.name === "web_fetch") && body.output_config?.format;
+    const sch = body.output_config?.format?.schema?.properties;
+    if (sch?.tasks && !sch?.title) {
+      // Extra practice: two grammar gap fills on the same text.
+      calls.extras++;
+      const extra = (n, sentence, answer) => ({ type: "gap_fill", skill: "grammar", prompt: sentence, prompt_en: `extra ${n}`, options: [], correct_index: -1, accepted_answers: [answer], pairs: [], explanation: "Αόριστος." });
+      out = msg(JSON.stringify({ tasks: [extra(1, "Η Μαρία ___ (ξυπνάω) στις πέντε.", "ξύπνησε"), extra(2, "Οι πελάτες ___ (έρχομαι) νωρίς.", "ήρθαν")] }));
+      return route.fulfill({ status: 200, headers: { ...CORS, "content-type": "application/json" }, body: JSON.stringify(out) });
+    }
     if (fetchesPage) {
       // Text-bank lesson: Claude fetches the page and writes the lesson in one request.
       if (!body.tools[0].allowed_domains?.includes("www.greek-language.gr")) throw new Error("fetch not restricted to the text bank");
@@ -176,7 +184,7 @@ function assert(cond, message) {
   console.log(`  ✓ ${message}`);
 }
 
-async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWriting = null } = {}) {
+async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWriting = null, extras = 0 } = {}) {
   // 1 gist (correct = first option)
   await page.getByRole("button", { name: "Η δουλειά της Μαρίας" }).click();
   await page.getByRole("button", { name: "Check" }).click();
@@ -213,6 +221,13 @@ async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWri
   await page.getByRole("button", { name: "Check" }).click();
   await page.getByText(wrongGap ? "Almost." : "Correct.").waitFor();
   await page.getByRole("button", { name: "Next" }).click();
+  // extra practice (inserted before the writing task)
+  for (let i = 0; i < extras; i++) {
+    await page.getByText("Extra practice · Grammar").waitFor();
+    await page.getByRole("button", { name: /Δεν ξέρω/ }).click();
+    await page.getByText("Here is the answer.").waitFor();
+    await page.getByRole("button", { name: "Next" }).click();
+  }
   // 7 writing
   if (beforeWriting) await beforeWriting();
   await page.getByLabel(/Your answer in Greek/).fill("Ναι, γιατί μου αρέσει πολύ το ψωμί.");
@@ -460,6 +475,41 @@ try {
   assert(lastGradingPrompt.includes("<length_target>15–30 words (a guide only)"), "short task graded with its normal word guide (15–30)");
 
 
+  console.log("Extra practice for a weak area (grammar)");
+  await page.evaluate(() => {
+    // Add older history in which grammar answers were wrong (4 × 0%).
+    const s = JSON.parse(localStorage.getItem("akou.sessions.v1"));
+    const old = new Date(Date.now() - 3 * 86400e3).toISOString();
+    for (let i = 0; i < 4; i++) {
+      s.unshift({ ...s[0], id: `old${i}`, lessonId: `old${i}`, date: old, longWriting: false,
+        taskResults: [{ taskId: "t6", type: "gap_fill", skill: "grammar", score: 0, userAnswer: "x" }] });
+    }
+    localStorage.setItem("akou.sessions.v1", JSON.stringify(s));
+  });
+  await page.goto(BASE + "#/settings");
+  await page.getByLabel(/Longer written answer/).selectOption({ label: "Never" });
+  await page.goto(BASE + "#/");
+  await page.reload();
+  await page.getByLabel("Passphrase").fill("blue olive tree"); // key is passphrase-protected in this test
+  await page.getByRole("button", { name: "Unlock" }).click();
+  await page.getByText(/Grammar \(\d+% recently\)/).waitFor();
+  await page.screenshot({ path: SHOTS + "10-extra-home.png", fullPage: true });
+  await page.getByRole("button", { name: "Graded", exact: true }).click();
+  await page.getByRole("button", { name: /^Reading/ }).click();
+  await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
+  await page.getByRole("button", { name: /Go to the questions \(9\)/ }).waitFor();
+  assert(calls.extras >= 1, "extra practice generated for the weak area");
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { extras: 2 });
+  await page.getByText("Score").waitFor();
+  const score = await page.locator(".level-big").textContent();
+  // 7 normal tasks: 1+0+1+1+1+1+0.8 = 5.8/7 = 83%; the two extras (Δεν ξέρω) don't count.
+  assert(score === "83%", `extras don't lower the score (got ${score})`);
+  await page.getByText("Grammar · extra practice").first().waitFor();
+  const extraResults = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1).taskResults.filter((r) => r.extra).length);
+  assert(extraResults === 2, "extras recorded (for accuracy stats) and marked as extra");
+
+  console.log("Dark mode render");
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto(BASE + "#/stats");
   await page.getByRole("heading", { name: "Estimated CEFR level" }).waitFor();

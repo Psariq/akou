@@ -56,6 +56,10 @@ Every 4th exercise (configurable: 3rd / 4th / 6th / never) asks for a **longer a
 
 While typing, a counter shows how many words are still needed ("12 words to go"), then "within the target" or "a bit over" (a hint, never a block). The grader gets the same word target. Ranges are the app's own choice, not official exam figures. At most one per sitting (exercises less than 2 hours apart). Longer answers count double for the writing estimate. Logic: `src/lib/writing.ts`.
 
+## Extra practice for weak areas
+
+A task type (grammar, vocabulary, details, inference) counts as weak when less than 60% of your last 10 answers of that type were right (at least 4 answers, reading and listening together). Exercises then get up to 2 extra questions per weak type, at most 3 in total, inserted before the writing task and made from the same text. Extras count for *accuracy by task type* (so they stop once you improve) but **not** for the exercise score or the CEFR estimate. They're prepared in the background (one small request per lesson, max 20 per day) and can be switched off in Settings. Logic: `src/lib/practice.ts`.
+
 ## Tap a word to translate it
 
 In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.

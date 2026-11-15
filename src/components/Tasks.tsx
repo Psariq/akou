@@ -27,7 +27,9 @@ export function TaskCard({ task: original, level, index, total, onDone }: Props)
   return (
     <section className="card" aria-label={`Task ${index + 1} of ${total}`}>
       <div className="row spread" style={{ marginBottom: 8 }}>
-        <span className="pill neutral">{SKILL_TITLE[task.skill]}</span>
+        <span className={`pill${task.extra ? "" : " neutral"}`}>
+          {task.extra ? `Extra practice · ${SKILL_TITLE[task.skill]}` : SKILL_TITLE[task.skill]}
+        </span>
         <span className="tiny">
           {index + 1} / {total}
         </span>
