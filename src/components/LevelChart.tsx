@@ -25,7 +25,16 @@ const SKILLS: { key: SkillKey; label: string; color: string }[] = [
  * Estimated level over time, one line per skill. y is the continuous level
  * estimate; bands are labelled with CEFR levels. Hover/tap shows the values.
  */
-export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; start: { reading: number; listening: number } }) {
+export function LevelChart({
+  sessions,
+  start,
+  current,
+}: {
+  sessions: SessionRecord[];
+  start: { reading: number; listening: number };
+  /** Current estimates; every line is extended to "now" with these (dashed). */
+  current: { reading: number; listening: number; writing?: number };
+}) {
   const [hover, setHover] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -44,6 +53,17 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
       .filter(({ s }) => s.writingThetaAfter !== undefined)
       .map(({ s, i }) => ({ t: i + 1, v: s.writingThetaAfter!, sessionIdx: i }));
     const series: Record<SkillKey, Point[]> = { reading: mk("reading"), listening: mk("listening"), writing };
+    // Extend every line to the latest session with the current estimate, so all end at "now" and match
+    // the bars above (this also shows a level set by hand in Settings).
+    const tEnd = Math.max(1, sessions.length);
+    const now: Record<SkillKey, number | undefined> = { reading: current.reading, listening: current.listening, writing: current.writing };
+    for (const k of Object.keys(series) as SkillKey[]) {
+      const pts = series[k];
+      const v = now[k];
+      if (!pts.length || v === undefined) continue;
+      const last = pts[pts.length - 1];
+      if (last.t < tEnd || Math.abs(last.v - v) > 1e-9) pts.push({ t: tEnd, v, sessionIdx: -2 });
+    }
     const vs = Object.values(series).flat().map((p) => p.v);
     let lo = Math.floor(Math.min(...vs, start.reading, start.listening));
     let hi = Math.ceil(Math.max(...vs, start.reading, start.listening) + 0.001);
@@ -51,7 +71,7 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
     lo = Math.max(1, lo);
     hi = Math.min(6, hi);
     return { series, tMin: 0, tMax: Math.max(1, sessions.length), yMin: lo, yMax: hi };
-  }, [sessions, start]);
+  }, [sessions, start, current]);
 
   const x = (t: number) => PAD.l + ((t - tMin) / Math.max(1, tMax - tMin)) * (W - PAD.l - PAD.r);
   const y = (v: number) => PAD.t + (1 - (v - yMin) / (yMax - yMin)) * (H - PAD.t - PAD.b);
@@ -135,7 +155,17 @@ export function LevelChart({ sessions, start }: { sessions: SessionRecord[]; sta
           const pts = series[k.key];
           return (
             <g key={k.key}>
-              <path d={path(pts)} fill="none" stroke={k.color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+              <path
+                d={path(pts.filter((p) => p.sessionIdx !== -2))}
+                fill="none"
+                stroke={k.color}
+                strokeWidth={2}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+              {pts.at(-1)!.sessionIdx === -2 && pts.length > 1 && (
+                <path d={path(pts.slice(-2))} fill="none" stroke={k.color} strokeWidth={2} strokeDasharray="4 4" strokeLinecap="round" />
+              )}
               {pts
                 .filter((p) => p.sessionIdx >= 0)
                 .map((p) => (

@@ -49,7 +49,19 @@ export function Stats() {
         <WritingLine />
         {sessions.length > 0 ? (
           <>
-            <LevelChart sessions={sessions} start={{ reading: settings.startLevel, listening: settings.startLevel }} />
+            <LevelChart
+              sessions={sessions}
+              start={{ reading: settings.startLevel, listening: settings.startLevel }}
+              current={{
+                reading: progress.reading.theta,
+                listening: progress.listening.theta,
+                writing: progress.writing?.n ? progress.writing.theta : undefined,
+              }}
+            />
+            <p className="tiny" style={{ marginTop: 4 }}>
+              Dots are sessions; a dashed line leads to your current estimate (e.g. after the last session of that skill,
+              or after setting your level by hand).
+            </p>
             <details>
               <summary className="small">Show as table</summary>
               <table className="data">

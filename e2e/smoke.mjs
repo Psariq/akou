@@ -322,6 +322,10 @@ try {
   const writingLine = await page.locator(".card").filter({ hasText: "Estimated CEFR level" }).getByText(/Writing · B1/).count();
   assert(writingLine === 1, "writing estimate shown (B1 after two answers judged B1)");
   assert((await page.locator(".legend").textContent()).includes("Writing"), "chart has a writing series");
+  const labelX = await page.$$eval(".chart text", (els) =>
+    els.filter((e) => ["Reading", "Listening", "Writing"].includes(e.textContent)).map((e) => e.getAttribute("x")),
+  );
+  assert(labelX.length === 3 && new Set(labelX).size === 1, `all three lines end at "now" (label x: ${labelX.join(", ")})`);
   await page.screenshot({ path: SHOTS + "06-stats.png", fullPage: true });
   const sessions = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
   assert(sessions === 2, "two sessions recorded (abandoned one not saved)");
