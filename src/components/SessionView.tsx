@@ -517,6 +517,7 @@ export function SessionView() {
           ({delta >= 0 ? "+" : ""}
           {Math.round(delta * 100)} points; 100 points = one CEFR level)
         </p>
+        <ExtraPracticeLine results={record.taskResults} />
         {record.writingLevel && record.writingThetaAfter !== undefined && (
           <p className="small">
             Your written answer shows about <strong>{record.writingLevel}</strong>. Writing estimate now:{" "}
@@ -607,6 +608,20 @@ export function SessionView() {
         </button>
       </div>
     </>
+  );
+}
+
+/** "Extra practice (not in the score): 1 of 2 right" — shown only when there were extras. */
+function ExtraPracticeLine({ results }: { results: TaskResult[] }) {
+  const extras = results.filter((r) => r.extra);
+  if (!extras.length) return null;
+  const right = extras.filter((r) => r.score >= 1).length;
+  const almost = extras.filter((r) => r.score > 0 && r.score < 1).length;
+  return (
+    <p className="small">
+      Extra practice (not in the score): <strong>{right} of {extras.length} right</strong>
+      {almost ? `, ${almost} almost` : ""}.
+    </p>
   );
 }
 

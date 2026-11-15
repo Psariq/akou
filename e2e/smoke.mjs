@@ -288,7 +288,7 @@ try {
   await page.getByRole("button", { name: /Go to the questions/ }).click();
   await page.screenshot({ path: SHOTS + "03-task.png", fullPage: true });
   await answerTasks(page, { wrongGap: true, dontKnow: true });
-  await page.getByText("Score").waitFor();
+  await page.getByText("Score", { exact: true }).waitFor();
   assert(calls.grading === 1, "written answer sent for grading");
   const scoreText = await page.locator(".level-big").textContent();
   // 1 + 0 + 1 + 1 + 1 + 0.75 + 0.8 = 5.55 / 7 = 79%
@@ -316,7 +316,7 @@ try {
   await page.screenshot({ path: SHOTS + "05-listening.png", fullPage: true });
   await goBtn.click();
   await answerTasks(page);
-  await page.getByText("Score").waitFor();
+  await page.getByText("Score", { exact: true }).waitFor();
   await page.getByText("Adapted and simplified by AI from ΕΡΤ").waitFor();
 
   console.log("News via pasted URL");
@@ -457,7 +457,7 @@ try {
     await page.getByLabel(/Your answer in Greek/).fill("Ναι, γιατί μου αρέσει πολύ το ψωμί.");
     await page.getByText("33 words to go").waitFor();
   } });
-  await page.getByText("Score").waitFor();
+  await page.getByText("Score", { exact: true }).waitFor();
   assert(lastGradingPrompt.includes("<length_target>40–70 words (longer writing task"), "grader told it was a longer task (40–70 words)");
   const rec = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1));
   assert(rec.longWriting === true && sessionsBeforeLong === 2, "session recorded as longer writing task");
@@ -471,7 +471,7 @@ try {
   await answerTasks(page, { beforeWriting: async () => {
     assert((await page.getByText("Longer answer", { exact: true }).count()) === 0, "no second longer task in the same sitting");
   } });
-  await page.getByText("Score").waitFor();
+  await page.getByText("Score", { exact: true }).waitFor();
   assert(lastGradingPrompt.includes("<length_target>15–30 words (a guide only)"), "short task graded with its normal word guide (15–30)");
 
 
@@ -501,11 +501,12 @@ try {
   assert(calls.extras >= 1, "extra practice generated for the weak area");
   await page.getByRole("button", { name: /Go to the questions/ }).click();
   await answerTasks(page, { extras: 2 });
-  await page.getByText("Score").waitFor();
+  await page.getByText("Score", { exact: true }).waitFor();
   const score = await page.locator(".level-big").textContent();
   // 7 normal tasks: 1+0+1+1+1+1+0.8 = 5.8/7 = 83%; the two extras (Δεν ξέρω) don't count.
   assert(score === "83%", `extras don't lower the score (got ${score})`);
   await page.getByText("Grammar · extra practice").first().waitFor();
+  await page.getByText(/Extra practice \(not in the score\): 0 of 2 right/).waitFor();
   const extraResults = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1).taskResults.filter((r) => r.extra).length);
   assert(extraResults === 2, "extras recorded (for accuracy stats) and marked as extra");
 
