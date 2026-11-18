@@ -17,6 +17,7 @@ import { SessionView } from "./components/SessionView";
 import { Stats } from "./components/Stats";
 import { SettingsView } from "./components/SettingsView";
 import { Guide } from "./components/Guide";
+import { PlacementView } from "./components/PlacementView";
 import { Unlock } from "./components/Unlock";
 import { Icon } from "./components/Icon";
 import { readyCounts, useRefill, type RefillStatus } from "./useRefill";
@@ -61,11 +62,11 @@ export function useApp(): Ctx {
   return c;
 }
 
-export type Route = "home" | "session" | "stats" | "settings" | "guide";
+export type Route = "home" | "session" | "stats" | "settings" | "guide" | "placement";
 
 function routeFromHash(): Route {
   const h = window.location.hash.replace(/^#\/?/, "").split(/[/?]/)[0];
-  return (["session", "stats", "settings", "guide"] as Route[]).includes(h as Route) ? (h as Route) : "home";
+  return (["session", "stats", "settings", "guide", "placement"] as Route[]).includes(h as Route) ? (h as Route) : "home";
 }
 
 export default function App() {
@@ -169,7 +170,7 @@ export default function App() {
     [settings, progress, sessions, apiKey, keyState, keyEncrypted, request, navigate, ready, refill],
   );
 
-  const inSession = route === "session" && request;
+  const inSession = (route === "session" && request) || route === "placement";
 
   let page;
   if (keyState === "locked" && route !== "guide") page = <Unlock />;
@@ -177,6 +178,7 @@ export default function App() {
   else if (route === "stats") page = <Stats />;
   else if (route === "settings") page = <SettingsView />;
   else if (route === "guide") page = <Guide />;
+  else if (route === "placement") page = <PlacementView />;
   else page = <Home />;
 
   return (

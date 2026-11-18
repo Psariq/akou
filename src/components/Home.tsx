@@ -5,6 +5,7 @@ import { confidenceLabel, describeTheta, overallTheta, targetFor } from "../lib/
 import { enabledSources } from "../lib/sources";
 import { SKILL_LABEL, streakDays } from "../lib/stats";
 import { weakSkills } from "../lib/practice";
+import { getMonth, isComplete, monthLabel, openMonth, updateMonth } from "../lib/placement";
 import { Icon } from "./Icon";
 
 const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
@@ -14,6 +15,49 @@ const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
   news: "News",
   ai: "Everyday",
 };
+
+/** End-of-month placement test: invitation, or a reminder that a result is waiting. */
+function PlacementBanner() {
+  const { navigate } = useApp();
+  const [, force] = useState(0);
+  const month = openMonth();
+  if (!month) return null;
+  const m = getMonth(month);
+  const done = isComplete(m);
+  if (done && m.applied !== undefined) return null;
+  if (!done && m.snoozedUntil && new Date(m.snoozedUntil) > new Date()) return null;
+  const started = !!(m.results.reading || m.results.listening);
+  return (
+    <section className="card good" aria-label="Placement test">
+      <h2 style={{ marginBottom: 4 }}>
+        {done ? "Your placement result is ready" : `Monthly placement test · ${monthLabel(month)}`}
+      </h2>
+      <p className="small" style={{ marginBottom: 10 }}>
+        {done
+          ? "See how you placed and decide whether to apply it."
+          : started
+            ? "One part is done. The other part is still open."
+            : "Reading (+ writing) and listening, about 15–20 minutes each. You can do the parts on different days."}
+      </p>
+      <div className="row">
+        <button className="btn primary" onClick={() => navigate("placement")}>
+          {done ? "See result" : started ? "Continue" : "Start"}
+        </button>
+        {!done && (
+          <button
+            className="btn"
+            onClick={() => {
+              updateMonth(month, (x) => ({ ...x, snoozedUntil: new Date(Date.now() + 86_400_000).toISOString() }));
+              force((n) => n + 1);
+            }}
+          >
+            Later
+          </button>
+        )}
+      </div>
+    </section>
+  );
+}
 
 /** Which task types currently get extra questions. */
 function PracticeLine() {
@@ -117,6 +161,8 @@ export function Home() {
         </div>
       )}
 
+      {ready && <PlacementBanner />}
+
       <section className="card" aria-label="Estimated level">
         <div className="row spread" style={{ alignItems: "flex-end", marginBottom: 12 }}>
           <div>
@@ -171,7 +217,9 @@ export function Home() {
 
       {ready && (refill.running || refill.error) && (
         <p className="tiny" role="status" style={{ marginTop: 8 }}>
-          {refill.running && refill.glossing
+          {refill.running && refill.placement
+            ? `Preparing your placement test (${refill.mode}) in the background…`
+            : refill.running && refill.glossing
             ? `Preparing word translations and practice for your next ${refill.mode} lessons in the background…`
             : refill.running
             ? `Preparing a new ${refill.level} ${refill.mode} lesson in the background… Keep the app open; it usually takes a few minutes.`

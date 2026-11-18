@@ -17,6 +17,8 @@ import { rankLessons } from "./lib/library";
 import { hasGlosses } from "./lib/glosses";
 import { ensureGlosses, glossGenerationsLast24h, MAX_GLOSS_PER_DAY } from "./lib/glossService";
 import { getExtras, planExtras, weakSkills } from "./lib/practice";
+import { getMonth, openMonth, placementUsedUrls } from "./lib/placement";
+import { partPrepared, preparePart } from "./lib/placementService";
 import { ensureExtras, extraGenerationsLast24h, MAX_EXTRA_PER_DAY } from "./lib/practiceService";
 import { describeError } from "./lib/claude";
 
@@ -27,10 +29,23 @@ export interface RefillStatus {
   error: string | null;
   /** True while word glosses are being prepared (rather than a lesson). */
   glossing?: boolean;
+  /** True while placement test texts are being prepared. */
+  placement?: boolean;
 }
 
 /** How many upcoming lessons per mode get their word glosses prepared in advance. */
 const GLOSS_AHEAD = 2;
+
+/** A placement part (open month, not yet done) whose texts aren't prepared yet. */
+function placementToPrepare(): { month: string; mode: Mode } | null {
+  const month = openMonth();
+  if (!month) return null;
+  const m = getMonth(month);
+  for (const mode of ["reading", "listening"] as Mode[]) {
+    if (!m.results[mode] && !partPrepared(month, mode)) return { month, mode };
+  }
+  return null;
+}
 
 /** Next upcoming lesson that lacks prepared extra practice (if any weak areas). */
 function nextToPractice(settings: Settings, progress: Progress, sessions: SessionRecord[]) {
@@ -102,7 +117,8 @@ export function useRefill(
     const { settings: s0, progress: p0, sessions: ss0 } = latest.current;
     const needGloss = glossGenerationsLast24h() < MAX_GLOSS_PER_DAY && !!nextToGloss(s0, p0, ss0);
     const needPractice = extraGenerationsLast24h() < MAX_EXTRA_PER_DAY && !!nextToPractice(s0, p0, ss0);
-    if (!nextRefill(counts(), filling.current) && !needGloss && !needPractice) return;
+    const needPlacement = !!placementToPrepare();
+    if (!nextRefill(counts(), filling.current) && !needGloss && !needPractice && !needPlacement) return;
     running.current = true;
 
     (async () => {
@@ -125,6 +141,7 @@ export function useRefill(
           const usedUrls = [
             ...ss.map((x) => x.source.url),
             ...loadStock()[mode].map((x) => x.lesson.source.url),
+            ...placementUsedUrls(),
           ].filter((x): x is string => !!x);
           const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles, usedUrls });
           addToStock(mode, { lesson, createdAt: new Date().toISOString(), costUsd: cost.usd });
@@ -150,6 +167,15 @@ export function useRefill(
           if (!next) break;
           setStatus({ running: true, mode: next.mode, level: next.lesson.level, error: null, glossing: true });
           await ensureExtras(apiKey, s, next.lesson, next.mode, next.plan);
+        }
+
+        // In the last week of the month: prepare the placement test texts.
+        for (let i = 0; i < 2; i++) {
+          const todo = placementToPrepare();
+          if (!todo) break;
+          const { settings: s, progress: p, sessions: ss } = latest.current;
+          setStatus({ running: true, mode: todo.mode, level: null, error: null, glossing: false, placement: true });
+          await preparePart(apiKey, s, todo.month, todo.mode, p[todo.mode].theta, ss);
         }
         setStatus({ running: false, mode: null, level: null, error: null });
       } catch (e) {

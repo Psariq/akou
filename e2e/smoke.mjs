@@ -184,7 +184,7 @@ function assert(cond, message) {
   console.log(`  ✓ ${message}`);
 }
 
-async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWriting = null, extras = 0 } = {}) {
+async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWriting = null, extras = 0, noWriting = false } = {}) {
   // 1 gist (correct = first option)
   await page.getByRole("button", { name: "Η δουλειά της Μαρίας" }).click();
   await page.getByRole("button", { name: "Check" }).click();
@@ -229,6 +229,7 @@ async function answerTasks(page, { wrongGap = false, dontKnow = false, beforeWri
     await page.getByRole("button", { name: "Next" }).click();
   }
   // 7 writing
+  if (noWriting) return;
   if (beforeWriting) await beforeWriting();
   await page.getByLabel(/Your answer in Greek/).fill("Ναι, γιατί μου αρέσει πολύ το ψωμί.");
   await page.getByRole("button", { name: "Save answer" }).click();
@@ -509,6 +510,55 @@ try {
   await page.getByText(/Extra practice \(not in the score\): 0 of 2 right/).waitFor();
   const extraResults = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).at(-1).taskResults.filter((r) => r.extra).length);
   assert(extraResults === 2, "extras recorded (for accuracy stats) and marked as extra");
+
+  console.log("Placement test (adaptive, reading + writing, listening)");
+  await page.goto(BASE + "#/stats");
+  await page.getByRole("button", { name: /this month's placement test/ }).click();
+  await page.getByRole("heading", { name: "Placement test" }).waitFor();
+  const lessonsBeforePlacement = calls.lesson;
+  // Reading part: text 1 at the current level, 6 questions (no writing yet).
+  await page.getByRole("button", { name: "Start reading part" }).click();
+  await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
+  assert((await page.getByText("Tap any word").count()) === 0, "no word help in the placement test");
+  await page.getByText("text 1 of 2").waitFor();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { noWriting: true }); // 5 of 6 right (83%) → next text one level up
+  // Text 2 (one level higher), then the longer writing task.
+  await page.getByText("text 2 of 2").waitFor();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { beforeWriting: async () => {
+    await page.getByText("Longer answer", { exact: true }).waitFor();
+  } });
+  await page.getByRole("heading", { name: "Placement test" }).waitFor();
+  const pm = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem("akou.placement.v1")))[0]);
+  const st = pm.results.reading.stages;
+  const order = ["A1", "A2", "B1", "B2", "C1"];
+  assert(st.length === 2 && order.indexOf(st[1].level) === order.indexOf(st[0].level) + 1, `second reading text one level up (${st[0].level} → ${st[1].level})`);
+  assert(pm.results.reading.writing?.level === "B1", "longer writing task graded (B1)");
+  assert(calls.lesson >= lessonsBeforePlacement + 3, "first text and both possible second texts prepared");
+  // Listening part.
+  await page.getByRole("button", { name: "Start listening part" }).click();
+  await page.getByRole("heading", { name: "Ταξίδι στο νησί" }).waitFor();
+  await page.getByRole("button", { name: "Play" }).click();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { noWriting: true });
+  await page.getByText("text 2 of 2").waitFor();
+  await page.getByRole("button", { name: "Play" }).click();
+  await page.getByRole("button", { name: /Go to the questions/ }).click();
+  await answerTasks(page, { noWriting: true });
+  // Result: compare and apply.
+  await page.getByRole("heading", { name: "Result" }).waitFor();
+  await page.screenshot({ path: SHOTS + "11-placement-result.png", fullPage: true });
+  await page.getByRole("button", { name: "Apply new levels" }).click();
+  await page.getByText("Applied as your new levels.").waitFor();
+  const applied = await page.evaluate(() => {
+    const m = Object.values(JSON.parse(localStorage.getItem("akou.placement.v1")))[0];
+    const p = JSON.parse(localStorage.getItem("akou.progress.v1"));
+    return { r: [m.results.reading.theta, p.reading.theta], l: [m.results.listening.theta, p.listening.theta], w: p.writing.theta };
+  });
+  assert(applied.r[0] === applied.r[1] && applied.l[0] === applied.l[1] && applied.w === 3.5, `levels applied (reading ${applied.r[1]}, listening ${applied.l[1]}, writing ${applied.w})`);
+  await page.goto(BASE + "#/stats");
+  await page.getByText(/· applied/).waitFor();
 
   console.log("Dark mode render");
   await page.emulateMedia({ colorScheme: "dark" });

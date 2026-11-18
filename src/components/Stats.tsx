@@ -4,6 +4,8 @@ import type { Mode } from "../lib/types";
 import { confidenceLabel, describeTheta, overallTheta } from "../lib/cefr";
 import { SKILL_LABEL, accuracyBySkill, costThisMonth, recentWords, streakDays, totalMinutes } from "../lib/stats";
 import { LevelChart } from "./LevelChart";
+import { allMonths, getMonth, isComplete, monthLabel } from "../lib/placement";
+import { placementMonth } from "./PlacementView";
 import { loadLookups } from "../lib/glosses";
 import { LevelLine, WritingLine } from "./Home";
 
@@ -120,6 +122,8 @@ export function Stats() {
         </details>
       </section>
 
+      <PlacementHistory />
+
       <section className="card">
         <div className="row spread" style={{ marginBottom: 8 }}>
           <h2 style={{ margin: 0 }}>Accuracy by task type</h2>
@@ -217,3 +221,46 @@ export function Stats() {
     </>
   );
 }
+
+/** Past placement tests, and a way to take this month's test early. */
+function PlacementHistory() {
+  const { navigate, keyState } = useApp();
+  const done = allMonths().filter((m) => m.results.reading || m.results.listening);
+  const current = getMonth(placementMonth());
+  const fmt = (t: number) => {
+    const d = describeTheta(t);
+    return `${d.level} ${Math.round(d.progress * 100)}%`;
+  };
+  return (
+    <section className="card">
+      <h2>Placement tests</h2>
+      {done.length === 0 ? (
+        <p className="small muted">
+          A longer test at the end of each month (it appears on the home screen in the last week) to recalibrate your
+          level.
+        </p>
+      ) : (
+        <ul className="list small">
+          {done
+            .slice()
+            .reverse()
+            .map((m) => (
+              <li key={m.month}>
+                <strong>{monthLabel(m.month)}</strong>
+                {m.results.reading && <> · reading {fmt(m.results.reading.theta)}</>}
+                {m.results.listening && <> · listening {fmt(m.results.listening.theta)}</>}
+                {m.results.reading?.writing && <> · writing {m.results.reading.writing.level}</>}
+                {m.applied === true ? " · applied" : m.applied === false ? " · kept current levels" : ""}
+              </li>
+            ))}
+        </ul>
+      )}
+      {!isComplete(current) && (
+        <button className="btn" disabled={keyState !== "ready"} onClick={() => navigate("placement")}>
+          {current.results.reading || current.results.listening ? "Continue" : "Take"} this month's placement test
+        </button>
+      )}
+    </section>
+  );
+}
+

@@ -6,6 +6,7 @@ import { describeError, gradeWritten } from "../lib/claude";
 import { createLesson } from "../lib/lessonFactory";
 import { insertExtras, planExtras, weakSkills } from "../lib/practice";
 import { ensureExtras } from "../lib/practiceService";
+import { placementUsedUrls } from "../lib/placement";
 import { DEFAULT_LONG_WRITING_EVERY, longWritingDue, withLongWriting, wordRange, writingTarget } from "../lib/writing";
 import { availableLessons, loadStock, pickLesson } from "../lib/library";
 import { addCost, ZERO_COST } from "../lib/pricing";
@@ -140,7 +141,11 @@ export function SessionView() {
             .slice(-40)
             .map((s) => s.source.title)
             .filter((x): x is string => !!x),
-          usedUrls: [...sessions.map((s) => s.source.url), ...loadStock()[mode].map((i) => i.lesson.source.url)].filter(
+          usedUrls: [
+            ...sessions.map((s) => s.source.url),
+            ...loadStock()[mode].map((i) => i.lesson.source.url),
+            ...placementUsedUrls(),
+          ].filter(
             (x): x is string => !!x,
           ),
           signal: ctrl.signal,

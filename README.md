@@ -60,6 +60,14 @@ While typing, a counter shows how many words are still needed ("12 words to go")
 
 A task type (grammar, vocabulary, details, inference) counts as weak when less than 60% of your last 10 answers of that type were right (at least 4 answers, reading and listening together). Exercises then get up to 2 extra questions per weak type, at most 3 in total, inserted before the writing task and made from the same text. Extras count for *accuracy by task type* (so they stop once you improve) but **not** for the exercise score or the CEFR estimate. They're prepared in the background (one small request per lesson, max 20 per day) and can be switched off in Settings. Logic: `src/lib/practice.ts`.
 
+## Monthly placement test
+
+In the last 7 days of each month (and, if missed, until the 7th of the next) the home screen offers a placement test; it can also be started from *Progress*, once per month. Reading (+ one longer writing task) and listening are separate parts and can be done on different days.
+
+- **Adaptive, 2 texts per skill:** text 1 at the current level; text 2 one level higher if ≥ 60% was right, otherwise one lower. Graded texts from the Centre's text bank where possible, 6 questions per text plus one extra detail and one inference question. No word help, translations or key words.
+- **Result:** the level that best fits both scores under the app's expected-score model (least squares), at most one level beyond what was tested; writing = the CEFR level the longer answer shows. Shown next to the current estimates; **you choose** "Apply new levels" or "Keep current levels".
+- Texts are prepared in the background during the window (text 1 and both possible text 2s). Logic: `src/lib/placement.ts`.
+
 ## Tap a word to translate it
 
 In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.
