@@ -8,6 +8,9 @@ import { allMonths, getMonth, isComplete, monthLabel } from "../lib/placement";
 import { placementMonth } from "./PlacementView";
 import { loadLookups } from "../lib/glosses";
 import { LevelLine, WritingLine } from "./Home";
+import { JOB_LABEL, droppedSince, loadDropped, loadLedger, startOfMonth, summarize, trackingSince } from "../lib/ledger";
+import { loadStock } from "../lib/library";
+import { getGlosses } from "../lib/glosses";
 
 export function Stats() {
   const { sessions, progress, settings } = useApp();
@@ -214,11 +217,91 @@ export function Stats() {
         </details>
       )}
 
-      <section className="card soft small">
-        Estimated API cost this month: <strong>${costThisMonth(sessions).toFixed(2)}</strong> (from token counts × list
-        prices; your Anthropic Console shows the actual bill).
-      </section>
+      <CostCard />
     </>
+  );
+}
+
+type CostPeriod = "week" | "month" | "all";
+
+const fmtUsd = (x: number) => (x > 0 && x < 0.995 ? `$${x.toFixed(3)}` : `$${x.toFixed(2)}`);
+
+/** Where the API money goes, by job, including work that was never used. */
+function CostCard() {
+  const { sessions } = useApp();
+  const [period, setPeriod] = useState<CostPeriod>("week");
+  const ledger = loadLedger();
+  const since0 = trackingSince(ledger);
+  const now = new Date();
+
+  if (!since0) {
+    return (
+      <section className="card soft small" aria-label="API cost">
+        <h2>API cost</h2>
+        Estimated API cost this month: <strong>${costThisMonth(sessions).toFixed(2)}</strong> (from the sessions you
+        did; token counts × list prices). A breakdown by job starts with your next API request.
+      </section>
+    );
+  }
+
+  const start =
+    period === "week" ? new Date(now.getTime() - 7 * 86_400_000) : period === "month" ? startOfMonth(now) : since0;
+  const sum = summarize(ledger, start);
+  const done = sessions.filter((x) => new Date(x.date) >= start).length;
+  const dropped = droppedSince(loadDropped(), start);
+  const stock = loadStock();
+  const waiting = [...stock.reading, ...stock.listening];
+  const waitingUsd = waiting.reduce((a, i) => a + i.costUsd + (getGlosses(i.lesson.id)?.costUsd ?? 0), 0);
+  const max = Math.max(...sum.rows.map((r) => r.usd), 0.0001);
+
+  return (
+    <section className="card" aria-label="API cost">
+      <h2>Where the API cost goes</h2>
+      <div className="seg" role="group" aria-label="Cost period" style={{ marginBottom: 12 }}>
+        {(
+          [
+            ["week", "Last 7 days"],
+            ["month", "This month"],
+            ["all", "All tracked"],
+          ] as const
+        ).map(([k, label]) => (
+          <button key={k} aria-pressed={period === k} onClick={() => setPeriod(k)}>
+            {label}
+          </button>
+        ))}
+      </div>
+      {sum.rows.length === 0 ? (
+        <p className="small muted">No API requests in this period.</p>
+      ) : (
+        <>
+          {sum.rows.map((r) => (
+            <div
+              className="hbar cost"
+              key={r.job}
+              title={`${r.calls} request${r.calls > 1 ? "s" : ""}, ${r.inTok} input / ${r.outTok} output tokens`}
+            >
+              <span>{JOB_LABEL[r.job]}</span>
+              <span className="track">
+                <span className="fill" style={{ display: "block", width: `${Math.max(2, (r.usd / max) * 100)}%` }} />
+              </span>
+              <span className="val">{fmtUsd(r.usd)}</span>
+            </div>
+          ))}
+          <p className="small" style={{ marginTop: 8, marginBottom: 4 }}>
+            Total <strong>{fmtUsd(sum.total)}</strong> · {sum.calls} request{sum.calls > 1 ? "s" : ""}
+            {done > 0 ? ` · ${fmtUsd(sum.total / done)} per exercise done (${done})` : ""}
+          </p>
+        </>
+      )}
+      <p className="tiny" style={{ margin: "4px 0" }}>
+        Ready but not used yet: {waiting.length} lesson{waiting.length === 1 ? "" : "s"} ({fmtUsd(waitingUsd)}).
+        {dropped.n > 0 && ` Dropped unused in this period: ${dropped.n} (${fmtUsd(dropped.usd)}).`}
+      </p>
+      <p className="tiny" style={{ margin: 0 }}>
+        Every request is counted when it's made, including failed attempts and work never used. Estimated from token
+        counts × list prices; your Anthropic Console shows the actual bill. Tracked since {since0.toLocaleDateString()}.
+      </p>
+    </section>
   );
 }
 

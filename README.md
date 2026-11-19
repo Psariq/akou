@@ -117,7 +117,11 @@ This is **not** an official CEFR assessment (official Greek certification is the
 
 ## Cost
 
-Each session makes 2–3 Messages API calls (news search/fetch if that source is used, lesson generation, grading of the written answer). The app estimates the cost of each session from the returned token counts and list prices (`src/lib/pricing.ts`) and shows a monthly total. Your Anthropic Console shows the real bill. The model is selectable in Settings (Claude Opus 5.5 by default; Sonnet 5.5 and Haiku 5.5 are cheaper).
+Each exercise involves several Messages API calls: writing the lesson (in the background or on the spot), word translations for the whole text, grading of the written answer, and sometimes extra practice, single-word lookups or a news search. Costs are estimated from the returned token counts and list prices (`src/lib/pricing.ts`); your Anthropic Console shows the real bill. The model is selectable in Settings (Claude Opus 5.5 by default; Sonnet 5.5 and Haiku 5.5 are cheaper).
+
+*Progress → Where the API cost goes* breaks the spend down by job (last 7 days, this month, all tracked) and shows the cost per exercise done. Every response is logged when it arrives (`src/lib/ledger.ts`, on the device only), so it also counts failed attempts and work that is never used; lessons that are ready but not used yet, and lessons dropped unused, are listed separately.
+
+Not used: the Message Batches API (50% off for work no one waits for). Its endpoints refuse requests from browsers (CORS preflight answered with “Disallowed CORS origin” for every origin tested, Nov 2026, while `/v1/messages` allows them), so it would need a server.
 
 ## Content and copyright
 

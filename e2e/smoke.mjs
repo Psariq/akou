@@ -342,6 +342,16 @@ try {
     els.filter((e) => ["Reading", "Listening", "Writing"].includes(e.textContent)).map((e) => e.getAttribute("x")),
   );
   assert(labelX.length === 3 && new Set(labelX).size === 1, `all three lines end at "now" (label x: ${labelX.join(", ")})`);
+  const costCard = page.getByRole("region", { name: "API cost" });
+  await costCard.getByRole("heading", { name: "Where the API cost goes" }).waitFor();
+  const costText = await costCard.textContent();
+  for (const label of ["Grading written answers", "Word translations (whole texts)", "Single-word lookups", "News search"]) {
+    assert(costText.includes(label), `cost card lists "${label}"`);
+  }
+  assert(/Total \$\d/.test(costText) && /per exercise done/.test(costText), "cost card shows a total and the cost per exercise");
+  const ledgerJobs = await page.evaluate(() => [...new Set(JSON.parse(localStorage.getItem("akou.ledger.v1")).map((e) => e.job))]);
+  assert(ledgerJobs.includes("lesson") || ledgerJobs.includes("lesson-bg"), `lesson writing is logged (jobs: ${ledgerJobs.join(", ")})`);
+  await costCard.getByRole("button", { name: "All tracked" }).click();
   await page.screenshot({ path: SHOTS + "06-stats.png", fullPage: true });
   const sessions = await page.evaluate(() => JSON.parse(localStorage.getItem("akou.sessions.v1")).length);
   assert(sessions === 2, "two sessions recorded (abandoned one not saved)");

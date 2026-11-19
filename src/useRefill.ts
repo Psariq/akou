@@ -5,6 +5,7 @@ import {
   addToStock,
   availableLessons,
   countAtLevel,
+  doneIds,
   generationsLast24h,
   loadStock,
   nextRefill,
@@ -14,13 +15,14 @@ import {
 } from "./lib/library";
 import { createLesson } from "./lib/lessonFactory";
 import { rankLessons } from "./lib/library";
-import { hasGlosses } from "./lib/glosses";
+import { getGlosses, hasGlosses } from "./lib/glosses";
 import { ensureGlosses, glossGenerationsLast24h, MAX_GLOSS_PER_DAY } from "./lib/glossService";
 import { getExtras, planExtras, weakSkills } from "./lib/practice";
 import { getMonth, openMonth, placementUsedUrls } from "./lib/placement";
 import { partPrepared, preparePart } from "./lib/placementService";
 import { ensureExtras, extraGenerationsLast24h, MAX_EXTRA_PER_DAY } from "./lib/practiceService";
 import { describeError } from "./lib/claude";
+import { recordDropped } from "./lib/ledger";
 
 export interface RefillStatus {
   running: boolean;
@@ -108,7 +110,15 @@ export function useRefill(
 
   const counts = useCallback(() => {
     const { settings: s, progress: p, sessions: ss } = latest.current;
-    saveStock(pruneStock(loadStock(), ss));
+    const before = loadStock();
+    const after = pruneStock(before, ss);
+    // Lessons pruned without being done (expired news, over the cap) were paid for but never used.
+    const done = doneIds(ss);
+    const kept = new Set([...after.reading, ...after.listening].map((i) => i.lesson.id));
+    for (const i of [...before.reading, ...before.listening]) {
+      if (!kept.has(i.lesson.id) && !done.has(i.lesson.id)) recordDropped(i.costUsd + (getGlosses(i.lesson.id)?.costUsd ?? 0));
+    }
+    saveStock(after);
     return readyCounts(s, p, ss);
   }, []);
 
@@ -143,7 +153,7 @@ export function useRefill(
             ...loadStock()[mode].map((x) => x.lesson.source.url),
             ...placementUsedUrls(),
           ].filter((x): x is string => !!x);
-          const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles, usedUrls });
+          const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles, usedUrls, job: "lesson-bg" });
           addToStock(mode, { lesson, createdAt: new Date().toISOString(), costUsd: cost.usd });
           setVersion((v) => v + 1);
         }

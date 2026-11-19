@@ -4,6 +4,7 @@ import type { Cefr, GlossEntry, Lesson, Mode, ModelId, Settings, Task, UsageCost
 import type { Material } from "./sources";
 import type { Target } from "./cefr";
 import { MODEL_INFO, addCost, costOf, ZERO_COST } from "./pricing";
+import { recordCost, type CostTag } from "./ledger";
 import {
   GLOSS_SYSTEM,
   GRADING_SYSTEM,
@@ -58,7 +59,14 @@ function checkStop(stop: string | null | undefined): void {
 async function callStructured<T>(
   client: Anthropic,
   model: ModelId,
-  opts: { system: string; user: string; schema: object; effort: "low" | "medium" | "high"; signal?: AbortSignal },
+  opts: {
+    system: string;
+    user: string;
+    schema: object;
+    effort: "low" | "medium" | "high";
+    tag: CostTag;
+    signal?: AbortSignal;
+  },
 ): Promise<{ data: T; cost: UsageCost }> {
   const params = {
     model,
@@ -72,8 +80,10 @@ async function callStructured<T>(
     ...fallbackParams(model),
   };
   const msg = await client.beta.messages.parse(params as any, { signal: opts.signal });
-  checkStop(msg.stop_reason);
+  // Record before any checks: a refused or cut-off response is still billed.
   const cost = costOf(model, msg.usage as any);
+  recordCost(opts.tag, model, cost);
+  checkStop(msg.stop_reason);
   const data = msg.parsed_output as T | null;
   if (!data) throw new LessonError("Couldn't read the generated lesson. Please try again.");
   return { data, cost };
@@ -104,7 +114,7 @@ export function parseNewsReply(text: string): Omit<Material, "kind"> | null {
 export async function findNews(
   apiKey: string,
   s: Settings,
-  opts: { avoidTitles: string[]; interests: string[]; url?: string; signal?: AbortSignal },
+  opts: { avoidTitles: string[]; interests: string[]; url?: string; signal?: AbortSignal; mode?: Mode },
 ): Promise<NewsResult> {
   const client = makeClient(apiKey);
   const today = new Date().toISOString().slice(0, 10);
@@ -135,7 +145,9 @@ export async function findNews(
       } as any,
       { signal: opts.signal },
     );
-    cost = addCost(cost, costOf(s.model, (msg as any).usage));
+    const stepCost = costOf(s.model, (msg as any).usage);
+    recordCost({ job: "news", mode: opts.mode }, s.model, stepCost);
+    cost = addCost(cost, stepCost);
     const text = (msg as any).content
       .filter((b: any) => b.type === "text")
       .map((b: any) => b.text)
@@ -249,6 +261,7 @@ export async function generateLesson(
   target: Target,
   material: Material,
   signal?: AbortSignal,
+  tag: CostTag = { job: "lesson", mode },
 ): Promise<{ lesson: Lesson; cost: UsageCost }> {
   const client = makeClient(apiKey);
   const { data, cost } = await callStructured<GeneratedLesson>(client, s.model, {
@@ -256,6 +269,7 @@ export async function generateLesson(
     user: lessonPrompt(mode, target, material, s),
     schema: LESSON_SCHEMA,
     effort: "medium",
+    tag,
     signal,
   });
   return { lesson: finishLesson(data, target, material), cost };
@@ -274,6 +288,7 @@ export async function generateLessonFromPage(
   target: Target,
   material: Material,
   signal?: AbortSignal,
+  tag: CostTag = { job: "lesson", mode },
 ): Promise<{ lesson: Lesson; cost: UsageCost }> {
   const client = makeClient(apiKey);
   const host = new URL(material.url!).hostname;
@@ -320,7 +335,9 @@ export async function generateLessonFromPage(
       }
       throw e;
     }
-    cost = addCost(cost, costOf(s.model, msg.usage));
+    const stepCost = costOf(s.model, msg.usage);
+    recordCost(tag, s.model, stepCost);
+    cost = addCost(cost, stepCost);
     for (const b of msg.content) {
       if (b.type === "web_fetch_tool_result") {
         if (b.content?.type === "web_fetch_tool_result_error") fetchError = b.content.error_code;
@@ -393,6 +410,7 @@ export async function gradeWritten(
     user: gradingPrompt(level, text, items, autoSummary, s),
     schema: GRADING_SCHEMA,
     effort: "low",
+    tag: { job: "grading" },
     signal,
   });
 }
@@ -422,6 +440,7 @@ export async function generateExtraTasks(
     user: extraTasksPrompt(lesson.level, mode, text, lesson.tasks, plan, s),
     schema: EXTRA_TASKS_SCHEMA,
     effort: "low",
+    tag: { job: "extras", mode },
     signal,
   });
   const wanted = new Set(plan.map((p) => p.skill));
@@ -462,6 +481,7 @@ export async function generateGlosses(
     user: glossPrompt(lesson.level, text),
     schema: GLOSSES_SCHEMA,
     effort: "low",
+    tag: { job: "glosses" },
     signal,
   });
   const entries = (data.glosses ?? []).filter((g) => g.form?.trim() && g.en?.trim());
@@ -483,6 +503,7 @@ export async function lookupWord(
     user: lookupPrompt(word, sentence),
     schema: GLOSS_ITEM,
     effort: "low",
+    tag: { job: "lookup" },
     signal,
   });
   return { entry: { ...data, form: word }, cost };

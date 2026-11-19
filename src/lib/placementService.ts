@@ -31,7 +31,7 @@ async function makeLesson(
   onStep?: (s: string) => void,
 ): Promise<{ lesson: Lesson; usd: number }> {
   const target = { level, band: "middle" as const };
-  const opts = { usedUrls: usedUrls(sessions), onStep };
+  const opts = { usedUrls: usedUrls(sessions), onStep, job: "placement" as const };
   try {
     const r = await createLesson(apiKey, settings, mode, target, "textbank", opts);
     return { lesson: r.lesson, usd: r.cost.usd };

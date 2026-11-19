@@ -21,6 +21,8 @@ export interface CreateOptions {
   /** Source URLs already used (text-bank texts are never repeated). */
   usedUrls?: string[];
   signal?: AbortSignal;
+  /** Which cost bucket the API calls go to (default: written while you wait). */
+  job?: "lesson" | "lesson-bg" | "placement";
   onStep?: (text: string) => void;
   onNote?: (text: string) => void;
 }
@@ -51,6 +53,7 @@ export async function createLesson(
   opts: CreateOptions = {},
 ): Promise<{ lesson: Lesson; cost: UsageCost }> {
   const { signal, onStep = () => {}, onNote = () => {} } = opts;
+  const tag = { job: opts.job ?? "lesson", mode } as const;
   const avoid = opts.avoidTitles ?? [];
   const usedUrls = new Set(opts.usedUrls ?? []);
   const mixed = source === "mixed" && !opts.url;
@@ -77,24 +80,24 @@ export async function createLesson(
             license: "© ΚΕΓ, used for personal study",
             gradedLevel: item.level,
           };
-          return await generateLessonFromPage(apiKey, settings, mode, target, material, signal);
+          return await generateLessonFromPage(apiKey, settings, mode, target, material, signal, tag);
         }
         case "news": {
           onStep(opts.url ? "Fetching your article…" : "Finding a current Greek news article…");
-          const r = await findNews(apiKey, settings, { avoidTitles: avoid, interests: interestList(settings), url: opts.url, signal });
+          const r = await findNews(apiKey, settings, { avoidTitles: avoid, interests: interestList(settings), url: opts.url, signal, mode });
           writing();
-          const l = await generateLesson(apiKey, settings, mode, target, r.material, signal);
+          const l = await generateLesson(apiKey, settings, mode, target, r.material, signal, tag);
           return { lesson: l.lesson, cost: addCost(r.cost, l.cost) };
         }
         case "wikipedia": {
           onStep("Picking a Greek Wikipedia article…");
           const material = await fetchWikipedia(settings, avoid, Math.random, signal);
           writing();
-          return await generateLesson(apiKey, settings, mode, target, material, signal);
+          return await generateLesson(apiKey, settings, mode, target, material, signal, tag);
         }
         case "ai": {
           writing();
-          return await generateLesson(apiKey, settings, mode, target, aiMaterial(settings), signal);
+          return await generateLesson(apiKey, settings, mode, target, aiMaterial(settings), signal, tag);
         }
       }
     } catch (e) {
