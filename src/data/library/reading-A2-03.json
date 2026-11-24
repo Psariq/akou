@@ -1,0 +1,3006 @@
+[
+ {
+  "id": "lib-reading-A2-08",
+  "mode": "reading",
+  "level": "A2",
+  "title": "Η πρώτη μέρα στη δουλειά",
+  "title_en": "The first day at work",
+  "topic": "work",
+  "segments": [
+   "Σήμερα ήταν η πρώτη μέρα του Άρη στη νέα του δουλειά. Ο Άρης είναι είκοσι τριών χρονών και τελείωσε τις σπουδές του στην πληροφορική πέρσι. Τώρα δουλεύει σε μια μικρή εταιρεία που φτιάχνει εφαρμογές για κινητά.",
+   "Ξύπνησε πολύ νωρίς, στις έξι, γιατί ήταν αγχωμένος. Φόρεσε το καινούργιο του πουκάμισο και πήρε το μετρό. Έφτασε στο γραφείο είκοσι λεπτά πριν από τις εννιά, αλλά η πόρτα ήταν κλειστή! Περίμενε έξω και ήπιε έναν καφέ από το περίπτερο.",
+   "Στις εννιά ήρθε η προϊσταμένη του, η κυρία Ζαφειρίου. Του έδειξε το γραφείο του και τον σύστησε στους συναδέλφους. Είναι οκτώ άτομα, όλοι νέοι και φιλικοί. Το μεσημέρι έφαγαν όλοι μαζί σουβλάκια στο μπαλκόνι της εταιρείας και μίλησαν για ποδόσφαιρο και ταινίες.",
+   "Το απόγευμα ο Άρης διάβασε πολλά έγγραφα και έμαθε να χρησιμοποιεί το πρόγραμμα της εταιρείας. Στις πέντε έκλεισε τον υπολογιστή, κουρασμένος αλλά χαρούμενος. Στο μετρό έστειλε μήνυμα στη μητέρα του: «Όλα πήγαν πολύ καλά!»"
+  ],
+  "glossary": [
+   [
+    "οι σπουδές",
+    "studies",
+    "plural noun"
+   ],
+   [
+    "η πληροφορική",
+    "computer science",
+    "η πληροφορική (f.)"
+   ],
+   [
+    "η εφαρμογή",
+    "app, application",
+    "η εφαρμογή (f.)"
+   ],
+   [
+    "αγχωμένος",
+    "stressed, nervous",
+    "adjective"
+   ],
+   [
+    "η προϊσταμένη",
+    "boss, manager (female)",
+    "m.: ο προϊστάμενος"
+   ],
+   [
+    "συστήνω",
+    "to introduce (someone)",
+    "verb; past: σύστησα"
+   ],
+   [
+    "ο συνάδελφος",
+    "colleague",
+    "ο συνάδελφος (m.)"
+   ],
+   [
+    "το έγγραφο",
+    "document",
+    "το έγγραφο (n.)"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι περιγράφει το κείμενο;",
+    "en": "What does the text describe?",
+    "options": [
+     "Τις σπουδές του Άρη στην πληροφορική",
+     "Πώς βρήκε ο Άρης δουλειά σε μια εταιρεία",
+     "Την πρώτη μέρα του Άρη σε καινούργια δουλειά",
+     "Ένα πρόβλημα του Άρη με το μετρό"
+    ],
+    "answer": 2,
+    "explain": "The text follows Aris through his first day at the new company, from the morning to the evening."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Γιατί περίμενε ο Άρης έξω από το γραφείο;",
+    "en": "Why did Aris wait outside the office?",
+    "options": [
+     "Γιατί είχε ξεχάσει το κλειδί του",
+     "Γιατί η πόρτα ήταν ακόμα κλειστή",
+     "Γιατί ήθελε να πιει πρώτα καφέ",
+     "Γιατί η προϊσταμένη ήταν σε συνάντηση"
+    ],
+    "answer": 1,
+    "explain": "He arrived twenty minutes early, «αλλά η πόρτα ήταν κλειστή!»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Το μεσημέρι ο Άρης έφαγε μόνος του.",
+    "en": "At lunchtime Aris ate alone.",
+    "answer": 1,
+    "explain": "«Το μεσημέρι έφαγαν όλοι μαζί σουβλάκια»."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο Άρης ήταν ευχαριστημένος με την πρώτη του μέρα.",
+    "en": "Aris was pleased with his first day.",
+    "answer": 0,
+    "explain": "He was tired but happy («κουρασμένος αλλά χαρούμενος») and wrote «Όλα πήγαν πολύ καλά!»."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "αγχωμένος",
+      "nervous, stressed"
+     ],
+     [
+      "οι συνάδελφοι",
+      "colleagues"
+     ],
+     [
+      "τα έγγραφα",
+      "documents"
+     ],
+     [
+      "η προϊσταμένη",
+      "boss (female)"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Ο Άρης ___ (ξυπνάω) πολύ νωρίς, στις έξι.",
+    "en": "Aris woke up very early, at six.",
+    "accept": [
+     "ξύπνησε"
+    ],
+    "explain": "Simple past, 3rd person singular: ξυπνάω → ξύπνησα → ξύπνησε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Θυμάσαι την πρώτη σου μέρα σε μια δουλειά ή σε ένα σχολείο; Πώς ήταν; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Do you remember your first day at a job or a school? What was it like? Write two or three sentences.",
+    "explain": "Την πρώτη μέρα στη δουλειά μου ήμουν πολύ αγχωμένη. Οι συνάδελφοι ήταν φιλικοί και το μεσημέρι φάγαμε μαζί."
+   }
+  ],
+  "words": [
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "ήταν",
+    "είμαι",
+    "it was; he was; she was",
+    "past, 3rd sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "πρώτη",
+    "πρώτος",
+    "first",
+    "ordinal, nom. sg. f."
+   ],
+   [
+    "μέρα",
+    "η μέρα",
+    "day",
+    "nom. sg."
+   ],
+   [
+    "του",
+    "ο / αυτός",
+    "of the; his; (to) him",
+    "article gen. sg. m.; pronoun"
+   ],
+   [
+    "Άρη",
+    "Άρης",
+    "Aris",
+    "name, gen./acc."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "in the; to the",
+    "preposition + article"
+   ],
+   [
+    "νέα",
+    "νέος",
+    "new",
+    "adj., acc. sg. f."
+   ],
+   [
+    "δουλειά",
+    "η δουλειά",
+    "job",
+    "acc. sg."
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "Άρης",
+    "Άρης",
+    "Aris",
+    "name, nom."
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "he is; there are",
+    "present, 3rd sg./pl."
+   ],
+   [
+    "είκοσι",
+    "είκοσι",
+    "twenty",
+    "number"
+   ],
+   [
+    "τριών",
+    "τρεις",
+    "three",
+    "number, gen. (είκοσι τριών χρονών = 23 years old)"
+   ],
+   [
+    "χρονών",
+    "ο χρόνος",
+    "years old",
+    "gen. pl."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "τελείωσε",
+    "τελειώνω",
+    "he finished",
+    "past, 3rd sg."
+   ],
+   [
+    "τις",
+    "η",
+    "the",
+    "article, acc. pl. f."
+   ],
+   [
+    "σπουδές",
+    "οι σπουδές",
+    "studies",
+    "acc. pl."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "πληροφορική",
+    "η πληροφορική",
+    "computer science",
+    "acc. sg."
+   ],
+   [
+    "πέρσι",
+    "πέρσι",
+    "last year",
+    "adverb"
+   ],
+   [
+    "τώρα",
+    "τώρα",
+    "now",
+    "adverb"
+   ],
+   [
+    "δουλεύει",
+    "δουλεύω",
+    "he works",
+    "present, 3rd sg."
+   ],
+   [
+    "σε",
+    "σε",
+    "in, at",
+    "preposition"
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "μικρή",
+    "μικρός",
+    "small",
+    "adj., acc. sg. f."
+   ],
+   [
+    "εταιρεία",
+    "η εταιρεία",
+    "company",
+    "acc. sg."
+   ],
+   [
+    "που",
+    "που",
+    "that, which",
+    "relative pronoun"
+   ],
+   [
+    "φτιάχνει",
+    "φτιάχνω",
+    "it makes",
+    "present, 3rd sg."
+   ],
+   [
+    "εφαρμογές",
+    "η εφαρμογή",
+    "apps",
+    "acc. pl."
+   ],
+   [
+    "για",
+    "για",
+    "for; about",
+    "preposition"
+   ],
+   [
+    "κινητά",
+    "το κινητό",
+    "mobile phones",
+    "acc. pl."
+   ],
+   [
+    "ξύπνησε",
+    "ξυπνάω",
+    "he woke up",
+    "past, 3rd sg."
+   ],
+   [
+    "πολύ",
+    "πολύ",
+    "very",
+    "adverb"
+   ],
+   [
+    "νωρίς",
+    "νωρίς",
+    "early",
+    "adverb"
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "έξι",
+    "έξι",
+    "six",
+    "number"
+   ],
+   [
+    "γιατί",
+    "γιατί",
+    "because",
+    "conjunction"
+   ],
+   [
+    "αγχωμένος",
+    "αγχωμένος",
+    "nervous, stressed",
+    "adj., nom. sg. m."
+   ],
+   [
+    "φόρεσε",
+    "φοράω",
+    "he put on",
+    "past, 3rd sg."
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "καινούργιο",
+    "καινούργιος",
+    "new",
+    "adj., acc. sg. n."
+   ],
+   [
+    "πουκάμισο",
+    "το πουκάμισο",
+    "shirt",
+    "acc. sg."
+   ],
+   [
+    "πήρε",
+    "παίρνω",
+    "he took",
+    "past, 3rd sg."
+   ],
+   [
+    "μετρό",
+    "το μετρό",
+    "metro, underground",
+    "indeclinable"
+   ],
+   [
+    "έφτασε",
+    "φτάνω",
+    "he arrived",
+    "past, 3rd sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "at the; on the; to the",
+    "preposition + article"
+   ],
+   [
+    "γραφείο",
+    "το γραφείο",
+    "office; desk",
+    "acc. sg."
+   ],
+   [
+    "λεπτά",
+    "το λεπτό",
+    "minutes",
+    "acc. pl."
+   ],
+   [
+    "πριν",
+    "πριν",
+    "before",
+    "πριν από = before"
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "πόρτα",
+    "η πόρτα",
+    "door",
+    "nom. sg."
+   ],
+   [
+    "κλειστή",
+    "κλειστός",
+    "closed",
+    "adj., nom. sg. f."
+   ],
+   [
+    "περίμενε",
+    "περιμένω",
+    "he waited",
+    "past, 3rd sg."
+   ],
+   [
+    "έξω",
+    "έξω",
+    "outside",
+    "adverb"
+   ],
+   [
+    "ήπιε",
+    "πίνω",
+    "he drank",
+    "past, 3rd sg."
+   ],
+   [
+    "έναν",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "καφέ",
+    "ο καφές",
+    "coffee",
+    "acc. sg."
+   ],
+   [
+    "περίπτερο",
+    "το περίπτερο",
+    "kiosk",
+    "acc. sg."
+   ],
+   [
+    "ήρθε",
+    "έρχομαι",
+    "came",
+    "past, 3rd sg."
+   ],
+   [
+    "προϊσταμένη",
+    "η προϊσταμένη",
+    "boss (female)",
+    "nom. sg."
+   ],
+   [
+    "κυρία",
+    "η κυρία",
+    "Mrs",
+    "nom. sg."
+   ],
+   [
+    "Ζαφειρίου",
+    "Ζαφειρίου",
+    "Zafeiriou",
+    "surname"
+   ],
+   [
+    "έδειξε",
+    "δείχνω",
+    "she showed",
+    "past, 3rd sg."
+   ],
+   [
+    "τον",
+    "αυτός",
+    "him",
+    "object pronoun, acc. sg. m."
+   ],
+   [
+    "σύστησε",
+    "συστήνω",
+    "she introduced",
+    "past, 3rd sg."
+   ],
+   [
+    "στους",
+    "σε + τους",
+    "to the",
+    "preposition + article"
+   ],
+   [
+    "συναδέλφους",
+    "ο συνάδελφος",
+    "colleagues",
+    "acc. pl."
+   ],
+   [
+    "οκτώ",
+    "οκτώ",
+    "eight",
+    "number"
+   ],
+   [
+    "άτομα",
+    "το άτομο",
+    "people",
+    "nom. pl."
+   ],
+   [
+    "όλοι",
+    "όλος",
+    "all, everyone",
+    "nom. pl. m."
+   ],
+   [
+    "νέοι",
+    "νέος",
+    "young",
+    "adj., nom. pl. m."
+   ],
+   [
+    "φιλικοί",
+    "φιλικός",
+    "friendly",
+    "adj., nom. pl. m."
+   ],
+   [
+    "μεσημέρι",
+    "το μεσημέρι",
+    "midday",
+    "acc. sg. (το μεσημέρι = at lunchtime)"
+   ],
+   [
+    "έφαγαν",
+    "τρώω",
+    "they ate",
+    "past, 3rd pl."
+   ],
+   [
+    "μαζί",
+    "μαζί",
+    "together",
+    "adverb"
+   ],
+   [
+    "σουβλάκια",
+    "το σουβλάκι",
+    "souvlaki",
+    "acc. pl."
+   ],
+   [
+    "μπαλκόνι",
+    "το μπαλκόνι",
+    "balcony",
+    "acc. sg."
+   ],
+   [
+    "της",
+    "η",
+    "of the",
+    "article, gen. sg. f."
+   ],
+   [
+    "εταιρείας",
+    "η εταιρεία",
+    "company",
+    "gen. sg."
+   ],
+   [
+    "μίλησαν",
+    "μιλάω",
+    "they talked",
+    "past, 3rd pl."
+   ],
+   [
+    "ποδόσφαιρο",
+    "το ποδόσφαιρο",
+    "football",
+    "acc. sg."
+   ],
+   [
+    "ταινίες",
+    "η ταινία",
+    "films",
+    "acc. pl."
+   ],
+   [
+    "απόγευμα",
+    "το απόγευμα",
+    "afternoon",
+    "acc. sg."
+   ],
+   [
+    "διάβασε",
+    "διαβάζω",
+    "he read",
+    "past, 3rd sg."
+   ],
+   [
+    "πολλά",
+    "πολύς",
+    "many",
+    "adj., acc. pl. n."
+   ],
+   [
+    "έγγραφα",
+    "το έγγραφο",
+    "documents",
+    "acc. pl."
+   ],
+   [
+    "έμαθε",
+    "μαθαίνω",
+    "he learned",
+    "past, 3rd sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "χρησιμοποιεί",
+    "χρησιμοποιώ",
+    "to use",
+    "present, 3rd sg. (έμαθε να χρησιμοποιεί = learned to use)"
+   ],
+   [
+    "πρόγραμμα",
+    "το πρόγραμμα",
+    "program (software)",
+    "acc. sg."
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "έκλεισε",
+    "κλείνω",
+    "he shut down",
+    "past, 3rd sg."
+   ],
+   [
+    "υπολογιστή",
+    "ο υπολογιστής",
+    "computer",
+    "acc. sg."
+   ],
+   [
+    "κουρασμένος",
+    "κουρασμένος",
+    "tired",
+    "adj., nom. sg. m."
+   ],
+   [
+    "χαρούμενος",
+    "χαρούμενος",
+    "happy",
+    "adj., nom. sg. m."
+   ],
+   [
+    "έστειλε",
+    "στέλνω",
+    "he sent",
+    "past, 3rd sg."
+   ],
+   [
+    "μήνυμα",
+    "το μήνυμα",
+    "message",
+    "acc. sg."
+   ],
+   [
+    "μητέρα",
+    "η μητέρα",
+    "mother",
+    "acc. sg."
+   ],
+   [
+    "όλα",
+    "όλος",
+    "everything",
+    "nom. pl. n."
+   ],
+   [
+    "πήγαν",
+    "πηγαίνω",
+    "went",
+    "past, 3rd pl. (όλα πήγαν καλά = everything went well)"
+   ],
+   [
+    "καλά",
+    "καλά",
+    "well",
+    "adverb"
+   ]
+  ]
+ },
+ {
+  "id": "lib-reading-A2-09",
+  "mode": "reading",
+  "level": "A2",
+  "title": "Πάσχα στο χωριό",
+  "title_en": "Easter in the village",
+  "topic": "customs, Easter",
+  "segments": [
+   "Για τους Έλληνες το Πάσχα είναι η πιο μεγάλη γιορτή του χρόνου. Πολλοί άνθρωποι από τις πόλεις πηγαίνουν στο χωριό τους, στους γονείς ή στους παππούδες τους.",
+   "Η Χαρά και ο Λευτέρης έφυγαν από τη Λάρισα τη Μεγάλη Πέμπτη και πήγαν στο χωριό της γιαγιάς τους, κοντά στα Τρίκαλα. Τη Μεγάλη Πέμπτη η γιαγιά βάφει κόκκινα αυγά και φτιάχνει κουλουράκια. Η Χαρά τη βοήθησε φέτος για πρώτη φορά.",
+   "Το Μεγάλο Σάββατο το βράδυ πήγαν όλοι στην εκκλησία με λαμπάδες. Στις δώδεκα ο παπάς είπε «Χριστός Ανέστη!» και ο κόσμος απάντησε «Αληθώς Ανέστη!». Μετά γύρισαν στο σπίτι, έφαγαν μαγειρίτσα, μια σούπα με εντόσθια, και τσούγκρισαν τα κόκκινα αυγά.",
+   "Την Κυριακή του Πάσχα ο παππούς και ο θείος Μανώλης έψηναν αρνί στη σούβλα από το πρωί. Ήρθαν γείτονες και φίλοι, και το τραπέζι κράτησε μέχρι το βράδυ, με μουσική και χορό. «Του χρόνου πάλι εδώ!» είπε η γιαγιά."
+  ],
+  "glossary": [
+   [
+    "η Μεγάλη Πέμπτη",
+    "Holy Thursday",
+    "in Easter week"
+   ],
+   [
+    "βάφω",
+    "to dye, to paint",
+    "verb"
+   ],
+   [
+    "τα κουλουράκια",
+    "Easter biscuits",
+    "plural noun"
+   ],
+   [
+    "η λαμπάδα",
+    "(Easter) candle",
+    "η λαμπάδα (f.)"
+   ],
+   [
+    "τα εντόσθια",
+    "offal",
+    "plural noun"
+   ],
+   [
+    "τσουγκρίζω",
+    "to crack (eggs) together",
+    "verb; past: τσούγκρισα"
+   ],
+   [
+    "η σούβλα",
+    "spit (for roasting)",
+    "η σούβλα (f.)"
+   ],
+   [
+    "του χρόνου",
+    "next year",
+    "expression"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Ποιο είναι το θέμα του κειμένου;",
+    "en": "What is the topic of the text?",
+    "options": [
+     "Πώς φτιάχνουμε μαγειρίτσα και κουλουράκια",
+     "Πώς γιόρτασε μια οικογένεια το Πάσχα στο χωριό",
+     "Γιατί οι νέοι φεύγουν από τα χωριά",
+     "Ένα ταξίδι από τη Λάρισα στα Τρίκαλα"
+    ],
+    "answer": 1,
+    "explain": "The text follows Chara, Lefteris and their family through the Easter days in the grandmother's village."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Τι κάνει η γιαγιά τη Μεγάλη Πέμπτη;",
+    "en": "What does grandmother do on Holy Thursday?",
+    "options": [
+     "Ψήνει αρνί στη σούβλα",
+     "Φτιάχνει μαγειρίτσα",
+     "Πηγαίνει στην εκκλησία με λαμπάδες",
+     "Βάφει αυγά και φτιάχνει κουλουράκια"
+    ],
+    "answer": 3,
+    "explain": "«Τη Μεγάλη Πέμπτη η γιαγιά βάφει κόκκινα αυγά και φτιάχνει κουλουράκια.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Η μαγειρίτσα είναι ένα γλυκό του Πάσχα.",
+    "en": "Magiritsa is an Easter sweet.",
+    "answer": 1,
+    "explain": "It is a soup: «μια σούπα με εντόσθια»."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Η γιαγιά θέλει να έρθει πάλι η οικογένεια το επόμενο Πάσχα.",
+    "en": "Grandmother wants the family to come again next Easter.",
+    "answer": 0,
+    "explain": "She says «Του χρόνου πάλι εδώ!» (next year here again)."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "βάφει",
+      "she dyes"
+     ],
+     [
+      "οι λαμπάδες",
+      "candles"
+     ],
+     [
+      "τσούγκρισαν",
+      "they cracked (eggs)"
+     ],
+     [
+      "η σούβλα",
+      "spit (for roasting)"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Μετά γύρισαν στο σπίτι και ___ (τρώω) μαγειρίτσα.",
+    "en": "Then they went back home and ate magiritsa.",
+    "accept": [
+     "έφαγαν"
+    ],
+    "explain": "Irregular simple past, 3rd person plural: τρώω → έφαγα → έφαγαν."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Ποια είναι η πιο μεγάλη γιορτή στη χώρα σου; Τι κάνετε; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "What is the biggest holiday in your country? What do you do? Write two or three sentences.",
+    "explain": "Στη χώρα μου η πιο μεγάλη γιορτή είναι τα Χριστούγεννα. Στολίζουμε ένα δέντρο, τρώμε με την οικογένεια και ανταλλάσσουμε δώρα."
+   }
+  ],
+  "words": [
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "τους",
+    "ο / αυτοί",
+    "the; their",
+    "article acc. pl. m.; possessive pronoun"
+   ],
+   [
+    "Έλληνες",
+    "ο Έλληνας",
+    "Greeks",
+    "acc. pl."
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "Πάσχα",
+    "το Πάσχα",
+    "Easter",
+    "indeclinable"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is",
+    "present, 3rd sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "πιο",
+    "πιο",
+    "most",
+    "adverb (η πιο μεγάλη = the biggest)"
+   ],
+   [
+    "μεγάλη",
+    "μεγάλος",
+    "big",
+    "adj., nom. sg. f."
+   ],
+   [
+    "γιορτή",
+    "η γιορτή",
+    "holiday, celebration",
+    "nom. sg."
+   ],
+   [
+    "του",
+    "ο",
+    "of the",
+    "article, gen. sg. m./n."
+   ],
+   [
+    "χρόνου",
+    "ο χρόνος",
+    "year",
+    "gen. sg. (του χρόνου = next year)"
+   ],
+   [
+    "πολλοί",
+    "πολύς",
+    "many",
+    "adj., nom. pl. m."
+   ],
+   [
+    "άνθρωποι",
+    "ο άνθρωπος",
+    "people",
+    "nom. pl."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "τις",
+    "η",
+    "the",
+    "article, acc. pl. f."
+   ],
+   [
+    "πόλεις",
+    "η πόλη",
+    "cities, towns",
+    "acc. pl."
+   ],
+   [
+    "πηγαίνουν",
+    "πηγαίνω",
+    "they go",
+    "present, 3rd pl."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "to the; in the",
+    "preposition + article"
+   ],
+   [
+    "χωριό",
+    "το χωριό",
+    "village",
+    "acc. sg."
+   ],
+   [
+    "στους",
+    "σε + τους",
+    "to the",
+    "preposition + article"
+   ],
+   [
+    "γονείς",
+    "ο γονιός",
+    "parents",
+    "acc. pl. (οι γονείς)"
+   ],
+   [
+    "ή",
+    "ή",
+    "or",
+    "conjunction"
+   ],
+   [
+    "παππούδες",
+    "ο παππούς",
+    "grandparents",
+    "acc. pl."
+   ],
+   [
+    "Χαρά",
+    "Χαρά",
+    "Chara",
+    "name"
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "Λευτέρης",
+    "Λευτέρης",
+    "Lefteris",
+    "name"
+   ],
+   [
+    "έφυγαν",
+    "φεύγω",
+    "they left",
+    "past, 3rd pl."
+   ],
+   [
+    "τη",
+    "η / αυτή",
+    "the; her",
+    "article acc. sg. f.; object pronoun"
+   ],
+   [
+    "Λάρισα",
+    "η Λάρισα",
+    "Larissa",
+    "city, acc."
+   ],
+   [
+    "Μεγάλη",
+    "μεγάλος",
+    "Holy (lit. big)",
+    "η Μεγάλη Πέμπτη = Holy Thursday"
+   ],
+   [
+    "Πέμπτη",
+    "η Πέμπτη",
+    "Thursday",
+    "acc. sg."
+   ],
+   [
+    "πήγαν",
+    "πηγαίνω",
+    "they went",
+    "past, 3rd pl."
+   ],
+   [
+    "της",
+    "η",
+    "of the",
+    "article, gen. sg. f."
+   ],
+   [
+    "γιαγιάς",
+    "η γιαγιά",
+    "grandmother",
+    "gen. sg."
+   ],
+   [
+    "κοντά",
+    "κοντά",
+    "near",
+    "adverb (κοντά σε = near)"
+   ],
+   [
+    "στα",
+    "σε + τα",
+    "to the",
+    "preposition + article"
+   ],
+   [
+    "Τρίκαλα",
+    "τα Τρίκαλα",
+    "Trikala",
+    "city in Thessaly"
+   ],
+   [
+    "γιαγιά",
+    "η γιαγιά",
+    "grandmother",
+    "nom. sg."
+   ],
+   [
+    "βάφει",
+    "βάφω",
+    "she dyes",
+    "present, 3rd sg."
+   ],
+   [
+    "κόκκινα",
+    "κόκκινος",
+    "red",
+    "adj., acc. pl. n."
+   ],
+   [
+    "αυγά",
+    "το αυγό",
+    "eggs",
+    "acc. pl."
+   ],
+   [
+    "φτιάχνει",
+    "φτιάχνω",
+    "she makes",
+    "present, 3rd sg."
+   ],
+   [
+    "κουλουράκια",
+    "το κουλουράκι",
+    "Easter biscuits",
+    "acc. pl."
+   ],
+   [
+    "βοήθησε",
+    "βοηθάω",
+    "she helped",
+    "past, 3rd sg."
+   ],
+   [
+    "φέτος",
+    "φέτος",
+    "this year",
+    "adverb"
+   ],
+   [
+    "πρώτη",
+    "πρώτος",
+    "first",
+    "ordinal, acc. sg. f."
+   ],
+   [
+    "φορά",
+    "η φορά",
+    "time",
+    "acc. sg. (για πρώτη φορά = for the first time)"
+   ],
+   [
+    "Μεγάλο",
+    "μεγάλος",
+    "Holy (lit. big)",
+    "το Μεγάλο Σάββατο = Holy Saturday"
+   ],
+   [
+    "Σάββατο",
+    "το Σάββατο",
+    "Saturday",
+    "acc. sg."
+   ],
+   [
+    "βράδυ",
+    "το βράδυ",
+    "evening",
+    "acc. sg."
+   ],
+   [
+    "όλοι",
+    "όλος",
+    "everyone",
+    "nom. pl. m."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "to the",
+    "preposition + article"
+   ],
+   [
+    "εκκλησία",
+    "η εκκλησία",
+    "church",
+    "acc. sg."
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "λαμπάδες",
+    "η λαμπάδα",
+    "(Easter) candles",
+    "acc. pl."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "δώδεκα",
+    "δώδεκα",
+    "twelve",
+    "number"
+   ],
+   [
+    "παπάς",
+    "ο παπάς",
+    "priest",
+    "nom. sg."
+   ],
+   [
+    "είπε",
+    "λέω",
+    "he said; she said",
+    "past, 3rd sg."
+   ],
+   [
+    "Χριστός",
+    "ο Χριστός",
+    "Christ",
+    "nom. sg."
+   ],
+   [
+    "Ανέστη",
+    "ανίσταμαι",
+    "is risen",
+    "old Greek form (Χριστός Ανέστη = Christ is risen)"
+   ],
+   [
+    "κόσμος",
+    "ο κόσμος",
+    "people",
+    "nom. sg."
+   ],
+   [
+    "απάντησε",
+    "απαντάω",
+    "answered",
+    "past, 3rd sg."
+   ],
+   [
+    "αληθώς",
+    "αληθώς",
+    "truly",
+    "old Greek adverb (Αληθώς Ανέστη = truly He is risen)"
+   ],
+   [
+    "μετά",
+    "μετά",
+    "then",
+    "adverb"
+   ],
+   [
+    "γύρισαν",
+    "γυρίζω",
+    "they went back",
+    "past, 3rd pl."
+   ],
+   [
+    "σπίτι",
+    "το σπίτι",
+    "home, house",
+    "acc. sg."
+   ],
+   [
+    "έφαγαν",
+    "τρώω",
+    "they ate",
+    "past, 3rd pl."
+   ],
+   [
+    "μαγειρίτσα",
+    "η μαγειρίτσα",
+    "magiritsa (Easter soup)",
+    "acc. sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "σούπα",
+    "η σούπα",
+    "soup",
+    "acc. sg."
+   ],
+   [
+    "εντόσθια",
+    "τα εντόσθια",
+    "offal",
+    "acc. pl."
+   ],
+   [
+    "τσούγκρισαν",
+    "τσουγκρίζω",
+    "they cracked (eggs) together",
+    "past, 3rd pl."
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Κυριακή",
+    "η Κυριακή",
+    "Sunday",
+    "acc. sg."
+   ],
+   [
+    "παππούς",
+    "ο παππούς",
+    "grandfather",
+    "nom. sg."
+   ],
+   [
+    "θείος",
+    "ο θείος",
+    "uncle",
+    "nom. sg."
+   ],
+   [
+    "Μανώλης",
+    "Μανώλης",
+    "Manolis",
+    "name"
+   ],
+   [
+    "έψηναν",
+    "ψήνω",
+    "they were roasting",
+    "past continuous, 3rd pl."
+   ],
+   [
+    "αρνί",
+    "το αρνί",
+    "lamb",
+    "acc. sg."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "on the",
+    "preposition + article"
+   ],
+   [
+    "σούβλα",
+    "η σούβλα",
+    "spit",
+    "acc. sg."
+   ],
+   [
+    "πρωί",
+    "το πρωί",
+    "morning",
+    "acc. sg."
+   ],
+   [
+    "ήρθαν",
+    "έρχομαι",
+    "came",
+    "past, 3rd pl."
+   ],
+   [
+    "γείτονες",
+    "ο γείτονας",
+    "neighbours",
+    "nom. pl."
+   ],
+   [
+    "φίλοι",
+    "ο φίλος",
+    "friends",
+    "nom. pl."
+   ],
+   [
+    "τραπέζι",
+    "το τραπέζι",
+    "meal (lit. table)",
+    "nom. sg."
+   ],
+   [
+    "κράτησε",
+    "κρατάω",
+    "lasted",
+    "past, 3rd sg."
+   ],
+   [
+    "μέχρι",
+    "μέχρι",
+    "until",
+    "preposition"
+   ],
+   [
+    "μουσική",
+    "η μουσική",
+    "music",
+    "acc. sg."
+   ],
+   [
+    "χορό",
+    "ο χορός",
+    "dancing",
+    "acc. sg."
+   ],
+   [
+    "πάλι",
+    "πάλι",
+    "again",
+    "adverb"
+   ],
+   [
+    "εδώ",
+    "εδώ",
+    "here",
+    "adverb"
+   ]
+  ]
+ },
+ {
+  "id": "lib-reading-A2-10",
+  "mode": "reading",
+  "level": "A2",
+  "title": "Με το πλοίο στη Σαντορίνη",
+  "title_en": "By ferry to Santorini",
+  "topic": "travel, islands",
+  "segments": [
+   "Ο Ματέο είναι από την Ιταλία και κάνει διακοπές στην Ελλάδα. Σήμερα πηγαίνει από τον Πειραιά στη Σαντορίνη με το πλοίο. Το εισιτήριο το αγόρασε στο διαδίκτυο πριν από έναν μήνα και κόστισε σαράντα πέντε ευρώ.",
+   "Το πλοίο έφυγε στις επτά και μισή το πρωί. Ο Ματέο βρήκε μια θέση στο κατάστρωμα, έξω, γιατί ήθελε να βλέπει τη θάλασσα. Στο ταξίδι το πλοίο σταμάτησε στην Πάρο, στη Νάξο και στην Ίο. Σε κάθε λιμάνι κατέβαινε κόσμος με βαλίτσες και ανέβαιναν άλλοι επιβάτες.",
+   "Το μεσημέρι φύσηξε δυνατός αέρας και το πλοίο κουνιόταν πολύ. Ο Ματέο ζαλίστηκε λίγο, οπότε μπήκε μέσα, κάθισε στο σαλόνι και ήπιε ένα τσάι. Μια ηλικιωμένη κυρία από την Ίο του έδωσε ένα κομμάτι λεμόνι. «Μύρισέ το, βοηθάει», του είπε.",
+   "Στις τρεις το απόγευμα το πλοίο έφτασε στη Σαντορίνη. Από το λιμάνι ο Ματέο είδε τα άσπρα σπίτια ψηλά στον βράχο. «Τελικά άξιζε το ταξίδι», σκέφτηκε."
+  ],
+  "glossary": [
+   [
+    "το διαδίκτυο",
+    "internet",
+    "το διαδίκτυο (n.)"
+   ],
+   [
+    "το κατάστρωμα",
+    "deck",
+    "το κατάστρωμα (n.)"
+   ],
+   [
+    "κατεβαίνω",
+    "to get off, to go down",
+    "verb; past cont.: κατέβαινα"
+   ],
+   [
+    "ο επιβάτης",
+    "passenger",
+    "ο επιβάτης (m.)"
+   ],
+   [
+    "κουνιέμαι",
+    "to rock, to move",
+    "verb; past cont.: κουνιόμουν"
+   ],
+   [
+    "ζαλίζομαι",
+    "to feel dizzy, seasick",
+    "verb; past: ζαλίστηκα"
+   ],
+   [
+    "ο βράχος",
+    "rock, cliff",
+    "ο βράχος (m.)"
+   ],
+   [
+    "αξίζει",
+    "it is worth it",
+    "past: άξιζε"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι περιγράφει το κείμενο;",
+    "en": "What does the text describe?",
+    "options": [
+     "Ένα ταξίδι με πλοίο από τον Πειραιά στη Σαντορίνη",
+     "Τις διακοπές μιας ιταλικής οικογένειας στη Νάξο",
+     "Πώς αγοράζουμε εισιτήρια πλοίου στο διαδίκτυο",
+     "Μια μέρα στο λιμάνι του Πειραιά"
+    ],
+    "answer": 0,
+    "explain": "The text follows Matteo's ferry trip from Piraeus, via three islands, to Santorini."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πού σταμάτησε το πλοίο πριν από τη Σαντορίνη;",
+    "en": "Where did the ship stop before Santorini?",
+    "options": [
+     "Στη Μύκονο, στη Σύρο και στην Ίο",
+     "Στην Πάρο, στη Μήλο και στη Νάξο",
+     "Στην Πάρο, στη Νάξο και στην Ίο",
+     "Στη Σύρο, στην Πάρο και στη Νάξο"
+    ],
+    "answer": 2,
+    "explain": "«το πλοίο σταμάτησε στην Πάρο, στη Νάξο και στην Ίο»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Ο Ματέο αγόρασε το εισιτήριο στο λιμάνι.",
+    "en": "Matteo bought the ticket at the port.",
+    "answer": 1,
+    "explain": "He bought it online a month ago: «στο διαδίκτυο πριν από έναν μήνα»."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Στην αρχή του ταξιδιού ο καιρός ήταν καλός.",
+    "en": "At the start of the trip the weather was good.",
+    "answer": 0,
+    "explain": "He sat outside on the deck in the morning; the strong wind only came at midday."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "το κατάστρωμα",
+      "deck"
+     ],
+     [
+      "οι επιβάτες",
+      "passengers"
+     ],
+     [
+      "ζαλίστηκε",
+      "he felt seasick"
+     ],
+     [
+      "ο βράχος",
+      "cliff, rock"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Στις τρεις το απόγευμα το πλοίο ___ (φτάνω) στη Σαντορίνη.",
+    "en": "At three in the afternoon the ship arrived in Santorini.",
+    "accept": [
+     "έφτασε"
+    ],
+    "explain": "Simple past, 3rd person singular: φτάνω → έφτασα → έφτασε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Σου αρέσει να ταξιδεύεις με πλοίο; Γιατί ναι ή γιατί όχι; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Do you like travelling by ship? Why or why not? Write two or three sentences.",
+    "explain": "Μου αρέσει πολύ το πλοίο, γιατί κάθομαι στο κατάστρωμα και βλέπω τη θάλασσα. Όμως όταν έχει αέρα, ζαλίζομαι λίγο."
+   }
+  ],
+  "words": [
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "Ματέο",
+    "Ματέο",
+    "Matteo",
+    "name"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "he is",
+    "present, 3rd sg."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Ιταλία",
+    "η Ιταλία",
+    "Italy",
+    "acc. sg."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "κάνει",
+    "κάνω",
+    "he is on (holiday)",
+    "present, 3rd sg. (κάνω διακοπές = be on holiday)"
+   ],
+   [
+    "διακοπές",
+    "οι διακοπές",
+    "holidays",
+    "acc. pl."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "in the; to the",
+    "preposition + article"
+   ],
+   [
+    "Ελλάδα",
+    "η Ελλάδα",
+    "Greece",
+    "acc. sg."
+   ],
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "πηγαίνει",
+    "πηγαίνω",
+    "he goes",
+    "present, 3rd sg."
+   ],
+   [
+    "τον",
+    "ο",
+    "the",
+    "article, acc. sg. m."
+   ],
+   [
+    "Πειραιά",
+    "ο Πειραιάς",
+    "Piraeus",
+    "port of Athens, acc."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "to the; in the",
+    "preposition + article"
+   ],
+   [
+    "Σαντορίνη",
+    "η Σαντορίνη",
+    "Santorini",
+    "island, acc."
+   ],
+   [
+    "με",
+    "με",
+    "with; by",
+    "preposition"
+   ],
+   [
+    "το",
+    "το",
+    "the; it",
+    "article, sg. n.; object pronoun"
+   ],
+   [
+    "πλοίο",
+    "το πλοίο",
+    "ship, ferry",
+    "acc. sg."
+   ],
+   [
+    "εισιτήριο",
+    "το εισιτήριο",
+    "ticket",
+    "acc. sg."
+   ],
+   [
+    "αγόρασε",
+    "αγοράζω",
+    "he bought",
+    "past, 3rd sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "on the; in the; to the",
+    "preposition + article"
+   ],
+   [
+    "διαδίκτυο",
+    "το διαδίκτυο",
+    "internet",
+    "acc. sg."
+   ],
+   [
+    "πριν",
+    "πριν",
+    "ago",
+    "πριν από = ago"
+   ],
+   [
+    "έναν",
+    "ένας",
+    "a, one",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "μήνα",
+    "ο μήνας",
+    "month",
+    "acc. sg."
+   ],
+   [
+    "κόστισε",
+    "κοστίζω",
+    "it cost",
+    "past, 3rd sg."
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "ευρώ",
+    "το ευρώ",
+    "euros",
+    "indeclinable"
+   ],
+   [
+    "έφυγε",
+    "φεύγω",
+    "left",
+    "past, 3rd sg."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "επτά",
+    "επτά",
+    "seven",
+    "number"
+   ],
+   [
+    "μισή",
+    "μισός",
+    "half",
+    "adj., f. (επτά και μισή = half past seven)"
+   ],
+   [
+    "πρωί",
+    "το πρωί",
+    "morning",
+    "acc. sg."
+   ],
+   [
+    "βρήκε",
+    "βρίσκω",
+    "he found",
+    "past, 3rd sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "θέση",
+    "η θέση",
+    "seat, place",
+    "acc. sg."
+   ],
+   [
+    "κατάστρωμα",
+    "το κατάστρωμα",
+    "deck",
+    "acc. sg."
+   ],
+   [
+    "έξω",
+    "έξω",
+    "outside",
+    "adverb"
+   ],
+   [
+    "γιατί",
+    "γιατί",
+    "because",
+    "conjunction"
+   ],
+   [
+    "ήθελε",
+    "θέλω",
+    "he wanted",
+    "past continuous, 3rd sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "βλέπει",
+    "βλέπω",
+    "to see, to watch",
+    "present, 3rd sg."
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "θάλασσα",
+    "η θάλασσα",
+    "sea",
+    "acc. sg."
+   ],
+   [
+    "ταξίδι",
+    "το ταξίδι",
+    "trip, journey",
+    "acc. sg."
+   ],
+   [
+    "σταμάτησε",
+    "σταματάω",
+    "it stopped",
+    "past, 3rd sg."
+   ],
+   [
+    "Πάρο",
+    "η Πάρος",
+    "Paros",
+    "island, acc."
+   ],
+   [
+    "Νάξο",
+    "η Νάξος",
+    "Naxos",
+    "island, acc."
+   ],
+   [
+    "Ίο",
+    "η Ίος",
+    "Ios",
+    "island, acc."
+   ],
+   [
+    "σε",
+    "σε",
+    "in, at",
+    "preposition"
+   ],
+   [
+    "κάθε",
+    "κάθε",
+    "every",
+    "indeclinable"
+   ],
+   [
+    "λιμάνι",
+    "το λιμάνι",
+    "port",
+    "acc. sg."
+   ],
+   [
+    "κατέβαινε",
+    "κατεβαίνω",
+    "were getting off",
+    "past continuous, 3rd sg."
+   ],
+   [
+    "κόσμος",
+    "ο κόσμος",
+    "people",
+    "nom. sg."
+   ],
+   [
+    "βαλίτσες",
+    "η βαλίτσα",
+    "suitcases",
+    "acc. pl."
+   ],
+   [
+    "ανέβαιναν",
+    "ανεβαίνω",
+    "were getting on",
+    "past continuous, 3rd pl."
+   ],
+   [
+    "άλλοι",
+    "άλλος",
+    "other",
+    "adj., nom. pl. m."
+   ],
+   [
+    "επιβάτες",
+    "ο επιβάτης",
+    "passengers",
+    "nom. pl."
+   ],
+   [
+    "μεσημέρι",
+    "το μεσημέρι",
+    "midday",
+    "acc. sg."
+   ],
+   [
+    "φύσηξε",
+    "φυσάω",
+    "blew",
+    "past, 3rd sg."
+   ],
+   [
+    "δυνατός",
+    "δυνατός",
+    "strong",
+    "adj., nom. sg. m."
+   ],
+   [
+    "αέρας",
+    "ο αέρας",
+    "wind",
+    "nom. sg."
+   ],
+   [
+    "κουνιόταν",
+    "κουνιέμαι",
+    "was rocking",
+    "past continuous, 3rd sg."
+   ],
+   [
+    "πολύ",
+    "πολύ",
+    "a lot",
+    "adverb"
+   ],
+   [
+    "ζαλίστηκε",
+    "ζαλίζομαι",
+    "he felt seasick, dizzy",
+    "past, 3rd sg."
+   ],
+   [
+    "λίγο",
+    "λίγο",
+    "a little",
+    "adverb"
+   ],
+   [
+    "οπότε",
+    "οπότε",
+    "so",
+    "conjunction"
+   ],
+   [
+    "μπήκε",
+    "μπαίνω",
+    "he went in",
+    "past, 3rd sg."
+   ],
+   [
+    "μέσα",
+    "μέσα",
+    "inside",
+    "adverb"
+   ],
+   [
+    "κάθισε",
+    "κάθομαι",
+    "he sat down",
+    "past, 3rd sg."
+   ],
+   [
+    "σαλόνι",
+    "το σαλόνι",
+    "lounge",
+    "acc. sg."
+   ],
+   [
+    "ήπιε",
+    "πίνω",
+    "he drank",
+    "past, 3rd sg."
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. n."
+   ],
+   [
+    "τσάι",
+    "το τσάι",
+    "tea",
+    "acc. sg."
+   ],
+   [
+    "ηλικιωμένη",
+    "ηλικιωμένος",
+    "elderly",
+    "adj., nom. sg. f."
+   ],
+   [
+    "κυρία",
+    "η κυρία",
+    "lady",
+    "nom. sg."
+   ],
+   [
+    "του",
+    "αυτός",
+    "(to) him",
+    "indirect object pronoun"
+   ],
+   [
+    "έδωσε",
+    "δίνω",
+    "she gave",
+    "past, 3rd sg."
+   ],
+   [
+    "κομμάτι",
+    "το κομμάτι",
+    "piece",
+    "acc. sg."
+   ],
+   [
+    "λεμόνι",
+    "το λεμόνι",
+    "lemon",
+    "acc. sg."
+   ],
+   [
+    "μύρισέ",
+    "μυρίζω",
+    "smell",
+    "imperative, 2nd sg. (μύρισέ το = smell it)"
+   ],
+   [
+    "βοηθάει",
+    "βοηθάω",
+    "it helps",
+    "present, 3rd sg."
+   ],
+   [
+    "είπε",
+    "λέω",
+    "she said",
+    "past, 3rd sg."
+   ],
+   [
+    "τρεις",
+    "τρεις",
+    "three",
+    "number"
+   ],
+   [
+    "απόγευμα",
+    "το απόγευμα",
+    "afternoon",
+    "acc. sg."
+   ],
+   [
+    "έφτασε",
+    "φτάνω",
+    "arrived",
+    "past, 3rd sg."
+   ],
+   [
+    "είδε",
+    "βλέπω",
+    "he saw",
+    "past, 3rd sg."
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "άσπρα",
+    "άσπρος",
+    "white",
+    "adj., acc. pl. n."
+   ],
+   [
+    "σπίτια",
+    "το σπίτι",
+    "houses",
+    "acc. pl."
+   ],
+   [
+    "ψηλά",
+    "ψηλά",
+    "high up",
+    "adverb"
+   ],
+   [
+    "στον",
+    "σε + τον",
+    "on the",
+    "preposition + article"
+   ],
+   [
+    "βράχο",
+    "ο βράχος",
+    "cliff, rock",
+    "acc. sg."
+   ],
+   [
+    "τελικά",
+    "τελικά",
+    "after all",
+    "adverb"
+   ],
+   [
+    "άξιζε",
+    "αξίζει",
+    "it was worth it",
+    "past continuous, 3rd sg."
+   ],
+   [
+    "σκέφτηκε",
+    "σκέφτομαι",
+    "he thought",
+    "past, 3rd sg."
+   ]
+  ]
+ },
+ {
+  "id": "lib-reading-A2-11",
+  "mode": "reading",
+  "level": "A2",
+  "title": "Το βράδυ στην πλατεία",
+  "title_en": "Evening in the square",
+  "topic": "town life, summer",
+  "segments": [
+   "Σε πολλές ελληνικές πόλεις και χωριά, η πλατεία είναι η καρδιά της ζωής. Το καλοκαίρι, όταν ο ήλιος δύει και κάνει λιγότερη ζέστη, ο κόσμος βγαίνει από τα σπίτια για τη βραδινή βόλτα.",
+   "Στην κεντρική πλατεία της Καλαμάτας, κάθε απόγευμα στις επτά, η κυρία Φρόσω και η φίλη της η Λίτσα κάθονται στο ίδιο παγκάκι κάτω από έναν μεγάλο πλάτανο. Από εκεί βλέπουν όλη την πλατεία: τα παιδιά με τα ποδήλατα, τους νέους που τρώνε παγωτό, τους παππούδες που παίζουν τάβλι στο καφενείο.",
+   "«Κοίτα, ο γιος της Ευτυχίας! Πόσο μεγάλωσε!» λέει η Λίτσα. Η κυρία Φρόσω χαμογελάει. Ξέρουν σχεδόν όλους τους ανθρώπους της γειτονιάς και όλοι τις χαιρετούν.",
+   "Γύρω στις δέκα η πλατεία είναι ακόμα γεμάτη. Οι ταβέρνες βάζουν τραπέζια έξω και μυρίζει ψητό κρέας. Οι δύο φίλες σηκώνονται και πηγαίνουν σιγά σιγά σπίτι. «Αύριο πάλι;» ρωτάει η Λίτσα. «Φυσικά», απαντάει η Φρόσω."
+  ],
+  "glossary": [
+   [
+    "δύει",
+    "(the sun) sets",
+    "verb, 3rd sg."
+   ],
+   [
+    "η βόλτα",
+    "walk, stroll",
+    "η βόλτα (f.)"
+   ],
+   [
+    "το παγκάκι",
+    "bench",
+    "το παγκάκι (n.)"
+   ],
+   [
+    "ο πλάτανος",
+    "plane tree",
+    "ο πλάτανος (m.)"
+   ],
+   [
+    "το τάβλι",
+    "backgammon",
+    "το τάβλι (n.)"
+   ],
+   [
+    "μεγαλώνω",
+    "to grow up",
+    "verb; past: μεγάλωσα"
+   ],
+   [
+    "χαιρετάω",
+    "to greet, to say hello",
+    "verb"
+   ],
+   [
+    "σιγά σιγά",
+    "slowly",
+    "expression"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Ποιο είναι το κύριο θέμα του κειμένου;",
+    "en": "What is the main topic of the text?",
+    "options": [
+     "Ένα καφενείο όπου οι παππούδες παίζουν τάβλι",
+     "Η φιλία δύο γυναικών από τα σχολικά χρόνια",
+     "Οι ταβέρνες της Καλαμάτας το καλοκαίρι",
+     "Η βραδινή ζωή στην πλατεία μιας πόλης"
+    ],
+    "answer": 3,
+    "explain": "The text describes what happens in the square on summer evenings, seen by two friends on a bench."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πού κάθονται οι δύο φίλες;",
+    "en": "Where do the two friends sit?",
+    "options": [
+     "Σε ένα καφενείο της πλατείας",
+     "Σε ένα παγκάκι κάτω από έναν πλάτανο",
+     "Σε μια ταβέρνα με τραπέζια έξω",
+     "Στο μπαλκόνι της κυρίας Φρόσως"
+    ],
+    "answer": 1,
+    "explain": "«κάθονται στο ίδιο παγκάκι κάτω από έναν μεγάλο πλάτανο»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Στις δέκα το βράδυ η πλατεία είναι άδεια.",
+    "en": "At ten in the evening the square is empty.",
+    "answer": 1,
+    "explain": "«Γύρω στις δέκα η πλατεία είναι ακόμα γεμάτη.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Οι δύο φίλες πηγαίνουν στην πλατεία σχεδόν κάθε μέρα.",
+    "en": "The two friends go to the square almost every day.",
+    "answer": 0,
+    "explain": "They sit there «κάθε απόγευμα στις επτά» and plan to come again tomorrow («Αύριο πάλι;»)."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "το παγκάκι",
+      "bench"
+     ],
+     [
+      "ο πλάτανος",
+      "plane tree"
+     ],
+     [
+      "το τάβλι",
+      "backgammon"
+     ],
+     [
+      "χαιρετούν",
+      "they greet"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Οι παππούδες ___ (παίζω) τάβλι στο καφενείο.",
+    "en": "The grandfathers play backgammon in the café.",
+    "accept": [
+     "παίζουν"
+    ],
+    "explain": "Present tense, 3rd person plural: παίζω → παίζουν."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Τι κάνεις συνήθως τα καλοκαιρινά βράδια; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "What do you usually do on summer evenings? Write two or three sentences.",
+    "explain": "Τα καλοκαιρινά βράδια βγαίνω βόλτα με τους φίλους μου. Συνήθως τρώμε παγωτό στο πάρκο ή καθόμαστε σε ένα καφέ δίπλα στη θάλασσα."
+   }
+  ],
+  "words": [
+   [
+    "σε",
+    "σε",
+    "in",
+    "preposition"
+   ],
+   [
+    "πολλές",
+    "πολύς",
+    "many",
+    "adj., acc. pl. f."
+   ],
+   [
+    "ελληνικές",
+    "ελληνικός",
+    "Greek",
+    "adj., acc. pl. f."
+   ],
+   [
+    "πόλεις",
+    "η πόλη",
+    "towns",
+    "acc. pl."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "χωριά",
+    "το χωριό",
+    "villages",
+    "acc. pl."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "πλατεία",
+    "η πλατεία",
+    "square",
+    "nom. sg."
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is",
+    "present, 3rd sg."
+   ],
+   [
+    "καρδιά",
+    "η καρδιά",
+    "heart",
+    "nom. sg."
+   ],
+   [
+    "της",
+    "η / αυτή",
+    "of the; her",
+    "article gen. sg. f.; possessive pronoun"
+   ],
+   [
+    "ζωής",
+    "η ζωή",
+    "life",
+    "gen. sg."
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "καλοκαίρι",
+    "το καλοκαίρι",
+    "summer",
+    "acc. sg. (το καλοκαίρι = in summer)"
+   ],
+   [
+    "όταν",
+    "όταν",
+    "when",
+    "conjunction"
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "ήλιος",
+    "ο ήλιος",
+    "sun",
+    "nom. sg."
+   ],
+   [
+    "δύει",
+    "δύω",
+    "sets",
+    "present, 3rd sg."
+   ],
+   [
+    "κάνει",
+    "κάνω",
+    "it is (weather)",
+    "present, 3rd sg. (κάνει ζέστη = it is hot)"
+   ],
+   [
+    "λιγότερη",
+    "λίγος",
+    "less",
+    "comparative, acc. sg. f."
+   ],
+   [
+    "ζέστη",
+    "η ζέστη",
+    "heat",
+    "acc. sg."
+   ],
+   [
+    "κόσμος",
+    "ο κόσμος",
+    "people",
+    "nom. sg."
+   ],
+   [
+    "βγαίνει",
+    "βγαίνω",
+    "goes out",
+    "present, 3rd sg."
+   ],
+   [
+    "από",
+    "από",
+    "from; out of",
+    "preposition"
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "σπίτια",
+    "το σπίτι",
+    "houses",
+    "acc. pl."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "βραδινή",
+    "βραδινός",
+    "evening",
+    "adj., acc. sg. f."
+   ],
+   [
+    "βόλτα",
+    "η βόλτα",
+    "stroll, walk",
+    "acc. sg."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "κεντρική",
+    "κεντρικός",
+    "central, main",
+    "adj., acc. sg. f."
+   ],
+   [
+    "Καλαμάτας",
+    "η Καλαμάτα",
+    "Kalamata",
+    "city, gen."
+   ],
+   [
+    "κάθε",
+    "κάθε",
+    "every",
+    "indeclinable"
+   ],
+   [
+    "απόγευμα",
+    "το απόγευμα",
+    "afternoon, early evening",
+    "acc. sg."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "επτά",
+    "επτά",
+    "seven",
+    "number"
+   ],
+   [
+    "κυρία",
+    "η κυρία",
+    "Mrs",
+    "nom. sg."
+   ],
+   [
+    "Φρόσω",
+    "Φρόσω",
+    "Froso",
+    "name"
+   ],
+   [
+    "φίλη",
+    "η φίλη",
+    "friend (female)",
+    "nom. sg."
+   ],
+   [
+    "Λίτσα",
+    "Λίτσα",
+    "Litsa",
+    "name"
+   ],
+   [
+    "κάθονται",
+    "κάθομαι",
+    "they sit",
+    "present, 3rd pl."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "on the; in the",
+    "preposition + article"
+   ],
+   [
+    "ίδιο",
+    "ίδιος",
+    "same",
+    "adj., acc. sg. n."
+   ],
+   [
+    "παγκάκι",
+    "το παγκάκι",
+    "bench",
+    "acc. sg."
+   ],
+   [
+    "κάτω",
+    "κάτω",
+    "under",
+    "κάτω από = under"
+   ],
+   [
+    "έναν",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "μεγάλο",
+    "μεγάλος",
+    "big",
+    "adj., acc. sg. m."
+   ],
+   [
+    "πλάτανο",
+    "ο πλάτανος",
+    "plane tree",
+    "acc. sg."
+   ],
+   [
+    "εκεί",
+    "εκεί",
+    "there",
+    "adverb"
+   ],
+   [
+    "βλέπουν",
+    "βλέπω",
+    "they see",
+    "present, 3rd pl."
+   ],
+   [
+    "όλη",
+    "όλος",
+    "whole",
+    "adj., acc. sg. f."
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "παιδιά",
+    "το παιδί",
+    "children",
+    "acc. pl."
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "ποδήλατα",
+    "το ποδήλατο",
+    "bicycles",
+    "acc. pl."
+   ],
+   [
+    "τους",
+    "ο / αυτές",
+    "the; them",
+    "article acc. pl. m."
+   ],
+   [
+    "νέους",
+    "ο νέος",
+    "young people",
+    "acc. pl."
+   ],
+   [
+    "που",
+    "που",
+    "who",
+    "relative pronoun"
+   ],
+   [
+    "τρώνε",
+    "τρώω",
+    "they eat",
+    "present, 3rd pl."
+   ],
+   [
+    "παγωτό",
+    "το παγωτό",
+    "ice cream",
+    "acc. sg."
+   ],
+   [
+    "παππούδες",
+    "ο παππούς",
+    "old men, grandfathers",
+    "acc. pl."
+   ],
+   [
+    "παίζουν",
+    "παίζω",
+    "they play",
+    "present, 3rd pl."
+   ],
+   [
+    "τάβλι",
+    "το τάβλι",
+    "backgammon",
+    "acc. sg."
+   ],
+   [
+    "καφενείο",
+    "το καφενείο",
+    "traditional café",
+    "acc. sg."
+   ],
+   [
+    "κοίτα",
+    "κοιτάζω",
+    "look",
+    "imperative, 2nd sg."
+   ],
+   [
+    "γιος",
+    "ο γιος",
+    "son",
+    "nom. sg."
+   ],
+   [
+    "Ευτυχίας",
+    "Ευτυχία",
+    "Eftychia",
+    "name, gen."
+   ],
+   [
+    "πόσο",
+    "πόσο",
+    "how much",
+    "adverb"
+   ],
+   [
+    "μεγάλωσε",
+    "μεγαλώνω",
+    "he has grown up",
+    "past, 3rd sg."
+   ],
+   [
+    "λέει",
+    "λέω",
+    "says",
+    "present, 3rd sg."
+   ],
+   [
+    "χαμογελάει",
+    "χαμογελάω",
+    "smiles",
+    "present, 3rd sg."
+   ],
+   [
+    "ξέρουν",
+    "ξέρω",
+    "they know",
+    "present, 3rd pl."
+   ],
+   [
+    "σχεδόν",
+    "σχεδόν",
+    "almost",
+    "adverb"
+   ],
+   [
+    "όλους",
+    "όλος",
+    "all",
+    "adj., acc. pl. m."
+   ],
+   [
+    "ανθρώπους",
+    "ο άνθρωπος",
+    "people",
+    "acc. pl."
+   ],
+   [
+    "γειτονιάς",
+    "η γειτονιά",
+    "neighbourhood",
+    "gen. sg."
+   ],
+   [
+    "όλοι",
+    "όλος",
+    "everyone",
+    "nom. pl. m."
+   ],
+   [
+    "τις",
+    "αυτές",
+    "them (f.)",
+    "object pronoun, acc. pl. f."
+   ],
+   [
+    "χαιρετούν",
+    "χαιρετάω",
+    "greet",
+    "present, 3rd pl."
+   ],
+   [
+    "γύρω",
+    "γύρω",
+    "around",
+    "γύρω στις = at around"
+   ],
+   [
+    "δέκα",
+    "δέκα",
+    "ten",
+    "number"
+   ],
+   [
+    "ακόμα",
+    "ακόμα",
+    "still",
+    "adverb"
+   ],
+   [
+    "γεμάτη",
+    "γεμάτος",
+    "full",
+    "adj., nom. sg. f."
+   ],
+   [
+    "οι",
+    "οι",
+    "the",
+    "article, nom. pl."
+   ],
+   [
+    "ταβέρνες",
+    "η ταβέρνα",
+    "taverns",
+    "nom. pl."
+   ],
+   [
+    "βάζουν",
+    "βάζω",
+    "they put",
+    "present, 3rd pl."
+   ],
+   [
+    "τραπέζια",
+    "το τραπέζι",
+    "tables",
+    "acc. pl."
+   ],
+   [
+    "έξω",
+    "έξω",
+    "outside",
+    "adverb"
+   ],
+   [
+    "μυρίζει",
+    "μυρίζω",
+    "it smells of",
+    "present, 3rd sg."
+   ],
+   [
+    "ψητό",
+    "ψητός",
+    "grilled",
+    "adj., acc. sg. n."
+   ],
+   [
+    "κρέας",
+    "το κρέας",
+    "meat",
+    "acc. sg."
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "φίλες",
+    "η φίλη",
+    "friends (female)",
+    "nom. pl."
+   ],
+   [
+    "σηκώνονται",
+    "σηκώνομαι",
+    "they get up",
+    "present, 3rd pl."
+   ],
+   [
+    "πηγαίνουν",
+    "πηγαίνω",
+    "they go",
+    "present, 3rd pl."
+   ],
+   [
+    "σιγά",
+    "σιγά",
+    "slowly",
+    "adverb (σιγά σιγά = slowly)"
+   ],
+   [
+    "σπίτι",
+    "το σπίτι",
+    "home",
+    "acc. sg."
+   ],
+   [
+    "αύριο",
+    "αύριο",
+    "tomorrow",
+    "adverb"
+   ],
+   [
+    "πάλι",
+    "πάλι",
+    "again",
+    "adverb"
+   ],
+   [
+    "ρωτάει",
+    "ρωτάω",
+    "asks",
+    "present, 3rd sg."
+   ],
+   [
+    "φυσικά",
+    "φυσικά",
+    "of course",
+    "adverb"
+   ],
+   [
+    "απαντάει",
+    "απαντάω",
+    "answers",
+    "present, 3rd sg."
+   ]
+  ]
+ }
+]

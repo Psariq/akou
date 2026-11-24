@@ -7,6 +7,7 @@ import { SKILL_LABEL, streakDays } from "../lib/stats";
 import { weakSkills } from "../lib/practice";
 import { getMonth, isComplete, monthLabel, openMonth, updateMonth } from "../lib/placement";
 import { Icon } from "./Icon";
+import { LibraryNote } from "./LibraryNote";
 
 const SOURCE_LABEL: Record<SourceKind | "mixed", string> = {
   mixed: "Mixed",
@@ -162,6 +163,7 @@ export function Home() {
       )}
 
       {ready && <PlacementBanner />}
+      <LibraryNote />
 
       <section className="card" aria-label="Estimated level">
         <div className="row spread" style={{ alignItems: "flex-end", marginBottom: 12 }}>

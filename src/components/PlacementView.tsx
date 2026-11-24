@@ -24,6 +24,7 @@ import { saveProgress } from "../lib/storage";
 import { TaskCard } from "./Tasks";
 import { Player } from "./Player";
 import { Icon } from "./Icon";
+import { LibraryNote } from "./LibraryNote";
 
 const fmtLevel = (theta: number) => {
   const d = describeTheta(theta);
@@ -181,6 +182,7 @@ export function PlacementView() {
           )}
         </section>
       )}
+      {complete && state.applied && <LibraryNote snoozable={false} />}
 
       <p className="tiny">
         How the result is calculated: the level that best fits both of your scores, using the same model as your normal

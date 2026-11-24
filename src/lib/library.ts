@@ -1,4 +1,4 @@
-import type { Cefr, Lesson, Mode, SessionRecord, SourceKind, Task, TaskSkill, TaskType } from "./types";
+import type { Cefr, Lesson, Mode, SessionRecord, SourceKind, Task } from "./types";
 import { levelToNum, type Target } from "./cefr";
 import readingA2 from "../data/starter/reading-A2.json";
 import readingB1 from "../data/starter/reading-B1.json";
@@ -7,6 +7,7 @@ import listeningA2 from "../data/starter/listening-A2.json";
 import listeningB1 from "../data/starter/listening-B1.json";
 import listeningB2 from "../data/starter/listening-B2.json";
 import openWikipedia from "../data/open/wikipedia.json";
+import { LIBRARY, type RawLesson } from "./libraryData";
 
 /**
  * The lesson library: a built-in starter set plus lessons generated in the
@@ -23,31 +24,6 @@ export const NEWS_MAX_AGE_DAYS = 4;
 export const STOCK_CAP = 8;
 
 /* ---------------- Starter set ---------------- */
-
-interface RawTask {
-  type: TaskType;
-  skill: TaskSkill;
-  prompt: string;
-  en: string;
-  options?: string[];
-  answer?: number;
-  accept?: string[];
-  pairs?: [string, string][];
-  explain?: string;
-}
-
-interface RawLesson {
-  id: string;
-  mode?: Mode;
-  level?: Cefr;
-  source?: { title: string; url: string; revid: number };
-  title: string;
-  title_en: string;
-  topic: string;
-  segments: (string | string[])[];
-  glossary: string[][];
-  tasks: RawTask[];
-}
 
 function normalize(raw: RawLesson, level: Cefr): Lesson {
   const source: Lesson["source"] = raw.source
@@ -94,10 +70,33 @@ const load = (raws: unknown, level: Cefr) => (raws as RawLesson[]).map((r) => no
 const OPEN: RawLesson[] = (openWikipedia as { lessons: RawLesson[] }).lessons;
 const openFor = (mode: Mode) => OPEN.filter((l) => l.mode === mode).map((l) => normalize(l, l.level!));
 
-/** Built-in lessons. Open-source-based ones come first, so they are used before the AI-written ones. */
+/** The larger built-in library: word translations included, so using a lesson costs nothing. */
+const libraryFor = (mode: Mode): Lesson[] =>
+  LIBRARY.filter((l) => l.mode === mode).map((l) => {
+    const lesson = normalize(l, l.level);
+    return { ...lesson, source: { kind: "ai", starter: true, library: true, publisher: "Άκου library" } };
+  });
+
+/**
+ * Built-in lessons, in the order they are used: Wikipedia-based ones first,
+ * then the library (translations included), then the first AI-written
+ * starters (their translations still come from the API).
+ */
 export const STARTER: Record<Mode, Lesson[]> = {
-  reading: [...openFor("reading"), ...load(readingA2, "A2"), ...load(readingB1, "B1"), ...load(readingB2, "B2")],
-  listening: [...openFor("listening"), ...load(listeningA2, "A2"), ...load(listeningB1, "B1"), ...load(listeningB2, "B2")],
+  reading: [
+    ...openFor("reading"),
+    ...libraryFor("reading"),
+    ...load(readingA2, "A2"),
+    ...load(readingB1, "B1"),
+    ...load(readingB2, "B2"),
+  ],
+  listening: [
+    ...openFor("listening"),
+    ...libraryFor("listening"),
+    ...load(listeningA2, "A2"),
+    ...load(listeningB1, "B1"),
+    ...load(listeningB2, "B2"),
+  ],
 };
 
 /* ---------------- Stock (generated, on this device) ---------------- */
@@ -182,13 +181,64 @@ export interface Candidate {
   origin: "stock" | "starter";
   createdAt?: string;
   costUsd: number;
+  /** A graded text kept back until it is due (1 lesson in GRADED_EVERY). */
+  held?: boolean;
+}
+
+/* ---------------- Graded texts: 1 lesson in 4 ---------------- */
+
+/**
+ * While built-in lessons are available, one lesson in GRADED_EVERY per mode
+ * is a graded text from the Centre for the Greek Language (written with the
+ * API); the rest come from the built-in library.
+ */
+export const GRADED_EVERY = 4;
+
+/** Sessions of this mode since the last one on a graded text (all of them if none). */
+export function sessionsSinceGraded(mode: Mode, sessions: SessionRecord[]): number {
+  let n = 0;
+  for (let i = sessions.length - 1; i >= 0; i--) {
+    const s = sessions[i];
+    if (s.mode !== mode) continue;
+    if (s.source.kind === "textbank") break;
+    n++;
+  }
+  return n;
+}
+
+/** The next session of this mode should be on a graded text. */
+export function gradedDue(mode: Mode, sessions: SessionRecord[]): boolean {
+  return sessionsSinceGraded(mode, sessions) >= GRADED_EVERY - 1;
+}
+
+/** Prepare the graded text one session early, so it is ready when it is due. */
+export function gradedPrepareNow(mode: Mode, sessions: SessionRecord[]): boolean {
+  return sessionsSinceGraded(mode, sessions) >= GRADED_EVERY - 2;
+}
+
+/* ---------------- Built-in lessons left (restock reminder) ---------------- */
+
+/** Below this many unused built-in lessons at the learner's level (per mode), the app suggests restocking. */
+export const LOW_LIBRARY = 10;
+
+/** Unused built-in lessons (library and starters) of a mode at one level. */
+export function builtInLeft(mode: Mode, level: Cefr, sessions: SessionRecord[]): number {
+  const done = doneIds(sessions);
+  return STARTER[mode].filter((l) => l.level === level && !done.has(l.id)).length;
 }
 
 export function availableLessons(mode: Mode, sessions: SessionRecord[], stock: Stock, now: number = Date.now()): Candidate[] {
   const done = doneIds(sessions);
+  const hold = !gradedDue(mode, sessions);
   const fromStock: Candidate[] = stock[mode]
     .filter((i) => !done.has(i.lesson.id) && !isExpired(i, now))
-    .map((i) => ({ lesson: i.lesson, origin: "stock", createdAt: i.createdAt, costUsd: i.costUsd }));
+    .map((i) => ({
+      lesson: i.lesson,
+      origin: "stock",
+      createdAt: i.createdAt,
+      costUsd: i.costUsd,
+      ...(hold && i.lesson.source.kind === "textbank" ? { held: true } : {}),
+    }));
   const fromStarter: Candidate[] = STARTER[mode]
     .filter((l) => !done.has(l.id))
     .map((l) => ({ lesson: l, origin: "starter", costUsd: 0 }));
@@ -199,8 +249,13 @@ export function countAtLevel(cands: Candidate[], level: Cefr): number {
   return cands.filter((c) => c.lesson.level === level).length;
 }
 
-/** Order within a level: fresh news first (it expires), then other generated lessons (oldest first), then starters. */
+/**
+ * Order within a level: fresh news first (it expires), then other generated
+ * lessons (oldest first), then built-in ones; a graded text that isn't due
+ * yet comes last.
+ */
 function rank(c: Candidate): number {
+  if (c.held) return 3;
   if (c.origin === "stock" && c.lesson.source.kind === "news") return 0;
   if (c.origin === "stock") return 1;
   return 2;

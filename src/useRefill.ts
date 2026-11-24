@@ -14,6 +14,8 @@ import {
   saveStock,
 } from "./lib/library";
 import { createLesson } from "./lib/lessonFactory";
+import { builtInLeft, gradedPrepareNow, REFILL_BELOW } from "./lib/library";
+import { pickTextbank } from "./lib/sources";
 import { rankLessons } from "./lib/library";
 import { getGlosses, hasGlosses } from "./lib/glosses";
 import { ensureGlosses, glossGenerationsLast24h, MAX_GLOSS_PER_DAY } from "./lib/glossService";
@@ -45,6 +47,36 @@ function placementToPrepare(): { month: string; mode: Mode } | null {
   const m = getMonth(month);
   for (const mode of ["reading", "listening"] as Mode[]) {
     if (!m.results[mode] && !partPrepared(month, mode)) return { month, mode };
+  }
+  return null;
+}
+
+/** Source URLs already used or waiting in the stock (graded texts are never repeated). */
+function usedUrlsFor(mode: Mode, sessions: SessionRecord[]): string[] {
+  return [
+    ...sessions.map((x) => x.source.url),
+    ...loadStock()[mode].map((x) => x.lesson.source.url),
+    ...placementUsedUrls(),
+  ].filter((x): x is string => !!x);
+}
+
+/**
+ * While there are built-in lessons at the learner's level, the API is only
+ * used for the graded text that comes every 4th lesson: prepare it one
+ * session before it is due, if none is waiting and the text bank has one left.
+ * (Without built-in lessons, the normal refill writes every lesson.)
+ */
+function gradedToPrepare(settings: Settings, progress: Progress, sessions: SessionRecord[]) {
+  if (!settings.sources.textbank) return null;
+  const stock = loadStock();
+  const done = doneIds(sessions);
+  for (const mode of ["reading", "listening"] as Mode[]) {
+    const target = targetFor(progress[mode].theta, settings.levelOverride);
+    if (builtInLeft(mode, target.level, sessions) < REFILL_BELOW) continue;
+    if (!gradedPrepareNow(mode, sessions)) continue;
+    if (stock[mode].some((i) => i.lesson.source.kind === "textbank" && !done.has(i.lesson.id))) continue;
+    if (!pickTextbank(mode, target.level, new Set(usedUrlsFor(mode, sessions)))) continue;
+    return { mode, target };
   }
   return null;
 }
@@ -128,7 +160,8 @@ export function useRefill(
     const needGloss = glossGenerationsLast24h() < MAX_GLOSS_PER_DAY && !!nextToGloss(s0, p0, ss0);
     const needPractice = extraGenerationsLast24h() < MAX_EXTRA_PER_DAY && !!nextToPractice(s0, p0, ss0);
     const needPlacement = !!placementToPrepare();
-    if (!nextRefill(counts(), filling.current) && !needGloss && !needPractice && !needPlacement) return;
+    const needGraded = generationsLast24h() < MAX_PER_DAY && !!gradedToPrepare(s0, p0, ss0);
+    if (!nextRefill(counts(), filling.current) && !needGraded && !needGloss && !needPractice && !needPlacement) return;
     running.current = true;
 
     (async () => {
@@ -148,16 +181,27 @@ export function useRefill(
             ...loadStock()[mode].map((x) => x.lesson.source.title),
           ].filter((x): x is string => !!x);
           recordGeneration();
-          const usedUrls = [
-            ...ss.map((x) => x.source.url),
-            ...loadStock()[mode].map((x) => x.lesson.source.url),
-            ...placementUsedUrls(),
-          ].filter((x): x is string => !!x);
+          const usedUrls = usedUrlsFor(mode, ss);
           const { lesson, cost } = await createLesson(apiKey, s, mode, target, "mixed", { avoidTitles, usedUrls, job: "lesson-bg" });
           addToStock(mode, { lesson, createdAt: new Date().toISOString(), costUsd: cost.usd });
           setVersion((v) => v + 1);
         }
         filling.current = null;
+
+        // The graded text for every 4th lesson (while built-in lessons cover the rest).
+        for (let i = 0; i < 2; i++) {
+          const { settings: s, progress: p, sessions: ss } = latest.current;
+          const todo = gradedToPrepare(s, p, ss);
+          if (!todo || generationsLast24h() >= MAX_PER_DAY) break;
+          setStatus({ running: true, mode: todo.mode, level: todo.target.level, error: null });
+          recordGeneration();
+          const { lesson, cost } = await createLesson(apiKey, s, todo.mode, todo.target, "textbank", {
+            usedUrls: usedUrlsFor(todo.mode, ss),
+            job: "lesson-bg",
+          });
+          addToStock(todo.mode, { lesson, createdAt: new Date().toISOString(), costUsd: cost.usd });
+          setVersion((v) => v + 1);
+        }
 
         // Then prepare word glosses for the lessons most likely to come next.
         for (let i = 0; i < 2 * GLOSS_AHEAD; i++) {

@@ -61,6 +61,8 @@ export interface SourceInfo {
   kind: SourceKind;
   /** Part of the built-in starter library. */
   starter?: boolean;
+  /** Part of the larger built-in library (src/data/library), with word translations included. */
+  library?: boolean;
   title?: string;
   url?: string;
   publisher?: string;

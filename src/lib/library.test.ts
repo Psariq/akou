@@ -14,7 +14,7 @@ describe("starter library", () => {
   it("has 4 AI-written reading + 4 listening lessons at each of A2, B1, B2", () => {
     for (const mode of ["reading", "listening"] as Mode[]) {
       for (const level of ["A2", "B1", "B2"] as const) {
-        expect(STARTER[mode].filter((l) => l.level === level && l.source.kind === "ai")).toHaveLength(4);
+        expect(STARTER[mode].filter((l) => l.level === level && l.source.kind === "ai" && !l.source.library)).toHaveLength(4);
       }
     }
   });

@@ -1,5 +1,6 @@
 import type { GlossEntry, Lesson } from "./types";
 import { normalize, normalizeLoose } from "./grading";
+import { bundledGlosses } from "./libraryData";
 
 /**
  * Word glosses ("tap a word to see its translation").
@@ -49,11 +50,20 @@ function saveStore(s: Store): void {
 }
 
 export function getGlosses(lessonId: string): GlossRecord | null {
-  return loadStore()[lessonId] ?? null;
+  const stored = loadStore()[lessonId] ?? null;
+  const bundled = bundledGlosses(lessonId);
+  if (!bundled) return stored;
+  // Built-in library lesson: translations ship with the app (free); add any words looked up on demand.
+  return {
+    entries: dedupe([...bundled, ...(stored?.entries ?? [])]),
+    costUsd: stored?.costUsd ?? 0,
+    createdAt: stored?.createdAt ?? "",
+    complete: true,
+  };
 }
 
 export function hasGlosses(lessonId: string): boolean {
-  return !!loadStore()[lessonId]?.complete;
+  return !!bundledGlosses(lessonId) || !!loadStore()[lessonId]?.complete;
 }
 
 /** Components showing a lesson listen for this to pick up new glosses. */
