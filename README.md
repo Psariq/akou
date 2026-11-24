@@ -92,6 +92,7 @@ Considered and not used (checked Nov 2026):
 - Greek Wikivoyage (CC BY-SA 4.0, 1,436 articles, 8 active users): native text but list-heavy; would need AI adaptation.
 - Greek school textbooks (ebooks.edu.gr): free for school use, not an open licence, written for Greek children.
 - University of Athens «Κείμενα για νέους σε απλά ελληνικά» (4 volumes, free distribution): written for learners aged 11–15; servers didn't respond when checked.
+- Ministry of Education «Οδυσσέας» (A1, A2 textbooks for adult migrants, 2011) and the Centre's «ΚΛΙΚ» coursebook supplements: PDFs (no CORS, too large to fetch per lesson) or worksheets tied to the printed book.
 - Commercial graded readers with free samples (Greek Easy Readers, ReadNative, PollyStop): all rights reserved, partly AI-made.
 
 Earlier: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, one active user and some unreliable recent articles), Tatoeba (sentences, not texts), Mozilla Common Voice (CC0 sentences with audio, but not connected texts).

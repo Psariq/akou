@@ -215,6 +215,7 @@ The app is feature-complete for now; the next decisions wait on cost data with t
 **Open items**
 
 - [ ] Compare the weekly cost after the library is live with the first week ($3.99 app estimate).
+- [ ] Reading material (decided 24 Nov 2026: wait): if the Centre's text bank (35 A2, 22 B1 reading texts) feels too thin, build a private lesson pack from the University of Athens «Κείμενα για νέους σε απλά ελληνικά» (adapted texts by Greek authors, 4 volumes, free distribution), imported on the phone and kept out of the public repository.
 - [ ] After the first placement test (window opens in the last 7 days of November), decide whether to raise the step-size floor from 0.15 to 0.25.
 - [ ] The AI-written built-in lessons have not been checked by a native speaker.
 
