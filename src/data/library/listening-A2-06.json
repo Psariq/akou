@@ -1,0 +1,1514 @@
+[
+ {
+  "id": "lib-listening-A2-21",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Στο ταμείο του μουσείου",
+  "title_en": "At the museum ticket desk",
+  "topic": "culture, tickets",
+  "segments": [
+   [
+    "Ταμίας",
+    "Καλημέρα σας!"
+   ],
+   [
+    "Φίλιππος",
+    "Καλημέρα. Δύο εισιτήρια για ενήλικες και δύο για παιδιά, παρακαλώ."
+   ],
+   [
+    "Ταμίας",
+    "Πόσων χρονών είναι τα παιδιά;"
+   ],
+   [
+    "Φίλιππος",
+    "Ο μικρός είναι έξι και η μεγάλη δεκατέσσερα."
+   ],
+   [
+    "Ταμίας",
+    "Για παιδιά κάτω από δώδεκα χρονών η είσοδος είναι δωρεάν. Η κόρη σας πληρώνει μειωμένο, πέντε ευρώ. Οι ενήλικες πληρώνουν δέκα ευρώ ο καθένας. Σύνολο είκοσι πέντε."
+   ],
+   [
+    "Φίλιππος",
+    "Ωραία. Υπάρχει ξενάγηση;"
+   ],
+   [
+    "Ταμίας",
+    "Ναι, στις έντεκα υπάρχει ξενάγηση στα αγγλικά και στις δώδεκα στα ελληνικά. Κρατάει μία ώρα και είναι δωρεάν με το εισιτήριο. Έχουμε επίσης ακουστικά σε οκτώ γλώσσες, με τρία ευρώ."
+   ],
+   [
+    "Φίλιππος",
+    "Θα περιμένουμε την ξενάγηση στις δώδεκα. Πού μπορούμε να αφήσουμε τα σακίδια;"
+   ],
+   [
+    "Ταμίας",
+    "Στο βεστιάριο, εκεί αριστερά. Μέσα δεν επιτρέπονται μεγάλες τσάντες. Και προσοχή: φωτογραφίες μπορείτε να βγάλετε, αλλά χωρίς φλας."
+   ],
+   [
+    "Φίλιππος",
+    "Εντάξει. Υπάρχει και καφετέρια;"
+   ],
+   [
+    "Ταμίας",
+    "Ναι, στον τελευταίο όροφο, με ωραία θέα. Καλή επίσκεψη!"
+   ]
+  ],
+  "glossary": [
+   [
+    "ο ενήλικας",
+    "adult",
+    "ο ενήλικας (m.)"
+   ],
+   [
+    "η είσοδος",
+    "entry; entrance",
+    "η είσοδος (f.)"
+   ],
+   [
+    "μειωμένος",
+    "reduced (price)",
+    "adjective"
+   ],
+   [
+    "το σύνολο",
+    "total",
+    "το σύνολο (n.)"
+   ],
+   [
+    "η ξενάγηση",
+    "guided tour",
+    "η ξενάγηση (f.)"
+   ],
+   [
+    "τα ακουστικά",
+    "headphones, audio guide",
+    "plural noun"
+   ],
+   [
+    "το βεστιάριο",
+    "cloakroom",
+    "το βεστιάριο (n.)"
+   ],
+   [
+    "επιτρέπεται",
+    "it is allowed",
+    "verb; pl.: επιτρέπονται"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι συμβαίνει στον διάλογο;",
+    "en": "What happens in the dialogue?",
+    "options": [
+     "Ένας ξεναγός εξηγεί την ιστορία ενός αρχαίου ναού",
+     "Μια οικογένεια αγοράζει εισιτήρια σε ένα μουσείο",
+     "Ένας πατέρας ψάχνει τα σακίδια των παιδιών του",
+     "Μια οικογένεια κλείνει τραπέζι στην καφετέρια του μουσείου"
+    ],
+    "answer": 1,
+    "explain": "Filippos buys tickets for his family and asks about tours, bags, photos and the café."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πόσο πλήρωσε συνολικά ο Φίλιππος;",
+    "en": "How much did Filippos pay in total?",
+    "options": [
+     "Είκοσι ευρώ",
+     "Είκοσι πέντε ευρώ",
+     "Τριάντα ευρώ",
+     "Τριάντα πέντε ευρώ"
+    ],
+    "answer": 1,
+    "explain": "Two adults at ten, his daughter at five, his son free: «Σύνολο είκοσι πέντε»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Η ξενάγηση στα ελληνικά είναι στις έντεκα.",
+    "en": "The tour in Greek is at eleven.",
+    "answer": 1,
+    "explain": "At eleven it is in English; the Greek tour is at twelve."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο μικρός γιος του Φίλιππου δεν πληρώνει εισιτήριο.",
+    "en": "Filippos's young son doesn't pay for a ticket.",
+    "answer": 0,
+    "explain": "He is six, and entry is free «για παιδιά κάτω από δώδεκα χρονών»."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "μειωμένο",
+      "reduced (ticket)"
+     ],
+     [
+      "η ξενάγηση",
+      "guided tour"
+     ],
+     [
+      "τα ακουστικά",
+      "audio guide, headphones"
+     ],
+     [
+      "το βεστιάριο",
+      "cloakroom"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Πού μπορούμε να ___ (αφήνω) τα σακίδια;",
+    "en": "Where can we leave the backpacks?",
+    "accept": [
+     "αφήσουμε"
+    ],
+    "explain": "να + perfective subjunctive, 1st person plural: αφήνω → άφησα → να αφήσουμε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Ποιο μουσείο σού άρεσε πολύ; Τι είδες εκεί; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Which museum did you really like? What did you see there? Write two or three sentences.",
+    "explain": "Μου άρεσε πολύ το Αρχαιολογικό Μουσείο της Αθήνας. Είδα αγάλματα, βάζα και χρυσά κοσμήματα, και έμεινα εκεί τρεις ώρες."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "σας",
+    "εσείς",
+    "(to) you; your",
+    "pronoun, polite"
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "εισιτήρια",
+    "το εισιτήριο",
+    "tickets",
+    "acc. pl."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "ενήλικες",
+    "ο ενήλικας",
+    "adults",
+    "acc./nom. pl."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "παιδιά",
+    "το παιδί",
+    "children",
+    "acc. pl."
+   ],
+   [
+    "παρακαλώ",
+    "παρακαλώ",
+    "please",
+    "present, 1st sg."
+   ],
+   [
+    "πόσων",
+    "πόσος",
+    "how many",
+    "gen. pl. (πόσων χρονών = how old)"
+   ],
+   [
+    "χρονών",
+    "ο χρόνος",
+    "years old",
+    "gen. pl."
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "are; is",
+    "present, 3rd"
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "μικρός",
+    "μικρός",
+    "the little one (boy)",
+    "adj., nom. sg. m."
+   ],
+   [
+    "έξι",
+    "έξι",
+    "six",
+    "number"
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "μεγάλη",
+    "μεγάλος",
+    "the older one (girl)",
+    "adj., nom. sg. f."
+   ],
+   [
+    "δεκατέσσερα",
+    "δεκατέσσερα",
+    "fourteen",
+    "number"
+   ],
+   [
+    "κάτω",
+    "κάτω",
+    "under",
+    "κάτω από = under"
+   ],
+   [
+    "από",
+    "από",
+    "from; than",
+    "preposition"
+   ],
+   [
+    "δώδεκα",
+    "δώδεκα",
+    "twelve",
+    "number"
+   ],
+   [
+    "είσοδος",
+    "η είσοδος",
+    "entry",
+    "nom. sg."
+   ],
+   [
+    "δωρεάν",
+    "δωρεάν",
+    "free",
+    "adverb"
+   ],
+   [
+    "κόρη",
+    "η κόρη",
+    "daughter",
+    "nom. sg."
+   ],
+   [
+    "πληρώνει",
+    "πληρώνω",
+    "pays",
+    "present, 3rd sg."
+   ],
+   [
+    "μειωμένο",
+    "μειωμένος",
+    "reduced (ticket)",
+    "adj., acc. sg. n."
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "ευρώ",
+    "το ευρώ",
+    "euros",
+    "indeclinable"
+   ],
+   [
+    "οι",
+    "οι",
+    "the",
+    "article, nom. pl."
+   ],
+   [
+    "πληρώνουν",
+    "πληρώνω",
+    "pay",
+    "present, 3rd pl."
+   ],
+   [
+    "δέκα",
+    "δέκα",
+    "ten",
+    "number"
+   ],
+   [
+    "καθένας",
+    "καθένας",
+    "each",
+    "pronoun, nom. sg. m."
+   ],
+   [
+    "σύνολο",
+    "το σύνολο",
+    "total",
+    "nom. sg."
+   ],
+   [
+    "είκοσι",
+    "είκοσι",
+    "twenty",
+    "number"
+   ],
+   [
+    "ωραία",
+    "ωραία",
+    "good",
+    "adverb"
+   ],
+   [
+    "υπάρχει",
+    "υπάρχει",
+    "is there",
+    "present, 3rd sg."
+   ],
+   [
+    "ξενάγηση",
+    "η ξενάγηση",
+    "guided tour",
+    "nom./acc. sg."
+   ],
+   [
+    "ναι",
+    "ναι",
+    "yes",
+    "adverb"
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "έντεκα",
+    "έντεκα",
+    "eleven",
+    "number"
+   ],
+   [
+    "στα",
+    "σε + τα",
+    "in",
+    "preposition + article"
+   ],
+   [
+    "αγγλικά",
+    "τα αγγλικά",
+    "English",
+    "acc. pl."
+   ],
+   [
+    "ελληνικά",
+    "τα ελληνικά",
+    "Greek",
+    "acc. pl."
+   ],
+   [
+    "κρατάει",
+    "κρατάω",
+    "it lasts",
+    "present, 3rd sg."
+   ],
+   [
+    "μία",
+    "ένας",
+    "one",
+    "number, f."
+   ],
+   [
+    "ώρα",
+    "η ώρα",
+    "hour",
+    "acc. sg."
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "εισιτήριο",
+    "το εισιτήριο",
+    "ticket",
+    "acc. sg."
+   ],
+   [
+    "έχουμε",
+    "έχω",
+    "we have",
+    "present, 1st pl."
+   ],
+   [
+    "επίσης",
+    "επίσης",
+    "also",
+    "adverb"
+   ],
+   [
+    "ακουστικά",
+    "τα ακουστικά",
+    "audio guides, headphones",
+    "acc. pl."
+   ],
+   [
+    "σε",
+    "σε",
+    "in",
+    "preposition"
+   ],
+   [
+    "οκτώ",
+    "οκτώ",
+    "eight",
+    "number"
+   ],
+   [
+    "γλώσσες",
+    "η γλώσσα",
+    "languages",
+    "acc. pl."
+   ],
+   [
+    "τρία",
+    "τρία",
+    "three",
+    "number, n."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "περιμένουμε",
+    "περιμένω",
+    "we wait for",
+    "present, 1st pl."
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "πού",
+    "πού",
+    "where",
+    "question word"
+   ],
+   [
+    "μπορούμε",
+    "μπορώ",
+    "can we",
+    "present, 1st pl."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "αφήσουμε",
+    "αφήνω",
+    "leave",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "σακίδια",
+    "το σακίδιο",
+    "backpacks",
+    "acc. pl."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "βεστιάριο",
+    "το βεστιάριο",
+    "cloakroom",
+    "acc. sg."
+   ],
+   [
+    "εκεί",
+    "εκεί",
+    "there",
+    "adverb"
+   ],
+   [
+    "αριστερά",
+    "αριστερά",
+    "on the left",
+    "adverb"
+   ],
+   [
+    "μέσα",
+    "μέσα",
+    "inside",
+    "adverb"
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "επιτρέπονται",
+    "επιτρέπεται",
+    "are allowed",
+    "present, 3rd pl."
+   ],
+   [
+    "μεγάλες",
+    "μεγάλος",
+    "big",
+    "adj., nom. pl. f."
+   ],
+   [
+    "τσάντες",
+    "η τσάντα",
+    "bags",
+    "nom. pl."
+   ],
+   [
+    "προσοχή",
+    "η προσοχή",
+    "attention",
+    "nom. sg."
+   ],
+   [
+    "φωτογραφίες",
+    "η φωτογραφία",
+    "photos",
+    "acc. pl."
+   ],
+   [
+    "μπορείτε",
+    "μπορώ",
+    "you can",
+    "present, 2nd pl."
+   ],
+   [
+    "βγάλετε",
+    "βγάζω",
+    "take (photos)",
+    "subjunctive, 2nd pl."
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "χωρίς",
+    "χωρίς",
+    "without",
+    "preposition"
+   ],
+   [
+    "φλας",
+    "το φλας",
+    "flash",
+    "indeclinable"
+   ],
+   [
+    "εντάξει",
+    "εντάξει",
+    "OK",
+    "adverb"
+   ],
+   [
+    "καφετέρια",
+    "η καφετέρια",
+    "café",
+    "nom. sg."
+   ],
+   [
+    "στον",
+    "σε + τον",
+    "on the",
+    "preposition + article"
+   ],
+   [
+    "τελευταίο",
+    "τελευταίος",
+    "top (lit. last)",
+    "adj., acc. sg. m."
+   ],
+   [
+    "όροφο",
+    "ο όροφος",
+    "floor",
+    "acc. sg."
+   ],
+   [
+    "θέα",
+    "η θέα",
+    "view",
+    "acc. sg."
+   ],
+   [
+    "καλή",
+    "καλός",
+    "good",
+    "adj., acc. sg. f."
+   ],
+   [
+    "επίσκεψη",
+    "η επίσκεψη",
+    "visit",
+    "acc. sg."
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-22",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Η ζωή ενός ψαρά",
+  "title_en": "A fisherman's life",
+  "topic": "work, the sea, interview",
+  "segments": [
+   [
+    "Δημοσιογράφος",
+    "Καλημέρα, κύριε Σταμάτη. Πόσα χρόνια είστε ψαράς;"
+   ],
+   [
+    "Σταμάτης",
+    "Καλημέρα. Σαράντα χρόνια. Ξεκίνησα με τον πατέρα μου όταν ήμουν δεκαπέντε."
+   ],
+   [
+    "Δημοσιογράφος",
+    "Πώς είναι μια μέρα σας;"
+   ],
+   [
+    "Σταμάτης",
+    "Ξυπνάω στις τέσσερις το πρωί. Βγαίνω με τη βάρκα μου πριν βγει ο ήλιος. Γυρίζω στο λιμάνι γύρω στις εννιά και πουλάω τα ψάρια στις ταβέρνες του νησιού και σε κόσμο που περιμένει στην προβλήτα."
+   ],
+   [
+    "Δημοσιογράφος",
+    "Είναι δύσκολη δουλειά;"
+   ],
+   [
+    "Σταμάτης",
+    "Πολύ. Τον χειμώνα κάνει κρύο και η θάλασσα έχει κύματα. Μερικές μέρες δεν μπορώ να βγω καθόλου. Και τα τελευταία χρόνια τα ψάρια είναι λιγότερα από παλιά."
+   ],
+   [
+    "Δημοσιογράφος",
+    "Γιατί πιστεύετε ότι συμβαίνει αυτό;"
+   ],
+   [
+    "Σταμάτης",
+    "Υπάρχουν πολλά μεγάλα σκάφη και η θάλασσα έχει γίνει πιο ζεστή. Και οι νέοι δεν θέλουν να γίνουν ψαράδες. Ο γιος μου, για παράδειγμα, δουλεύει σε ένα ξενοδοχείο."
+   ],
+   [
+    "Δημοσιογράφος",
+    "Θα σταματούσατε ποτέ;"
+   ],
+   [
+    "Σταμάτης",
+    "Ποτέ! Η θάλασσα είναι η ζωή μου. Όταν είμαι στη βάρκα, είμαι ελεύθερος."
+   ]
+  ],
+  "glossary": [
+   [
+    "ο ψαράς",
+    "fisherman",
+    "ο ψαράς (m.); pl.: οι ψαράδες"
+   ],
+   [
+    "η βάρκα",
+    "small boat",
+    "η βάρκα (f.)"
+   ],
+   [
+    "η προβλήτα",
+    "pier, jetty",
+    "η προβλήτα (f.)"
+   ],
+   [
+    "το κύμα",
+    "wave",
+    "το κύμα (n.)"
+   ],
+   [
+    "καθόλου",
+    "at all",
+    "adverb (with δεν)"
+   ],
+   [
+    "συμβαίνει",
+    "it happens",
+    "verb, 3rd sg."
+   ],
+   [
+    "το σκάφος",
+    "vessel, boat",
+    "το σκάφος (n.)"
+   ],
+   [
+    "ελεύθερος",
+    "free",
+    "adjective"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Ποιο είναι το θέμα της συνέντευξης;",
+    "en": "What is the interview about?",
+    "options": [
+     "Πώς μαγειρεύουν τα ψάρια οι ταβέρνες",
+     "Η ζωή και η δουλειά ενός ψαρά",
+     "Η καινούργια δουλειά του γιου του σε ξενοδοχείο",
+     "Οι διακοπές ενός δημοσιογράφου στο νησί"
+    ],
+    "answer": 1,
+    "explain": "Mr Stamatis talks about his day, the difficulties of his job and why he loves it."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Τι ώρα γυρίζει ο κύριος Σταμάτης στο λιμάνι;",
+    "en": "What time does Mr Stamatis come back to the harbour?",
+    "options": [
+     "Στις τέσσερις το πρωί",
+     "Γύρω στις εννιά",
+     "Στις έξι, όταν βγαίνει ο ήλιος",
+     "Το μεσημέρι"
+    ],
+    "answer": 1,
+    "explain": "«Γυρίζω στο λιμάνι γύρω στις εννιά». He gets up at four."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Ο γιος του κυρίου Σταμάτη είναι επίσης ψαράς.",
+    "en": "Mr Stamatis's son is also a fisherman.",
+    "answer": 1,
+    "explain": "«Ο γιος μου ... δουλεύει σε ένα ξενοδοχείο.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο κύριος Σταμάτης αγαπάει τη δουλειά του, παρόλο που είναι δύσκολη.",
+    "en": "Mr Stamatis loves his job, even though it is hard.",
+    "answer": 0,
+    "explain": "He says it is very hard, but he would never stop: «Η θάλασσα είναι η ζωή μου»."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "η βάρκα",
+      "small boat"
+     ],
+     [
+      "η προβλήτα",
+      "pier"
+     ],
+     [
+      "τα κύματα",
+      "waves"
+     ],
+     [
+      "καθόλου",
+      "at all"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Ξεκίνησα με τον πατέρα μου όταν ___ (είμαι) δεκαπέντε.",
+    "en": "I started with my father when I was fifteen.",
+    "accept": [
+     "ήμουν"
+    ],
+    "explain": "Past of είμαι, 1st person singular: ήμουν."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Ποια δουλειά θα ήθελες να κάνεις για μια μέρα; Γιατί; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Which job would you like to do for a day? Why? Write two or three sentences.",
+    "explain": "Θα ήθελα να είμαι πιλότος για μια μέρα. Θα πετούσα πάνω από τα νησιά και θα έβλεπα όλη την Ελλάδα από ψηλά."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "κύριε",
+    "ο κύριος",
+    "Mr",
+    "vocative"
+   ],
+   [
+    "Σταμάτη",
+    "Σταμάτης",
+    "Stamatis",
+    "name, vocative"
+   ],
+   [
+    "πόσα",
+    "πόσος",
+    "how many",
+    "adj., acc. pl. n."
+   ],
+   [
+    "χρόνια",
+    "ο χρόνος",
+    "years",
+    "acc. pl."
+   ],
+   [
+    "είστε",
+    "είμαι",
+    "you are, have you been",
+    "present, 2nd pl."
+   ],
+   [
+    "ψαράς",
+    "ο ψαράς",
+    "fisherman",
+    "nom. sg."
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "ξεκίνησα",
+    "ξεκινάω",
+    "I started",
+    "past, 1st sg."
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "τον",
+    "ο",
+    "the",
+    "article, acc. sg. m."
+   ],
+   [
+    "πατέρα",
+    "ο πατέρας",
+    "father",
+    "acc. sg."
+   ],
+   [
+    "μου",
+    "εγώ",
+    "my",
+    "possessive pronoun"
+   ],
+   [
+    "όταν",
+    "όταν",
+    "when",
+    "conjunction"
+   ],
+   [
+    "ήμουν",
+    "είμαι",
+    "I was",
+    "past, 1st sg."
+   ],
+   [
+    "δεκαπέντε",
+    "δεκαπέντε",
+    "fifteen",
+    "number"
+   ],
+   [
+    "πώς",
+    "πώς",
+    "how; what … like",
+    "question word"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is",
+    "present, 3rd sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, nom. sg. f."
+   ],
+   [
+    "μέρα",
+    "η μέρα",
+    "day",
+    "nom. sg."
+   ],
+   [
+    "σας",
+    "εσείς",
+    "your",
+    "possessive pronoun, polite"
+   ],
+   [
+    "ξυπνάω",
+    "ξυπνάω",
+    "I wake up",
+    "present, 1st sg."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at; to the",
+    "preposition + article"
+   ],
+   [
+    "τέσσερις",
+    "τέσσερις",
+    "four",
+    "number"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "πρωί",
+    "το πρωί",
+    "morning",
+    "acc. sg."
+   ],
+   [
+    "βγαίνω",
+    "βγαίνω",
+    "I go out",
+    "present, 1st sg."
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "βάρκα",
+    "η βάρκα",
+    "boat",
+    "acc. sg."
+   ],
+   [
+    "πριν",
+    "πριν",
+    "before",
+    "conjunction"
+   ],
+   [
+    "βγει",
+    "βγαίνω",
+    "rises (comes out)",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "ήλιος",
+    "ο ήλιος",
+    "sun",
+    "nom. sg."
+   ],
+   [
+    "γυρίζω",
+    "γυρίζω",
+    "I come back",
+    "present, 1st sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "to the",
+    "preposition + article"
+   ],
+   [
+    "λιμάνι",
+    "το λιμάνι",
+    "harbour",
+    "acc. sg."
+   ],
+   [
+    "γύρω",
+    "γύρω",
+    "around",
+    "γύρω στις = at around"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "πουλάω",
+    "πουλάω",
+    "I sell",
+    "present, 1st sg."
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "ψάρια",
+    "το ψάρι",
+    "fish",
+    "acc./nom. pl."
+   ],
+   [
+    "ταβέρνες",
+    "η ταβέρνα",
+    "taverns",
+    "acc. pl."
+   ],
+   [
+    "του",
+    "ο",
+    "of the",
+    "article, gen. sg. n."
+   ],
+   [
+    "νησιού",
+    "το νησί",
+    "island",
+    "gen. sg."
+   ],
+   [
+    "σε",
+    "σε",
+    "to",
+    "preposition"
+   ],
+   [
+    "κόσμο",
+    "ο κόσμος",
+    "people",
+    "acc. sg."
+   ],
+   [
+    "που",
+    "που",
+    "who",
+    "relative pronoun"
+   ],
+   [
+    "περιμένει",
+    "περιμένω",
+    "waits",
+    "present, 3rd sg."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "on the",
+    "preposition + article"
+   ],
+   [
+    "προβλήτα",
+    "η προβλήτα",
+    "pier",
+    "acc. sg."
+   ],
+   [
+    "δύσκολη",
+    "δύσκολος",
+    "difficult",
+    "adj., nom. sg. f."
+   ],
+   [
+    "δουλειά",
+    "η δουλειά",
+    "job",
+    "nom. sg."
+   ],
+   [
+    "πολύ",
+    "πολύ",
+    "very",
+    "adverb"
+   ],
+   [
+    "χειμώνα",
+    "ο χειμώνας",
+    "winter",
+    "acc. sg. (τον χειμώνα = in winter)"
+   ],
+   [
+    "κάνει",
+    "κάνω",
+    "it is (weather)",
+    "present, 3rd sg. (κάνει κρύο = it is cold)"
+   ],
+   [
+    "κρύο",
+    "το κρύο",
+    "cold",
+    "acc. sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "θάλασσα",
+    "η θάλασσα",
+    "sea",
+    "nom. sg."
+   ],
+   [
+    "έχει",
+    "έχω",
+    "has",
+    "present, 3rd sg."
+   ],
+   [
+    "κύματα",
+    "το κύμα",
+    "waves",
+    "acc. pl."
+   ],
+   [
+    "μερικές",
+    "μερικοί",
+    "some",
+    "adj., acc. pl. f."
+   ],
+   [
+    "μέρες",
+    "η μέρα",
+    "days",
+    "acc. pl."
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "μπορώ",
+    "μπορώ",
+    "I can",
+    "present, 1st sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "βγω",
+    "βγαίνω",
+    "go out",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "καθόλου",
+    "καθόλου",
+    "at all",
+    "adverb"
+   ],
+   [
+    "τελευταία",
+    "τελευταίος",
+    "last",
+    "adj., acc. pl. n."
+   ],
+   [
+    "λιγότερα",
+    "λίγος",
+    "fewer",
+    "comparative, nom. pl. n."
+   ],
+   [
+    "από",
+    "από",
+    "than",
+    "preposition"
+   ],
+   [
+    "παλιά",
+    "παλιά",
+    "in the past",
+    "adverb"
+   ],
+   [
+    "γιατί",
+    "γιατί",
+    "why",
+    "question word"
+   ],
+   [
+    "πιστεύετε",
+    "πιστεύω",
+    "you believe",
+    "present, 2nd pl."
+   ],
+   [
+    "ότι",
+    "ότι",
+    "that",
+    "conjunction"
+   ],
+   [
+    "συμβαίνει",
+    "συμβαίνει",
+    "happens",
+    "present, 3rd sg."
+   ],
+   [
+    "αυτό",
+    "αυτός",
+    "this",
+    "pronoun, nom. sg. n."
+   ],
+   [
+    "υπάρχουν",
+    "υπάρχω",
+    "there are",
+    "present, 3rd pl."
+   ],
+   [
+    "πολλά",
+    "πολύς",
+    "many",
+    "adj., nom. pl. n."
+   ],
+   [
+    "μεγάλα",
+    "μεγάλος",
+    "big",
+    "adj., nom. pl. n."
+   ],
+   [
+    "σκάφη",
+    "το σκάφος",
+    "vessels, boats",
+    "nom. pl."
+   ],
+   [
+    "γίνει",
+    "γίνομαι",
+    "become",
+    "non-finite form (έχει γίνει = has become)"
+   ],
+   [
+    "πιο",
+    "πιο",
+    "more",
+    "adverb"
+   ],
+   [
+    "ζεστή",
+    "ζεστός",
+    "warm",
+    "adj., nom. sg. f."
+   ],
+   [
+    "οι",
+    "οι",
+    "the",
+    "article, nom. pl."
+   ],
+   [
+    "νέοι",
+    "ο νέος",
+    "young people",
+    "nom. pl."
+   ],
+   [
+    "θέλουν",
+    "θέλω",
+    "want",
+    "present, 3rd pl."
+   ],
+   [
+    "γίνουν",
+    "γίνομαι",
+    "become",
+    "subjunctive, 3rd pl."
+   ],
+   [
+    "ψαράδες",
+    "ο ψαράς",
+    "fishermen",
+    "nom. pl."
+   ],
+   [
+    "γιος",
+    "ο γιος",
+    "son",
+    "nom. sg."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "παράδειγμα",
+    "το παράδειγμα",
+    "example",
+    "acc. sg. (για παράδειγμα = for example)"
+   ],
+   [
+    "δουλεύει",
+    "δουλεύω",
+    "works",
+    "present, 3rd sg."
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. n."
+   ],
+   [
+    "ξενοδοχείο",
+    "το ξενοδοχείο",
+    "hotel",
+    "acc. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "would",
+    "particle (θα σταματούσατε = would you stop)"
+   ],
+   [
+    "σταματούσατε",
+    "σταματάω",
+    "you stop",
+    "past continuous, 2nd pl."
+   ],
+   [
+    "ποτέ",
+    "ποτέ",
+    "ever; never",
+    "adverb"
+   ],
+   [
+    "ζωή",
+    "η ζωή",
+    "life",
+    "nom. sg."
+   ],
+   [
+    "είμαι",
+    "είμαι",
+    "I am",
+    "present, 1st sg."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "ελεύθερος",
+    "ελεύθερος",
+    "free",
+    "adj., nom. sg. m."
+   ]
+  ]
+ }
+]
