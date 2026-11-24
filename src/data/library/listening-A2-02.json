@@ -1,0 +1,2706 @@
+[
+ {
+  "id": "lib-listening-A2-05",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Ανακοινώσεις στο αεροδρόμιο",
+  "title_en": "Airport announcements",
+  "topic": "announcements, travel",
+  "segments": [
+   [
+    "Ανακοίνωση",
+    "Κυρίες και κύριοι, καλησπέρα σας. Η πτήση για τη Ρόδο, στις επτά και δέκα, είναι έτοιμη για επιβίβαση από την έξοδο δεκατέσσερα. Παρακαλούμε, έχετε έτοιμα την κάρτα επιβίβασης και την ταυτότητα ή το διαβατήριό σας."
+   ],
+   [
+    "Ανακοίνωση",
+    "Οι επιβάτες της πτήσης για τη Θεσσαλονίκη, στις επτά και μισή, παρακαλούνται να προσέξουν: η πτήση έχει καθυστέρηση σαράντα πέντε λεπτά λόγω κακοκαιρίας. Θα σας ενημερώσουμε σύντομα για τη νέα ώρα αναχώρησης."
+   ],
+   [
+    "Μαρίνα",
+    "Σαράντα πέντε λεπτά! Και έχω συνάντηση στις δέκα στη Θεσσαλονίκη."
+   ],
+   [
+    "Κώστας",
+    "Μην ανησυχείς. Η πτήση κάνει μόνο πενήντα λεπτά. Θα φτάσεις γύρω στις εννιά. Πάμε για έναν καφέ;"
+   ],
+   [
+    "Μαρίνα",
+    "Καλή ιδέα. Αλλά όχι μακριά από την έξοδο."
+   ],
+   [
+    "Ανακοίνωση",
+    "Προσοχή, παρακαλώ. Η πτήση για τη Θεσσαλονίκη θα αναχωρήσει από την έξοδο είκοσι δύο και όχι από την έξοδο οκτώ. Η επιβίβαση αρχίζει στις οκτώ και πέντε. Ευχαριστούμε για την κατανόησή σας."
+   ]
+  ],
+  "glossary": [
+   [
+    "η επιβίβαση",
+    "boarding",
+    "η επιβίβαση (f.)"
+   ],
+   [
+    "η έξοδος",
+    "gate; exit",
+    "η έξοδος (f.)"
+   ],
+   [
+    "η κάρτα επιβίβασης",
+    "boarding pass",
+    "expression"
+   ],
+   [
+    "η ταυτότητα",
+    "ID card",
+    "η ταυτότητα (f.)"
+   ],
+   [
+    "η καθυστέρηση",
+    "delay",
+    "η καθυστέρηση (f.)"
+   ],
+   [
+    "λόγω",
+    "because of",
+    "+ genitive"
+   ],
+   [
+    "η κακοκαιρία",
+    "bad weather",
+    "η κακοκαιρία (f.)"
+   ],
+   [
+    "η αναχώρηση",
+    "departure",
+    "η αναχώρηση (f.)"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Πού ακούμε αυτές τις ανακοινώσεις;",
+    "en": "Where do we hear these announcements?",
+    "options": [
+     "Σε ένα λιμάνι πριν φύγει το πλοίο",
+     "Σε έναν σταθμό τρένων της Αθήνας",
+     "Σε ένα αεροδρόμιο",
+     "Σε ένα γραφείο ταξιδιών στο κέντρο"
+    ],
+    "answer": 2,
+    "explain": "They are about flights, gates and boarding passes."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Από ποια έξοδο θα φύγει τελικά η πτήση για τη Θεσσαλονίκη;",
+    "en": "From which gate will the Thessaloniki flight finally leave?",
+    "options": [
+     "Από την έξοδο οκτώ",
+     "Από την έξοδο δεκατέσσερα",
+     "Από την έξοδο είκοσι δύο",
+     "Από την έξοδο δώδεκα"
+    ],
+    "answer": 2,
+    "explain": "«θα αναχωρήσει από την έξοδο είκοσι δύο και όχι από την έξοδο οκτώ»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Η πτήση για τη Θεσσαλονίκη έχει καθυστέρηση λόγω απεργίας.",
+    "en": "The Thessaloniki flight is delayed because of a strike.",
+    "answer": 1,
+    "explain": "It is delayed «λόγω κακοκαιρίας» (bad weather)."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Η Μαρίνα μάλλον θα φτάσει στη συνάντησή της εγκαίρως.",
+    "en": "Marina will probably get to her meeting in time.",
+    "answer": 0,
+    "explain": "Her meeting is at ten and Kostas says she will arrive around nine."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "η επιβίβαση",
+      "boarding"
+     ],
+     [
+      "η έξοδος",
+      "gate"
+     ],
+     [
+      "η καθυστέρηση",
+      "delay"
+     ],
+     [
+      "η κακοκαιρία",
+      "bad weather"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Θα σας ___ (ενημερώνω) σύντομα για τη νέα ώρα αναχώρησης.",
+    "en": "We will inform you soon about the new departure time.",
+    "accept": [
+     "ενημερώσουμε"
+    ],
+    "explain": "Simple future, 1st person plural: ενημερώνω → ενημέρωσα → θα ενημερώσουμε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Είχες ποτέ καθυστέρηση σε ένα ταξίδι; Τι έκανες; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Have you ever had a delay on a trip? What did you do? Write two or three sentences.",
+    "explain": "Πέρσι η πτήση μου για τη Ρώμη είχε καθυστέρηση τρεις ώρες. Διάβασα ένα βιβλίο και έφαγα στο αεροδρόμιο."
+   }
+  ],
+  "words": [
+   [
+    "κυρίες",
+    "η κυρία",
+    "ladies",
+    "voc. pl."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "κύριοι",
+    "ο κύριος",
+    "gentlemen",
+    "voc. pl."
+   ],
+   [
+    "καλησπέρα",
+    "καλησπέρα",
+    "good evening",
+    "greeting"
+   ],
+   [
+    "σας",
+    "εσείς",
+    "(to) you; your",
+    "pronoun, pl."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "πτήση",
+    "η πτήση",
+    "flight",
+    "nom. sg."
+   ],
+   [
+    "για",
+    "για",
+    "for; to",
+    "preposition"
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Ρόδο",
+    "η Ρόδος",
+    "Rhodes",
+    "island, acc."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "επτά",
+    "επτά",
+    "seven",
+    "number"
+   ],
+   [
+    "δέκα",
+    "δέκα",
+    "ten",
+    "number"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is",
+    "present, 3rd sg."
+   ],
+   [
+    "έτοιμη",
+    "έτοιμος",
+    "ready",
+    "adj., nom. sg. f."
+   ],
+   [
+    "επιβίβαση",
+    "η επιβίβαση",
+    "boarding",
+    "acc. sg."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "έξοδο",
+    "η έξοδος",
+    "gate",
+    "acc. sg."
+   ],
+   [
+    "δεκατέσσερα",
+    "δεκατέσσερα",
+    "fourteen",
+    "number"
+   ],
+   [
+    "παρακαλούμε",
+    "παρακαλώ",
+    "please (we ask)",
+    "present, 1st pl."
+   ],
+   [
+    "έχετε",
+    "έχω",
+    "have",
+    "imperative (present), 2nd pl."
+   ],
+   [
+    "έτοιμα",
+    "έτοιμος",
+    "ready",
+    "adj., acc. pl. n."
+   ],
+   [
+    "κάρτα",
+    "η κάρτα",
+    "card",
+    "acc. sg. (κάρτα επιβίβασης = boarding pass)"
+   ],
+   [
+    "επιβίβασης",
+    "η επιβίβαση",
+    "boarding",
+    "gen. sg."
+   ],
+   [
+    "ταυτότητα",
+    "η ταυτότητα",
+    "ID card",
+    "acc. sg."
+   ],
+   [
+    "ή",
+    "ή",
+    "or",
+    "conjunction"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "διαβατήριό",
+    "το διαβατήριο",
+    "passport",
+    "acc. sg. (accent added before σας)"
+   ],
+   [
+    "οι",
+    "οι",
+    "the",
+    "article, nom. pl."
+   ],
+   [
+    "επιβάτες",
+    "ο επιβάτης",
+    "passengers",
+    "nom. pl."
+   ],
+   [
+    "της",
+    "η",
+    "of the",
+    "article, gen. sg. f."
+   ],
+   [
+    "πτήσης",
+    "η πτήση",
+    "flight",
+    "gen. sg."
+   ],
+   [
+    "Θεσσαλονίκη",
+    "η Θεσσαλονίκη",
+    "Thessaloniki",
+    "acc. sg."
+   ],
+   [
+    "μισή",
+    "μισός",
+    "half",
+    "adj., f. (επτά και μισή = half past seven)"
+   ],
+   [
+    "παρακαλούνται",
+    "παρακαλώ",
+    "are requested",
+    "passive present, 3rd pl."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "προσέξουν",
+    "προσέχω",
+    "pay attention",
+    "subjunctive, 3rd pl."
+   ],
+   [
+    "έχει",
+    "έχω",
+    "has",
+    "present, 3rd sg."
+   ],
+   [
+    "καθυστέρηση",
+    "η καθυστέρηση",
+    "delay",
+    "acc. sg."
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "λεπτά",
+    "το λεπτό",
+    "minutes",
+    "acc. pl."
+   ],
+   [
+    "λόγω",
+    "λόγω",
+    "because of",
+    "+ genitive"
+   ],
+   [
+    "κακοκαιρίας",
+    "η κακοκαιρία",
+    "bad weather",
+    "gen. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "ενημερώσουμε",
+    "ενημερώνω",
+    "inform",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "σύντομα",
+    "σύντομα",
+    "soon",
+    "adverb"
+   ],
+   [
+    "νέα",
+    "νέος",
+    "new",
+    "adj., acc. sg. f."
+   ],
+   [
+    "ώρα",
+    "η ώρα",
+    "time",
+    "acc. sg."
+   ],
+   [
+    "αναχώρησης",
+    "η αναχώρηση",
+    "departure",
+    "gen. sg."
+   ],
+   [
+    "έχω",
+    "έχω",
+    "I have",
+    "present, 1st sg."
+   ],
+   [
+    "συνάντηση",
+    "η συνάντηση",
+    "meeting",
+    "acc. sg."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "μην",
+    "μη(ν)",
+    "don't",
+    "negation"
+   ],
+   [
+    "ανησυχείς",
+    "ανησυχώ",
+    "worry",
+    "present, 2nd sg."
+   ],
+   [
+    "κάνει",
+    "κάνω",
+    "takes (time)",
+    "present, 3rd sg."
+   ],
+   [
+    "μόνο",
+    "μόνο",
+    "only",
+    "adverb"
+   ],
+   [
+    "πενήντα",
+    "πενήντα",
+    "fifty",
+    "number"
+   ],
+   [
+    "φτάσεις",
+    "φτάνω",
+    "arrive",
+    "subjunctive, 2nd sg. (θα φτάσεις = you will arrive)"
+   ],
+   [
+    "γύρω",
+    "γύρω",
+    "around",
+    "γύρω στις = at around"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "πάμε",
+    "πηγαίνω",
+    "shall we go",
+    "present, 1st pl."
+   ],
+   [
+    "έναν",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "καφέ",
+    "ο καφές",
+    "coffee",
+    "acc. sg."
+   ],
+   [
+    "καλή",
+    "καλός",
+    "good",
+    "adj., nom. sg. f."
+   ],
+   [
+    "ιδέα",
+    "η ιδέα",
+    "idea",
+    "nom. sg."
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "όχι",
+    "όχι",
+    "not",
+    "negation"
+   ],
+   [
+    "μακριά",
+    "μακριά",
+    "far",
+    "adverb"
+   ],
+   [
+    "προσοχή",
+    "η προσοχή",
+    "attention",
+    "nom. sg."
+   ],
+   [
+    "παρακαλώ",
+    "παρακαλώ",
+    "please",
+    "present, 1st sg."
+   ],
+   [
+    "αναχωρήσει",
+    "αναχωρώ",
+    "depart",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "είκοσι",
+    "είκοσι",
+    "twenty",
+    "number"
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "οκτώ",
+    "οκτώ",
+    "eight",
+    "number"
+   ],
+   [
+    "αρχίζει",
+    "αρχίζω",
+    "starts",
+    "present, 3rd sg."
+   ],
+   [
+    "ευχαριστούμε",
+    "ευχαριστώ",
+    "thank you (we thank)",
+    "present, 1st pl."
+   ],
+   [
+    "κατανόησή",
+    "η κατανόηση",
+    "understanding",
+    "acc. sg. (accent added before σας)"
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-06",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Στο κομμωτήριο",
+  "title_en": "At the hairdresser's",
+  "topic": "services, appearance",
+  "segments": [
+   [
+    "Ρούλα",
+    "Καλημέρα, Δήμητρα! Πέρασε καιρός. Τι θα κάνουμε σήμερα;"
+   ],
+   [
+    "Δήμητρα",
+    "Καλημέρα, Ρούλα. Θέλω να κόψω τα μαλλιά μου. Είναι πολύ μακριά και το καλοκαίρι με ζεσταίνουν."
+   ],
+   [
+    "Ρούλα",
+    "Πόσο κοντά τα θέλεις; Μέχρι τους ώμους;"
+   ],
+   [
+    "Δήμητρα",
+    "Λίγο πιο κοντά. Κάπως έτσι, σαν αυτή τη φωτογραφία."
+   ],
+   [
+    "Ρούλα",
+    "Α, ωραίο! Θα σου πηγαίνει πολύ. Θέλεις και χρώμα;"
+   ],
+   [
+    "Δήμητρα",
+    "Δεν ξέρω. Τι λες; Λίγο πιο ανοιχτό;"
+   ],
+   [
+    "Ρούλα",
+    "Ναι, ένα ανοιχτό καστανό θα είναι πολύ φρέσκο για το καλοκαίρι. Αλλά το χρώμα θέλει μία ώρα ακόμα."
+   ],
+   [
+    "Δήμητρα",
+    "Δεν πειράζει, έχω χρόνο. Σήμερα έχω ρεπό."
+   ],
+   [
+    "Ρούλα",
+    "Τέλεια. Έλα να σου λούσω πρώτα τα μαλλιά. Θέλεις έναν καφέ όσο περιμένεις;"
+   ],
+   [
+    "Δήμητρα",
+    "Ναι, έναν φρέντο εσπρέσο, αν έχεις."
+   ],
+   [
+    "Ρούλα",
+    "Λοιπόν; Πώς σου φαίνεται;"
+   ],
+   [
+    "Δήμητρα",
+    "Δεν αναγνωρίζω τον εαυτό μου! Μου αρέσει πάρα πολύ. Πόσο σου χρωστάω;"
+   ],
+   [
+    "Ρούλα",
+    "Κούρεμα και χρώμα, πενήντα πέντε ευρώ."
+   ]
+  ],
+  "glossary": [
+   [
+    "το κομμωτήριο",
+    "hairdresser's",
+    "το κομμωτήριο (n.)"
+   ],
+   [
+    "τα μαλλιά",
+    "hair",
+    "plural noun"
+   ],
+   [
+    "ο ώμος",
+    "shoulder",
+    "ο ώμος (m.)"
+   ],
+   [
+    "μου πηγαίνει",
+    "it suits me",
+    "expression"
+   ],
+   [
+    "ανοιχτό καστανό",
+    "light brown",
+    "colour"
+   ],
+   [
+    "το ρεπό",
+    "day off (from work)",
+    "indeclinable"
+   ],
+   [
+    "λούζω",
+    "to wash (hair)",
+    "verb; subj.: να λούσω"
+   ],
+   [
+    "χρωστάω",
+    "to owe",
+    "verb"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι κάνει η Δήμητρα στο κομμωτήριο;",
+    "en": "What does Dimitra do at the hairdresser's?",
+    "options": [
+     "Ζητάει δουλειά ως κομμώτρια",
+     "Κόβει και βάφει τα μαλλιά της",
+     "Κλείνει ραντεβού για την επόμενη εβδομάδα",
+     "Αγοράζει προϊόντα για τα μαλλιά της"
+    ],
+    "answer": 1,
+    "explain": "She has her hair cut shorter and coloured light brown."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Γιατί θέλει η Δήμητρα να κόψει τα μαλλιά της;",
+    "en": "Why does Dimitra want to cut her hair?",
+    "options": [
+     "Γιατί έχει έναν γάμο το Σάββατο",
+     "Γιατί τη ζεσταίνουν το καλοκαίρι",
+     "Γιατί της το είπε η κομμώτρια",
+     "Γιατί θέλει να μοιάζει με μια φίλη της"
+    ],
+    "answer": 1,
+    "explain": "«Είναι πολύ μακριά και το καλοκαίρι με ζεσταίνουν.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Η Δήμητρα βιάζεται, γιατί πρέπει να πάει στη δουλειά.",
+    "en": "Dimitra is in a hurry because she has to go to work.",
+    "answer": 1,
+    "explain": "«Δεν πειράζει, έχω χρόνο. Σήμερα έχω ρεπό.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Η Δήμητρα είναι ευχαριστημένη με το αποτέλεσμα.",
+    "en": "Dimitra is happy with the result.",
+    "answer": 0,
+    "explain": "«Μου αρέσει πάρα πολύ.»"
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "οι ώμοι",
+      "shoulders"
+     ],
+     [
+      "το ρεπό",
+      "day off"
+     ],
+     [
+      "λούσω",
+      "(I) wash (hair)"
+     ],
+     [
+      "χρωστάω",
+      "I owe"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Θέλω τα μαλλιά μου λίγο πιο ___ (κοντός).",
+    "en": "I want my hair a bit shorter.",
+    "accept": [
+     "κοντά"
+    ],
+    "explain": "The adjective agrees with τα μαλλιά (neuter plural): κοντός → κοντά."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Πόσο συχνά πηγαίνεις στο κομμωτήριο ή στο κουρείο; Τι ζητάς συνήθως; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "How often do you go to the hairdresser's or barber's? What do you usually ask for? Write two or three sentences.",
+    "explain": "Πηγαίνω στο κουρείο κάθε δύο μήνες. Συνήθως ζητάω να μου κόψει τα μαλλιά λίγο πιο κοντά στα πλάγια."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "Δήμητρα",
+    "Δήμητρα",
+    "Dimitra",
+    "name"
+   ],
+   [
+    "πέρασε",
+    "περνάω",
+    "has passed",
+    "past, 3rd sg."
+   ],
+   [
+    "καιρός",
+    "ο καιρός",
+    "time (a while)",
+    "nom. sg. (πέρασε καιρός = it's been a while)"
+   ],
+   [
+    "τι",
+    "τι",
+    "what",
+    "question word"
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "κάνουμε",
+    "κάνω",
+    "do",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "Ρούλα",
+    "Ρούλα",
+    "Roula",
+    "name"
+   ],
+   [
+    "θέλω",
+    "θέλω",
+    "I want",
+    "present, 1st sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "κόψω",
+    "κόβω",
+    "cut",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "τα",
+    "τα / αυτά",
+    "the; them",
+    "article pl. n.; object pronoun"
+   ],
+   [
+    "μαλλιά",
+    "τα μαλλιά",
+    "hair",
+    "acc. pl."
+   ],
+   [
+    "μου",
+    "εγώ",
+    "my; (to) me",
+    "pronoun"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "it is; they are",
+    "present, 3rd sg./pl."
+   ],
+   [
+    "πολύ",
+    "πολύ",
+    "very",
+    "adverb"
+   ],
+   [
+    "μακριά",
+    "μακρύς",
+    "long",
+    "adj., nom. pl. n."
+   ],
+   [
+    "και",
+    "και",
+    "and; also",
+    "conjunction"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "καλοκαίρι",
+    "το καλοκαίρι",
+    "summer",
+    "acc. sg."
+   ],
+   [
+    "με",
+    "εγώ",
+    "me",
+    "object pronoun"
+   ],
+   [
+    "ζεσταίνουν",
+    "ζεσταίνω",
+    "they make (me) hot",
+    "present, 3rd pl."
+   ],
+   [
+    "πόσο",
+    "πόσο",
+    "how",
+    "question word"
+   ],
+   [
+    "κοντά",
+    "κοντός",
+    "short",
+    "adj., acc. pl. n."
+   ],
+   [
+    "θέλεις",
+    "θέλω",
+    "you want",
+    "present, 2nd sg."
+   ],
+   [
+    "μέχρι",
+    "μέχρι",
+    "down to, up to",
+    "preposition"
+   ],
+   [
+    "τους",
+    "ο",
+    "the",
+    "article, acc. pl. m."
+   ],
+   [
+    "ώμους",
+    "ο ώμος",
+    "shoulders",
+    "acc. pl."
+   ],
+   [
+    "λίγο",
+    "λίγο",
+    "a little",
+    "adverb"
+   ],
+   [
+    "πιο",
+    "πιο",
+    "more",
+    "adverb"
+   ],
+   [
+    "κάπως",
+    "κάπως",
+    "somewhat",
+    "adverb (κάπως έτσι = something like this)"
+   ],
+   [
+    "έτσι",
+    "έτσι",
+    "like this",
+    "adverb"
+   ],
+   [
+    "σαν",
+    "σαν",
+    "like",
+    "preposition"
+   ],
+   [
+    "αυτή",
+    "αυτός",
+    "this",
+    "pronoun, acc. sg. f."
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "φωτογραφία",
+    "η φωτογραφία",
+    "photo",
+    "acc. sg."
+   ],
+   [
+    "α",
+    "α",
+    "ah",
+    "interjection"
+   ],
+   [
+    "ωραίο",
+    "ωραίος",
+    "nice",
+    "adj., nom. sg. n."
+   ],
+   [
+    "σου",
+    "εσύ",
+    "(to) you; your",
+    "pronoun"
+   ],
+   [
+    "πηγαίνει",
+    "πηγαίνω",
+    "it suits",
+    "present, 3rd sg. (σου πηγαίνει = it suits you)"
+   ],
+   [
+    "χρώμα",
+    "το χρώμα",
+    "colour",
+    "acc. sg."
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "ξέρω",
+    "ξέρω",
+    "I know",
+    "present, 1st sg."
+   ],
+   [
+    "λες",
+    "λέω",
+    "you say, you think",
+    "present, 2nd sg."
+   ],
+   [
+    "ανοιχτό",
+    "ανοιχτός",
+    "light (colour)",
+    "adj., acc. sg. n."
+   ],
+   [
+    "ναι",
+    "ναι",
+    "yes",
+    "adverb"
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a",
+    "indef. article, sg. n."
+   ],
+   [
+    "καστανό",
+    "καστανός",
+    "brown (hair)",
+    "adj., nom. sg. n."
+   ],
+   [
+    "φρέσκο",
+    "φρέσκος",
+    "fresh",
+    "adj., nom. sg. n."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "θέλει",
+    "θέλω",
+    "needs",
+    "present, 3rd sg."
+   ],
+   [
+    "μία",
+    "ένας",
+    "one",
+    "number, f."
+   ],
+   [
+    "ώρα",
+    "η ώρα",
+    "hour",
+    "acc. sg."
+   ],
+   [
+    "ακόμα",
+    "ακόμα",
+    "more",
+    "adverb (μία ώρα ακόμα = another hour)"
+   ],
+   [
+    "πειράζει",
+    "πειράζει",
+    "it matters",
+    "impersonal (δεν πειράζει = never mind)"
+   ],
+   [
+    "έχω",
+    "έχω",
+    "I have",
+    "present, 1st sg."
+   ],
+   [
+    "χρόνο",
+    "ο χρόνος",
+    "time",
+    "acc. sg."
+   ],
+   [
+    "ρεπό",
+    "το ρεπό",
+    "day off",
+    "indeclinable"
+   ],
+   [
+    "τέλεια",
+    "τέλεια",
+    "perfect",
+    "adverb"
+   ],
+   [
+    "έλα",
+    "έρχομαι",
+    "come",
+    "imperative, 2nd sg."
+   ],
+   [
+    "λούσω",
+    "λούζω",
+    "wash (hair)",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "πρώτα",
+    "πρώτα",
+    "first",
+    "adverb"
+   ],
+   [
+    "έναν",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "καφέ",
+    "ο καφές",
+    "coffee",
+    "acc. sg."
+   ],
+   [
+    "όσο",
+    "όσο",
+    "while",
+    "conjunction"
+   ],
+   [
+    "περιμένεις",
+    "περιμένω",
+    "you wait",
+    "present, 2nd sg."
+   ],
+   [
+    "φρέντο",
+    "ο φρέντο",
+    "freddo (iced coffee)",
+    "indeclinable"
+   ],
+   [
+    "εσπρέσο",
+    "ο εσπρέσο",
+    "espresso",
+    "indeclinable"
+   ],
+   [
+    "αν",
+    "αν",
+    "if",
+    "conjunction"
+   ],
+   [
+    "έχεις",
+    "έχω",
+    "you have",
+    "present, 2nd sg."
+   ],
+   [
+    "λοιπόν",
+    "λοιπόν",
+    "well, so",
+    "particle"
+   ],
+   [
+    "πώς",
+    "πώς",
+    "how",
+    "question word"
+   ],
+   [
+    "φαίνεται",
+    "φαίνομαι",
+    "it seems",
+    "present, 3rd sg. (πώς σου φαίνεται; = what do you think?)"
+   ],
+   [
+    "αναγνωρίζω",
+    "αναγνωρίζω",
+    "I recognise",
+    "present, 1st sg."
+   ],
+   [
+    "τον",
+    "ο",
+    "the",
+    "article, acc. sg. m."
+   ],
+   [
+    "εαυτό",
+    "ο εαυτός",
+    "self",
+    "acc. sg. (τον εαυτό μου = myself)"
+   ],
+   [
+    "αρέσει",
+    "αρέσω",
+    "I like (it pleases me)",
+    "present, 3rd sg."
+   ],
+   [
+    "πάρα",
+    "πάρα",
+    "very",
+    "πάρα πολύ = very much"
+   ],
+   [
+    "χρωστάω",
+    "χρωστάω",
+    "I owe",
+    "present, 1st sg."
+   ],
+   [
+    "κούρεμα",
+    "το κούρεμα",
+    "haircut",
+    "nom. sg."
+   ],
+   [
+    "πενήντα",
+    "πενήντα",
+    "fifty",
+    "number"
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "ευρώ",
+    "το ευρώ",
+    "euros",
+    "indeclinable"
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-07",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Ένα πουκάμισο για αλλαγή",
+  "title_en": "Exchanging a shirt",
+  "topic": "shopping, clothes",
+  "segments": [
+   [
+    "Πωλήτρια",
+    "Καλημέρα σας. Μπορώ να σας βοηθήσω;"
+   ],
+   [
+    "Νίκος",
+    "Καλημέρα. Αγόρασα αυτό το πουκάμισο την περασμένη εβδομάδα, αλλά μου είναι μικρό. Μπορώ να το αλλάξω;"
+   ],
+   [
+    "Πωλήτρια",
+    "Βεβαίως. Έχετε την απόδειξη;"
+   ],
+   [
+    "Νίκος",
+    "Ναι, ορίστε."
+   ],
+   [
+    "Πωλήτρια",
+    "Ωραία. Αυτό είναι σαράντα δύο. Θέλετε το σαράντα τέσσερα;"
+   ],
+   [
+    "Νίκος",
+    "Ναι, ακριβώς."
+   ],
+   [
+    "Πωλήτρια",
+    "Δυστυχώς, σε μπλε δεν έχουμε πια σαράντα τέσσερα. Το έχουμε όμως σε άσπρο και σε γκρι."
+   ],
+   [
+    "Νίκος",
+    "Χμ. Μπορώ να δοκιμάσω το γκρι;"
+   ],
+   [
+    "Πωλήτρια",
+    "Φυσικά. Τα δοκιμαστήρια είναι εκεί, δεξιά."
+   ],
+   [
+    "Νίκος",
+    "Μου κάνει τέλεια. Αλλά, ξέρετε, προτιμώ το μπλε. Μπορώ να πάρω πίσω τα λεφτά μου;"
+   ],
+   [
+    "Πωλήτρια",
+    "Λυπάμαι, δεν επιστρέφουμε χρήματα. Μπορούμε όμως να σας δώσουμε ένα πιστωτικό σημείωμα. Ισχύει για έξι μήνες σε όλα τα καταστήματά μας."
+   ],
+   [
+    "Νίκος",
+    "Εντάξει, τότε κρατάω το γκρι. Είναι ωραίο κι αυτό."
+   ]
+  ],
+  "glossary": [
+   [
+    "αλλάζω",
+    "to exchange, to change",
+    "verb; subj.: να αλλάξω"
+   ],
+   [
+    "η απόδειξη",
+    "receipt",
+    "η απόδειξη (f.)"
+   ],
+   [
+    "το νούμερο",
+    "size",
+    "e.g. σαράντα δύο = size 42"
+   ],
+   [
+    "το δοκιμαστήριο",
+    "fitting room",
+    "το δοκιμαστήριο (n.)"
+   ],
+   [
+    "μου κάνει",
+    "it fits me",
+    "expression"
+   ],
+   [
+    "προτιμώ",
+    "to prefer",
+    "verb"
+   ],
+   [
+    "το πιστωτικό σημείωμα",
+    "credit note",
+    "expression"
+   ],
+   [
+    "ισχύει",
+    "it is valid",
+    "verb, 3rd sg."
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Γιατί πήγε ο Νίκος στο κατάστημα;",
+    "en": "Why did Nikos go to the shop?",
+    "options": [
+     "Για να αγοράσει δώρο για έναν φίλο",
+     "Για να αλλάξει ένα πουκάμισο",
+     "Για να ζητήσει δουλειά ως πωλητής",
+     "Για να παραπονεθεί για την τιμή ενός πουκάμισου"
+    ],
+    "answer": 1,
+    "explain": "The shirt he bought last week is too small and he wants to exchange it."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Τι χρώμα πουκάμισο κρατάει τελικά ο Νίκος;",
+    "en": "Which colour shirt does Nikos keep in the end?",
+    "options": [
+     "Μπλε",
+     "Άσπρο",
+     "Γκρι",
+     "Μαύρο"
+    ],
+    "answer": 2,
+    "explain": "«τότε κρατάω το γκρι»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Το κατάστημα επιστρέφει χρήματα στους πελάτες.",
+    "en": "The shop gives customers their money back.",
+    "answer": 1,
+    "explain": "«Λυπάμαι, δεν επιστρέφουμε χρήματα.» They only give a credit note."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο Νίκος παίρνει το γκρι, αν και του αρέσει περισσότερο το μπλε.",
+    "en": "Nikos takes the grey one, although he likes the blue one more.",
+    "answer": 0,
+    "explain": "He says «προτιμώ το μπλε», but there is no blue in his size, so he keeps the grey."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "η απόδειξη",
+      "receipt"
+     ],
+     [
+      "τα δοκιμαστήρια",
+      "fitting rooms"
+     ],
+     [
+      "προτιμώ",
+      "I prefer"
+     ],
+     [
+      "ισχύει",
+      "it is valid"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Το πουκάμισο μου είναι μικρό. Μπορώ να το ___ (αλλάζω);",
+    "en": "The shirt is too small for me. Can I exchange it?",
+    "accept": [
+     "αλλάξω"
+    ],
+    "explain": "να + perfective subjunctive, 1st person singular: αλλάζω → άλλαξα → να αλλάξω."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Έχεις αλλάξει ποτέ κάτι που αγόρασες; Τι έγινε; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Have you ever exchanged something you bought? What happened? Write two or three sentences.",
+    "explain": "Μια φορά αγόρασα παπούτσια που ήταν μεγάλα. Τα άλλαξα την επόμενη μέρα και πήρα ένα νούμερο πιο μικρό."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "σας",
+    "εσείς",
+    "you; your",
+    "pronoun, polite"
+   ],
+   [
+    "μπορώ",
+    "μπορώ",
+    "can I",
+    "present, 1st sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "βοηθήσω",
+    "βοηθάω",
+    "help",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "αγόρασα",
+    "αγοράζω",
+    "I bought",
+    "past, 1st sg."
+   ],
+   [
+    "αυτό",
+    "αυτός",
+    "this",
+    "pronoun, sg. n."
+   ],
+   [
+    "το",
+    "το / αυτό",
+    "the; it",
+    "article sg. n.; object pronoun"
+   ],
+   [
+    "πουκάμισο",
+    "το πουκάμισο",
+    "shirt",
+    "acc. sg."
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "περασμένη",
+    "περασμένος",
+    "last",
+    "adj., acc. sg. f."
+   ],
+   [
+    "εβδομάδα",
+    "η εβδομάδα",
+    "week",
+    "acc. sg."
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "μου",
+    "εγώ",
+    "(for) me; my",
+    "pronoun"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "it is",
+    "present, 3rd sg."
+   ],
+   [
+    "μικρό",
+    "μικρός",
+    "small",
+    "adj., nom. sg. n."
+   ],
+   [
+    "αλλάξω",
+    "αλλάζω",
+    "exchange",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "βεβαίως",
+    "βεβαίως",
+    "of course",
+    "adverb"
+   ],
+   [
+    "έχετε",
+    "έχω",
+    "do you have",
+    "present, 2nd pl."
+   ],
+   [
+    "απόδειξη",
+    "η απόδειξη",
+    "receipt",
+    "acc. sg."
+   ],
+   [
+    "ναι",
+    "ναι",
+    "yes",
+    "adverb"
+   ],
+   [
+    "ορίστε",
+    "ορίστε",
+    "here you are",
+    "interjection"
+   ],
+   [
+    "ωραία",
+    "ωραία",
+    "good",
+    "adverb"
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "θέλετε",
+    "θέλω",
+    "do you want",
+    "present, 2nd pl."
+   ],
+   [
+    "τέσσερα",
+    "τέσσερα",
+    "four",
+    "number, n."
+   ],
+   [
+    "ακριβώς",
+    "ακριβώς",
+    "exactly",
+    "adverb"
+   ],
+   [
+    "δυστυχώς",
+    "δυστυχώς",
+    "unfortunately",
+    "adverb"
+   ],
+   [
+    "σε",
+    "σε",
+    "in",
+    "preposition"
+   ],
+   [
+    "μπλε",
+    "μπλε",
+    "blue",
+    "indeclinable"
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "έχουμε",
+    "έχω",
+    "we have",
+    "present, 1st pl."
+   ],
+   [
+    "πια",
+    "πια",
+    "any more",
+    "adverb"
+   ],
+   [
+    "όμως",
+    "όμως",
+    "but, however",
+    "conjunction"
+   ],
+   [
+    "άσπρο",
+    "άσπρος",
+    "white",
+    "adj., n."
+   ],
+   [
+    "και",
+    "και",
+    "and; also",
+    "conjunction"
+   ],
+   [
+    "γκρι",
+    "γκρι",
+    "grey",
+    "indeclinable"
+   ],
+   [
+    "χμ",
+    "χμ",
+    "hmm",
+    "interjection"
+   ],
+   [
+    "δοκιμάσω",
+    "δοκιμάζω",
+    "try on",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "φυσικά",
+    "φυσικά",
+    "of course",
+    "adverb"
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "δοκιμαστήρια",
+    "το δοκιμαστήριο",
+    "fitting rooms",
+    "nom. pl."
+   ],
+   [
+    "εκεί",
+    "εκεί",
+    "there",
+    "adverb"
+   ],
+   [
+    "δεξιά",
+    "δεξιά",
+    "on the right",
+    "adverb"
+   ],
+   [
+    "κάνει",
+    "κάνω",
+    "it fits",
+    "present, 3rd sg. (μου κάνει = it fits me)"
+   ],
+   [
+    "τέλεια",
+    "τέλεια",
+    "perfectly",
+    "adverb"
+   ],
+   [
+    "ξέρετε",
+    "ξέρω",
+    "you know",
+    "present, 2nd pl."
+   ],
+   [
+    "προτιμώ",
+    "προτιμώ",
+    "I prefer",
+    "present, 1st sg."
+   ],
+   [
+    "πάρω",
+    "παίρνω",
+    "get",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "πίσω",
+    "πίσω",
+    "back",
+    "adverb"
+   ],
+   [
+    "λεφτά",
+    "τα λεφτά",
+    "money",
+    "acc. pl."
+   ],
+   [
+    "λυπάμαι",
+    "λυπάμαι",
+    "I'm sorry",
+    "present, 1st sg."
+   ],
+   [
+    "επιστρέφουμε",
+    "επιστρέφω",
+    "we give back",
+    "present, 1st pl."
+   ],
+   [
+    "χρήματα",
+    "τα χρήματα",
+    "money",
+    "acc. pl."
+   ],
+   [
+    "μπορούμε",
+    "μπορώ",
+    "we can",
+    "present, 1st pl."
+   ],
+   [
+    "δώσουμε",
+    "δίνω",
+    "give",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. n."
+   ],
+   [
+    "πιστωτικό",
+    "πιστωτικός",
+    "credit",
+    "adj., acc. sg. n."
+   ],
+   [
+    "σημείωμα",
+    "το σημείωμα",
+    "note",
+    "acc. sg. (πιστωτικό σημείωμα = credit note)"
+   ],
+   [
+    "ισχύει",
+    "ισχύω",
+    "it is valid",
+    "present, 3rd sg."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "έξι",
+    "έξι",
+    "six",
+    "number"
+   ],
+   [
+    "μήνες",
+    "ο μήνας",
+    "months",
+    "acc. pl."
+   ],
+   [
+    "όλα",
+    "όλος",
+    "all",
+    "adj., acc. pl. n."
+   ],
+   [
+    "καταστήματά",
+    "το κατάστημα",
+    "shops",
+    "acc. pl. (accent added before μας)"
+   ],
+   [
+    "μας",
+    "εμείς",
+    "our",
+    "possessive pronoun"
+   ],
+   [
+    "εντάξει",
+    "εντάξει",
+    "OK",
+    "adverb"
+   ],
+   [
+    "τότε",
+    "τότε",
+    "then",
+    "adverb"
+   ],
+   [
+    "κρατάω",
+    "κρατάω",
+    "I keep",
+    "present, 1st sg."
+   ],
+   [
+    "ωραίο",
+    "ωραίος",
+    "nice",
+    "adj., nom. sg. n."
+   ],
+   [
+    "κι",
+    "και",
+    "too, also",
+    "form of και (κι αυτό = this one too)"
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-08",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Πάμε σε συναυλία;",
+  "title_en": "Shall we go to a concert?",
+  "topic": "free time, phone call",
+  "segments": [
+   [
+    "Στέφανος",
+    "Έλα, Μαρία! Τι κάνεις;"
+   ],
+   [
+    "Μαρία",
+    "Γεια σου, Στέφανε! Καλά, εσύ; Άκου, είσαι ελεύθερος αύριο το βράδυ;"
+   ],
+   [
+    "Στέφανος",
+    "Αύριο, Παρασκευή; Ναι, γιατί;"
+   ],
+   [
+    "Μαρία",
+    "Έχει μια συναυλία στο Γκάζι, ένα ροκ συγκρότημα από τη Θεσσαλονίκη. Έχω δύο εισιτήρια, αλλά η αδελφή μου δεν μπορεί να έρθει."
+   ],
+   [
+    "Στέφανος",
+    "Τέλεια, πάμε! Τι ώρα αρχίζει;"
+   ],
+   [
+    "Μαρία",
+    "Στις δέκα. Να βρεθούμε πρώτα για φαγητό; Υπάρχει ένα καλό σουβλατζίδικο κοντά στον σταθμό του μετρό, στον Κεραμεικό."
+   ],
+   [
+    "Στέφανος",
+    "Ναι, ωραία. Στις οκτώ και μισή;"
+   ],
+   [
+    "Μαρία",
+    "Μάλλον στις εννιά. Τελειώνω τη δουλειά στις οκτώ και πρέπει να περάσω από το σπίτι."
+   ],
+   [
+    "Στέφανος",
+    "Εντάξει, στις εννιά στην έξοδο του μετρό. Πόσο κοστίζει το εισιτήριο; Να σου δώσω τα λεφτά."
+   ],
+   [
+    "Μαρία",
+    "Τίποτα! Είναι δώρο. Εσύ θα κεράσεις τα σουβλάκια!"
+   ],
+   [
+    "Στέφανος",
+    "Συμφωνώ! Τα λέμε αύριο, λοιπόν."
+   ],
+   [
+    "Μαρία",
+    "Τα λέμε! Και μην αργήσεις, όπως πάντα!"
+   ]
+  ],
+  "glossary": [
+   [
+    "ελεύθερος",
+    "free (not busy)",
+    "adjective"
+   ],
+   [
+    "η συναυλία",
+    "concert",
+    "η συναυλία (f.)"
+   ],
+   [
+    "το συγκρότημα",
+    "band",
+    "το συγκρότημα (n.)"
+   ],
+   [
+    "βρίσκομαι",
+    "to meet up",
+    "verb; subj.: να βρεθούμε"
+   ],
+   [
+    "το σουβλατζίδικο",
+    "souvlaki shop",
+    "το σουβλατζίδικο (n.)"
+   ],
+   [
+    "μάλλον",
+    "probably, rather",
+    "adverb"
+   ],
+   [
+    "κερνάω",
+    "to treat (someone)",
+    "verb; future: θα κεράσω"
+   ],
+   [
+    "αργώ",
+    "to be late",
+    "verb; μην αργήσεις = don't be late"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Γιατί τηλεφωνεί η Μαρία στον Στέφανο;",
+    "en": "Why does Maria call Stefanos?",
+    "options": [
+     "Για να του πει ότι η αδελφή της είναι άρρωστη",
+     "Για να τον καλέσει σε μια συναυλία",
+     "Για να κλείσει τραπέζι σε ένα σουβλατζίδικο",
+     "Για να του ζητήσει λεφτά για τα εισιτήρια"
+    ],
+    "answer": 1,
+    "explain": "She has a spare ticket for a concert and invites him."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πού και πότε θα συναντηθούν;",
+    "en": "Where and when will they meet?",
+    "options": [
+     "Στο σουβλατζίδικο στις οκτώ και μισή",
+     "Στην έξοδο του μετρό στις εννιά",
+     "Στο σπίτι της Μαρίας στις οκτώ",
+     "Στη συναυλία στις δέκα το βράδυ"
+    ],
+    "answer": 1,
+    "explain": "«στις εννιά στην έξοδο του μετρό»."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Ο Στέφανος θα πληρώσει το εισιτήριο της συναυλίας.",
+    "en": "Stefanos will pay for the concert ticket.",
+    "answer": 1,
+    "explain": "Maria says it is a present; he will pay for the souvlaki instead."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο Στέφανος συνήθως αργεί.",
+    "en": "Stefanos is usually late.",
+    "answer": 0,
+    "explain": "Maria says: «μην αργήσεις, όπως πάντα!» (don't be late, as always)."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "η συναυλία",
+      "concert"
+     ],
+     [
+      "το συγκρότημα",
+      "band"
+     ],
+     [
+      "θα κεράσεις",
+      "you will treat (us)"
+     ],
+     [
+      "μην αργήσεις",
+      "don't be late"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Να ___ (βρίσκομαι) πρώτα για φαγητό;",
+    "en": "Shall we meet first for something to eat?",
+    "accept": [
+     "βρεθούμε"
+    ],
+    "explain": "να + subjunctive, 1st person plural of βρίσκομαι (to meet up): να βρεθούμε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Γράψε ένα μήνυμα σε έναν φίλο ή μια φίλη: κάλεσέ τον ή την να βγείτε το Σάββατο. Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Write a message to a friend inviting them to go out on Saturday. Write two or three sentences.",
+    "explain": "Γεια σου, Ελένη! Θέλεις να πάμε σινεμά το Σάββατο το βράδυ; Μετά μπορούμε να φάμε κάτι στο κέντρο."
+   }
+  ],
+  "words": [
+   [
+    "έλα",
+    "έρχομαι",
+    "hi (lit. come)",
+    "imperative, 2nd sg.; answering the phone"
+   ],
+   [
+    "Μαρία",
+    "Μαρία",
+    "Maria",
+    "name"
+   ],
+   [
+    "τι",
+    "τι",
+    "what",
+    "question word"
+   ],
+   [
+    "κάνεις",
+    "κάνω",
+    "are you doing",
+    "present, 2nd sg. (τι κάνεις; = how are you?)"
+   ],
+   [
+    "γεια",
+    "γεια",
+    "hello",
+    "greeting"
+   ],
+   [
+    "σου",
+    "εσύ",
+    "(to) you",
+    "pronoun"
+   ],
+   [
+    "Στέφανε",
+    "Στέφανος",
+    "Stefanos",
+    "name, vocative"
+   ],
+   [
+    "καλά",
+    "καλά",
+    "well, fine",
+    "adverb"
+   ],
+   [
+    "εσύ",
+    "εσύ",
+    "you",
+    "personal pronoun"
+   ],
+   [
+    "άκου",
+    "ακούω",
+    "listen",
+    "imperative, 2nd sg."
+   ],
+   [
+    "είσαι",
+    "είμαι",
+    "you are",
+    "present, 2nd sg."
+   ],
+   [
+    "ελεύθερος",
+    "ελεύθερος",
+    "free",
+    "adj., nom. sg. m."
+   ],
+   [
+    "αύριο",
+    "αύριο",
+    "tomorrow",
+    "adverb"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "βράδυ",
+    "το βράδυ",
+    "evening",
+    "acc. sg."
+   ],
+   [
+    "Παρασκευή",
+    "η Παρασκευή",
+    "Friday",
+    "nom. sg."
+   ],
+   [
+    "ναι",
+    "ναι",
+    "yes",
+    "adverb"
+   ],
+   [
+    "γιατί",
+    "γιατί",
+    "why",
+    "question word"
+   ],
+   [
+    "έχει",
+    "έχω",
+    "there is (lit. it has)",
+    "present, 3rd sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "συναυλία",
+    "η συναυλία",
+    "concert",
+    "acc. sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "Γκάζι",
+    "το Γκάζι",
+    "Gazi",
+    "district of Athens"
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a",
+    "indef. article, sg. n."
+   ],
+   [
+    "ροκ",
+    "ροκ",
+    "rock",
+    "indeclinable"
+   ],
+   [
+    "συγκρότημα",
+    "το συγκρότημα",
+    "band",
+    "acc. sg."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Θεσσαλονίκη",
+    "η Θεσσαλονίκη",
+    "Thessaloniki",
+    "acc. sg."
+   ],
+   [
+    "έχω",
+    "έχω",
+    "I have",
+    "present, 1st sg."
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "εισιτήρια",
+    "το εισιτήριο",
+    "tickets",
+    "acc. pl."
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "αδελφή",
+    "η αδελφή",
+    "sister",
+    "nom. sg."
+   ],
+   [
+    "μου",
+    "εγώ",
+    "my",
+    "possessive pronoun"
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "μπορεί",
+    "μπορώ",
+    "she can",
+    "present, 3rd sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "έρθει",
+    "έρχομαι",
+    "come",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "τέλεια",
+    "τέλεια",
+    "great",
+    "adverb"
+   ],
+   [
+    "πάμε",
+    "πηγαίνω",
+    "let's go",
+    "present, 1st pl."
+   ],
+   [
+    "ώρα",
+    "η ώρα",
+    "time",
+    "acc. sg."
+   ],
+   [
+    "αρχίζει",
+    "αρχίζω",
+    "it starts",
+    "present, 3rd sg."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "δέκα",
+    "δέκα",
+    "ten",
+    "number"
+   ],
+   [
+    "βρεθούμε",
+    "βρίσκομαι",
+    "meet up",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "πρώτα",
+    "πρώτα",
+    "first",
+    "adverb"
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "φαγητό",
+    "το φαγητό",
+    "food",
+    "acc. sg."
+   ],
+   [
+    "υπάρχει",
+    "υπάρχει",
+    "there is",
+    "present, 3rd sg."
+   ],
+   [
+    "καλό",
+    "καλός",
+    "good",
+    "adj., nom. sg. n."
+   ],
+   [
+    "σουβλατζίδικο",
+    "το σουβλατζίδικο",
+    "souvlaki shop",
+    "nom. sg."
+   ],
+   [
+    "κοντά",
+    "κοντά",
+    "near",
+    "adverb"
+   ],
+   [
+    "στον",
+    "σε + τον",
+    "to the; at the",
+    "preposition + article"
+   ],
+   [
+    "σταθμό",
+    "ο σταθμός",
+    "station",
+    "acc. sg."
+   ],
+   [
+    "του",
+    "ο",
+    "of the",
+    "article, gen. sg. n."
+   ],
+   [
+    "μετρό",
+    "το μετρό",
+    "metro",
+    "indeclinable"
+   ],
+   [
+    "Κεραμεικό",
+    "ο Κεραμεικός",
+    "Kerameikos",
+    "metro station / district"
+   ],
+   [
+    "ωραία",
+    "ωραία",
+    "great",
+    "adverb"
+   ],
+   [
+    "οκτώ",
+    "οκτώ",
+    "eight",
+    "number"
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "μισή",
+    "μισός",
+    "half",
+    "adj., f."
+   ],
+   [
+    "μάλλον",
+    "μάλλον",
+    "probably",
+    "adverb"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "τελειώνω",
+    "τελειώνω",
+    "I finish",
+    "present, 1st sg."
+   ],
+   [
+    "δουλειά",
+    "η δουλειά",
+    "work",
+    "acc. sg."
+   ],
+   [
+    "πρέπει",
+    "πρέπει",
+    "I have to",
+    "impersonal verb"
+   ],
+   [
+    "περάσω",
+    "περνάω",
+    "stop by",
+    "subjunctive, 1st sg. (περνάω από = drop by)"
+   ],
+   [
+    "σπίτι",
+    "το σπίτι",
+    "home",
+    "acc. sg."
+   ],
+   [
+    "εντάξει",
+    "εντάξει",
+    "OK",
+    "adverb"
+   ],
+   [
+    "στην",
+    "σε + την",
+    "at the",
+    "preposition + article"
+   ],
+   [
+    "έξοδο",
+    "η έξοδος",
+    "exit",
+    "acc. sg."
+   ],
+   [
+    "πόσο",
+    "πόσο",
+    "how much",
+    "question word"
+   ],
+   [
+    "κοστίζει",
+    "κοστίζω",
+    "costs",
+    "present, 3rd sg."
+   ],
+   [
+    "εισιτήριο",
+    "το εισιτήριο",
+    "ticket",
+    "nom. sg."
+   ],
+   [
+    "δώσω",
+    "δίνω",
+    "give",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "λεφτά",
+    "τα λεφτά",
+    "money",
+    "acc. pl."
+   ],
+   [
+    "τίποτα",
+    "τίποτα",
+    "nothing",
+    "pronoun"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "it is",
+    "present, 3rd sg."
+   ],
+   [
+    "δώρο",
+    "το δώρο",
+    "present",
+    "nom. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "κεράσεις",
+    "κερνάω",
+    "treat (pay for)",
+    "subjunctive, 2nd sg."
+   ],
+   [
+    "σουβλάκια",
+    "το σουβλάκι",
+    "souvlaki",
+    "acc. pl."
+   ],
+   [
+    "συμφωνώ",
+    "συμφωνώ",
+    "I agree",
+    "present, 1st sg."
+   ],
+   [
+    "λέμε",
+    "λέω",
+    "we say",
+    "present, 1st pl. (τα λέμε = see you)"
+   ],
+   [
+    "λοιπόν",
+    "λοιπόν",
+    "then, so",
+    "particle"
+   ],
+   [
+    "μην",
+    "μη(ν)",
+    "don't",
+    "negation"
+   ],
+   [
+    "αργήσεις",
+    "αργώ",
+    "be late",
+    "subjunctive, 2nd sg."
+   ],
+   [
+    "όπως",
+    "όπως",
+    "as",
+    "conjunction"
+   ],
+   [
+    "πάντα",
+    "πάντα",
+    "always",
+    "adverb"
+   ]
+  ]
+ }
+]
