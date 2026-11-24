@@ -113,7 +113,7 @@ describe("refill rule (keep 3, refill below 2)", () => {
   });
   it("counts only lessons at the target level", () => {
     const c = availableLessons("listening", [], emptyStock);
-    expect(countAtLevel(c, "B1")).toBe(5); // 1 Wikipedia-based + 4 AI-written
+    expect(countAtLevel(c, "B1")).toBe(5 + STARTER.listening.filter((l) => l.source.library && l.level === "B1").length); // 1 Wikipedia-based + 4 AI-written + library
     expect(countAtLevel(c, "C1")).toBe(0);
   });
 });
