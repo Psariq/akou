@@ -1,0 +1,2798 @@
+[
+ {
+  "id": "lib-listening-A2-13",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Ο καιρός σήμερα",
+  "title_en": "Today's weather",
+  "topic": "weather, radio",
+  "segments": [
+   [
+    "Μετεωρολόγος",
+    "Καλημέρα σας. Πάμε να δούμε τον καιρό για σήμερα, Τετάρτη. Στη βόρεια Ελλάδα ο καιρός θα είναι συννεφιασμένος, με βροχές το πρωί, ενώ στα βουνά της Μακεδονίας θα πέσει και λίγο χιόνι. Η θερμοκρασία στη Θεσσαλονίκη θα είναι από τρεις μέχρι εννιά βαθμούς."
+   ],
+   [
+    "Μετεωρολόγος",
+    "Στην Αθήνα και στη νότια Ελλάδα θα έχουμε λίγα σύννεφα και πολύ ήλιο. Η θερμοκρασία θα φτάσει τους δεκαπέντε βαθμούς. Οι άνεμοι στο Αιγαίο θα είναι βόρειοι, έξι με επτά μποφόρ, οπότε προσοχή αν ταξιδεύετε με πλοίο: μερικά δρομολόγια μπορεί να έχουν καθυστερήσεις."
+   ],
+   [
+    "Μετεωρολόγος",
+    "Για αύριο, Πέμπτη, ο καιρός θα γίνει καλύτερος σε όλη τη χώρα. Το Σαββατοκύριακο έρχεται πάλι κρύο, με βροχές σε πολλές περιοχές. Μην ξεχάσετε την ομπρέλα σας! Καλή σας μέρα."
+   ]
+  ],
+  "glossary": [
+   [
+    "βόρειος",
+    "northern; north (wind)",
+    "adjective"
+   ],
+   [
+    "συννεφιασμένος",
+    "cloudy",
+    "adjective"
+   ],
+   [
+    "το χιόνι",
+    "snow",
+    "το χιόνι (n.)"
+   ],
+   [
+    "η θερμοκρασία",
+    "temperature",
+    "η θερμοκρασία (f.)"
+   ],
+   [
+    "ο βαθμός",
+    "degree",
+    "ο βαθμός (m.)"
+   ],
+   [
+    "ο άνεμος",
+    "wind",
+    "ο άνεμος (m.)"
+   ],
+   [
+    "τα μποφόρ",
+    "Beaufort (wind force)",
+    "indeclinable"
+   ],
+   [
+    "το δρομολόγιο",
+    "scheduled trip, route",
+    "το δρομολόγιο (n.)"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι ακούμε;",
+    "en": "What do we hear?",
+    "options": [
+     "Μια ανακοίνωση για τα πλοία στο λιμάνι",
+     "Ένα δελτίο καιρού στο ραδιόφωνο",
+     "Μια διαφήμιση για ταξίδια στη Μακεδονία",
+     "Μια συζήτηση για τον χειμώνα στην Αθήνα"
+    ],
+    "answer": 1,
+    "explain": "A forecaster gives the weather for today, tomorrow and the weekend."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πόσους βαθμούς θα έχει σήμερα η Αθήνα;",
+    "en": "What temperature will Athens reach today?",
+    "options": [
+     "Εννιά βαθμούς",
+     "Τρεις βαθμούς",
+     "Δεκαπέντε βαθμούς",
+     "Είκοσι πέντε βαθμούς"
+    ],
+    "answer": 2,
+    "explain": "«Η θερμοκρασία θα φτάσει τους δεκαπέντε βαθμούς.» Three to nine is Thessaloniki."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Αύριο θα βρέχει σε όλη τη χώρα.",
+    "en": "Tomorrow it will rain all over the country.",
+    "answer": 1,
+    "explain": "«Για αύριο ... ο καιρός θα γίνει καλύτερος σε όλη τη χώρα.» Rain comes back at the weekend."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Σήμερα το ταξίδι με πλοίο στο Αιγαίο μπορεί να είναι δύσκολο.",
+    "en": "Today a ferry trip in the Aegean may be difficult.",
+    "answer": 0,
+    "explain": "Strong north winds of six to seven Beaufort; some trips may be delayed."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "συννεφιασμένος",
+      "cloudy"
+     ],
+     [
+      "το χιόνι",
+      "snow"
+     ],
+     [
+      "οι άνεμοι",
+      "winds"
+     ],
+     [
+      "οι βαθμοί",
+      "degrees"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Για αύριο ο καιρός θα ___ (γίνομαι) καλύτερος.",
+    "en": "For tomorrow the weather will get better.",
+    "accept": [
+     "γίνει"
+    ],
+    "explain": "Simple future, 3rd person singular: γίνομαι → έγινα → θα γίνει."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Πώς είναι ο καιρός σήμερα εκεί που μένεις; Τι καιρό προτιμάς; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "What is the weather like today where you live? What weather do you prefer? Write two or three sentences.",
+    "explain": "Σήμερα εδώ έχει συννεφιά και κάνει λίγο κρύο. Εγώ προτιμώ τον ήλιο και τη ζέστη, γιατί μου αρέσει να κολυμπάω."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "σας",
+    "εσείς",
+    "(to) you; your",
+    "pronoun, pl."
+   ],
+   [
+    "πάμε",
+    "πηγαίνω",
+    "let's",
+    "present, 1st pl. (πάμε να δούμε = let's see)"
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "δούμε",
+    "βλέπω",
+    "see",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "τον",
+    "ο",
+    "the",
+    "article, acc. sg. m."
+   ],
+   [
+    "καιρό",
+    "ο καιρός",
+    "weather",
+    "acc. sg."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "Τετάρτη",
+    "η Τετάρτη",
+    "Wednesday",
+    "nom. sg."
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "βόρεια",
+    "βόρειος",
+    "northern",
+    "adj., acc. sg. f."
+   ],
+   [
+    "Ελλάδα",
+    "η Ελλάδα",
+    "Greece",
+    "acc. sg."
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "καιρός",
+    "ο καιρός",
+    "weather",
+    "nom. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "be",
+    "present, 3rd sg./pl. (θα είναι = will be)"
+   ],
+   [
+    "συννεφιασμένος",
+    "συννεφιασμένος",
+    "cloudy",
+    "adj., nom. sg. m."
+   ],
+   [
+    "με",
+    "με",
+    "with; by",
+    "preposition"
+   ],
+   [
+    "βροχές",
+    "η βροχή",
+    "rain(s)",
+    "acc. pl."
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "πρωί",
+    "το πρωί",
+    "morning",
+    "acc. sg."
+   ],
+   [
+    "ενώ",
+    "ενώ",
+    "while",
+    "conjunction"
+   ],
+   [
+    "στα",
+    "σε + τα",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "βουνά",
+    "το βουνό",
+    "mountains",
+    "acc. pl."
+   ],
+   [
+    "της",
+    "η",
+    "of the",
+    "article, gen. sg. f."
+   ],
+   [
+    "Μακεδονίας",
+    "η Μακεδονία",
+    "Macedonia (region)",
+    "gen. sg."
+   ],
+   [
+    "πέσει",
+    "πέφτω",
+    "fall",
+    "subjunctive, 3rd sg. (θα πέσει χιόνι = it will snow)"
+   ],
+   [
+    "και",
+    "και",
+    "and; also",
+    "conjunction"
+   ],
+   [
+    "λίγο",
+    "λίγος",
+    "a little",
+    "adj., nom. sg. n."
+   ],
+   [
+    "χιόνι",
+    "το χιόνι",
+    "snow",
+    "nom. sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "θερμοκρασία",
+    "η θερμοκρασία",
+    "temperature",
+    "nom. sg."
+   ],
+   [
+    "Θεσσαλονίκη",
+    "η Θεσσαλονίκη",
+    "Thessaloniki",
+    "acc. sg."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "τρεις",
+    "τρεις",
+    "three",
+    "number"
+   ],
+   [
+    "μέχρι",
+    "μέχρι",
+    "to",
+    "preposition"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "βαθμούς",
+    "ο βαθμός",
+    "degrees",
+    "acc. pl."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "Αθήνα",
+    "η Αθήνα",
+    "Athens",
+    "acc. sg."
+   ],
+   [
+    "νότια",
+    "νότιος",
+    "southern",
+    "adj., acc. sg. f."
+   ],
+   [
+    "έχουμε",
+    "έχω",
+    "have",
+    "subjunctive / present, 1st pl."
+   ],
+   [
+    "λίγα",
+    "λίγος",
+    "a few",
+    "adj., acc. pl. n."
+   ],
+   [
+    "σύννεφα",
+    "το σύννεφο",
+    "clouds",
+    "acc. pl."
+   ],
+   [
+    "πολύ",
+    "πολύς",
+    "a lot of",
+    "adj., acc. sg. m."
+   ],
+   [
+    "ήλιο",
+    "ο ήλιος",
+    "sun",
+    "acc. sg."
+   ],
+   [
+    "φτάσει",
+    "φτάνω",
+    "reach",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "τους",
+    "ο",
+    "the",
+    "article, acc. pl. m."
+   ],
+   [
+    "δεκαπέντε",
+    "δεκαπέντε",
+    "fifteen",
+    "number"
+   ],
+   [
+    "οι",
+    "οι",
+    "the",
+    "article, nom. pl."
+   ],
+   [
+    "άνεμοι",
+    "ο άνεμος",
+    "winds",
+    "nom. pl."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "Αιγαίο",
+    "το Αιγαίο",
+    "the Aegean",
+    "acc. sg."
+   ],
+   [
+    "βόρειοι",
+    "βόρειος",
+    "northerly",
+    "adj., nom. pl. m."
+   ],
+   [
+    "έξι",
+    "έξι",
+    "six",
+    "number"
+   ],
+   [
+    "επτά",
+    "επτά",
+    "seven",
+    "number"
+   ],
+   [
+    "μποφόρ",
+    "το μποφόρ",
+    "Beaufort",
+    "indeclinable"
+   ],
+   [
+    "οπότε",
+    "οπότε",
+    "so",
+    "conjunction"
+   ],
+   [
+    "προσοχή",
+    "η προσοχή",
+    "care, attention",
+    "nom. sg."
+   ],
+   [
+    "αν",
+    "αν",
+    "if",
+    "conjunction"
+   ],
+   [
+    "ταξιδεύετε",
+    "ταξιδεύω",
+    "you travel",
+    "present, 2nd pl."
+   ],
+   [
+    "πλοίο",
+    "το πλοίο",
+    "ship, ferry",
+    "acc. sg."
+   ],
+   [
+    "μερικά",
+    "μερικοί",
+    "some",
+    "adj., nom. pl. n."
+   ],
+   [
+    "δρομολόγια",
+    "το δρομολόγιο",
+    "scheduled trips",
+    "nom. pl."
+   ],
+   [
+    "μπορεί",
+    "μπορεί",
+    "may (it is possible)",
+    "impersonal verb"
+   ],
+   [
+    "έχουν",
+    "έχω",
+    "have",
+    "present, 3rd pl."
+   ],
+   [
+    "καθυστερήσεις",
+    "η καθυστέρηση",
+    "delays",
+    "acc. pl."
+   ],
+   [
+    "αύριο",
+    "αύριο",
+    "tomorrow",
+    "adverb"
+   ],
+   [
+    "Πέμπτη",
+    "η Πέμπτη",
+    "Thursday",
+    "nom. sg."
+   ],
+   [
+    "γίνει",
+    "γίνομαι",
+    "become, get",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "καλύτερος",
+    "καλύτερος",
+    "better",
+    "comparative, nom. sg. m."
+   ],
+   [
+    "σε",
+    "σε",
+    "in",
+    "preposition"
+   ],
+   [
+    "όλη",
+    "όλος",
+    "whole",
+    "adj., acc. sg. f."
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "χώρα",
+    "η χώρα",
+    "country",
+    "acc. sg."
+   ],
+   [
+    "Σαββατοκύριακο",
+    "το Σαββατοκύριακο",
+    "weekend",
+    "acc. sg."
+   ],
+   [
+    "έρχεται",
+    "έρχομαι",
+    "comes",
+    "present, 3rd sg."
+   ],
+   [
+    "πάλι",
+    "πάλι",
+    "again",
+    "adverb"
+   ],
+   [
+    "κρύο",
+    "το κρύο",
+    "cold",
+    "nom. sg."
+   ],
+   [
+    "πολλές",
+    "πολύς",
+    "many",
+    "adj., acc. pl. f."
+   ],
+   [
+    "περιοχές",
+    "η περιοχή",
+    "areas",
+    "acc. pl."
+   ],
+   [
+    "μην",
+    "μη(ν)",
+    "don't",
+    "negation"
+   ],
+   [
+    "ξεχάσετε",
+    "ξεχνάω",
+    "forget",
+    "subjunctive, 2nd pl."
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "ομπρέλα",
+    "η ομπρέλα",
+    "umbrella",
+    "acc. sg."
+   ],
+   [
+    "καλή",
+    "καλός",
+    "good",
+    "adj., acc. sg. f."
+   ],
+   [
+    "μέρα",
+    "η μέρα",
+    "day",
+    "acc. sg."
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-14",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Στον κτηνίατρο",
+  "title_en": "At the vet's",
+  "topic": "animals, health",
+  "segments": [
+   [
+    "Κτηνίατρος",
+    "Καλημέρα. Ποιος είναι ο ασθενής μας σήμερα;"
+   ],
+   [
+    "Θοδωρής",
+    "Ο Μπόμπος. Είναι τεσσάρων χρονών. Από χθες δεν τρώει τίποτα και κοιμάται όλη μέρα. Συνήθως τρώει πολύ και θέλει να παίζει συνέχεια."
+   ],
+   [
+    "Κτηνίατρος",
+    "Ας τον δούμε. Έλα, Μπόμπο, ανέβα στο τραπέζι. Μπράβο. Ήπιε νερό;"
+   ],
+   [
+    "Θοδωρής",
+    "Λίγο. Α, και χθες στο πάρκο έφαγε κάτι από το χώμα. Δεν είδα τι ήταν."
+   ],
+   [
+    "Κτηνίατρος",
+    "Η κοιλιά του είναι λίγο σκληρή. Δεν έχει πυρετό, αυτό είναι καλό. Μάλλον έφαγε κάτι χαλασμένο. Θα του κάνω μια ένεση και θα σας δώσω χάπια για τρεις μέρες."
+   ],
+   [
+    "Θοδωρής",
+    "Πρέπει να του δίνω φαγητό;"
+   ],
+   [
+    "Κτηνίατρος",
+    "Σήμερα μόνο νερό. Από αύριο, λίγο βραστό ρύζι με κοτόπουλο, χωρίς αλάτι. Και στο πάρκο, προσέξτε τι τρώει!"
+   ],
+   [
+    "Θοδωρής",
+    "Εντάξει. Κι αν δεν γίνει καλύτερα;"
+   ],
+   [
+    "Κτηνίατρος",
+    "Τότε φέρτε τον πάλι την Παρασκευή. Αλλά νομίζω ότι σε δύο μέρες θα τρέχει πάλι στο πάρκο."
+   ]
+  ],
+  "glossary": [
+   [
+    "συνέχεια",
+    "all the time",
+    "adverb"
+   ],
+   [
+    "ανεβαίνω",
+    "to get up (onto)",
+    "verb; imperative: ανέβα"
+   ],
+   [
+    "η κοιλιά",
+    "belly, stomach",
+    "η κοιλιά (f.)"
+   ],
+   [
+    "σκληρός",
+    "hard",
+    "adjective"
+   ],
+   [
+    "χαλασμένος",
+    "spoiled, gone off",
+    "adjective"
+   ],
+   [
+    "η ένεση",
+    "injection",
+    "η ένεση (f.)"
+   ],
+   [
+    "το χάπι",
+    "pill",
+    "το χάπι (n.)"
+   ],
+   [
+    "βραστός",
+    "boiled",
+    "adjective"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Γιατί πήγε ο Θοδωρής στον κτηνίατρο;",
+    "en": "Why did Thodoris go to the vet?",
+    "options": [
+     "Για το ετήσιο εμβόλιο του σκύλου του",
+     "Γιατί ο σκύλος του είναι άρρωστος",
+     "Γιατί ο σκύλος του χτύπησε στο πάρκο",
+     "Για να αγοράσει φαγητό για τον σκύλο του"
+    ],
+    "answer": 1,
+    "explain": "Bobos has not eaten since yesterday and sleeps all day."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Τι πρέπει να τρώει ο Μπόμπος από αύριο;",
+    "en": "What should Bobos eat from tomorrow?",
+    "options": [
+     "Μόνο νερό",
+     "Βραστό ρύζι με κοτόπουλο",
+     "Το συνηθισμένο του φαγητό",
+     "Κοτόπουλο με λίγο αλάτι"
+    ],
+    "answer": 1,
+    "explain": "«Από αύριο, λίγο βραστό ρύζι με κοτόπουλο, χωρίς αλάτι.» Today only water."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Ο Μπόμπος έχει πυρετό.",
+    "en": "Bobos has a fever.",
+    "answer": 1,
+    "explain": "«Δεν έχει πυρετό, αυτό είναι καλό.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Ο κτηνίατρος δεν πιστεύει ότι το πρόβλημα είναι πολύ σοβαρό.",
+    "en": "The vet doesn't think the problem is very serious.",
+    "answer": 0,
+    "explain": "He expects Bobos to be running in the park again in two days."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "η κοιλιά",
+      "belly"
+     ],
+     [
+      "χαλασμένο",
+      "gone off, spoiled"
+     ],
+     [
+      "η ένεση",
+      "injection"
+     ],
+     [
+      "τα χάπια",
+      "pills"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Χθες στο πάρκο ο Μπόμπος ___ (τρώω) κάτι από το χώμα.",
+    "en": "Yesterday in the park Bobos ate something off the ground.",
+    "accept": [
+     "έφαγε"
+    ],
+    "explain": "Irregular simple past, 3rd person singular: τρώω → έφαγα → έφαγε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Τι κάνεις όταν ένα ζώο σου ή ένας φίλος σου είναι άρρωστος; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "What do you do when your pet or a friend is ill? Write two or three sentences.",
+    "explain": "Όταν η γάτα μου είναι άρρωστη, την πηγαίνω στον κτηνίατρο. Όταν ένας φίλος μου είναι άρρωστος, του φέρνω σούπα και φρούτα."
+   }
+  ],
+  "words": [
+   [
+    "καλημέρα",
+    "καλημέρα",
+    "good morning",
+    "greeting"
+   ],
+   [
+    "ποιος",
+    "ποιος",
+    "who",
+    "interrogative pronoun"
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is",
+    "present, 3rd sg."
+   ],
+   [
+    "ο",
+    "ο",
+    "the",
+    "article, nom. sg. m."
+   ],
+   [
+    "ασθενής",
+    "ο ασθενής",
+    "patient",
+    "nom. sg."
+   ],
+   [
+    "μας",
+    "εμείς",
+    "our",
+    "possessive pronoun"
+   ],
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "Μπόμπος",
+    "Μπόμπος",
+    "Bobos",
+    "dog's name"
+   ],
+   [
+    "τεσσάρων",
+    "τέσσερις",
+    "four",
+    "number, gen. (τεσσάρων χρονών = four years old)"
+   ],
+   [
+    "χρονών",
+    "ο χρόνος",
+    "years old",
+    "gen. pl."
+   ],
+   [
+    "από",
+    "από",
+    "since; from",
+    "preposition"
+   ],
+   [
+    "χθες",
+    "χθες",
+    "yesterday",
+    "adverb"
+   ],
+   [
+    "δεν",
+    "δεν",
+    "not",
+    "negation"
+   ],
+   [
+    "τρώει",
+    "τρώω",
+    "he eats",
+    "present, 3rd sg."
+   ],
+   [
+    "τίποτα",
+    "τίποτα",
+    "anything, nothing",
+    "pronoun (with δεν)"
+   ],
+   [
+    "και",
+    "και",
+    "and; also",
+    "conjunction"
+   ],
+   [
+    "κοιμάται",
+    "κοιμάμαι",
+    "he sleeps",
+    "present, 3rd sg."
+   ],
+   [
+    "όλη",
+    "όλος",
+    "all",
+    "adj., acc. sg. f."
+   ],
+   [
+    "μέρα",
+    "η μέρα",
+    "day",
+    "acc. sg. (όλη μέρα = all day)"
+   ],
+   [
+    "συνήθως",
+    "συνήθως",
+    "usually",
+    "adverb"
+   ],
+   [
+    "πολύ",
+    "πολύ",
+    "a lot",
+    "adverb"
+   ],
+   [
+    "θέλει",
+    "θέλω",
+    "he wants",
+    "present, 3rd sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "παίζει",
+    "παίζω",
+    "play",
+    "present, 3rd sg."
+   ],
+   [
+    "συνέχεια",
+    "συνέχεια",
+    "all the time",
+    "adverb"
+   ],
+   [
+    "ας",
+    "ας",
+    "let's",
+    "particle (ας τον δούμε = let's have a look at him)"
+   ],
+   [
+    "τον",
+    "αυτός",
+    "him",
+    "object pronoun, acc. sg. m."
+   ],
+   [
+    "δούμε",
+    "βλέπω",
+    "see",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "έλα",
+    "έρχομαι",
+    "come on",
+    "imperative, 2nd sg."
+   ],
+   [
+    "Μπόμπο",
+    "Μπόμπος",
+    "Bobos",
+    "name, vocative"
+   ],
+   [
+    "ανέβα",
+    "ανεβαίνω",
+    "get up",
+    "imperative, 2nd sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "on the; in the",
+    "preposition + article"
+   ],
+   [
+    "τραπέζι",
+    "το τραπέζι",
+    "table",
+    "acc. sg."
+   ],
+   [
+    "μπράβο",
+    "μπράβο",
+    "good boy, well done",
+    "interjection"
+   ],
+   [
+    "ήπιε",
+    "πίνω",
+    "did he drink",
+    "past, 3rd sg."
+   ],
+   [
+    "νερό",
+    "το νερό",
+    "water",
+    "acc. sg."
+   ],
+   [
+    "λίγο",
+    "λίγο",
+    "a little",
+    "adverb"
+   ],
+   [
+    "α",
+    "α",
+    "oh",
+    "interjection"
+   ],
+   [
+    "πάρκο",
+    "το πάρκο",
+    "park",
+    "acc. sg."
+   ],
+   [
+    "έφαγε",
+    "τρώω",
+    "he ate",
+    "past, 3rd sg."
+   ],
+   [
+    "κάτι",
+    "κάτι",
+    "something",
+    "pronoun"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "χώμα",
+    "το χώμα",
+    "ground, soil",
+    "acc. sg."
+   ],
+   [
+    "είδα",
+    "βλέπω",
+    "I saw",
+    "past, 1st sg."
+   ],
+   [
+    "τι",
+    "τι",
+    "what",
+    "pronoun"
+   ],
+   [
+    "ήταν",
+    "είμαι",
+    "it was",
+    "past, 3rd sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "κοιλιά",
+    "η κοιλιά",
+    "belly",
+    "nom. sg."
+   ],
+   [
+    "του",
+    "αυτός",
+    "his; (to) him",
+    "pronoun"
+   ],
+   [
+    "σκληρή",
+    "σκληρός",
+    "hard",
+    "adj., nom. sg. f."
+   ],
+   [
+    "έχει",
+    "έχω",
+    "he has",
+    "present, 3rd sg."
+   ],
+   [
+    "πυρετό",
+    "ο πυρετός",
+    "fever",
+    "acc. sg."
+   ],
+   [
+    "αυτό",
+    "αυτός",
+    "this",
+    "pronoun, nom. sg. n."
+   ],
+   [
+    "καλό",
+    "καλός",
+    "good",
+    "adj., nom. sg. n."
+   ],
+   [
+    "μάλλον",
+    "μάλλον",
+    "probably",
+    "adverb"
+   ],
+   [
+    "χαλασμένο",
+    "χαλασμένος",
+    "gone off, spoiled",
+    "adj., acc. sg. n."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "κάνω",
+    "κάνω",
+    "give (lit. make)",
+    "present / subjunctive, 1st sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "ένεση",
+    "η ένεση",
+    "injection",
+    "acc. sg."
+   ],
+   [
+    "σας",
+    "εσείς",
+    "(to) you",
+    "pronoun, polite"
+   ],
+   [
+    "δώσω",
+    "δίνω",
+    "give",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "χάπια",
+    "το χάπι",
+    "pills",
+    "acc. pl."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "τρεις",
+    "τρεις",
+    "three",
+    "number"
+   ],
+   [
+    "μέρες",
+    "η μέρα",
+    "days",
+    "acc. pl."
+   ],
+   [
+    "πρέπει",
+    "πρέπει",
+    "should",
+    "impersonal verb"
+   ],
+   [
+    "δίνω",
+    "δίνω",
+    "I give",
+    "present, 1st sg."
+   ],
+   [
+    "φαγητό",
+    "το φαγητό",
+    "food",
+    "acc. sg."
+   ],
+   [
+    "μόνο",
+    "μόνο",
+    "only",
+    "adverb"
+   ],
+   [
+    "αύριο",
+    "αύριο",
+    "tomorrow",
+    "adverb"
+   ],
+   [
+    "βραστό",
+    "βραστός",
+    "boiled",
+    "adj., acc. sg. n."
+   ],
+   [
+    "ρύζι",
+    "το ρύζι",
+    "rice",
+    "acc. sg."
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "κοτόπουλο",
+    "το κοτόπουλο",
+    "chicken",
+    "acc. sg."
+   ],
+   [
+    "χωρίς",
+    "χωρίς",
+    "without",
+    "preposition"
+   ],
+   [
+    "αλάτι",
+    "το αλάτι",
+    "salt",
+    "acc. sg."
+   ],
+   [
+    "προσέξτε",
+    "προσέχω",
+    "watch",
+    "imperative, 2nd pl."
+   ],
+   [
+    "εντάξει",
+    "εντάξει",
+    "OK",
+    "adverb"
+   ],
+   [
+    "κι",
+    "και",
+    "and",
+    "form of και before a vowel"
+   ],
+   [
+    "αν",
+    "αν",
+    "if",
+    "conjunction"
+   ],
+   [
+    "γίνει",
+    "γίνομαι",
+    "get (better)",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "καλύτερα",
+    "καλύτερα",
+    "better",
+    "adverb"
+   ],
+   [
+    "τότε",
+    "τότε",
+    "then",
+    "adverb"
+   ],
+   [
+    "φέρτε",
+    "φέρνω",
+    "bring",
+    "imperative, 2nd pl."
+   ],
+   [
+    "πάλι",
+    "πάλι",
+    "again",
+    "adverb"
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Παρασκευή",
+    "η Παρασκευή",
+    "Friday",
+    "acc. sg."
+   ],
+   [
+    "αλλά",
+    "αλλά",
+    "but",
+    "conjunction"
+   ],
+   [
+    "νομίζω",
+    "νομίζω",
+    "I think",
+    "present, 1st sg."
+   ],
+   [
+    "ότι",
+    "ότι",
+    "that",
+    "conjunction"
+   ],
+   [
+    "σε",
+    "σε",
+    "in",
+    "preposition"
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "τρέχει",
+    "τρέχω",
+    "run",
+    "present, 3rd sg. (θα τρέχει = will be running)"
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-15",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Φακές για τον χειμώνα",
+  "title_en": "Lentils for the winter",
+  "topic": "cooking, radio",
+  "segments": [
+   [
+    "Λένα",
+    "Καλησπέρα σε όλους! Σήμερα στη «Μαγειρική με τη Λένα» φτιάχνουμε φακές, ένα απλό και φθηνό φαγητό, ιδανικό για τον χειμώνα."
+   ],
+   [
+    "Λένα",
+    "Θα χρειαστείτε μισό κιλό φακές, ένα κρεμμύδι, δύο σκελίδες σκόρδο, ένα καρότο, δύο φύλλα δάφνης, μια κουταλιά πελτέ ντομάτας, ελαιόλαδο, αλάτι, πιπέρι και λίγο ξίδι."
+   ],
+   [
+    "Λένα",
+    "Πρώτα πλένουμε τις φακές και τις βράζουμε για πέντε λεπτά. Πετάμε το νερό. Μετά βάζουμε στην κατσαρόλα λάδι, το κρεμμύδι, το σκόρδο και το καρότο, κομμένα σε μικρά κομμάτια. Προσθέτουμε τις φακές, τη δάφνη, τον πελτέ και ένα λίτρο νερό, και τις αφήνουμε να βράσουν σιγά για σαράντα λεπτά."
+   ],
+   [
+    "Λένα",
+    "Στο τέλος βάζουμε αλάτι και πιπέρι. Και το μυστικό μου: λίγο ξίδι στο πιάτο! Σερβίρετε τις φακές με ψωμί, ελιές και λίγη φέτα. Καλή σας όρεξη!"
+   ]
+  ],
+  "glossary": [
+   [
+    "οι φακές",
+    "lentils",
+    "η φακή (f.)"
+   ],
+   [
+    "ιδανικός",
+    "ideal",
+    "adjective"
+   ],
+   [
+    "η σκελίδα",
+    "clove (of garlic)",
+    "η σκελίδα (f.)"
+   ],
+   [
+    "η δάφνη",
+    "bay (leaf)",
+    "η δάφνη (f.)"
+   ],
+   [
+    "ο πελτές",
+    "tomato paste",
+    "ο πελτές (m.)"
+   ],
+   [
+    "το ξίδι",
+    "vinegar",
+    "το ξίδι (n.)"
+   ],
+   [
+    "βράζω",
+    "to boil",
+    "verb"
+   ],
+   [
+    "προσθέτω",
+    "to add",
+    "verb"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Τι ακούμε;",
+    "en": "What do we hear?",
+    "options": [
+     "Μια διαφήμιση για ένα εστιατόριο",
+     "Μια συνταγή στο ραδιόφωνο",
+     "Μια συνέντευξη με μια μαγείρισσα",
+     "Ένα πρόγραμμα για υγιεινή διατροφή"
+    ],
+    "answer": 1,
+    "explain": "Lena explains on the radio how to cook lentil soup, step by step."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πόση ώρα βράζουν οι φακές με τα λαχανικά;",
+    "en": "How long do the lentils simmer with the vegetables?",
+    "options": [
+     "Πέντε λεπτά",
+     "Είκοσι λεπτά",
+     "Σαράντα λεπτά",
+     "Μία ώρα και κάτι"
+    ],
+    "answer": 2,
+    "explain": "«τις αφήνουμε να βράσουν σιγά για σαράντα λεπτά». The first boil is five minutes."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Το ξίδι το βάζουμε στην κατσαρόλα στην αρχή.",
+    "en": "We put the vinegar into the pot at the start.",
+    "answer": 1,
+    "explain": "The vinegar goes in at the end, on the plate: «λίγο ξίδι στο πιάτο!»."
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Η Λένα πιστεύει ότι οι φακές είναι καλό φαγητό για τις κρύες μέρες.",
+    "en": "Lena thinks lentils are a good dish for cold days.",
+    "answer": 0,
+    "explain": "She calls them «ιδανικό για τον χειμώνα»."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "οι σκελίδες",
+      "cloves (of garlic)"
+     ],
+     [
+      "η δάφνη",
+      "bay leaf"
+     ],
+     [
+      "ο πελτές",
+      "tomato paste"
+     ],
+     [
+      "το ξίδι",
+      "vinegar"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Πρώτα ___ (πλένω) τις φακές και τις βράζουμε για πέντε λεπτά.",
+    "en": "First we wash the lentils and boil them for five minutes.",
+    "accept": [
+     "πλένουμε"
+    ],
+    "explain": "Present tense, 1st person plural (recipes often use «we»): πλένω → πλένουμε."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Ποιο είναι το αγαπημένο σου φαγητό για τον χειμώνα; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "What is your favourite winter dish? Write two or three sentences.",
+    "explain": "Το αγαπημένο μου φαγητό για τον χειμώνα είναι η κοτόσουπα. Τη φτιάχνει η μητέρα μου με λεμόνι και ρύζι."
+   }
+  ],
+  "words": [
+   [
+    "καλησπέρα",
+    "καλησπέρα",
+    "good evening",
+    "greeting"
+   ],
+   [
+    "σε",
+    "σε",
+    "to; in",
+    "preposition"
+   ],
+   [
+    "όλους",
+    "όλος",
+    "everyone",
+    "acc. pl. m."
+   ],
+   [
+    "σήμερα",
+    "σήμερα",
+    "today",
+    "adverb"
+   ],
+   [
+    "στη",
+    "σε + τη",
+    "on the",
+    "preposition + article"
+   ],
+   [
+    "Μαγειρική",
+    "η μαγειρική",
+    "cooking",
+    "acc. sg. (show name)"
+   ],
+   [
+    "με",
+    "με",
+    "with",
+    "preposition"
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Λένα",
+    "Λένα",
+    "Lena",
+    "name"
+   ],
+   [
+    "φτιάχνουμε",
+    "φτιάχνω",
+    "we are making",
+    "present, 1st pl."
+   ],
+   [
+    "φακές",
+    "η φακή",
+    "lentils",
+    "acc. pl."
+   ],
+   [
+    "ένα",
+    "ένας",
+    "a, one",
+    "indef. article, sg. n."
+   ],
+   [
+    "απλό",
+    "απλός",
+    "simple",
+    "adj., acc. sg. n."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "φθηνό",
+    "φθηνός",
+    "cheap",
+    "adj., acc. sg. n."
+   ],
+   [
+    "φαγητό",
+    "το φαγητό",
+    "dish, food",
+    "acc. sg."
+   ],
+   [
+    "ιδανικό",
+    "ιδανικός",
+    "ideal",
+    "adj., acc. sg. n."
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "τον",
+    "ο",
+    "the",
+    "article, acc. sg. m."
+   ],
+   [
+    "χειμώνα",
+    "ο χειμώνας",
+    "winter",
+    "acc. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "χρειαστείτε",
+    "χρειάζομαι",
+    "need",
+    "subjunctive, 2nd pl."
+   ],
+   [
+    "μισό",
+    "μισός",
+    "half",
+    "adj., acc. sg. n."
+   ],
+   [
+    "κιλό",
+    "το κιλό",
+    "kilo",
+    "acc. sg."
+   ],
+   [
+    "κρεμμύδι",
+    "το κρεμμύδι",
+    "onion",
+    "acc. sg."
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "σκελίδες",
+    "η σκελίδα",
+    "cloves",
+    "acc. pl."
+   ],
+   [
+    "σκόρδο",
+    "το σκόρδο",
+    "garlic",
+    "acc. sg."
+   ],
+   [
+    "καρότο",
+    "το καρότο",
+    "carrot",
+    "acc. sg."
+   ],
+   [
+    "φύλλα",
+    "το φύλλο",
+    "leaves",
+    "acc. pl."
+   ],
+   [
+    "δάφνης",
+    "η δάφνη",
+    "bay",
+    "gen. sg."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a, one",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "κουταλιά",
+    "η κουταλιά",
+    "spoonful",
+    "acc. sg."
+   ],
+   [
+    "πελτέ",
+    "ο πελτές",
+    "paste",
+    "acc. sg."
+   ],
+   [
+    "ντομάτας",
+    "η ντομάτα",
+    "tomato",
+    "gen. sg."
+   ],
+   [
+    "ελαιόλαδο",
+    "το ελαιόλαδο",
+    "olive oil",
+    "acc. sg."
+   ],
+   [
+    "αλάτι",
+    "το αλάτι",
+    "salt",
+    "acc. sg."
+   ],
+   [
+    "πιπέρι",
+    "το πιπέρι",
+    "pepper",
+    "acc. sg."
+   ],
+   [
+    "λίγο",
+    "λίγος",
+    "a little",
+    "adj., acc. sg. n."
+   ],
+   [
+    "ξίδι",
+    "το ξίδι",
+    "vinegar",
+    "acc. sg."
+   ],
+   [
+    "πρώτα",
+    "πρώτα",
+    "first",
+    "adverb"
+   ],
+   [
+    "πλένουμε",
+    "πλένω",
+    "we wash",
+    "present, 1st pl."
+   ],
+   [
+    "τις",
+    "η / αυτές",
+    "the; them",
+    "article / object pronoun, acc. pl. f."
+   ],
+   [
+    "βράζουμε",
+    "βράζω",
+    "we boil",
+    "present, 1st pl."
+   ],
+   [
+    "πέντε",
+    "πέντε",
+    "five",
+    "number"
+   ],
+   [
+    "λεπτά",
+    "το λεπτό",
+    "minutes",
+    "acc. pl."
+   ],
+   [
+    "πετάμε",
+    "πετάω",
+    "we throw away",
+    "present, 1st pl."
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "νερό",
+    "το νερό",
+    "water",
+    "acc. sg."
+   ],
+   [
+    "μετά",
+    "μετά",
+    "then",
+    "adverb"
+   ],
+   [
+    "βάζουμε",
+    "βάζω",
+    "we put",
+    "present, 1st pl."
+   ],
+   [
+    "στην",
+    "σε + την",
+    "in the",
+    "preposition + article"
+   ],
+   [
+    "κατσαρόλα",
+    "η κατσαρόλα",
+    "pot",
+    "acc. sg."
+   ],
+   [
+    "λάδι",
+    "το λάδι",
+    "oil",
+    "acc. sg."
+   ],
+   [
+    "κομμένα",
+    "κομμένος",
+    "cut, chopped",
+    "participle, acc. pl. n."
+   ],
+   [
+    "μικρά",
+    "μικρός",
+    "small",
+    "adj., acc. pl. n."
+   ],
+   [
+    "κομμάτια",
+    "το κομμάτι",
+    "pieces",
+    "acc. pl."
+   ],
+   [
+    "προσθέτουμε",
+    "προσθέτω",
+    "we add",
+    "present, 1st pl."
+   ],
+   [
+    "δάφνη",
+    "η δάφνη",
+    "bay leaf",
+    "acc. sg."
+   ],
+   [
+    "λίτρο",
+    "το λίτρο",
+    "litre",
+    "acc. sg."
+   ],
+   [
+    "αφήνουμε",
+    "αφήνω",
+    "we let",
+    "present, 1st pl."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "βράσουν",
+    "βράζω",
+    "simmer, boil",
+    "subjunctive, 3rd pl."
+   ],
+   [
+    "σιγά",
+    "σιγά",
+    "gently, slowly",
+    "adverb"
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "στο",
+    "σε + το",
+    "at the",
+    "preposition + article"
+   ],
+   [
+    "τέλος",
+    "το τέλος",
+    "end",
+    "acc. sg."
+   ],
+   [
+    "μυστικό",
+    "το μυστικό",
+    "secret",
+    "nom. sg."
+   ],
+   [
+    "μου",
+    "εγώ",
+    "my",
+    "possessive pronoun"
+   ],
+   [
+    "πιάτο",
+    "το πιάτο",
+    "plate",
+    "acc. sg."
+   ],
+   [
+    "σερβίρετε",
+    "σερβίρω",
+    "serve",
+    "imperative, 2nd pl."
+   ],
+   [
+    "ψωμί",
+    "το ψωμί",
+    "bread",
+    "acc. sg."
+   ],
+   [
+    "ελιές",
+    "η ελιά",
+    "olives",
+    "acc. pl."
+   ],
+   [
+    "λίγη",
+    "λίγος",
+    "a little",
+    "adj., acc. sg. f."
+   ],
+   [
+    "φέτα",
+    "η φέτα",
+    "feta cheese",
+    "acc. sg."
+   ],
+   [
+    "καλή",
+    "καλός",
+    "good",
+    "adj., acc. sg. f."
+   ],
+   [
+    "σας",
+    "εσείς",
+    "your; (to) you",
+    "pronoun, pl."
+   ],
+   [
+    "όρεξη",
+    "η όρεξη",
+    "appetite",
+    "acc. sg. (καλή σας όρεξη = enjoy your meal)"
+   ]
+  ]
+ },
+ {
+  "id": "lib-listening-A2-16",
+  "mode": "listening",
+  "level": "A2",
+  "title": "Εγγραφή στο γυμναστήριο",
+  "title_en": "Joining the gym",
+  "topic": "sport, services",
+  "segments": [
+   [
+    "Υπάλληλος",
+    "Καλησπέρα! Θέλετε πληροφορίες;"
+   ],
+   [
+    "Σταύρος",
+    "Ναι. Θέλω να γραφτώ στο γυμναστήριο. Τι προγράμματα έχετε;"
+   ],
+   [
+    "Υπάλληλος",
+    "Έχουμε όργανα, πισίνα και ομαδικά μαθήματα: γιόγκα, πιλάτες και ποδήλατο. Η μηνιαία συνδρομή είναι σαράντα ευρώ για όλα. Αν πληρώσετε για έναν χρόνο, κοστίζει τετρακόσια."
+   ],
+   [
+    "Σταύρος",
+    "Η πισίνα είναι ανοιχτή όλη μέρα;"
+   ],
+   [
+    "Υπάλληλος",
+    "Από τις επτά το πρωί μέχρι τις δέκα το βράδυ, εκτός από την Κυριακή. Την Κυριακή κλείνουμε στις δύο."
+   ],
+   [
+    "Σταύρος",
+    "Εγώ μπορώ να έρθω μόνο νωρίς το πρωί, πριν από τη δουλειά."
+   ],
+   [
+    "Υπάλληλος",
+    "Τότε είστε τυχερός. Το πρωί είναι ήσυχα. Το απόγευμα, από τις έξι μέχρι τις εννιά, έχει πολύ κόσμο."
+   ],
+   [
+    "Σταύρος",
+    "Ωραία. Μπορώ να δοκιμάσω πρώτα;"
+   ],
+   [
+    "Υπάλληλος",
+    "Φυσικά. Η πρώτη επίσκεψη είναι δωρεάν, και ένας γυμναστής θα σας δείξει τα όργανα. Θέλετε να κλείσουμε ραντεβού για αύριο στις επτά;"
+   ],
+   [
+    "Σταύρος",
+    "Ναι, ωραία. Τι πρέπει να φέρω;"
+   ],
+   [
+    "Υπάλληλος",
+    "Αθλητικά ρούχα, μια πετσέτα και, για την πισίνα, σκουφάκι. Τα λέμε αύριο!"
+   ]
+  ],
+  "glossary": [
+   [
+    "γράφομαι",
+    "to sign up, to join",
+    "verb; subj.: να γραφτώ"
+   ],
+   [
+    "τα όργανα",
+    "(gym) machines, equipment",
+    "plural noun"
+   ],
+   [
+    "ομαδικός",
+    "group (adj.)",
+    "adjective"
+   ],
+   [
+    "μηνιαίος",
+    "monthly",
+    "adjective"
+   ],
+   [
+    "η συνδρομή",
+    "membership fee",
+    "η συνδρομή (f.)"
+   ],
+   [
+    "ο γυμναστής",
+    "trainer, instructor",
+    "ο γυμναστής (m.)"
+   ],
+   [
+    "η πετσέτα",
+    "towel",
+    "η πετσέτα (f.)"
+   ],
+   [
+    "το σκουφάκι",
+    "swimming cap",
+    "το σκουφάκι (n.)"
+   ]
+  ],
+  "tasks": [
+   {
+    "type": "multiple_choice",
+    "skill": "gist",
+    "prompt": "Ποιο είναι το θέμα του διαλόγου;",
+    "en": "What is the dialogue about?",
+    "options": [
+     "Ένας γυμναστής εξηγεί πώς δουλεύουν τα όργανα",
+     "Ένας άντρας θέλει να γραφτεί σε γυμναστήριο",
+     "Ένας άντρας παραπονιέται για την τιμή της πισίνας",
+     "Μια υπάλληλος ψάχνει δουλειά σε ένα γυμναστήριο"
+    ],
+    "answer": 1,
+    "explain": "Stavros asks about programmes, prices and opening hours because he wants to join."
+   },
+   {
+    "type": "multiple_choice",
+    "skill": "detail",
+    "prompt": "Πόσο κοστίζει η συνδρομή για έναν μήνα;",
+    "en": "How much is the membership for one month?",
+    "options": [
+     "Τριάντα ευρώ",
+     "Σαράντα ευρώ",
+     "Πενήντα ευρώ",
+     "Τετρακόσια ευρώ"
+    ],
+    "answer": 1,
+    "explain": "«Η μηνιαία συνδρομή είναι σαράντα ευρώ». Four hundred is for a whole year."
+   },
+   {
+    "type": "true_false",
+    "skill": "detail",
+    "prompt": "Την Κυριακή το γυμναστήριο είναι κλειστό όλη μέρα.",
+    "en": "On Sundays the gym is closed all day.",
+    "answer": 1,
+    "explain": "It is open on Sunday but closes at two: «Την Κυριακή κλείνουμε στις δύο.»"
+   },
+   {
+    "type": "true_false",
+    "skill": "inference",
+    "prompt": "Όταν πηγαίνει ο Σταύρος, το γυμναστήριο δεν θα έχει πολύ κόσμο.",
+    "en": "When Stavros goes, the gym won't be crowded.",
+    "answer": 0,
+    "explain": "He can only come early in the morning, and «Το πρωί είναι ήσυχα»."
+   },
+   {
+    "type": "vocab_match",
+    "skill": "vocabulary",
+    "prompt": "Αντιστοίχισε τις λέξεις με τη σημασία τους.",
+    "en": "Match the words with their meaning.",
+    "pairs": [
+     [
+      "τα όργανα",
+      "gym machines"
+     ],
+     [
+      "μηνιαία",
+      "monthly"
+     ],
+     [
+      "ο γυμναστής",
+      "trainer"
+     ],
+     [
+      "η πετσέτα",
+      "towel"
+     ]
+    ]
+   },
+   {
+    "type": "gap_fill",
+    "skill": "grammar",
+    "prompt": "Θέλω να ___ (γράφομαι) στο γυμναστήριο.",
+    "en": "I want to join the gym.",
+    "accept": [
+     "γραφτώ"
+    ],
+    "explain": "να + subjunctive of a passive-form verb, 1st person singular: γράφομαι → γράφτηκα → να γραφτώ."
+   },
+   {
+    "type": "short_answer",
+    "skill": "writing",
+    "prompt": "Κάνεις κάποιο άθλημα ή πηγαίνεις σε γυμναστήριο; Γράψε δύο ή τρεις προτάσεις.",
+    "en": "Do you do a sport or go to a gym? Write two or three sentences.",
+    "explain": "Πηγαίνω στο γυμναστήριο δύο φορές την εβδομάδα, συνήθως το βράδυ. Το Σάββατο παίζω τένις με μια φίλη μου."
+   }
+  ],
+  "words": [
+   [
+    "καλησπέρα",
+    "καλησπέρα",
+    "good evening",
+    "greeting"
+   ],
+   [
+    "θέλετε",
+    "θέλω",
+    "would you like",
+    "present, 2nd pl."
+   ],
+   [
+    "πληροφορίες",
+    "η πληροφορία",
+    "information",
+    "acc. pl."
+   ],
+   [
+    "ναι",
+    "ναι",
+    "yes",
+    "adverb"
+   ],
+   [
+    "θέλω",
+    "θέλω",
+    "I want",
+    "present, 1st sg."
+   ],
+   [
+    "να",
+    "να",
+    "to",
+    "particle (+ verb)"
+   ],
+   [
+    "γραφτώ",
+    "γράφομαι",
+    "sign up, join",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "στο",
+    "σε + το",
+    "at the; to the",
+    "preposition + article"
+   ],
+   [
+    "γυμναστήριο",
+    "το γυμναστήριο",
+    "gym",
+    "acc. sg."
+   ],
+   [
+    "τι",
+    "τι",
+    "what",
+    "question word"
+   ],
+   [
+    "προγράμματα",
+    "το πρόγραμμα",
+    "programmes",
+    "acc. pl."
+   ],
+   [
+    "έχετε",
+    "έχω",
+    "do you have",
+    "present, 2nd pl."
+   ],
+   [
+    "έχουμε",
+    "έχω",
+    "we have",
+    "present, 1st pl."
+   ],
+   [
+    "όργανα",
+    "τα όργανα",
+    "machines, equipment",
+    "acc. pl."
+   ],
+   [
+    "πισίνα",
+    "η πισίνα",
+    "swimming pool",
+    "acc./nom. sg."
+   ],
+   [
+    "και",
+    "και",
+    "and",
+    "conjunction"
+   ],
+   [
+    "ομαδικά",
+    "ομαδικός",
+    "group",
+    "adj., acc. pl. n."
+   ],
+   [
+    "μαθήματα",
+    "το μάθημα",
+    "classes",
+    "acc. pl."
+   ],
+   [
+    "γιόγκα",
+    "η γιόγκα",
+    "yoga",
+    "indeclinable"
+   ],
+   [
+    "πιλάτες",
+    "το πιλάτες",
+    "pilates",
+    "indeclinable"
+   ],
+   [
+    "ποδήλατο",
+    "το ποδήλατο",
+    "cycling (spinning)",
+    "acc. sg."
+   ],
+   [
+    "η",
+    "η",
+    "the",
+    "article, nom. sg. f."
+   ],
+   [
+    "μηνιαία",
+    "μηνιαίος",
+    "monthly",
+    "adj., nom. sg. f."
+   ],
+   [
+    "συνδρομή",
+    "η συνδρομή",
+    "membership fee",
+    "nom. sg."
+   ],
+   [
+    "είναι",
+    "είμαι",
+    "is; it is; you are",
+    "present"
+   ],
+   [
+    "σαράντα",
+    "σαράντα",
+    "forty",
+    "number"
+   ],
+   [
+    "ευρώ",
+    "το ευρώ",
+    "euros",
+    "indeclinable"
+   ],
+   [
+    "για",
+    "για",
+    "for",
+    "preposition"
+   ],
+   [
+    "όλα",
+    "όλος",
+    "everything",
+    "acc. pl. n."
+   ],
+   [
+    "αν",
+    "αν",
+    "if",
+    "conjunction"
+   ],
+   [
+    "πληρώσετε",
+    "πληρώνω",
+    "you pay",
+    "subjunctive, 2nd pl."
+   ],
+   [
+    "έναν",
+    "ένας",
+    "one, a",
+    "indef. article, acc. sg. m."
+   ],
+   [
+    "χρόνο",
+    "ο χρόνος",
+    "year",
+    "acc. sg."
+   ],
+   [
+    "κοστίζει",
+    "κοστίζω",
+    "it costs",
+    "present, 3rd sg."
+   ],
+   [
+    "τετρακόσια",
+    "τετρακόσια",
+    "four hundred",
+    "number, n."
+   ],
+   [
+    "ανοιχτή",
+    "ανοιχτός",
+    "open",
+    "adj., nom. sg. f."
+   ],
+   [
+    "όλη",
+    "όλος",
+    "all",
+    "adj., acc. sg. f."
+   ],
+   [
+    "μέρα",
+    "η μέρα",
+    "day",
+    "acc. sg."
+   ],
+   [
+    "από",
+    "από",
+    "from",
+    "preposition"
+   ],
+   [
+    "τις",
+    "η",
+    "the",
+    "article, acc. pl. f."
+   ],
+   [
+    "επτά",
+    "επτά",
+    "seven",
+    "number"
+   ],
+   [
+    "το",
+    "το",
+    "the",
+    "article, sg. n."
+   ],
+   [
+    "πρωί",
+    "το πρωί",
+    "morning",
+    "acc. sg."
+   ],
+   [
+    "μέχρι",
+    "μέχρι",
+    "until",
+    "preposition"
+   ],
+   [
+    "δέκα",
+    "δέκα",
+    "ten",
+    "number"
+   ],
+   [
+    "βράδυ",
+    "το βράδυ",
+    "evening",
+    "acc. sg."
+   ],
+   [
+    "εκτός",
+    "εκτός",
+    "except",
+    "εκτός από = except"
+   ],
+   [
+    "την",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "Κυριακή",
+    "η Κυριακή",
+    "Sunday",
+    "acc. sg."
+   ],
+   [
+    "κλείνουμε",
+    "κλείνω",
+    "we close",
+    "present, 1st pl."
+   ],
+   [
+    "στις",
+    "σε + τις",
+    "at",
+    "preposition + article"
+   ],
+   [
+    "δύο",
+    "δύο",
+    "two",
+    "number"
+   ],
+   [
+    "εγώ",
+    "εγώ",
+    "I",
+    "personal pronoun"
+   ],
+   [
+    "μπορώ",
+    "μπορώ",
+    "I can; can I",
+    "present, 1st sg."
+   ],
+   [
+    "έρθω",
+    "έρχομαι",
+    "come",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "μόνο",
+    "μόνο",
+    "only",
+    "adverb"
+   ],
+   [
+    "νωρίς",
+    "νωρίς",
+    "early",
+    "adverb"
+   ],
+   [
+    "πριν",
+    "πριν",
+    "before",
+    "πριν από = before"
+   ],
+   [
+    "τη",
+    "η",
+    "the",
+    "article, acc. sg. f."
+   ],
+   [
+    "δουλειά",
+    "η δουλειά",
+    "work",
+    "acc. sg."
+   ],
+   [
+    "τότε",
+    "τότε",
+    "then",
+    "adverb"
+   ],
+   [
+    "είστε",
+    "είμαι",
+    "you are",
+    "present, 2nd pl."
+   ],
+   [
+    "τυχερός",
+    "τυχερός",
+    "lucky",
+    "adj., nom. sg. m."
+   ],
+   [
+    "ήσυχα",
+    "ήσυχα",
+    "quiet",
+    "adverb"
+   ],
+   [
+    "απόγευμα",
+    "το απόγευμα",
+    "afternoon",
+    "acc. sg."
+   ],
+   [
+    "έξι",
+    "έξι",
+    "six",
+    "number"
+   ],
+   [
+    "εννιά",
+    "εννιά",
+    "nine",
+    "number"
+   ],
+   [
+    "έχει",
+    "έχω",
+    "there are (lit. it has)",
+    "present, 3rd sg."
+   ],
+   [
+    "πολύ",
+    "πολύς",
+    "a lot of",
+    "adj., acc. sg. m."
+   ],
+   [
+    "κόσμο",
+    "ο κόσμος",
+    "people",
+    "acc. sg."
+   ],
+   [
+    "ωραία",
+    "ωραία",
+    "great",
+    "adverb"
+   ],
+   [
+    "δοκιμάσω",
+    "δοκιμάζω",
+    "try",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "πρώτα",
+    "πρώτα",
+    "first",
+    "adverb"
+   ],
+   [
+    "φυσικά",
+    "φυσικά",
+    "of course",
+    "adverb"
+   ],
+   [
+    "πρώτη",
+    "πρώτος",
+    "first",
+    "ordinal, nom. sg. f."
+   ],
+   [
+    "επίσκεψη",
+    "η επίσκεψη",
+    "visit",
+    "nom. sg."
+   ],
+   [
+    "δωρεάν",
+    "δωρεάν",
+    "free",
+    "adverb"
+   ],
+   [
+    "ένας",
+    "ένας",
+    "a",
+    "indef. article, nom. sg. m."
+   ],
+   [
+    "γυμναστής",
+    "ο γυμναστής",
+    "trainer",
+    "nom. sg."
+   ],
+   [
+    "θα",
+    "θα",
+    "will",
+    "future particle"
+   ],
+   [
+    "σας",
+    "εσείς",
+    "(to) you",
+    "pronoun, polite"
+   ],
+   [
+    "δείξει",
+    "δείχνω",
+    "show",
+    "subjunctive, 3rd sg."
+   ],
+   [
+    "τα",
+    "τα",
+    "the",
+    "article, pl. n."
+   ],
+   [
+    "κλείσουμε",
+    "κλείνω",
+    "book",
+    "subjunctive, 1st pl."
+   ],
+   [
+    "ραντεβού",
+    "το ραντεβού",
+    "appointment",
+    "indeclinable"
+   ],
+   [
+    "αύριο",
+    "αύριο",
+    "tomorrow",
+    "adverb"
+   ],
+   [
+    "πρέπει",
+    "πρέπει",
+    "must, should",
+    "impersonal verb"
+   ],
+   [
+    "φέρω",
+    "φέρνω",
+    "bring",
+    "subjunctive, 1st sg."
+   ],
+   [
+    "αθλητικά",
+    "αθλητικός",
+    "sports",
+    "adj., acc. pl. n."
+   ],
+   [
+    "ρούχα",
+    "το ρούχο",
+    "clothes",
+    "acc. pl."
+   ],
+   [
+    "μια",
+    "ένας",
+    "a",
+    "indef. article, acc. sg. f."
+   ],
+   [
+    "πετσέτα",
+    "η πετσέτα",
+    "towel",
+    "acc. sg."
+   ],
+   [
+    "σκουφάκι",
+    "το σκουφάκι",
+    "swimming cap",
+    "acc. sg."
+   ],
+   [
+    "λέμε",
+    "λέω",
+    "we say",
+    "present, 1st pl. (τα λέμε = see you)"
+   ]
+  ]
+ }
+]
