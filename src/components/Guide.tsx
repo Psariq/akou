@@ -73,8 +73,10 @@ export function Guide() {
       <section className="card" id="voice">
         <h2>3. Greek voice</h2>
         <p className="small muted">
-          Listening uses your device's built-in text-to-speech. If <em>Settings → Greek voice</em> finds no voice, install
-          one (menu names vary by device and OS version):
+          Graded listening lessons use original Greek radio and TV recordings from the Centre for the Greek Language
+          where one is left at your level (these need an internet connection to play). All other listening uses your
+          device's built-in text-to-speech. If <em>Settings → Greek voice</em> finds no voice, install one (menu names
+          vary by device and OS version):
         </p>
         <ul className="small">
           <li>

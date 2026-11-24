@@ -7,6 +7,7 @@ import react from "@vitejs/plugin-react";
  * The page may only load its own bundled code and may only connect to:
  *   - api.anthropic.com  (lesson generation and grading)
  *   - el.wikipedia.org   (Greek Wikipedia articles)
+ * and may only play audio from www.greek-language.gr (original recordings).
  * Even if a malicious script somehow ended up in the page, the browser would
  * refuse to send data (such as the API key) to any other host.
  *
@@ -22,7 +23,8 @@ const CSP = [
   "font-src 'self'",
   "manifest-src 'self'",
   "worker-src 'self'",
-  "media-src 'none'",
+  // Original recordings from the Centre for the Greek Language's multimedia bank (audio only; no data is sent).
+  "media-src https://www.greek-language.gr",
   "object-src 'none'",
   "base-uri 'none'",
   "form-action 'none'",

@@ -67,6 +67,8 @@ export interface SourceInfo {
   url?: string;
   publisher?: string;
   license?: string;
+  /** Original recording to play instead of text-to-speech (Centre for the Greek Language's multimedia bank). */
+  audioUrl?: string;
 }
 
 export interface Lesson {

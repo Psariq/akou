@@ -6,7 +6,10 @@ import {
   fetchWikipedia,
   interestList,
   pickMixedSource,
+  mediaUrl,
+  pickMedia,
   pickTextbank,
+  skipMedia,
   textbankUrl,
   type Material,
 } from "./sources";
@@ -68,6 +71,28 @@ export async function createLesson(
     try {
       switch (kind) {
         case "textbank": {
+          // Listening: an authentic recording from the Centre's multimedia bank first, if one is left at this level.
+          const rec = mode === "listening" ? pickMedia(target.level, usedUrls) : null;
+          if (rec) {
+            onStep("Fetching a real Greek recording from the Centre for the Greek Language…");
+            const material: Material = {
+              kind: "textbank",
+              text: "",
+              title: rec.title,
+              url: mediaUrl(rec.id),
+              publisher: "Κέντρο Ελληνικής Γλώσσας",
+              license: "© ΚΕΓ and the broadcaster, used for personal study",
+              gradedLevel: rec.level,
+              audioUrl: rec.audio,
+            };
+            try {
+              return await generateLessonFromPage(apiKey, settings, mode, target, material, signal, tag);
+            } catch (e) {
+              if (signal?.aborted || isFatal(e)) throw e;
+              skipMedia(material.url!); // don't pay for the same failure again
+              onNote(`The recording didn't work out (${describeError(e)}); using a graded text instead.`);
+            }
+          }
           const item = pickTextbank(mode, target.level, usedUrls);
           if (!item) throw new LessonError(`no unused ${target.level} ${mode} text left in the text bank`);
           onStep("Fetching a graded text from the Centre for the Greek Language…");

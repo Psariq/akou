@@ -19,6 +19,7 @@ import {
   type GradingItem,
 } from "./prompts";
 import { isUsableTask } from "./grading";
+import { checkTranscript } from "./transcript";
 
 /**
  * All Claude API calls. They go straight from this browser to
@@ -250,6 +251,7 @@ function finishLesson(data: GeneratedLesson, target: Target, material: Material)
       url: material.url,
       publisher: material.publisher,
       license: material.license,
+      ...(material.audioUrl ? { audioUrl: material.audioUrl } : {}),
     },
   };
 }
@@ -298,6 +300,7 @@ export async function generateLessonFromPage(
   let cost = ZERO_COST;
   let fetched = false;
   let fetchError: string | null = null;
+  let pageText = "";
   let text = "";
 
   for (let i = 0; i < 4; i++) {
@@ -341,7 +344,11 @@ export async function generateLessonFromPage(
     for (const b of msg.content) {
       if (b.type === "web_fetch_tool_result") {
         if (b.content?.type === "web_fetch_tool_result_error") fetchError = b.content.error_code;
-        else fetched = true;
+        else {
+          fetched = true;
+          const src = b.content?.content?.source;
+          if (src?.type === "text" && typeof src.data === "string") pageText += `\n${src.data}`;
+        }
       }
     }
     if (msg.stop_reason === "pause_turn") {
@@ -361,7 +368,19 @@ export async function generateLessonFromPage(
   } catch {
     throw new LessonError("Couldn't read the generated lesson. Please try again.");
   }
-  return { lesson: finishLesson(data, target, material), cost };
+  const lesson = finishLesson(data, target, material);
+  if (material.audioUrl) {
+    // The learner hears the original recording: the transcript must be the original, word for word.
+    const c = checkTranscript(lesson.segments, pageText);
+    if (!c.ok) {
+      throw new LessonError(
+        c.words < 30
+          ? "The recording's transcript couldn't be read."
+          : `The transcript didn't match the recording (${Math.round(c.matched * 100)}% word for word).`,
+      );
+    }
+  }
+  return { lesson, cost };
 }
 
 /* ---------------- Grading free-text answers ---------------- */

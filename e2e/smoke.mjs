@@ -63,7 +63,23 @@ FACTS:
 ${"Οι ναυτεργάτες κήρυξαν απεργία 24 ωρών την Πέμπτη. Τα πλοία θα μείνουν δεμένα στα λιμάνια. ".repeat(5)}`;
 
 let lastGradingPrompt = "";
-const calls = { extras: 0, news: 0, lesson: 0, textbank: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
+const calls = { extras: 0, news: 0, lesson: 0, textbank: 0, recording: 0, mp3: 0, grading: 0, models: 0, wiki: 0, gloss: 0, lookup: 0 };
+
+// A recording from the multimedia bank: the transcript on the page and in the lesson must match word for word.
+const segmentsRecording = [
+  ...segmentsListening,
+  { speaker: "Ελένη", text: "Εντάξει, αλλά πρώτα θα ρωτήσω στο λιμάνι αν υπάρχει πλοίο την Κυριακή το πρωί." },
+];
+
+/** One second of silence as a WAV file, served in place of the Centre's mp3s. */
+function silentWav(seconds = 1, rate = 8000) {
+  const n = seconds * rate;
+  const b = Buffer.alloc(44 + n * 2);
+  b.write("RIFF", 0); b.writeUInt32LE(36 + n * 2, 4); b.write("WAVE", 8); b.write("fmt ", 12);
+  b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20); b.writeUInt16LE(1, 22); b.writeUInt32LE(rate, 24);
+  b.writeUInt32LE(rate * 2, 28); b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34); b.write("data", 36); b.writeUInt32LE(n * 2, 40);
+  return b;
+}
 
 function msg(text, extra = {}) {
   return {
@@ -114,10 +130,14 @@ async function mockApis(page) {
       calls.textbank++;
       calls.lesson++;
       const listening = body.messages[0].content.includes("listening");
-      out = msg(JSON.stringify(lesson(listening ? segmentsListening : segmentsReading, listening ? "Ταξίδι στο νησί" : "Το αρτοποιείο της Μαρίας")));
+      const recording = body.messages[0].content.includes("/dbs/media/show.html");
+      if (recording) calls.recording++;
+      const segs = recording ? segmentsRecording : listening ? segmentsListening : segmentsReading;
+      const page = recording ? `Ηθοποιοί: Νίκος [ΝΚ], Ελένη [ΕΛ] Κείμενο ${segs.map((s) => `[ΧΧ]: ${s.text}`).join(" [μουσική] ")}` : "Κείμενο";
+      out = msg(JSON.stringify(lesson(segs, listening ? "Ταξίδι στο νησί" : "Το αρτοποιείο της Μαρίας")));
       out.content.unshift(
         { type: "server_tool_use", id: "srvtoolu_1", name: "web_fetch", input: { url: "https://www.greek-language.gr/x" } },
-        { type: "web_fetch_tool_result", tool_use_id: "srvtoolu_1", content: { type: "web_fetch_result", url: "https://www.greek-language.gr/x", content: { type: "document", source: { type: "text", media_type: "text/plain", data: "Κείμενο" } } } },
+        { type: "web_fetch_tool_result", tool_use_id: "srvtoolu_1", content: { type: "web_fetch_result", url: "https://www.greek-language.gr/x", content: { type: "document", source: { type: "text", media_type: "text/plain", data: page } } } },
       );
     } else if (body.tools) {
       calls.news++;
@@ -142,6 +162,11 @@ async function mockApis(page) {
       out = msg(JSON.stringify(grading));
     }
     return route.fulfill({ status: 200, headers: { ...CORS, "content-type": "application/json" }, body: JSON.stringify(out) });
+  });
+
+  await page.route("https://www.greek-language.gr/**/*.mp3", async (route) => {
+    calls.mp3++;
+    return route.fulfill({ status: 200, headers: { "content-type": "audio/wav" }, body: silentWav() });
   });
 
   await page.route("https://el.wikipedia.org/**", async (route) => {
@@ -566,7 +591,14 @@ try {
   // Listening part.
   await page.getByRole("button", { name: "Start listening part" }).click();
   await page.getByRole("heading", { name: "Ταξίδι στο νησί" }).waitFor();
+  await page.getByText(/^Original recording · 0:01$/).waitFor();
+  assert((await page.getByRole("group", { name: "Speed" }).count()) === 0, "recording plays at natural speed in the placement test (no speed buttons)");
+  const mp3Before = calls.mp3;
   await page.getByRole("button", { name: "Play" }).click();
+  await page.getByRole("button", { name: "Pause" }).waitFor();
+  await page.getByRole("button", { name: "Play" }).waitFor({ timeout: 5000 }); // the 1-second recording ended
+  assert(calls.recording >= 1 && calls.mp3 >= 1 && mp3Before >= 1, `placement listening uses an original recording (${calls.recording} written, mp3 requests ${calls.mp3})`);
+  await page.screenshot({ path: SHOTS + "12-recording.png", fullPage: true });
   await page.getByRole("button", { name: /Go to the questions/ }).click();
   await answerTasks(page, { noWriting: true });
   await page.getByText("text 2 of 2").waitFor();

@@ -1,5 +1,6 @@
 import type { Cefr, Mode, SourceKind, Settings } from "./types";
 import textbankIndex from "../data/textbank-index.json";
+import mediaIndex from "../data/media-index.json";
 
 /** Raw material a lesson is adapted from. */
 export interface Material {
@@ -14,6 +15,8 @@ export interface Material {
   topicHint?: string;
   /** Text bank: the CEFR level the Centre assigned to the text. */
   gradedLevel?: Cefr;
+  /** Multimedia bank: the original recording (the lesson plays it instead of text-to-speech). */
+  audioUrl?: string;
 }
 
 export function enabledSources(s: Settings): SourceKind[] {
@@ -65,6 +68,47 @@ export function pickTextbank(
   rnd: () => number = Math.random,
 ): TextbankItem | null {
   const pool = TEXTBANK.filter((t) => t.skill === mode && t.level === level && !usedUrls.has(textbankUrl(t.id)));
+  return pool.length ? pool[Math.floor(rnd() * pool.length)] : null;
+}
+
+/* ---------------- Centre for the Greek Language: multimedia bank ---------------- */
+
+/** An authentic radio/TV recording with transcript, graded by the Centre for listening. */
+export interface MediaItem {
+  id: number;
+  title: string;
+  level: Cefr;
+  /** The mp3, streamed from the Centre's site (never copied into the app). */
+  audio: string;
+}
+
+export const MEDIA: MediaItem[] = (mediaIndex as { items: MediaItem[] }).items;
+
+export const mediaUrl = (id: number) => `https://www.greek-language.gr/certification/dbs/media/show.html?id=${id}`;
+
+const MEDIA_SKIP_KEY = "akou.mediaskip.v1";
+
+/** Recordings whose transcript couldn't be turned into a lesson (not tried again, to save cost). */
+export function loadMediaSkip(): string[] {
+  try {
+    return JSON.parse(localStorage.getItem(MEDIA_SKIP_KEY) ?? "[]") as string[];
+  } catch {
+    return [];
+  }
+}
+
+export function skipMedia(url: string): void {
+  try {
+    localStorage.setItem(MEDIA_SKIP_KEY, JSON.stringify([...new Set([...loadMediaSkip(), url])]));
+  } catch {
+    /* storage blocked: it may be tried again */
+  }
+}
+
+/** An unused recording at exactly this level, or null. */
+export function pickMedia(level: Cefr, usedUrls: Set<string>, rnd: () => number = Math.random): MediaItem | null {
+  const skip = new Set(loadMediaSkip());
+  const pool = MEDIA.filter((m) => m.level === level && !usedUrls.has(mediaUrl(m.id)) && !skip.has(mediaUrl(m.id)));
   return pool.length ? pool[Math.floor(rnd() * pool.length)] : null;
 }
 

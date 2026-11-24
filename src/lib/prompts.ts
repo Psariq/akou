@@ -56,8 +56,13 @@ export function lessonPrompt(mode: Mode, target: Target, material: Material, s: 
   const [lo, hi] = wordRange(mode, target.level);
   const expl = s.explanationLang === "en" ? "English" : `simple Greek (at ${target.level} level)`;
 
-  const sourceBlock =
-    material.kind === "ai"
+  const sourceBlock = material.audioUrl
+    ? `SOURCE: an authentic Greek radio or TV recording from the Centre for the Greek Language's multimedia bank ("${material.title}"), graded ${material.gradedLevel} for listening comprehension. The learner will hear the ORIGINAL RECORDING, not text-to-speech.
+First fetch its page with web_fetch: ${material.url}
+The transcript is in the section headed «Κείμενο». Speakers are marked with codes in square brackets, e.g. [ΕΕ]; the list after «Ηθοποιοί» says who each code is.
+Copy the transcript EXACTLY, word for word and in order: do not shorten, correct, simplify, reorder or paraphrase anything, and keep hesitations and repetitions, because the text must match what the learner hears. Only leave out the speaker codes themselves and bracketed notes about sounds or music (e.g. [μουσική], [ηχητικό ντοκουμέντο …]).
+If the page cannot be fetched or has no transcript, return empty "segments" and "tasks" arrays instead of inventing a text.`
+    : material.kind === "ai"
       ? `SOURCE: none. Write an original, realistic but fictional text. Topic: ${material.topicHint}.`
       : material.kind === "textbank"
         ? `SOURCE: a text from the Centre for the Greek Language's text bank for learners of Greek ("${material.title}"), graded ${material.gradedLevel} for ${mode === "reading" ? "reading" : "listening"} comprehension.
@@ -71,8 +76,9 @@ ${material.text}
 </source>
 Base the text only on this source.`;
 
-  const formatBlock =
-    mode === "reading"
+  const formatBlock = material.audioUrl
+    ? `FORMAT (transcript of the recording): one segment per speaker turn (split a long turn after full sentences into segments of 2-4 sentences, same speaker). "speaker": who is speaking, in Greek, from the «Ηθοποιοί» list (e.g. "Εκφωνήτρια", "Ανταποκρίτρια", or a name); "" if unknown. The length is whatever the recording is: ignore any word target.`
+    : mode === "reading"
       ? `FORMAT (reading): a ${material.kind === "news" ? "news report" : material.kind === "wikipedia" ? "short informative article" : "text type that suits the topic (story, email, blog post, article, notice)"} of ${lo}-${hi} words. Put each paragraph in its own segment with speaker "". 3-6 paragraphs.`
       : `FORMAT (listening script, it will be read aloud by text-to-speech): ${lo}-${hi} words.
 ${material.kind === "ai" ? "Prefer a natural dialogue between two speakers (give them Greek first names), or a monologue/announcement if the topic suits it better." : "Write it as a spoken radio-style report or a short dialogue in which two people discuss the topic."}

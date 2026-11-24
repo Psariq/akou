@@ -408,6 +408,7 @@ export function SessionView() {
             </p>
             <Player
               segments={lesson.segments}
+              audioUrl={lesson.source.audioUrl}
               voiceURI={settings.voiceURI}
               rate={settings.speechRate}
               onRateChange={(r) => updateSettings({ speechRate: r })}
@@ -473,6 +474,7 @@ export function SessionView() {
               </button>
               <Player
                 segments={lesson.segments}
+                audioUrl={lesson.source.audioUrl}
                 voiceURI={settings.voiceURI}
                 rate={settings.speechRate}
                 onListen={() => setPlays((p) => p + 1)}

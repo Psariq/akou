@@ -5,7 +5,7 @@ A small installable web app (PWA) for learners of Modern Greek at about A2–B2:
 - **Reading:** a ≈5-minute text adapted to your level, then ≈5 minutes of tasks.
 - **Listening:** a 2–3-minute script read aloud by your device's Greek voice (replay allowed), then ≈5 minutes of tasks.
 - **Tasks:** main idea, details, true/false, inference, vocabulary matching, a grammar gap fill, and a short written answer that is graded by AI with corrections.
-- **Texts from:** graded texts from the Centre for the Greek Language's text bank, Greek Wikipedia (simplified), AI-written everyday dialogues, and, only when you choose it, current Greek news. You can also paste a link to a specific article.
+- **Texts from:** graded texts and original radio/TV recordings from the Centre for the Greek Language, Greek Wikipedia (simplified), AI-written everyday dialogues, and, only when you choose it, current Greek news. You can also paste a link to a specific article.
 - **Progress:** an estimated CEFR level for reading and listening, a chart over time, accuracy by task type, streaks, minutes, words from your texts, and estimated API cost.
 
 Sessions start instantly from a **lesson library**: 92 built-in lessons (60 of them with word translations included), plus lessons the app generates in the background and keeps on your device.
@@ -64,7 +64,7 @@ A task type (grammar, vocabulary, details, inference) counts as weak when less t
 
 In the last 7 days of each month (and, if missed, until the 7th of the next) the home screen offers a placement test; it can also be started from *Progress*, once per month. Reading (+ one longer writing task) and listening are separate parts and can be done on different days.
 
-- **Adaptive, 2 texts per skill:** text 1 at the current level; text 2 one level higher if ≥ 60% was right, otherwise one lower. Graded texts from the Centre's text bank where possible, 6 questions per text plus one extra detail and one inference question. No word help, translations or key words.
+- **Adaptive, 2 texts per skill:** text 1 at the current level; text 2 one level higher if ≥ 60% was right, otherwise one lower. Graded texts from the Centre's text bank where possible; for listening, an original recording from its multimedia bank first (played at natural speed). 6 questions per text plus one extra detail and one inference question. No word help, translations or key words.
 - **Result:** the level that best fits both scores under the app's expected-score model (least squares), at most one level beyond what was tested; writing = the CEFR level the longer answer shows. Shown next to the current estimates; **you choose** "Apply new levels" or "Keep current levels".
 - Texts are prepared in the background during the window (text 1 and both possible text 2s). Logic: `src/lib/placement.ts`.
 
@@ -83,10 +83,18 @@ In reading texts and transcripts every word can be tapped. A sheet shows the dic
 |---|---|---|
 | [Greek Wikipedia](https://el.wikipedia.org) | CC BY-SA 4.0 (per the site's API, checked Nov 2026) | 8 built-in lessons adapted from articles (`src/data/open/wikipedia.json`, attribution per lesson; the adaptations are CC BY-SA 4.0 too). At runtime, articles are loaded directly from the browser and simplified by AI. |
 | [Text bank (Τράπεζα κειμένων)](https://www.greek-language.gr/certification/dbs/teachers/index.html) of the Centre for the Greek Language (ΚΕΓ) | © ΚΕΓ; **not** an open licence. The site states the texts may be used for teaching and to prepare learners for the certification exams, and may be modified or simplified. | Only an index (id, title, CEFR level, skill) is stored in the repo (`src/data/textbank-index.json`, rebuilt with `scripts/build-textbank-index.py`). Texts are fetched on demand by Claude's web-fetch tool for the learner's personal study and kept only on their device. |
+| [Multimedia bank (Τράπεζα πολυμεσικού υλικού)](https://www.greek-language.gr/certification/dbs/media/index.html) of the Centre for the Greek Language | © ΚΕΓ and the broadcasters; no reuse terms stated. Collected by the Centre, graded by level, for listening comprehension. | 110 authentic radio/TV recordings (A2 7, B1 21, B2 29, C1 34, C2 19). Only an index (id, title, level, mp3 address) is in the repo (`src/data/media-index.json`, rebuilt with `scripts/build-media-index.py`). The mp3 is streamed from the Centre's site when played; Claude fetches the transcript on demand. Nothing is redistributed. |
 | Current news sites | Publishers' copyright | Only when “News” is chosen or a link is pasted; fetched for personal study, never used for background lessons. |
 | AI-written texts | — | 84 built-in fictional lessons: 24 starters (`src/data/starter/`) and the 60-lesson library with word translations (`src/data/library/`, written in Claude Code), plus occasional listening dialogues. |
 
-Considered and not used: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, one active user and some unreliable recent articles), Tatoeba (sentences, not texts), Mozilla Common Voice (CC0 sentences with audio, but not connected texts).
+Considered and not used (checked Nov 2026):
+- Children's story platforms with Greek translations: Global Storybooks "Ιστορίες για την Ελλάδα" (40 stories, CC BY / CC BY-NC, no Greek audio yet), StoryWeaver (61 Greek books). Volunteer translations for children, no more reliable than AI text.
+- Greek Wikivoyage (CC BY-SA 4.0, 1,436 articles, 8 active users): native text but list-heavy; would need AI adaptation.
+- Greek school textbooks (ebooks.edu.gr): free for school use, not an open licence, written for Greek children.
+- University of Athens «Κείμενα για νέους σε απλά ελληνικά» (4 volumes, free distribution): written for learners aged 11–15; servers didn't respond when checked.
+- Commercial graded readers with free samples (Greek Easy Readers, ReadNative, PollyStop): all rights reserved, partly AI-made.
+
+Earlier: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, one active user and some unreliable recent articles), Tatoeba (sentences, not texts), Mozilla Common Voice (CC0 sentences with audio, but not connected texts).
 
 ## Lesson library
 
@@ -96,7 +104,8 @@ Considered and not used: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, on
   - 24 starters (4 reading and 4 listening at each of A2, B1 and B2)
 
   All except the Wikipedia ones were written by AI (Claude) and are fictional. None were reviewed by a native speaker.
-- **1 lesson in 4 is a graded text** while built-in lessons last: after 3 sessions of a mode on other texts, the next one comes from the Centre's text bank, written with the API. It is prepared in the background one session ahead.
+- **1 lesson in 4 is a graded text** while built-in lessons last: after 3 sessions of a mode on other texts, the next one comes from the Centre for the Greek Language, written with the API. It is prepared in the background one session ahead.
+- **Original recordings for graded listening:** a graded listening lesson (and the placement test's listening part) uses an authentic radio/TV recording from the Centre's multimedia bank if one is left at your level; the lesson plays the real mp3 instead of text-to-speech, starting at natural speed. Claude copies the transcript word for word, and the app checks that against the fetched page (at least 90% of the words in sentences found verbatim, `src/lib/transcript.ts`); a recording that fails is skipped from then on and a graded text is used instead. When no recording is left at a level, graded listening falls back to text-bank texts read by text-to-speech.
 - **Restock reminder:** when fewer than **10** unused built-in lessons are left at your level for reading or listening, the Practice screen says so (you can snooze it for a week). The same check runs on the placement result after new levels are applied. Restocking is done in Claude Code: see [docs/LIBRARY.md](docs/LIBRARY.md).
 - **Stock on your device:** when fewer than **2** unused lessons (built-in or generated) are left at your current level for a mode, the app generates new ones in the background (one at a time) until there are **3**. Generation uses the model from Settings; it typically takes a few minutes per lesson.
 - **Background sources:** the graded text bank (about 60%, matched to your level and to reading/listening) and Wikipedia; listening also uses AI-written dialogues now and then. If a source fails, the next one is tried. News is never used in the background.
@@ -110,7 +119,7 @@ Without a server, the API key has to live in the browser. What limits the risk:
 
 - **Damage cap:** use a workspace-scoped key with a monthly spend limit. Worst case if the key leaks is that limit; you can disable or delete the key in the Console at any time.
 - **No third-party code at runtime:** everything is bundled; no CDNs, analytics or ads.
-- **Content Security Policy** (added to the production build in `vite.config.ts`): scripts only from the app itself; network connections only to `api.anthropic.com` and `el.wikipedia.org`.
+- **Content Security Policy** (added to the production build in `vite.config.ts`): scripts only from the app itself; network connections only to `api.anthropic.com` and `el.wikipedia.org`; audio only from `www.greek-language.gr` (original recordings; these requests carry no key or learning data).
 - **Untrusted text is never rendered as HTML.** Fetched articles and AI output are displayed as plain text by React.
 - **The key is never part of a prompt**, so a malicious web page can't make the model reveal it. Prompts tell the model to treat fetched pages as data.
 - **Optional passphrase:** the key is stored AES-GCM-encrypted (PBKDF2-SHA-256, 600k iterations) and unlocked per visit. This protects against someone reading the browser's storage; it does not protect against malicious code running in the unlocked app, and short PINs can be brute-forced offline.

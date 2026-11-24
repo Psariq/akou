@@ -49,10 +49,12 @@ Texts come mostly from officially graded material and Greek Wikipedia, adapted b
 | Text bank of the Centre for the Greek Language (ΚΕΓ) | © ΚΕΓ; use for teaching and exam preparation allowed, may be simplified | Only an index (id, title, level, skill; 280 items) is in the repo. Texts are fetched on demand by Anthropic's web-fetch tool. | Reading 60%, listening 60% |
 | Greek Wikipedia | CC BY-SA 4.0 | 8 built-in adapted lessons; more articles loaded at runtime and simplified | Reading 40%, listening 20% |
 | AI-written texts | — | 84 built-in fictional lessons: 24 starters (A2, B1, B2) and a 60-lesson library with word translations (A2, B1), plus occasional new listening dialogues | Listening 20% |
+| Multimedia bank of the Centre for the Greek Language | © ΚΕΓ and broadcasters; no reuse terms stated | 110 authentic radio/TV recordings graded A2–C2 (A2 7, B1 21). Index only in the repo; the mp3 is streamed from the Centre's site and the transcript fetched on demand. | Graded listening, first choice |
 | Current news | Publishers' copyright | Only when "News" is chosen or a link is pasted; never in the background | — |
 
 - **Built-in lessons:** 92 in total: 8 from Wikipedia (used first), a library of 60 with word translations included (22 reading + 22 listening at A2, 8 + 8 at B1; written in Claude Code on 24 November 2026), and 24 starters. They cost nothing and work offline. None were reviewed by a native speaker.
 - **1 lesson in 4 is a graded text** from the Centre's text bank (written with the API) while built-in lessons last; it is prepared one session ahead and held back until due.
+- **Original recordings:** graded listening (including the placement test) uses an authentic recording from the Centre's multimedia bank when one is left at the level; the app plays the real mp3 (natural speed; in lessons it can be slowed) and checks that the transcript Claude returns is word for word (≥ 90%). Otherwise text-to-speech.
 - **Restock reminder:** fewer than 10 unused built-in lessons at the learner's level for a mode → a note on the Practice screen (snooze 7 days) and on the placement result after new levels are applied. Restocking steps: `docs/LIBRARY.md`.
 - **Stock on the device:** when fewer than 2 unused lessons are left at the current level for a mode, the app writes new ones in the background until there are 3. At most 12 background lessons per 24 hours. This only runs while the app is open.
 - **Picking a lesson:** exact level first, then at most one level away (easier preferred). Lessons are never repeated; news lessons expire after 4 days.
@@ -170,10 +172,11 @@ The logic lives in `src/lib` (one file per concern, most with unit tests) and th
 | `src/lib/crypto.ts`, `storage.ts` | Key encryption; local storage and backups |
 | `src/components/SessionView.tsx`, `Tasks.tsx`, `WordText.tsx`, `Player.tsx` | A session: text or audio, tasks, word sheet, results |
 | `src/components/Home.tsx`, `Stats.tsx`, `LevelChart.tsx`, `SettingsView.tsx`, `PlacementView.tsx`, `Guide.tsx` | The other screens |
-| `src/data/` | 60 library lessons with translations (`library/`), 24 starter lessons, 8 Wikipedia lessons, the text-bank index (rebuilt with `scripts/build-textbank-index.py`) |
+| `src/data/` | 60 library lessons with translations (`library/`), 24 starter lessons, 8 Wikipedia lessons, the text-bank index (rebuilt with `scripts/build-textbank-index.py`) and the multimedia-bank index (`scripts/build-media-index.py`) |
+| `src/lib/transcript.ts` | Checks that a recording's transcript was copied word for word |
 | `scripts/library/` | Tools for writing library lessons: word list, merging translations, Greek spelling check |
 
-**Testing.** `npm test` runs 245 unit tests (vitest), including format, length and translation checks for every library lesson. `e2e/smoke.mjs` drives the production build in Chromium at phone size with the API, Wikipedia and speech mocked, so it costs nothing; run it with `npm run build`, `npx vite preview --port 4173` and `node e2e/smoke.mjs`. Both passed on 24 November 2026 (e2e with the browser clock pinned to mid-month, because the placement window changes background work). Not covered by tests: the quality of real AI output, and real latency and cost.
+**Testing.** `npm test` runs 250 unit tests (vitest), including format, length and translation checks for every library lesson and the transcript check for recordings. `e2e/smoke.mjs` drives the production build in Chromium at phone size with the API, Wikipedia, speech and the recordings mocked, so it costs nothing; run it with `npm run build`, `npx vite preview --port 4173` and `node e2e/smoke.mjs`. Both passed on 24 November 2026 (e2e with the browser clock pinned to mid-month, because the placement window changes background work). Not covered by tests: the quality of real AI output, real latency and cost, and a real recording lesson end to end (the transcript check was tested offline on 6 real pages).
 
 **Workflow.**
 
@@ -190,6 +193,7 @@ The app is feature-complete for now; the next decisions wait on cost data with t
 
 | Decision | Why |
 | --- | --- |
+| Original radio/TV recordings from the Centre's multimedia bank for graded listening and the placement test; repository stays public, third-party material only fetched on the device | Authentic Greek and real voices instead of text-to-speech; making the repository private would not hide the published site |
 | 60-lesson built-in library with translations (mostly A2, some B1), 1 lesson in 4 from the graded text bank, restock reminder below 10 | Cut API cost without lowering language quality |
 | Per-job cost tracking on the Progress screen | Spend was about $4 a week with no breakdown |
 | No Batch API | Its endpoints refuse browser requests |

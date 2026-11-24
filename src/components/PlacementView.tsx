@@ -414,9 +414,11 @@ function PlacementRun({ month, mode, onExit }: { month: string; mode: Mode; onEx
             </h1>
             <Player
               segments={lesson.segments}
+              audioUrl={lesson.source.audioUrl}
               voiceURI={settings.voiceURI}
               rate={settings.speechRate}
-              onRateChange={(r) => updateSettings({ speechRate: r })}
+              // Original recordings stay at natural speed in the test (the Centre graded them that way).
+              onRateChange={lesson.source.audioUrl ? undefined : (r) => updateSettings({ speechRate: r })}
               onListen={() => setPlays((p) => p + 1)}
             />
           </section>
@@ -454,7 +456,7 @@ function PlacementRun({ month, mode, onExit }: { month: string; mode: Mode; onEx
             {mode === "reading" ? (
               <PlainText lesson={lesson} />
             ) : (
-              <Player segments={lesson.segments} voiceURI={settings.voiceURI} rate={settings.speechRate} compact />
+              <Player segments={lesson.segments} audioUrl={lesson.source.audioUrl} voiceURI={settings.voiceURI} rate={settings.speechRate} compact />
             )}
           </>
         ) : (

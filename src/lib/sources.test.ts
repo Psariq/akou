@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TEXTBANK, pickMixedSource, pickTextbank, textbankUrl } from "./sources";
+import { MEDIA, TEXTBANK, mediaUrl, pickMedia, pickMixedSource, pickTextbank, skipMedia, textbankUrl } from "./sources";
 import { DEFAULT_SETTINGS } from "./storage";
 import type { Settings } from "./types";
 
@@ -46,5 +46,25 @@ describe("text bank", () => {
     expect(t?.skill).toBe("listening");
     const all = new Set(TEXTBANK.filter((x) => x.level === "B1" && x.skill === "listening").map((x) => textbankUrl(x.id)));
     expect(pickTextbank("listening", "B1", all)).toBeNull();
+  });
+});
+
+describe("multimedia bank (original recordings)", () => {
+  it("has graded audio at A2 to C2, each with an https mp3 on the Centre's site", () => {
+    for (const lv of ["A2", "B1", "B2", "C1", "C2"] as const) expect(MEDIA.filter((m) => m.level === lv).length).toBeGreaterThan(0);
+    for (const m of MEDIA) expect(m.audio).toMatch(/^https:\/\/www\.greek-language\.gr\/certification\/files\/audio\/.+\.mp3$/);
+    expect(new Set(MEDIA.map((m) => m.id)).size).toBe(MEDIA.length);
+  });
+
+  it("picks an unused recording at exactly the level, and never one that failed before", () => {
+    const mem = new Map<string, string>();
+    (globalThis as any).localStorage = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v) };
+    const a2 = MEDIA.filter((m) => m.level === "A2");
+    const used = new Set(a2.slice(1).map((m) => mediaUrl(m.id)));
+    expect(pickMedia("A2", used)?.id).toBe(a2[0].id);
+    skipMedia(mediaUrl(a2[0].id));
+    expect(pickMedia("A2", used)).toBeNull();
+    expect(pickMedia("A1", new Set())).toBeNull(); // no A1 audio in the bank
+    delete (globalThis as any).localStorage;
   });
 });

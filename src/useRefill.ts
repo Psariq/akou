@@ -15,7 +15,7 @@ import {
 } from "./lib/library";
 import { createLesson } from "./lib/lessonFactory";
 import { builtInLeft, gradedPrepareNow, REFILL_BELOW } from "./lib/library";
-import { pickTextbank } from "./lib/sources";
+import { pickMedia, pickTextbank } from "./lib/sources";
 import { rankLessons } from "./lib/library";
 import { getGlosses, hasGlosses } from "./lib/glosses";
 import { ensureGlosses, glossGenerationsLast24h, MAX_GLOSS_PER_DAY } from "./lib/glossService";
@@ -75,7 +75,8 @@ function gradedToPrepare(settings: Settings, progress: Progress, sessions: Sessi
     if (builtInLeft(mode, target.level, sessions) < REFILL_BELOW) continue;
     if (!gradedPrepareNow(mode, sessions)) continue;
     if (stock[mode].some((i) => i.lesson.source.kind === "textbank" && !done.has(i.lesson.id))) continue;
-    if (!pickTextbank(mode, target.level, new Set(usedUrlsFor(mode, sessions)))) continue;
+    const used = new Set(usedUrlsFor(mode, sessions));
+    if (!pickTextbank(mode, target.level, used) && !(mode === "listening" && pickMedia(target.level, used))) continue;
     return { mode, target };
   }
   return null;
