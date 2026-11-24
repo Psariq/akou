@@ -48,10 +48,12 @@ Texts come mostly from officially graded material and Greek Wikipedia, adapted b
 | --- | --- | --- | --- |
 | Text bank of the Centre for the Greek Language (ΚΕΓ) | © ΚΕΓ; use for teaching and exam preparation allowed, may be simplified | Only an index (id, title, level, skill; 280 items) is in the repo. Texts are fetched on demand by Anthropic's web-fetch tool. | Reading 60%, listening 60% |
 | Greek Wikipedia | CC BY-SA 4.0 | 8 built-in adapted lessons; more articles loaded at runtime and simplified | Reading 40%, listening 20% |
-| AI-written everyday dialogues | — | 24 built-in fictional lessons (A2, B1, B2), plus occasional new listening dialogues | Listening 20% |
+| AI-written texts | — | 84 built-in fictional lessons: 24 starters (A2, B1, B2) and a 60-lesson library with word translations (A2, B1), plus occasional new listening dialogues | Listening 20% |
 | Current news | Publishers' copyright | Only when "News" is chosen or a link is pasted; never in the background | — |
 
-- **Built-in lessons:** 32 in total (8 from Wikipedia, used first, and 24 AI-written). They cost nothing and work offline. None were reviewed by a native speaker.
+- **Built-in lessons:** 92 in total: 8 from Wikipedia (used first), a library of 60 with word translations included (22 reading + 22 listening at A2, 8 + 8 at B1; written in Claude Code on 24 November 2026), and 24 starters. They cost nothing and work offline. None were reviewed by a native speaker.
+- **1 lesson in 4 is a graded text** from the Centre's text bank (written with the API) while built-in lessons last; it is prepared one session ahead and held back until due.
+- **Restock reminder:** fewer than 10 unused built-in lessons at the learner's level for a mode → a note on the Practice screen (snooze 7 days) and on the placement result after new levels are applied. Restocking steps: `docs/LIBRARY.md`.
 - **Stock on the device:** when fewer than 2 unused lessons are left at the current level for a mode, the app writes new ones in the background until there are 3. At most 12 background lessons per 24 hours. This only runs while the app is open.
 - **Picking a lesson:** exact level first, then at most one level away (easier preferred). Lessons are never repeated; news lessons expire after 4 days.
 - **Specific source** (Graded, Wiki, News, Everyday) or a pasted link: a ready lesson from that source if there is one, otherwise it is written on the spot, which takes a few minutes.
@@ -120,7 +122,8 @@ Web search costs $10 per 1,000 searches (news only); web fetch has no extra char
 - **Cost tracking** (`src/lib/ledger.ts`): every API response is logged on the device with its job and estimated cost (tokens × list prices), including failed attempts and unused work. Progress → *Where the API cost goes* shows the last 7 days, this month or all tracked, cost per exercise, lessons ready but unused, and lessons dropped unused. The Anthropic Console shows the real bill.
 - **Batch API (50% off) is not possible:** its endpoints refuse browser requests ("Disallowed CORS origin" for every origin tested on 19 November 2026, while the normal endpoint allows them). It would need a relay server.
 - **Options considered and not taken:** hosting the app as a Claude artifact so AI use counts against the Claude plan (rejected: loses background preparation, graded texts, news and offline use); a cheaper model or less thinking for lessons, grading or translations (not without a side-by-side quality test); prompt caching (saves only cents, since most requests are unique).
-- **Still possible:** a larger built-in library written in Claude Code, which uses the Claude plan instead of API credit. Decided after the first week of cost data.
+- **First week of data** (19–24 November 2026, app's estimate): $3.99 in total, of which placement-test preparation $2.12, background lessons $1.35, translations $0.40, grading $0.13. The Console showed $2.45 for 20–24 November; the gap is unexplained (possibly Console reporting lag or requests made before the tracking version loaded).
+- **Taken (24 November 2026):** a 60-lesson built-in library with bundled translations, written in Claude Code (counts against the Claude plan, not API credit). While it lasts, the API writes only 1 lesson in 4 (a graded text) and no translations for library lessons.
 
 ## Security and data
 
@@ -155,7 +158,8 @@ The logic lives in `src/lib` (one file per concern, most with unit tests) and th
 | `src/lib/prompts.ts` | All prompts: lesson rules, word ranges per level, distractor rules, grading, translations |
 | `src/lib/lessonFactory.ts` | Picks a source and makes a lesson, falling back to the next source on failure |
 | `src/lib/sources.ts` | Text-bank index, Wikipedia fetch, everyday topics, the source mix |
-| `src/lib/library.ts` | Built-in lessons, stock, refill and picking rules |
+| `src/lib/library.ts` | Built-in lessons, stock, refill and picking rules, 1-in-4 graded quota, lessons left for the reminder |
+| `src/lib/libraryData.ts` | Loads the library files and their bundled translations |
 | `src/useRefill.ts` | Background loop: lessons, then translations, extra practice, placement texts |
 | `src/lib/cefr.ts` | Level model, step sizes, target level, writing estimate |
 | `src/lib/placement.ts`, `placementService.ts` | Placement window, adaptive levels, result, preparation |
@@ -166,25 +170,27 @@ The logic lives in `src/lib` (one file per concern, most with unit tests) and th
 | `src/lib/crypto.ts`, `storage.ts` | Key encryption; local storage and backups |
 | `src/components/SessionView.tsx`, `Tasks.tsx`, `WordText.tsx`, `Player.tsx` | A session: text or audio, tasks, word sheet, results |
 | `src/components/Home.tsx`, `Stats.tsx`, `LevelChart.tsx`, `SettingsView.tsx`, `PlacementView.tsx`, `Guide.tsx` | The other screens |
-| `src/data/` | 24 starter lessons, 8 Wikipedia lessons, the text-bank index (rebuilt with `scripts/build-textbank-index.py`) |
+| `src/data/` | 60 library lessons with translations (`library/`), 24 starter lessons, 8 Wikipedia lessons, the text-bank index (rebuilt with `scripts/build-textbank-index.py`) |
+| `scripts/library/` | Tools for writing library lessons: word list, merging translations, Greek spelling check |
 
-**Testing.** `npm test` runs 117 unit tests (vitest). `e2e/smoke.mjs` drives the production build in Chromium at phone size with the API, Wikipedia and speech mocked, so it costs nothing; run it with `npm run build`, `npx vite preview --port 4173` and `node e2e/smoke.mjs`. Both passed on commit `6877e5b`. Not covered by tests: the quality of real AI output, and real latency and cost.
+**Testing.** `npm test` runs 245 unit tests (vitest), including format, length and translation checks for every library lesson. `e2e/smoke.mjs` drives the production build in Chromium at phone size with the API, Wikipedia and speech mocked, so it costs nothing; run it with `npm run build`, `npx vite preview --port 4173` and `node e2e/smoke.mjs`. Both passed on 24 November 2026 (e2e with the browser clock pinned to mid-month, because the placement window changes background work). Not covered by tests: the quality of real AI output, and real latency and cost.
 
 **Workflow.**
 
 1. Changes are made on the branch `claude/greek-learning-app-tzdwmn`.
 2. Unit tests, build and the end-to-end test must pass.
 3. Publishing means pushing to `main`, which deploys automatically; it happens only after the learner says so, each time.
-4. Latest app change: `6877e5b`, "Track API cost per job on the Progress screen" (19 November 2026).
+4. Latest app change: the built-in library with translations, the 1-in-4 graded quota and the restock reminder (24 November 2026).
 
 ## Decisions, open items, and how to continue
 
-The app is feature-complete for now; the next decisions wait on a week of cost data and the first placement test.
+The app is feature-complete for now; the next decisions wait on cost data with the library live and on the first placement test.
 
 **Decisions so far** (newest first):
 
 | Decision | Why |
 | --- | --- |
+| 60-lesson built-in library with translations (mostly A2, some B1), 1 lesson in 4 from the graded text bank, restock reminder below 10 | Cut API cost without lowering language quality |
 | Per-job cost tracking on the Progress screen | Spend was about $4 a week with no breakdown |
 | No Batch API | Its endpoints refuse browser requests |
 | Stay on the API rather than move into a Claude artifact | Keeps background preparation, graded texts, news and offline use |
@@ -204,7 +210,7 @@ The app is feature-complete for now; the next decisions wait on a week of cost d
 
 **Open items**
 
-- [ ] Learner reports the 7-day cost breakdown from Progress, plus the Console total for the same week; then choose cost cuts (e.g. a larger built-in library).
+- [ ] Compare the weekly cost after the library is live with the first week ($3.99 app estimate).
 - [ ] After the first placement test (window opens in the last 7 days of November), decide whether to raise the step-size floor from 0.15 to 0.25.
 - [ ] The AI-written built-in lessons have not been checked by a native speaker.
 

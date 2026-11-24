@@ -67,3 +67,22 @@ describe("gloss store", () => {
     expect(getGlosses("L2")?.entries).toHaveLength(1);
   });
 });
+
+describe("bundled translations (built-in library)", () => {
+  it("are available without any API call, and words looked up later are added", () => {
+    mem.clear();
+    expect(hasGlosses("lib-reading-A2-01")).toBe(true);
+    const g = getGlosses("lib-reading-A2-01")!;
+    expect(g.costUsd).toBe(0);
+    expect(g.entries.length).toBeGreaterThan(50);
+    addGloss("lib-reading-A2-01", { form: "ζζζ", lemma: "ζζζ", en: "test", note: "" });
+    expect(findGloss(getGlosses("lib-reading-A2-01")!.entries, "ζζζ")?.en).toBe("test");
+    expect(getGlosses("lib-reading-A2-01")!.entries.length).toBe(g.entries.length + 1);
+  });
+
+  it("do not exist for other lessons", () => {
+    mem.clear();
+    expect(hasGlosses("wiki-reading-B1-karagiozis")).toBe(false);
+    expect(getGlosses("wiki-reading-B1-karagiozis")).toBeNull();
+  });
+});

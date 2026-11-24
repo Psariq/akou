@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { STARTER, availableLessons, countAtLevel, nextRefill, pickLesson, pruneStock, type Stock, type StockItem } from "./library";
+import { STARTER, GRADED_EVERY, LOW_LIBRARY, availableLessons, builtInLeft, countAtLevel, gradedDue, gradedPrepareNow, nextRefill, pickLesson, pruneStock, rankLessons, sessionsSinceGraded, type Stock, type StockItem } from "./library";
 import { isUsableTask } from "./grading";
 import { wordRange } from "./prompts";
 import type { Lesson, Mode, SessionRecord } from "./types";
@@ -139,3 +139,54 @@ describe("multiple-choice quality (built-in lessons)", () => {
   });
 });
 
+
+describe("graded texts: 1 lesson in 4 while built-in lessons last", () => {
+  const sess = (mode: Mode, kind: "textbank" | "ai", lessonId = `x-${Math.random()}`) =>
+    ({ lessonId, mode, source: { kind, title: "t" } }) as unknown as SessionRecord;
+  const graded = (id: string): StockItem => ({
+    lesson: { ...STARTER.reading.find((l) => l.level === "A2" && l.source.library)!, id, source: { kind: "textbank", title: "graded" } } as Lesson,
+    createdAt: "2026-11-01T00:00:00Z",
+    costUsd: 0.3,
+  });
+
+  it("counts sessions of this mode since the last graded text", () => {
+    const s = [sess("reading", "ai"), sess("reading", "textbank"), sess("reading", "ai"), sess("listening", "ai"), sess("reading", "ai")];
+    expect(sessionsSinceGraded("reading", s)).toBe(2);
+    expect(sessionsSinceGraded("listening", s)).toBe(1);
+    expect(sessionsSinceGraded("reading", [])).toBe(0);
+  });
+
+  it("is due on every 4th lesson and prepared one session earlier", () => {
+    expect(GRADED_EVERY).toBe(4);
+    const after = (n: number) => [sess("reading", "textbank"), ...Array.from({ length: n }, () => sess("reading", "ai"))];
+    expect([0, 1, 2, 3].map((n) => gradedDue("reading", after(n)))).toEqual([false, false, false, true]);
+    expect([0, 1, 2, 3].map((n) => gradedPrepareNow("reading", after(n)))).toEqual([false, false, true, true]);
+  });
+
+  it("keeps a graded text back (ranked last) until it is due, then picks it first", () => {
+    const stock: Stock = { reading: [graded("g1")], listening: [] };
+    const target = { level: "A2" as const, band: "lower" as const };
+    const notDue = [sess("reading", "textbank"), sess("reading", "ai")];
+    const early = rankLessons(availableLessons("reading", notDue, stock), target);
+    expect(early[0].lesson.id).not.toBe("g1");
+    expect(early.find((c) => c.lesson.id === "g1")?.held).toBe(true);
+    const due = [sess("reading", "textbank"), sess("reading", "ai"), sess("reading", "ai"), sess("reading", "ai")];
+    expect(pickLesson(availableLessons("reading", due, stock), target)?.lesson.id).toBe("g1");
+  });
+});
+
+describe("restock reminder: built-in lessons left", () => {
+  it("counts unused built-in lessons per mode and level", () => {
+    const a2 = STARTER.reading.filter((l) => l.level === "A2");
+    expect(a2.filter((l) => l.source.library)).toHaveLength(22);
+    expect(builtInLeft("reading", "A2", [])).toBe(a2.length);
+    expect(builtInLeft("reading", "A2", [done(a2[0].id), done(a2[1].id)])).toBe(a2.length - 2);
+    expect(builtInLeft("reading", "C1", [])).toBe(0);
+  });
+
+  it("drops below LOW_LIBRARY once most lessons at a level are used", () => {
+    const b1 = STARTER.listening.filter((l) => l.level === "B1");
+    const used = b1.slice(0, b1.length - LOW_LIBRARY + 1).map((l) => done(l.id));
+    expect(builtInLeft("listening", "B1", used)).toBe(LOW_LIBRARY - 1);
+  });
+});

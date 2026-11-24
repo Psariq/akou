@@ -243,6 +243,10 @@ const consoleErrors = [];
 page.on("console", (m) => m.type() === "error" && consoleErrors.push(m.text()));
 page.on("pageerror", (e) => consoleErrors.push(String(e)));
 await mockApis(page);
+// Pin the date to mid-month: in the last week of a month the app prepares the
+// placement test in the background, which would change the call counts below.
+await page.clock.install({ time: new Date(2026, 10, 12, 10, 0, 0) });
+await page.clock.resume();
 
 try {
   console.log("Home without key");
@@ -265,7 +269,7 @@ try {
   await page.getByRole("button", { name: "Graded", exact: true }).click();
   await page.getByRole("button", { name: /^Reading/ }).click();
   await page.getByRole("heading", { name: "Το αρτοποιείο της Μαρίας" }).waitFor();
-  assert(calls.textbank === 1 && calls.lesson === 1 && calls.news === 0, "text-bank lesson made in one fetch+write request");
+  assert(calls.textbank === 1 && calls.lesson === 1 && calls.news === 0, `text-bank lesson made in one fetch+write request (${JSON.stringify(calls)})`);
   await page.getByRole("button", { name: "Show word help" }).click();
   await page.screenshot({ path: SHOTS + "02-reading.png", fullPage: true });
 
@@ -389,7 +393,7 @@ try {
   console.log("Library: starter lesson is instant (no API call)");
   const lessonCallsBefore = calls.lesson;
   await page.goto(BASE + "#/");
-  await page.getByText("5 lessons ready at your level").first().waitFor();
+  await page.getByText("14 lessons ready at your level").first().waitFor();
   const t0 = Date.now();
   await page.getByRole("button", { name: /^Reading/ }).click();
   await page.getByRole("heading", { name: "Ο Καραγκιόζης" }).waitFor();
@@ -415,6 +419,18 @@ try {
     return (s.reading || []).length === 3 && (s.listening || []).length === 3;
   }, null, { timeout: 30000 });
   await page.getByText("3 lessons ready at your level").nth(1).waitFor();
+  console.log("Restock reminder (no built-in lessons at C1)");
+  const note = page.getByRole("region", { name: "Built-in lessons running low" });
+  await note.getByText("Left at your level: 0 C1 reading, 0 C1 listening.", { exact: false }).waitFor();
+  assert(await note.getByText("docs/LIBRARY.md").isVisible(), "reminder says how to restock");
+  await page.screenshot({ path: SHOTS + "09b-restock-note.png", fullPage: true });
+  await note.getByRole("button", { name: "Remind me in a week" }).click();
+  assert((await note.count()) === 0, "reminder snoozed");
+  await page.reload();
+  await page.getByLabel("Passphrase").fill("blue olive tree");
+  await page.getByRole("button", { name: "Unlock" }).click();
+  await page.getByText("3 lessons ready at your level").nth(1).waitFor();
+  assert((await note.count()) === 0, "snooze survives a reload");
   await page.screenshot({ path: SHOTS + "09-refilled.png", fullPage: true });
   assert(calls.lesson === lessonCallsBefore + 6, `refill generated 3 + 3 lessons (${calls.lesson - lessonCallsBefore})`);
   const kinds = await page.evaluate(() => {
@@ -444,6 +460,7 @@ try {
   await page.getByText("Level set to A2 (beginning).").waitFor();
   await page.goto(BASE + "#/");
   assert((await page.locator(".mode-btn .pill").allTextContents()).every((t) => t === "A2"), "next texts are A2");
+  assert((await page.getByRole("region", { name: "Built-in lessons running low" }).count()) === 0, "no restock reminder at A2 (22+ built-in lessons per mode)");
   const callsBeforeA2 = calls.lesson;
   await page.getByRole("button", { name: /^Reading/ }).click();
   await page.getByRole("heading", { name: "Η ελιά" }).waitFor();
@@ -561,6 +578,23 @@ try {
   await page.screenshot({ path: SHOTS + "11-placement-result.png", fullPage: true });
   await page.getByRole("button", { name: "Apply new levels" }).click();
   await page.getByText("Applied as your new levels.").waitFor();
+  const lowNote = page.getByRole("region", { name: "Built-in lessons running low" });
+  assert((await lowNote.count()) === 0, "no restock reminder after placement at B1 (14 reading, 13 listening built-in lessons)");
+  // Use up 8 B1 reading lessons: the result page should now point out that B1 reading is running low.
+  await page.evaluate(() => {
+    const s = JSON.parse(localStorage.getItem("akou.sessions.v1"));
+    const r = s.filter((x) => x.mode === "reading").at(-1);
+    for (let i = 1; i <= 8; i++) s.push({ ...r, id: `fake-${i}`, lessonId: `lib-reading-B1-0${i}`, level: "B1" });
+    localStorage.setItem("akou.sessions.v1", JSON.stringify(s));
+  });
+  await page.reload();
+  await page.getByLabel("Passphrase").fill("blue olive tree");
+  await page.getByRole("button", { name: "Unlock" }).click();
+  await page.goto(BASE + "#/placement");
+  await page.getByText("Applied as your new levels.").waitFor();
+  await lowNote.getByText("Left at your level: 6 B1 reading, 13 B1 listening.", { exact: false }).waitFor();
+  assert((await lowNote.getByRole("button", { name: "Remind me in a week" }).count()) === 0, "restock reminder on the placement result (not snoozable there)");
+  await page.screenshot({ path: SHOTS + "11b-placement-restock.png", fullPage: true });
   const applied = await page.evaluate(() => {
     const m = Object.values(JSON.parse(localStorage.getItem("akou.placement.v1")))[0];
     const p = JSON.parse(localStorage.getItem("akou.progress.v1"));

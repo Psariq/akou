@@ -8,7 +8,7 @@ A small installable web app (PWA) for learners of Modern Greek at about A2–B2:
 - **Texts from:** graded texts from the Centre for the Greek Language's text bank, Greek Wikipedia (simplified), AI-written everyday dialogues, and, only when you choose it, current Greek news. You can also paste a link to a specific article.
 - **Progress:** an estimated CEFR level for reading and listening, a chart over time, accuracy by task type, streaks, minutes, words from your texts, and estimated API cost.
 
-Sessions start instantly from a **lesson library**: 24 built-in starter lessons (4 reading + 4 listening at each of A2, B1, B2), plus lessons the app generates in the background and keeps on your device.
+Sessions start instantly from a **lesson library**: 92 built-in lessons (60 of them with word translations included), plus lessons the app generates in the background and keeps on your device.
 
 There is no server. The app is static files; it calls the Anthropic API directly from your browser with **your own API key**, and stores everything on your device.
 
@@ -72,7 +72,7 @@ In the last 7 days of each month (and, if missed, until the 7th of the next) the
 
 In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.
 
-- For every lesson (built-in and generated), Claude writes a gloss for each distinct word form once, in the background, a couple of lessons ahead of time. Stored on the device (`src/lib/glosses.ts`); the cost is added to the session that uses the lesson.
+- The 60 library lessons (`src/data/library/`) ship with their glosses: no API call. For every other lesson, Claude writes a gloss for each distinct word form once, in the background, a couple of lessons ahead of time. Stored on the device (`src/lib/glosses.ts`); the cost is added to the session that uses the lesson.
 - A word without a gloss yet is looked up on its own (one small request) and remembered.
 - Tapped words appear under *Progress → Words you looked up*.
 - Safety cap: at most 20 gloss generations per 24 hours.
@@ -84,16 +84,23 @@ In reading texts and transcripts every word can be tapped. A sheet shows the dic
 | [Greek Wikipedia](https://el.wikipedia.org) | CC BY-SA 4.0 (per the site's API, checked Nov 2026) | 8 built-in lessons adapted from articles (`src/data/open/wikipedia.json`, attribution per lesson; the adaptations are CC BY-SA 4.0 too). At runtime, articles are loaded directly from the browser and simplified by AI. |
 | [Text bank (Τράπεζα κειμένων)](https://www.greek-language.gr/certification/dbs/teachers/index.html) of the Centre for the Greek Language (ΚΕΓ) | © ΚΕΓ; **not** an open licence. The site states the texts may be used for teaching and to prepare learners for the certification exams, and may be modified or simplified. | Only an index (id, title, CEFR level, skill) is stored in the repo (`src/data/textbank-index.json`, rebuilt with `scripts/build-textbank-index.py`). Texts are fetched on demand by Claude's web-fetch tool for the learner's personal study and kept only on their device. |
 | Current news sites | Publishers' copyright | Only when “News” is chosen or a link is pasted; fetched for personal study, never used for background lessons. |
-| AI-written texts | — | 24 built-in fictional lessons (`src/data/starter/`) and occasional listening dialogues. |
+| AI-written texts | — | 84 built-in fictional lessons: 24 starters (`src/data/starter/`) and the 60-lesson library with word translations (`src/data/library/`, written in Claude Code), plus occasional listening dialogues. |
 
 Considered and not used: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, one active user and some unreliable recent articles), Tatoeba (sentences, not texts), Mozilla Common Voice (CC0 sentences with audio, but not connected texts).
 
 ## Lesson library
 
-- **Built-in lessons:** 8 adapted from Greek Wikipedia (used first) and 24 written by AI (Claude), fictional and not reviewed by a native speaker. They cost nothing and work offline.
-- **Stock on your device:** when fewer than **2** unused lessons are left at your current level for a mode, the app generates new ones in the background (one at a time) until there are **3**. Generation uses the model from Settings; it typically takes a few minutes per lesson.
+- **Built-in lessons:** 92 in total, all free and available offline:
+  - 8 adapted from Greek Wikipedia (used first)
+  - a 60-lesson library with word translations included: 22 reading and 22 listening at A2, 8 and 8 at B1
+  - 24 starters (4 reading and 4 listening at each of A2, B1 and B2)
+
+  All except the Wikipedia ones were written by AI (Claude) and are fictional. None were reviewed by a native speaker.
+- **1 lesson in 4 is a graded text** while built-in lessons last: after 3 sessions of a mode on other texts, the next one comes from the Centre's text bank, written with the API. It is prepared in the background one session ahead.
+- **Restock reminder:** when fewer than **10** unused built-in lessons are left at your level for reading or listening, the Practice screen says so (you can snooze it for a week). The same check runs on the placement result after new levels are applied. Restocking is done in Claude Code: see [docs/LIBRARY.md](docs/LIBRARY.md).
+- **Stock on your device:** when fewer than **2** unused lessons (built-in or generated) are left at your current level for a mode, the app generates new ones in the background (one at a time) until there are **3**. Generation uses the model from Settings; it typically takes a few minutes per lesson.
 - **Background sources:** the graded text bank (about 60%, matched to your level and to reading/listening) and Wikipedia; listening also uses AI-written dialogues now and then. If a source fails, the next one is tried. News is never used in the background.
-- **Choosing a lesson** (with source “Mixed”): exact level first, then the nearest level (at most one away, easier preferred). Within a level: fresh news lessons, then other generated ones, then starters. Lessons you've done are never repeated; news lessons expire after 4 days.
+- **Choosing a lesson** (with source “Mixed”): exact level first, then the nearest level (at most one away, easier preferred). Within a level: fresh news lessons, then other generated ones, then built-in ones; a graded text that isn't due yet comes last. Lessons you've done are never repeated; news lessons expire after 4 days.
 - With a specific source (Graded / Wiki / News / Everyday), a ready lesson from that source is used if there is one; otherwise one is generated on the spot. A pasted link is always generated on the spot.
 - **Limits:** without a server, refilling only happens while the app is open (phones pause web apps in the background). Background generation is capped at 12 lessons per 24 hours as a cost safeguard. Rules live in `src/lib/library.ts` and `src/useRefill.ts`.
 
@@ -136,5 +143,7 @@ src/lib/       cefr.ts (estimate) · grading.ts · claude.ts (API calls) · prom
                sources.ts (Wikipedia, topics) · tts.ts (speech) · storage.ts · crypto.ts · stats.ts · pricing.ts
 src/components SessionView (reading/listening flow) · Tasks · Player · Stats · LevelChart · SettingsView · Guide · Unlock
 public/        manifest, icons, service worker (offline app shell)
+src/data/library  built-in lessons with word translations (restocking: docs/LIBRARY.md)
+scripts/library   tools for writing them: word list, merging translations, Greek spelling check
 e2e/smoke.mjs  end-to-end test with mocked APIs
 ```
