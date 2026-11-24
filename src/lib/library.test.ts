@@ -62,7 +62,8 @@ describe("choosing a lesson", () => {
       availableLessons("reading", [done("wiki-reading-B1-karagiozis"), done("wiki-reading-B1-olympos")], emptyStock),
       { level: "B1", band: "lower" },
     );
-    expect(c?.lesson.id).toBe("starter-reading-B1-1");
+    // Next come the library lessons (translations included), before the first AI-written starters.
+    expect(c?.lesson.id).toBe("lib-reading-B1-01");
   });
 
   it("prefers generated lessons (news first) over starters at the same level", () => {
