@@ -6,10 +6,10 @@ The app cannot write library lessons itself because it has no server. Restocking
 
 ## What is in the library now
 
-| Mode | A2 | B1 |
-|---|---|---|
-| Reading | 22 (`lib-reading-A2-01`…`22`) | 8 (`lib-reading-B1-01`…`08`) |
-| Listening | 22 (`lib-listening-A2-01`…`22`) | 8 (`lib-listening-B1-01`…`08`) |
+| Mode | A2 | B1 | B2 |
+|---|---|---|---|
+| Reading | 22 (`lib-reading-A2-01`…`22`) | 8 (`lib-reading-B1-01`…`08`) | — |
+| Listening | 22 (`lib-listening-A2-01`…`22`) | 8 (`lib-listening-B1-01`…`08`) | 16 (`lib-listening-B2-01`…`16`, added 28 November 2026) |
 
 There are also older built-in lessons without bundled translations: 8 based on Wikipedia articles (`src/data/open`) and 4 per mode and level at A2, B1 and B2 (`src/data/starter`). The reminder counts these too.
 
@@ -123,7 +123,7 @@ Commit to the work branch. Publishing to `main` (which deploys the app) only hap
 
 ## Size
 
-The library is bundled into the app's main script. On 24 November 2026, the 60 lessons took the script from 104 KB to 266 KB gzipped. The service worker caches it after the first load. Each further 60 lessons will add roughly the same amount. If the library grows past a few hundred lessons, load the files lazily (non-eager `import.meta.glob`) instead.
+The library is bundled into the app's main script. On 24 November 2026, the first 60 lessons took the script from 104 KB to 266 KB gzipped; the 16 B2 listening lessons (28 November 2026) took it to 339 KB. The service worker caches it after the first load. Each further lesson adds roughly 3–5 KB gzipped. If the library grows past a few hundred lessons, load the files lazily (non-eager `import.meta.glob`) instead.
 
 ## Where the code is
 

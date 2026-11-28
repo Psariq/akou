@@ -8,7 +8,7 @@ A small installable web app (PWA) for learners of Modern Greek at about A2–B2:
 - **Texts from:** graded texts and original radio/TV recordings from the Centre for the Greek Language, Greek Wikipedia (simplified), AI-written everyday dialogues, and, only when you choose it, current Greek news. You can also paste a link to a specific article.
 - **Progress:** an estimated CEFR level for reading and listening, a chart over time, accuracy by task type, streaks, minutes, words from your texts, and estimated API cost.
 
-Sessions start instantly from a **lesson library**: 92 built-in lessons (60 of them with word translations included), plus lessons the app generates in the background and keeps on your device.
+Sessions start instantly from a **lesson library**: 108 built-in lessons (76 of them with word translations included), plus lessons the app generates in the background and keeps on your device.
 
 There is no server. The app is static files; it calls the Anthropic API directly from your browser with **your own API key**, and stores everything on your device.
 
@@ -72,7 +72,7 @@ In the last 7 days of each month (and, if missed, until the 7th of the next) the
 
 In reading texts and transcripts every word can be tapped. A sheet shows the dictionary form, the meaning **in this text**, a short grammar note and a button to hear the word.
 
-- The 60 library lessons (`src/data/library/`) ship with their glosses: no API call. For every other lesson, Claude writes a gloss for each distinct word form once, in the background, a couple of lessons ahead of time. Stored on the device (`src/lib/glosses.ts`); the cost is added to the session that uses the lesson.
+- The 76 library lessons (`src/data/library/`) ship with their glosses: no API call. For every other lesson, Claude writes a gloss for each distinct word form once, in the background, a couple of lessons ahead of time. Stored on the device (`src/lib/glosses.ts`); the cost is added to the session that uses the lesson.
 - A word without a gloss yet is looked up on its own (one small request) and remembered.
 - Tapped words appear under *Progress → Words you looked up*.
 - Safety cap: at most 20 gloss generations per 24 hours.
@@ -85,7 +85,7 @@ In reading texts and transcripts every word can be tapped. A sheet shows the dic
 | [Text bank (Τράπεζα κειμένων)](https://www.greek-language.gr/certification/dbs/teachers/index.html) of the Centre for the Greek Language (ΚΕΓ) | © ΚΕΓ; **not** an open licence. The site states the texts may be used for teaching and to prepare learners for the certification exams, and may be modified or simplified. | Only an index (id, title, CEFR level, skill) is stored in the repo (`src/data/textbank-index.json`, rebuilt with `scripts/build-textbank-index.py`). Texts are fetched on demand by Claude's web-fetch tool for the learner's personal study and kept only on their device. |
 | [Multimedia bank (Τράπεζα πολυμεσικού υλικού)](https://www.greek-language.gr/certification/dbs/media/index.html) of the Centre for the Greek Language | © ΚΕΓ and the broadcasters; no reuse terms stated. Collected by the Centre, graded by level, for listening comprehension. | 110 authentic radio/TV recordings (A2 7, B1 21, B2 29, C1 34, C2 19). Only an index (id, title, level, mp3 address) is in the repo (`src/data/media-index.json`, rebuilt with `scripts/build-media-index.py`). The mp3 is streamed from the Centre's site when played; Claude fetches the transcript on demand. Nothing is redistributed. |
 | Current news sites | Publishers' copyright | Only when “News” is chosen or a link is pasted; fetched for personal study, never used for background lessons. |
-| AI-written texts | — | 84 built-in fictional lessons: 24 starters (`src/data/starter/`) and the 60-lesson library with word translations (`src/data/library/`, written in Claude Code), plus occasional listening dialogues. |
+| AI-written texts | — | 100 built-in fictional lessons: 24 starters (`src/data/starter/`) and the 76-lesson library with word translations (`src/data/library/`, written in Claude Code), plus occasional listening dialogues. |
 
 Considered and not used (checked Nov 2026):
 - Children's story platforms with Greek translations: Global Storybooks "Ιστορίες για την Ελλάδα" (40 stories, CC BY / CC BY-NC, no Greek audio yet), StoryWeaver (61 Greek books). Volunteer translations for children, no more reliable than AI text.
@@ -99,9 +99,9 @@ Earlier: Greek Wikinews (CC BY 4.0, but only ~3,100 articles, one active user an
 
 ## Lesson library
 
-- **Built-in lessons:** 92 in total, all free and available offline:
+- **Built-in lessons:** 108 in total, all free and available offline:
   - 8 adapted from Greek Wikipedia (used first)
-  - a 60-lesson library with word translations included: 22 reading and 22 listening at A2, 8 and 8 at B1
+  - a 76-lesson library with word translations included: 22 reading and 22 listening at A2, 8 and 8 at B1, 16 listening at B2
   - 24 starters (4 reading and 4 listening at each of A2, B1 and B2)
 
   All except the Wikipedia ones were written by AI (Claude) and are fictional. None were reviewed by a native speaker.
